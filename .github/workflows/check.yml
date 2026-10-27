@@ -1,12 +1,10 @@
 # Checks on GitHub-hosted runners: install, typecheck, web build, the web and backend tests on a fresh
 # PostgreSQL, the built site's smoke check on the empty database, and the Docker image brought up with docker compose.
 # Only GitHub-owned actions, pinned to a full commit SHA.
-name: Check
+name: Check (manual)
+# Project execution for the current delivery stays on homelab. Remote CI is opt-in.
 
 on:
-  push:
-    branches: [main]
-  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -31,8 +29,10 @@ jobs:
           --health-cmd "pg_isready -U postgres" --health-interval 2s --health-timeout 5s --health-retries 30
     env:
       DATABASE_URL: postgres://postgres:ci@127.0.0.1:5432/aihot_ci
-      SITE_URL: http://127.0.0.1:3000
-      API_BASE_URL: http://127.0.0.1:3001
+      SITE_URL: http://127.0.0.1:43181
+      API_BASE_URL: http://127.0.0.1:43182
+      API_PORT: 43182
+      WEB_PORT: 43181
       SESSION_SECRET: ci-session-secret-0123456789abcdef
       IMG_PROXY_SIGN_SECRET: ci-img-secret-0123456789abcdef
     steps:
@@ -84,9 +84,9 @@ jobs:
         run: |
           node apps/api/src/main.ts > "$RUNNER_TEMP/api.log" 2>&1 &
           (cd apps/web && NODE_ENV=production exec node server.ts) > "$RUNNER_TEMP/web.log" 2>&1 &
-          for i in $(seq 1 60); do curl -fsS -o /dev/null http://127.0.0.1:3000/api/health 2>/dev/null && break; sleep 1; done
-          node scripts/smoke.ts --base http://127.0.0.1:3000
-          node scripts/mcp-check.ts http://127.0.0.1:3000/api/mcp
+          for i in $(seq 1 60); do curl -fsS -o /dev/null http://127.0.0.1:43181/api/health 2>/dev/null && break; sleep 1; done
+          node scripts/smoke.ts --base http://127.0.0.1:43181
+          node scripts/mcp-check.ts http://127.0.0.1:43181/api/mcp
       - name: Server logs
         if: failure()
         run: tail -n 60 "$RUNNER_TEMP/api.log" "$RUNNER_TEMP/web.log" 2>/dev/null || true
@@ -102,22 +102,46 @@ jobs:
           package-manager-cache: false
       - name: Configure a throwaway site
         run: |
-          node scripts/init-env.ts --llm-key ci-not-a-real-key
-          # No outside calls in CI: nothing is collected and no model is asked.
-          sed -i 's/^COLLECT_ENABLED=.*/COLLECT_ENABLED=false/; s/^MODEL_CALLS_ENABLED=.*/MODEL_CALLS_ENABLED=false/' .env
-          # The smoke check reaches the site by its compose service name.
-          echo "MCP_ALLOWED_HOSTS=web" >> .env
-      - name: Build and start with docker compose
-        run: docker compose up -d --build
+          mkdir -p "$RUNNER_TEMP/ai-news/data"
+          # Disposable CI-only values; never production credentials.
+          cat > "$RUNNER_TEMP/ai-news/backend.env" <<'ENV'
+          DATABASE_URL=postgres://ainews:ci-only-password@db:43183/ainews
+          ADMIN_PASSWORD=ci-only-admin-password
+          SESSION_SECRET=ci-session-secret-0123456789abcdef
+          IMG_PROXY_SIGN_SECRET=ci-image-secret-0123456789abcdef
+          MODEL_CALLS_ENABLED=false
+          COLLECT_ENABLED=false
+          MCP_ALLOWED_HOSTS=web
+          ENV
+          cat > "$RUNNER_TEMP/ai-news/compose.env" <<ENV
+          AI_NEWS_IMAGE=ainews-local:ci
+          AIHOT_RELEASE=ci
+          AI_NEWS_BACKEND_ENV=$RUNNER_TEMP/ai-news/backend.env
+          AI_NEWS_DATA_DIR=$RUNNER_TEMP/ai-news/data
+          POSTGRES_PASSWORD=ci-only-password
+          SITE_URL=http://127.0.0.1:43180
+          INGRESS_BIND=127.0.0.1
+          ENV
+          sudo chown 1000:1000 "$RUNNER_TEMP/ai-news/data"
+      - name: Build, migrate, seed and start
+        run: |
+          docker build -t ainews-local:ci .
+          dc() { docker compose --env-file "$RUNNER_TEMP/ai-news/compose.env" -f deploy/portable/compose.yaml "$@"; }
+          dc config --quiet
+          dc up -d db
+          dc --profile tools run --rm migrate
+          dc --profile tools run --rm migrate node scripts/seed.ts
+          dc up -d api web ingress
       - name: Smoke check
         run: |
-          for i in $(seq 1 90); do curl -fsS -o /dev/null http://127.0.0.1:3000/api/health 2>/dev/null && break; sleep 2; done
-          docker compose ps
-          docker compose run --rm --no-deps --entrypoint node setup scripts/smoke.ts --base http://web:3000
-          docker compose exec -T db psql -U aihot -d aihot -Atc "select count(*) from sources" | grep -qx "$(node -p "require('./industry/sources.json').sources.length")"
+          dc() { docker compose --env-file "$RUNNER_TEMP/ai-news/compose.env" -f deploy/portable/compose.yaml "$@"; }
+          for i in $(seq 1 90); do curl -fsS -o /dev/null http://127.0.0.1:43180/api/health 2>/dev/null && break; sleep 2; done
+          dc ps
+          dc --profile tools run --rm --no-deps migrate node scripts/smoke.ts --base http://web:43181
+          dc exec -T db psql -p 43183 -U ainews -d ainews -Atc "select count(*) from sources" | grep -qx "$(node -p "require('./industry/sources.json').sources.length")"
       - name: Logs
         if: failure()
-        run: docker compose logs --tail 80
-      - name: Stop
+        run: docker compose --env-file "$RUNNER_TEMP/ai-news/compose.env" -f deploy/portable/compose.yaml logs --tail 80
+      - name: Stop disposable CI stack
         if: always()
-        run: docker compose down -v
+        run: docker compose --env-file "$RUNNER_TEMP/ai-news/compose.env" -f deploy/portable/compose.yaml down -v

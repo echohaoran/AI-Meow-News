@@ -19,3 +19,15 @@ artifacts
 coverage
 **/node_modules
 **/.react-router
+
+# Keep runtime env and internal acceptance files out of future image contexts.
+*.env
+*.env.*
+!*.env.example
+!.env.example
+docs/integration
+docs/operations
+docs/AI-News开发分工.md
+docs/backend/后端交付报告.md
+docs/backend/部署交接.md
+docs/frontend/前端交付报告.md

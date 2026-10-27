@@ -31,3 +31,26 @@ artifacts/
 *.db
 *.pem
 *.key
+
+# Internal dated acceptance records remain outside the public tree.
+/docs/integration/GitHub交付.md
+/docs/integration/修复最终验收报告.md
+/docs/integration/全栈审查与测试报告.md
+/docs/integration/内容链路修复.md
+/docs/integration/原文事实复核.md
+/docs/operations/事实纠正最终部署报告.md
+/docs/operations/内容展示修复部署报告.md
+/docs/operations/最终增量部署报告.md
+/docs/operations/独立采集部署验收报告.md
+/docs/operations/自动运行接续报告.md
+/docs/operations/部署验收报告.md
+/docs/AI-News开发分工.md
+/docs/backend/后端交付报告.md
+/docs/backend/部署交接.md
+/docs/frontend/前端交付报告.md
+
+# Filled group/runtime dotenv files; only explicit example templates are public.
+*.env
+*.env.*
+!*.env.example
+!.env.example

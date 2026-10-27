@@ -1,10 +1,10 @@
 # AI-News API 契约
 
-2026-10-26，依据 ce83484 当前路由和 packages/contracts/src/site.ts；后端交付时补充验证。前端沿用现有 typed HTTP client，不创建另一套字段。
+2026-10-27，依据当前 `apps/api/src/routes` 与 `packages/contracts/src/site.ts`。前端沿用 typed HTTP client；运行版本和验证边界见[验收与现状](../验收与现状.md)。
 
 ## 接入
 
-LAN 唯一入口 http://192.168.1.77:43180；API 43182 仅内部，前端服务端经 API_BASE_URL 读取。匿名公开读取不读管理员 Cookie、不调用模型。API 启动前须迁移同一数据库。接口此时是代码契约，尚不代表整站已部署。
+网页唯一入口43180；API 43182 仅内部，前端服务端经 API_BASE_URL 读取。匿名公开读取不读管理员 Cookie、不调用模型。API 启动前须迁移同一数据库。本文是接口契约；运行状态以带日期的验收摘要为准。
 
 ## 网站读取
 
@@ -67,4 +67,4 @@ items[] 为 {id,title,sourceSummary,source:{id,name},links:{original},publishedA
 
 按来源发布时间倒序、ID倒序；动态翻页可能因新到条目移动，hasMore 指本次查询后仍有条目。仅通过 publication 读取层返回 editorial 来源的 public、已释放、已知非未来发布时间的新闻资料；撤回、隔离及其他模式不进入此接口。原精选/全部动态的模型门槛不变。无模型时请显式展示“来源动态·未核验”，不能把本接口数据填充成精选。本接口可独立于后台 worker 和模型运行，前端目前尚未接入该新入口，交全栈接线。
 
-2026-10-26全栈集成：公开来源页面现为 `/source-news`，通过共享SourceItemsResponse读取本接口；“来源名称”链接执行sourceId筛选。原 `/sources` 保留底座后台书签重定向。运行验证与模型处理边界见 docs/integration/全栈审查与测试报告.md。
+2026-10-26全栈集成：公开来源页面现为 `/source-news`，通过共享SourceItemsResponse读取本接口；“来源名称”链接执行sourceId筛选。原 `/sources` 保留底座后台书签重定向。运行验证与模型处理边界见[验收与现状](../验收与现状.md)。

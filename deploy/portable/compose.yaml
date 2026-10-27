@@ -1,0 +1,110 @@
+# Fresh installation only. Never add this stack to the existing homelab deployment.
+name: ai-meow-local
+x-backend: &backend
+  image: ${AI_NEWS_IMAGE:?Set a reviewed application image}
+  init: true
+  restart: unless-stopped
+  env_file: ["${AI_NEWS_BACKEND_ENV:?Set an absolute backend.env path}"]
+  environment: &backend-env
+    NODE_ENV: production
+    AIHOT_ENVIRONMENT: production
+    SITE_URL: ${SITE_URL:-http://localhost:43180}
+    AIHOT_RELEASE: ${AIHOT_RELEASE:?Set a release identifier}
+    AIHOT_DATA_DIR: /data
+    DATABASE_POOL_MAX: '4'
+    COLLECT_ENABLED: 'false'
+    MODEL_CALLS_ENABLED: 'false'
+    FEISHU_CONTENT_PUSH_ENABLED: 'false'
+    FEISHU_INTERNAL_ENABLED: 'false'
+    INDEXNOW_SUBMIT_ENABLED: 'false'
+  volumes: ["${AI_NEWS_DATA_DIR:?Set an absolute data directory}:/data"]
+  networks: [app, db]
+  depends_on:
+    db: {condition: service_healthy}
+  logging: &logging
+    driver: json-file
+    options: {max-size: 5m, max-file: '2'}
+services:
+  db:
+    image: postgres:17
+    restart: unless-stopped
+    command: [postgres, -p, '43183']
+    environment:
+      POSTGRES_USER: ainews
+      POSTGRES_DB: ainews
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set a random database password}
+    volumes: [db-data:/var/lib/postgresql/data]
+    networks: [db]
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -p 43183 -U ainews -d ainews']
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    logging: *logging
+  api:
+    <<: *backend
+    command: [node, deploy/ai-news/container.mjs, api]
+    environment:
+      <<: *backend-env
+      API_HOST: 0.0.0.0
+      API_PORT: '43182'
+    expose: ['43182']
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://127.0.0.1:43182/api/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+  web:
+    image: ${AI_NEWS_IMAGE:?Set a reviewed application image}
+    init: true
+    restart: unless-stopped
+    command: [node, apps/web/server.ts]
+    environment:
+      NODE_ENV: production
+      API_BASE_URL: http://api:43182
+      SITE_URL: ${SITE_URL:-http://localhost:43180}
+      AIHOT_RELEASE: ${AIHOT_RELEASE:?Set a release identifier}
+      TRUST_PROXY: 'true'
+      WEB_HOST: 0.0.0.0
+      WEB_PORT: '43181'
+    expose: ['43181']
+    networks: [app]
+    depends_on:
+      api: {condition: service_healthy}
+    logging: *logging
+  ingress:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports: ["${INGRESS_BIND:-127.0.0.1}:43180:43180"]
+    volumes: [../ai-news/Caddyfile:/etc/caddy/Caddyfile:ro]
+    networks: [app]
+    depends_on: [web]
+    logging: *logging
+  migrate:
+    <<: *backend
+    profiles: [tools]
+    restart: 'no'
+    command: [node, deploy/ai-news/container.mjs, migrate]
+  collector:
+    <<: *backend
+    profiles: [collector]
+    image: ${AI_NEWS_COLLECTOR_IMAGE:-${AI_NEWS_IMAGE}}
+    command: [node, deploy/ai-news/container.mjs, collector]
+    environment:
+      <<: *backend-env
+      AIHOT_RELEASE: ${AI_NEWS_COLLECTOR_RELEASE:-${AIHOT_RELEASE}}
+      COLLECT_ENABLED: 'true'
+      MODEL_CALLS_ENABLED: 'false'
+    stop_grace_period: 515s
+  worker:
+    <<: *backend
+    profiles: [worker]
+    command: [node, deploy/ai-news/container.mjs, worker]
+    # All external-action valves remain false. Enabling full processing needs a reviewed override.
+    stop_grace_period: 515s
+volumes:
+  db-data:
+networks:
+  app:
+  db:
+    internal: true
