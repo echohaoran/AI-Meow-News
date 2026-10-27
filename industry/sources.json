@@ -365,6 +365,175 @@
       ],
       "site_fulltext": false,
       "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-meituan-tech",
+      "name": "美团技术团队",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://tech.meituan.com/rss.xml",
+        "_aihot": {
+          "initialBackfillLimit": 8
+        },
+        "detail": {
+          "maxFetches": 8,
+          "publishedAtSelector": ".vp-post-date",
+          "publishedAtUtcOffset": "+08:00"
+        }
+      },
+      "tier": "T1",
+      "owner_entity_id": "meituan",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "官方",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-scientific-spaces",
+      "name": "科学空间 · 苏剑林",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://spaces.ac.cn/feed",
+        "_aihot": {
+          "initialBackfillLimit": 8
+        }
+      },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "研究",
+        "个人"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-qbitai",
+      "name": "量子位",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.qbitai.com/feed",
+        "_aihot": {
+          "initialBackfillLimit": 8
+        }
+      },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": [
+        "媒体"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-leiphone",
+      "name": "雷峰网",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.leiphone.com/feed",
+        "_aihot": {
+          "initialBackfillLimit": 8
+        }
+      },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": [
+        "媒体"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-apple-ml",
+      "name": "Apple Machine Learning Research",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://machinelearning.apple.com/rss.xml",
+        "_aihot": {
+          "initialBackfillLimit": 8
+        }
+      },
+      "tier": "T1",
+      "owner_entity_id": "apple",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "官方",
+        "研究"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-cmu-ml",
+      "name": "CMU Machine Learning Blog",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://blog.ml.cmu.edu/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 8
+        }
+      },
+      "tier": "T1",
+      "owner_entity_id": "cmu",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "研究"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-pytorch",
+      "name": "PyTorch Blog",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://pytorch.org/blog/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 8
+        }
+      },
+      "tier": "T1",
+      "owner_entity_id": "pytorch",
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": [
+        "官方",
+        "开源"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-google-ai",
+      "name": "Google Blog · AI",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://blog.google/innovation-and-ai/technology/ai/rss/",
+        "_aihot": {
+          "initialBackfillLimit": 8
+        }
+      },
+      "tier": "T1",
+      "owner_entity_id": "google",
+      "participation_mode": "editorial",
+      "interval_minutes": 120,
+      "tags": [
+        "官方"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
     }
   ]
 }
