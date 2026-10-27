@@ -114,3 +114,10 @@
 - 重启前的数据库备份和隔离恢复验证位于 `/root/netops-backups/ainews-worker-restart-20261027T060655Z/verification.json`，恢复库 `ainews_worker_restore_20261027060655_test`；恢复后源数量不少于 102。重启结果保存于服务器 `.tmp/worker-restart-result.json`。
 - 工作区待推送内容还包括列表新闻缩略图、首页 MCP 快捷复制、关于页精选卡片位置及对应文档；列表图片代码与线上 API/web 镜像逐文件校验一致，首页/关于页的当前修改尚未部署。它们会随本次用户授权的仓库推送提交，推送不等同部署。
 - 在独立源码快照、既有依赖和 Node 24 下，类型检查、前端构建、2 项列表图片回归及 7 项页面回归通过；重启后确认 `sources.schedule`、`content.translate` 和 `reading.compose` 定时任务已注册。完整数据库及浏览器套件未在本次重跑。
+
+## 2026-10-27：移除全部动态页提示
+
+- 按用户要求移除 `/all` 页面“尚未进入编辑流程的资料请到来源动态·未核验阅读”这一行；来源动态页面和其他入口保留。
+- 基于线上 `ainews-app:feed-images-4e1f87afb1cc` 的不可变源码快照，只替换 `apps/web/app/routes/all.tsx`，部署 API/web 镜像 `ainews-app:hide-notice-4f69a3189fdd`，源码摘要 `4f69a3189fdd1c58389748aa65a78b379f9f9c27917ded2accff6cc4328df254`。worker 的容器、镜像及运行开关保持原状。
+- 类型检查、前端构建、7 项页面回归和整站 smoke 通过；浏览器验证 1269px 和 375px 页面均没有该提示，列表正常显示且无横向溢出。
+- 生产备份与隔离恢复验证在服务器 `/root/netops-backups/ainews-hide-notice-20261027T063634Z/verification.json`，恢复库 `ainews_hide_notice_restore_20261027063634_test`；发布回执和检查日志在 `.tmp/hide-notice-result.json` 和 `.tmp/hide-notice-checks-20261027T063634Z/`。本次本地提交，未推送。
