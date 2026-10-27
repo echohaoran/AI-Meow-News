@@ -312,14 +312,16 @@ function ItemView({ item }: { item: SiteItemDetail }) {
     }
   };
 
-  const bodyHtml = lang === "zh" ? (item.body?.zh ?? item.body?.original) : (item.body?.original ?? item.body?.zh);
+  // News articles show the Chinese translation; Chinese originals need no duplicate body.
+  const bodyHtml = item.channel !== "x" && item.body?.zhKind !== "translation" ? null
+    : lang === "zh" ? (item.body?.zh ?? item.body?.original) : (item.body?.original ?? item.body?.zh);
   const bodyLabel = !item.body ? null : lang === "zh" && item.body.zhKind === "translation" ? "正文 · AI 翻译" : lang === "original" ? "正文 · 原文" : "正文";
   const isX = item.channel === "x" && !!item.x;
   // Without a reliable date from the original, the time shown is when it was collected, labelled as such.
   const shownAt = item.publishedAt ?? item.discoveredAt;
   const timeLabel = item.publishedAt ? "发布时间" : "收录时间";
   const summaryOnly = item.readingMode === "summary-only";
-  const showOutline = item.outline.length >= 3;
+  const showOutline = !!bodyHtml && item.outline.length > 0;
   const originalLabel = isX ? "在 X 查看原推" : "打开原文";
 
   const related = item.relatedStories.filter((s) => s.publicId !== item.story?.publicId);
@@ -365,15 +367,7 @@ function ItemView({ item }: { item: SiteItemDetail }) {
   ];
   // Desktop actions head the right rail, one row as tall as 返回 at the head of the left one.
   const actions = (
-    <div className="flex items-center gap-1">
-      <a
-        href={item.links.original}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex h-8 flex-1 items-center justify-center gap-1.5 rounded-full border border-line-strong bg-surface px-3.5 text-[12.5px] font-medium text-ink-2 transition-colors hover:border-ink-4 hover:text-ink"
-      >
-        {originalLabel} <IconExternal size={13} />
-      </a>
+    <div className="flex items-center justify-end gap-1">
       <StarButton item={item} size={32} />
       {moreMenu}
     </div>
@@ -385,8 +379,7 @@ function ItemView({ item }: { item: SiteItemDetail }) {
     </div>
   );
 
-  // Rails: the piece's facts on the left (wide screens), the editor's notes on the right, the outline
-  // under the facts (or under the notes when only the right rail shows).
+  // Source facts stay on the left on wide screens; the outline heads the notes on the right.
   const facts = (
     <RailSection title="来源">
       <div className="text-[14px] font-semibold leading-snug text-ink">{isX ? item.x!.authorName : item.source.name}</div>
@@ -440,7 +433,7 @@ function ItemView({ item }: { item: SiteItemDetail }) {
 
   return (
     <div className="mx-auto max-w-[var(--page-max-reading)] pb-8">
-      {item.body && <ReadingProgress />}
+      {bodyHtml && <ReadingProgress />}
 
       {/* Phones: back to where the reader came from, the title once it has scrolled away, more actions. */}
       <PhoneBar
@@ -459,20 +452,23 @@ function ItemView({ item }: { item: SiteItemDetail }) {
           <>
             {backButton}
             {facts}
-            {outline}
           </>
         }
         right={
           <>
             {actions}
+            {outline}
             {notes}
-            <div className="flex min-h-0 flex-col space-y-8 2xl:hidden">{outline}</div>
           </>
         }
       >
         {/* Between lg and 2xl the left rail is hidden: 返回 stays at the top while reading, as on the original site. */}
         <div className="sticky top-0 z-20 -mx-2 hidden bg-bg/95 px-2 py-1.5 backdrop-blur lg:block 2xl:hidden">{backButton}</div>
         <article className="pb-6 pt-3 lg:pt-2 2xl:pt-1">
+          <a href={item.links.original} target="_blank" rel="noopener noreferrer" className="mb-4 flex items-start gap-1.5 break-all text-[13px] leading-relaxed text-accent hover:underline">
+            <IconExternal size={14} className="mt-0.5 shrink-0" />
+            <span>原文：{item.links.original}</span>
+          </a>
           <div className={`flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[13px] text-ink-3 2xl:hidden ${isX ? "" : "mb-3"}`}>
             <span className="font-semibold text-ink-2">{isX ? item.x!.authorName : item.source.name}</span>
             {isX && <span>· @{item.x!.handle} · X</span>}

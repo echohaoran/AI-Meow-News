@@ -2,7 +2,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import * as cheerio from "cheerio";
-import { fakeApi, startWebServer } from "../../apps/web/tests/web-server.ts";
+import { fakeApi, itemDetail, startWebServer } from "../../apps/web/tests/web-server.ts";
 
 const sourceItem = {
   id: "fixture-source-news", title: "Synthetic source news for SSR regression", sourceSummary: "A source excerpt, not a model summary.",
@@ -10,6 +10,41 @@ const sourceItem = {
   publishedAt: "2026-10-23T00:00:00.000Z", discoveredAt: "2026-10-26T00:00:00.000Z", verificationStatus: "unverified", selected: false,
 };
 const sourceFeed = { mode: "source", verificationStatus: "unverified", items: [sourceItem], page: 1, limit: 5, hasMore: false };
+
+test("article reading keeps its short guide and original link, with outlines only for translated bodies", async () => {
+  const outline = [{ id: "sec-1", level: 2, text: "译文小节" }];
+  const translated = itemDetail({ id: "translated-reading", title: "译文阅读", summary: "原始短导读", outline,
+    body: { zh: '<h2 id="sec-1">译文小节</h2><p>英文原文的中文译文。</p>', original: null, zhKind: "translation", complete: true } });
+  const chinese = itemDetail({ id: "chinese-reading", title: "中文阅读", summary: "中文短导读", outline,
+    body: { zh: '<h2 id="sec-1">原文小节</h2><p>不重复显示的中文原文。</p>', original: null, zhKind: "original", complete: true }, hasTranslation: false });
+  const pending = itemDetail({ id: "pending-reading", title: "待译文章", summary: "待译短导读", outline,
+    body: { zh: null, original: '<h2 id="sec-1">Untranslated section</h2><p>Pending English body.</p>', zhKind: null, complete: false }, hasTranslation: false, bodyLanguage: "original" });
+  const items = [translated, chinese, pending];
+  const web = await startWebServer(fakeApi(url => items.find(item => url.pathname === `/api/site/items/${item.id}`)));
+  try {
+    for (const item of items) {
+      const response = await fetch(web.origin + `/items/${item.id}`);
+      assert.equal(response.status, 200);
+      const $ = cheerio.load(await response.text());
+      const article = $("article");
+      assert.equal(article.children("a").first().attr("href"), item.links.original);
+      assert.ok(article.text().includes(item.summary!));
+      assert.ok(article.text().includes("AI 导读"));
+      if (item.id === translated.id) {
+        assert.ok(article.text().includes("英文原文的中文译文。"));
+        const directory = $('nav[aria-label="本文目录"]');
+        assert.equal(directory.length, 1);
+        assert.equal(directory.closest("aside").length, 1);
+        assert.equal(directory.find('a[href="#sec-1"]').length, 1);
+        assert.equal(article.find("#sec-1").length, 1);
+      } else {
+        assert.equal($('nav[aria-label="本文目录"]').length, 0);
+        assert.ok(!article.text().includes("不重复显示的中文原文。"));
+        assert.ok(!article.text().includes("Pending English body."));
+      }
+    }
+  } finally { await web.stop(); }
+});
 
 test("an empty selected feed displays API source news with its original date and unverified status", async () => {
   const web = await startWebServer(fakeApi(url => url.pathname === "/api/site/timeline"
