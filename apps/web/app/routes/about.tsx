@@ -181,10 +181,10 @@ function Latest({ item, className = "" }: { item: SiteStats["latest"][number] | 
   if (!item) return null;
   return (
     <IntentLink viewTransition to={`/items/${item.id}`} className={`group block ${className}`}>
-      <span className="text-[11px] font-semibold tracking-[0.2em] text-accent">最近精选</span>
-      <span key={item.id} className="animate-fade-up mt-1.5 block">
-        <span className="line-clamp-2 text-[13.5px] font-semibold leading-[1.55] text-ink transition-colors group-hover:text-accent">{item.title}</span>
-        <span className="mt-1 block truncate text-[12px] text-ink-4">{item.source}</span>
+      <span className="text-[10px] font-semibold tracking-[0.2em] text-accent lg:text-[11px]">最近精选</span>
+      <span key={item.id} className="animate-fade-up block lg:mt-1.5">
+        <span className="line-clamp-2 text-[11px] font-semibold leading-[1.25] text-ink transition-colors group-hover:text-accent lg:text-[13.5px] lg:leading-[1.55]">{item.title}</span>
+        <span className="mt-0.5 block truncate text-[10px] text-ink-4 lg:mt-1 lg:text-[12px]">{item.source}</span>
       </span>
     </IntentLink>
   );
@@ -241,10 +241,9 @@ export default function AboutPage() {
           {`${SITE.name} 怎么工作`}
         </h2>
         <SignalRiver sources={sources} focus={focus} onArrive={onArrive} className="h-[230px] sm:h-[300px] lg:h-[360px] 2xl:h-[420px]">
-          <Latest item={latest[at]} className="absolute bottom-6 right-6 hidden w-[min(320px,40%)] rounded-control border border-line bg-bg/95 px-4 py-3 text-left lg:block" />
+          <Latest item={latest[at]} className="absolute bottom-1 right-2 w-[min(168px,48%)] rounded-control border border-line bg-bg/40 px-2 py-1 text-left lg:bottom-6 lg:right-6 lg:w-[min(320px,40%)] lg:px-4 lg:py-3" />
         </SignalRiver>
         <p className="sr-only">示意图：周围的星星代表已启用的信源，信息沿星系轨迹汇聚，经过收录和精选后流向中央行星，代表成刊。动画用于说明流程，实际数量以下方统计为准。</p>
-        <Latest item={latest[at]} className="mt-2 border-t border-line pt-4 lg:hidden" />
         <ol className="mt-4 grid grid-cols-1 border-t border-line-strong sm:grid-cols-2 lg:mt-0 lg:grid-cols-4">
           {stages.map((s, i) => (
             <li

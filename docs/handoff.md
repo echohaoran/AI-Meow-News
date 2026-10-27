@@ -121,3 +121,9 @@
 - 基于线上 `ainews-app:feed-images-4e1f87afb1cc` 的不可变源码快照，只替换 `apps/web/app/routes/all.tsx`，部署 API/web 镜像 `ainews-app:hide-notice-4f69a3189fdd`，源码摘要 `4f69a3189fdd1c58389748aa65a78b379f9f9c27917ded2accff6cc4328df254`。worker 的容器、镜像及运行开关保持原状。
 - 类型检查、前端构建、7 项页面回归和整站 smoke 通过；浏览器验证 1269px 和 375px 页面均没有该提示，列表正常显示且无横向溢出。
 - 生产备份与隔离恢复验证在服务器 `/root/netops-backups/ainews-hide-notice-20261027T063634Z/verification.json`，恢复库 `ainews_hide_notice_restore_20261027063634_test`；发布回执和检查日志在 `.tmp/hide-notice-result.json` 和 `.tmp/hide-notice-checks-20261027T063634Z/`。本次本地提交，未推送。
+
+## 2026-10-27：关于页精选卡片
+
+- 按用户要求将“最近精选”卡片放在动画右下角，背景不透明度 40%；手机压缩卡片尺寸，标题和来源仍可见。线上桌面及 320/375px 预览确认卡片没有遮住中心球体、页面无横向溢出，线上点击可进入文章。
+- 基于线上快照仅替换关于页，发布 API/web 镜像 `ainews-app:about-card-7431e90ac5f5`，源码摘要 `7431e90ac5f5f214f8043c50f7ee3c866c1ca10b02f6a1304ccd613e1a36b398`，worker 容器、镜像和开关未改变。类型检查、前端构建、7 项页面回归与整站 smoke 通过。
+- 生产备份及隔离恢复验证位于服务器 `/root/netops-backups/ainews-about-card-20261027T064433Z/verification.json`，发布回执与日志在 `.tmp/about-card-result.json` 和 `.tmp/about-card-checks-20261027T064433Z/`。完整 `npm test` 因隔离测试数据库密码认证失败未启动；web 全量测试受服务器缺少 Playwright 浏览器影响，未完整通过，相关日志在 `.tmp/about-card-checks-20261027T064105Z/`。另用实际浏览器完成页面验证。
