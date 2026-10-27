@@ -9,6 +9,7 @@ import { z } from "zod";
 import { sql, closeDb } from "@aihot/backend/db";
 import { chatJson, MODELS } from "@aihot/backend/providers/llm";
 import { runSelectionPrefilter, runSelectionScores } from "@aihot/backend/editorial/analyze";
+import { modelRoute } from "@aihot/backend/editorial/models";
 import type { AnalyzeInputArticle } from "@aihot/backend/editorial/input";
 import { BudgetExceededError, failureKind, ModelOutputError, ReceiptUnknownError } from "@aihot/backend/providers/receipts";
 import { autoReleaseUnknownReceipts } from "@aihot/backend/operations/recover";
@@ -47,6 +48,67 @@ test("a 503 uses the backup and a retry reuses its saved answer after the primar
   assert.equal(again.receiptId, first.receiptId);
   assert.equal(again.reused, true);
   assert.deepEqual([primary.hits(), backup.hits()], calls);
+});
+
+test("the configured default route has the two requested models in order", async () => {
+  const previous = process.env.PREFILTER_MODEL;
+  process.env.PREFILTER_MODEL = "default";
+  try {
+    const route = await modelRoute("prefilter");
+    assert.deepEqual(route, { model: "default", fallbackModel: "gateway-mimo", tertiaryModel: "gateway-deepseek" });
+  } finally {
+    if (previous === undefined) delete process.env.PREFILTER_MODEL; else process.env.PREFILTER_MODEL = previous;
+  }
+});
+
+test("two outages use the final backup and a retry reuses its receipt", async () => {
+  const final = await stub(() => answer("final"));
+  pointModels(final.url, ["glm-5.3-flash"]);
+  primaryAnswer = backupAnswer = () => new Reply(503, { error: "unavailable" });
+  const opts = { ...request("three-models"), tertiaryModel: "glm-5.3-flash" };
+  try {
+    const first = await chatJson(opts);
+    assert.equal(first.model, "glm-5.3-flash");
+    const calls = [primary.hits(), backup.hits(), final.hits()];
+    primaryAnswer = backupAnswer = () => answer("recovered");
+    const again = await chatJson(opts);
+    assert.equal(again.receiptId, first.receiptId);
+    assert.equal(again.reused, true);
+    assert.deepEqual([primary.hits(), backup.hits(), final.hits()], calls);
+    const rows = await sql`SELECT service, id, request FROM receipts WHERE subject=${opts.subject}`;
+    const firstReceipt = rows.find((r) => r.service === "deepseek")!;
+    const secondReceipt = rows.find((r) => r.service === "dashscope")!;
+    assert.equal(Number(firstReceipt.request.fallbackReceiptId), Number(secondReceipt.id));
+    assert.equal(Number(secondReceipt.request.fallbackReceiptId), Number(first.receiptId));
+  } finally {
+    await final.close();
+    pointModels(primary.url, ["glm-5.3-flash"]);
+  }
+});
+
+test("two unknown outcomes retain both receipts when the final backup succeeds", async () => {
+  const final = await stub(() => answer("final"));
+  pointModels(final.url, ["glm-5.3-flash"]);
+  primaryAnswer = backupAnswer = async () => { await new Promise(resolve => setTimeout(resolve, 100)); return answer("too-late"); };
+  const opts = { ...request("three-timeouts"), tertiaryModel: "glm-5.3-flash", timeoutMs: 30 };
+  try {
+    const result = await chatJson(opts);
+    assert.equal(result.model, "glm-5.3-flash");
+    const rows = await sql`SELECT id, service, status, request FROM receipts WHERE subject=${opts.subject}`;
+    const first = rows.find((r) => r.service === "deepseek")!;
+    const second = rows.find((r) => r.service === "dashscope")!;
+    assert.equal(first.status, "unknown"); assert.equal(second.status, "unknown");
+    assert.equal(Number(first.request.fallbackReceiptId), Number(second.id));
+    assert.equal(Number(second.request.fallbackReceiptId), Number(result.receiptId));
+    await sql`UPDATE receipts SET updated_at=now()-interval '31 minutes' WHERE id IN (${first.id},${second.id})`;
+    assert.equal((await autoReleaseUnknownReceipts()).released, 0);
+    const calls = [primary.hits(), backup.hits(), final.hits()];
+    assert.equal((await chatJson(opts)).receiptId, result.receiptId);
+    assert.deepEqual([primary.hits(), backup.hits(), final.hits()], calls);
+  } finally {
+    await final.close();
+    pointModels(primary.url, ["glm-5.3-flash"]);
+  }
 });
 
 test("article prefilter and scoring use the configured backup and record mixed score models", async () => {

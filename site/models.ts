@@ -5,6 +5,9 @@
 import type { ModelPreset } from "@aihot/contracts/site-config";
 export type { ModelPreset } from "@aihot/contracts/site-config";
 
+const failoverSteps = ["prefilter", "score", "structure", "understand", "summarize", "wording", "group", "groupReview", "digest", "report", "translate"];
+const backsUp = (primary: string) => Object.fromEntries(failoverSteps.map((step) => [step, primary]));
+
 /** 具名的模型示例（每个要配自己的密钥）。用不上可以删掉。 */
 export const PRESETS: Record<string, ModelPreset> = {
   // GLM 5.3 Flash always reasons; the lowest effort keeps short structured tasks fast.
@@ -23,7 +26,6 @@ export const PRESETS: Record<string, ModelPreset> = {
   "deepseek-flash": {
     service: "deepseek", model: "deepseek-flash", baseUrlEnv: "DEEPSEEK_BASE_URL", apiKeyEnv: "DEEPSEEK_API_KEY",
     extra: { thinking: { type: "disabled" } }, jsonMode: true,
-    fallbackFor: { prefilter: "default", score: "default", structure: "default", understand: "default", summarize: "default", wording: "default", group: "default", groupReview: "default", digest: "default", report: "default", translate: "default" },
   },
   "deepseek-flash-think": {
     service: "deepseek", model: "deepseek-flash", baseUrlEnv: "DEEPSEEK_BASE_URL", apiKeyEnv: "DEEPSEEK_API_KEY", reasoningTokens: 4000, jsonMode: true,
@@ -39,6 +41,14 @@ export const PRESETS: Record<string, ModelPreset> = {
   "mimo-v2.6-flash": {
     service: "mimo", model: "mimo-v2.6-flash", baseUrlEnv: "XIAOMI_MIMO_BASE_URL", apiKeyEnv: "XIAOMI_MIMO_API_KEY",
     extra: { thinking: { type: "disabled" } }, jsonMode: true,
+  },
+  "gateway-mimo": {
+    service: "mimo", model: "xiaomi-mimo/mimo-v2.6-flash", baseUrlEnv: "LLM_BASE_URL", apiKeyEnv: "LLM_API_KEY",
+    jsonMode: true, fallbackFor: backsUp("default"),
+  },
+  "gateway-deepseek": {
+    service: "deepseek", model: "deepseek/deepseek-flash", baseUrlEnv: "LLM_BASE_URL", apiKeyEnv: "LLM_API_KEY",
+    extra: { thinking: { type: "disabled" } }, reasoningTokens: 4096, jsonMode: true, fallbackFor: backsUp("gateway-mimo"),
   },
   "qwen3-vl-flash": {
     service: "dashscope", model: "qwen3-vl-flash", baseUrlEnv: "DASHSCOPE_BASE_URL", apiKeyEnv: "DASHSCOPE_API_KEY",

@@ -52,6 +52,8 @@ export interface ChatJsonOptions<S extends z.ZodType> {
   model: string;
   /** One independently operated, evaluated backup. Only availability failures switch providers. */
   fallbackModel?: string;
+  /** A second backup, after fallbackModel. */
+  tertiaryModel?: string;
   purpose: string;
   subject: string;
   promptVersion: string;
@@ -153,18 +155,25 @@ const FAILOVER_TIMEOUT_MS = 30_000;
  */
 export async function chatJson<S extends z.ZodType>(opts: ChatJsonOptions<S>): Promise<ChatJsonResult<z.infer<S>>> {
   if (!opts.fallbackModel) return chatOnce(opts);
-  const backupOpts = { ...opts, model: opts.fallbackModel };
-  const fallbackFor = logicalKeyFor(requestFor(opts, MODELS[opts.model]!).request);
-  const saved = await receiptState(requestFor(backupOpts, MODELS[opts.fallbackModel]!).request);
-  // Finish an existing backup attempt before choosing a provider again, even after recovery/restart.
-  if (saved && saved !== "failed") return chatOnce(backupOpts, true, fallbackFor);
-  try {
-    return await chatOnce(opts, true);
-  } catch (error) {
-    const kind = failureKind(error);
-    if (kind !== "unknown" && kind !== "outage") throw error;
-    return chatOnce(backupOpts, true, fallbackFor);
+  const models = [opts.model, opts.fallbackModel, ...(opts.tertiaryModel ? [opts.tertiaryModel] : [])];
+  const requests = models.map((model) => ({ ...opts, model }));
+  // Resume the deepest existing attempt first: an earlier unknown request must not be bought again
+  // after a later fallback has already started or completed, even across a worker restart.
+  let start = 0;
+  for (let i = models.length - 1; i > 0; i--) {
+    const saved = await receiptState(requestFor(requests[i]!, MODELS[models[i]!]!).request);
+    if (saved && saved !== "failed") { start = i; break; }
   }
+  for (let i = start; i < models.length; i++) {
+    const parent = i ? logicalKeyFor(requestFor(requests[i - 1]!, MODELS[models[i - 1]!]!).request) : undefined;
+    try {
+      return await chatOnce(requests[i]!, true, parent);
+    } catch (error) {
+      const kind = failureKind(error);
+      if (i === models.length - 1 || (kind !== "unknown" && kind !== "outage")) throw error;
+    }
+  }
+  throw new Error("No model in failover route");
 }
 
 async function chatOnce<S extends z.ZodType>(opts: ChatJsonOptions<S>, circuit = false, fallbackFor?: string): Promise<ChatJsonResult<z.infer<S>>> {

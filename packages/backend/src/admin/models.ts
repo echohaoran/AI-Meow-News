@@ -82,7 +82,7 @@ export async function modelsOverview(days = 7): Promise<BeforeJson<AdminModels>>
       defaultModel: c.default,
       vision: !!c.vision,
       current: sources[key]!,
-      fallback: backup ? { model: backup, primaryPaused: !!primaryCircuit?.openUntil, backupPaused: !!backupCircuit?.openUntil,
+      fallback: backup ? { model: backup, tertiaryModel: fallbackModelFor(key, backup) ?? null, primaryPaused: !!primaryCircuit?.openUntil, backupPaused: !!backupCircuit?.openUntil,
         nextProbeAt: primaryCircuit?.openUntil ? new Date(Math.max(primaryCircuit.openUntil, primaryCircuit.probeUntil)).toISOString() : null } : null,
       usage: usage
         .filter((u) => c.purposes.includes(u.purpose))

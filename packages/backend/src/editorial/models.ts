@@ -52,7 +52,9 @@ export async function stepsOnService(service: string, models?: ReadonlySet<strin
     .filter(([key, c]) => {
       if (c.idle?.()) return false;
       const primary = current[key]!.model;
-      return [primary, fallbackModelFor(key, primary)].some(key => {
+      const backup = fallbackModelFor(key, primary);
+      const last = backup && fallbackModelFor(key, backup);
+      return [primary, backup, last].some(key => {
         const model = key && MODELS[key];
         return model && model.service === service && (!models || models.has(model.model));
       });
@@ -110,7 +112,9 @@ export function fallbackModelFor(capability: string, primary: string): string | 
 }
 
 /** Preserve an explicit primary choice; only the site's evaluated pair may fail over. */
-export async function modelRoute(capability: CapabilityKey | (string & {})): Promise<{ model: string; fallbackModel?: string }> {
+export async function modelRoute(capability: CapabilityKey | (string & {})): Promise<{ model: string; fallbackModel?: string; tertiaryModel?: string }> {
   const model = await modelFor(capability);
-  return { model, fallbackModel: fallbackModelFor(capability, model) };
+  const fallbackModel = fallbackModelFor(capability, model);
+  const next = fallbackModel && fallbackModelFor(capability, fallbackModel);
+  return { model, fallbackModel, tertiaryModel: next && next !== model ? next : undefined };
 }

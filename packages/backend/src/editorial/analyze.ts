@@ -341,7 +341,7 @@ export async function runUnderstand(a: AnalyzeInputArticle, opts: StepOpts = {})
   const call = (image: ContentPart | null) => {
     checkAnalysisRunning();
     return chatJson({
-      ...route, ...(image && route.fallbackModel && !modelSupportsVision(route.fallbackModel) ? { fallbackModel: undefined } : {}), purpose: "understand_article", subject: subjectOf(a), promptVersion: PROMPT_VERSIONS.understand, system: UNDERSTAND_SYSTEM,
+      ...route, ...(image && [route.fallbackModel, route.tertiaryModel].some((m) => m && !modelSupportsVision(m)) ? { fallbackModel: undefined, tertiaryModel: undefined } : {}), purpose: "understand_article", subject: subjectOf(a), promptVersion: PROMPT_VERSIONS.understand, system: UNDERSTAND_SYSTEM,
       user: image ? [{ type: "text", text }, image] : text, schema: UnderstandSchema, temperature: 0.2, maxTokens: 16_384,
       timeoutMs: 180_000, attemptTag: tagged(opts.attemptTag, "understand"),
     });
