@@ -278,7 +278,10 @@ async function recordFetch(db: Db, sourceId: string, runId: number, run: { found
 }
 
 /** `xSince` reads an X account again from that post, without moving its watermark back. */
-export async function collectSource(sourceId: string, opts: { force?: boolean; xSince?: string } = {}): Promise<CollectResult> {
+export async function collectSource(sourceId: string, opts: { force?: boolean; xSince?: string; maxItems?: number } = {}): Promise<CollectResult> {
+  if (opts.maxItems !== undefined && (!Number.isInteger(opts.maxItems) || opts.maxItems < 1 || opts.maxItems > 50)) {
+    throw new RangeError("maxItems must be an integer from 1 to 50");
+  }
   const source = await loadSource(sourceId);
   if (!source) return { sourceId, status: "skipped", found: 0, created: 0, revised: 0, error: "missing" };
   if (!source.enabled && !opts.force) return { sourceId, status: "skipped", found: 0, created: 0, revised: 0, error: "paused" };
@@ -332,6 +335,9 @@ export async function collectSource(sourceId: string, opts: { force?: boolean; x
       ? await storedDetails(candidates.map((c) => c.identityKey!)) : new Map<string, StoredDetail>();
     const { byListing, admits } = admission(source, known, firstImport);
     candidates = candidates.filter(byListing);
+    // Manual bounded runs may leave entries unread; never save a validator that would hide them.
+    const bounded = opts.maxItems !== undefined && candidates.length > opts.maxItems;
+    if (opts.maxItems !== undefined) candidates = candidates.slice(0, opts.maxItems);
     // First import of a new source: bounded, and archived by source time (never "today", never pushed).
     if (firstImport) candidates = candidates.slice(0, Number(source.config._aihot?.initialBackfillLimit ?? 30));
     const reads = await enrichDetails(candidates, source, known, {
@@ -359,6 +365,7 @@ export async function collectSource(sourceId: string, opts: { force?: boolean; x
     // Kept while the listing offers them; a 304 offers no entries and keeps the last ones.
     if (found) nextCursor.detailDatedOut = datedOut;
     if (!d || !Object.keys(nextCursor.detailDatedOut ?? {}).length) delete nextCursor.detailDatedOut;
+    if (bounded) delete nextCursor.rss;
     const stored = await store(sourceId, run!.id, candidates, firstImport ? "first-import" : null);
     ({ created, revised } = stored);
     for (const id of await fillScheduledPublications(sourceId)) await queueProcessing(id);

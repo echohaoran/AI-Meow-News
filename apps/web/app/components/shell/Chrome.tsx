@@ -17,7 +17,9 @@ export function NavigationProgress({ active }: { active: boolean }) {
     };
   }, [active]);
   return (
-    <div className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-[2px] overflow-hidden" aria-hidden="true">
+    <>
+      <span role="status" className="sr-only">{visible ? "正在加载页面…" : ""}</span>
+      <div className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-[2px] overflow-hidden" aria-hidden="true">
       <div
         className="h-full origin-left bg-accent"
         style={{
@@ -26,7 +28,8 @@ export function NavigationProgress({ active }: { active: boolean }) {
           transition: visible ? "transform 2.4s cubic-bezier(0.1, 0.7, 0.2, 1), opacity 120ms" : "transform 200ms, opacity 300ms 120ms",
         }}
       />
-    </div>
+      </div>
+    </>
   );
 }
 

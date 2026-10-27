@@ -478,3 +478,23 @@ export interface TopicPage {
   pageCount: number;
   pageSize: number;
 }
+
+/** Source-only reading, independent of model judgement. No generated summary or curated status. */
+export interface SourceItemsResponse {
+  mode: "source";
+  verificationStatus: "unverified";
+  page: number;
+  limit: number;
+  hasMore: boolean;
+  items: Array<{
+    id: string;
+    title: string;
+    sourceSummary: string | null;
+    source: { id: string; name: string };
+    links: { original: string };
+    publishedAt: string;
+    discoveredAt: string;
+    verificationStatus: "unverified";
+    selected: false;
+  }>;
+}

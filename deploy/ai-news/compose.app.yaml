@@ -1,0 +1,108 @@
+# Unified AI-News app. Infrastructure is managed separately.
+# This does not declare a database; ops/compose.dependencies.yaml remains the only infra.
+name: ainews-app
+x-backend: &backend
+  image: ${AI_NEWS_IMAGE:?Set a reviewed application image}
+  init: true
+  restart: unless-stopped
+  env_file:
+    - ../../../.secrets/production.env
+    - ../../../.secrets/backend-production.env
+  environment: &backend-env
+    NODE_ENV: production
+    AIHOT_ENVIRONMENT: production
+    AIHOT_RELEASE: ${AIHOT_RELEASE:?Set the reviewed source digest}
+    SITE_URL: http://192.168.1.77:43180
+    AIHOT_DATA_DIR: /data
+    DATABASE_POOL_MAX: '4'
+    LLM_BASE_URL: http://192.168.1.77:10100/v1
+    LLM_MODEL: gpt-6-luna
+    COLLECT_ENABLED: ${COLLECT_ENABLED:-false}
+    MODEL_CALLS_ENABLED: ${MODEL_CALLS_ENABLED:-false}
+    FEISHU_CONTENT_PUSH_ENABLED: 'false'
+    FEISHU_INTERNAL_ENABLED: 'false'
+    INDEXNOW_SUBMIT_ENABLED: 'false'
+    INGEST_RATE_LIMIT: '10'
+  volumes:
+    - ${AI_NEWS_DATA_DIR:?Set an ops-owned persistent app directory}:/data
+  networks: [app, db]
+  cpus: 0.50
+  mem_limit: 512m
+  pids_limit: 128
+  logging:
+    driver: json-file
+    options: {max-size: 5m, max-file: '2'}
+services:
+  api:
+    <<: *backend
+    command: [node, deploy/ai-news/container.mjs, api]
+    environment:
+      <<: *backend-env
+      API_HOST: 0.0.0.0
+      API_PORT: '43182'
+    expose: ['43182']
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://127.0.0.1:43182/api/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+  web:
+    image: ${AI_NEWS_IMAGE:?Set a reviewed application image}
+    init: true
+    restart: unless-stopped
+    command: [node, apps/web/server.ts]
+    environment:
+      NODE_ENV: production
+      API_BASE_URL: http://api:43182
+      SITE_URL: http://192.168.1.77:43180
+      TRUST_PROXY: 'true'
+      WEB_HOST: 0.0.0.0
+      WEB_PORT: '43181'
+      AIHOT_RELEASE: ${AIHOT_RELEASE:?Set the reviewed source digest}
+    expose: ['43181']
+    networks: [app]
+    depends_on:
+      api: {condition: service_healthy}
+    cpus: 0.75
+    mem_limit: 768m
+    pids_limit: 128
+    logging:
+      driver: json-file
+      options: {max-size: 5m, max-file: '2'}
+  ingress:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports: ['192.168.1.77:43180:43180']
+    volumes: ['./Caddyfile:/etc/caddy/Caddyfile:ro']
+    networks: [app]
+    depends_on: [web]
+    cpus: 0.25
+    mem_limit: 128m
+    pids_limit: 64
+    logging:
+      driver: json-file
+      options: {max-size: 5m, max-file: '2'}
+  worker:
+    <<: *backend
+    profiles: [worker]
+    command: [node, deploy/ai-news/container.mjs, worker]
+    stop_grace_period: 515s
+  collector:
+    <<: *backend
+    profiles: [collector]
+    image: ${AI_NEWS_COLLECTOR_IMAGE:-${AI_NEWS_IMAGE}}
+    command: [node, deploy/ai-news/container.mjs, collector]
+    environment:
+      <<: *backend-env
+      AIHOT_RELEASE: ${AI_NEWS_COLLECTOR_RELEASE:-${AIHOT_RELEASE}}
+      COLLECT_ENABLED: 'true'
+      MODEL_CALLS_ENABLED: 'false'
+    stop_grace_period: 515s
+  migrate:
+    <<: *backend
+    profiles: [tools]
+    restart: 'no'
+    command: [node, deploy/ai-news/container.mjs, migrate]
+networks:
+  db: {external: true, name: ainews-db}
+  app: {name: ainews-app}

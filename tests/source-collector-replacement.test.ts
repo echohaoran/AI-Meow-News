@@ -77,3 +77,80 @@ test("publisher attribution changes queue re-derivation for role, URL ownership 
     assert.equal((await sql`SELECT value FROM settings WHERE key = ${republishKey(row.id)}`)[0]?.value.status, "queued", JSON.stringify(change));
   }
 });
+
+test("isolated RSS collector ingests and deduplicates while leaving analysis, extraction and unrelated schedules untouched", async (t) => {
+  const { createServer } = await import("node:http");
+  const { setTimeout: delay } = await import("node:timers/promises");
+  const { getBoss, enqueue, QUEUES } = await import("@aihot/backend/jobs/queue");
+  const { registerCollectorJobs } = await import("../apps/worker/src/collector-jobs.ts");
+  const { config } = await import("@aihot/backend/config");
+  const privateFetch = config.allowPrivateNetworkFetch;
+  config.allowPrivateNetworkFetch = true;
+  t.after(() => { config.allowPrivateNetworkFetch = privateFetch; });
+  await sql`UPDATE sources SET enabled = false`;
+  let requests = 0;
+  const itemUrl = `https://example.org/isolated-${tag()}`;
+  const date = new Date().toUTCString();
+  const server = createServer((_req, res) => {
+    requests++;
+    res.writeHead(200, { "content-type": "application/rss+xml" });
+    res.end(`<rss version="2.0"><channel><title>Local RSS</title><item><guid>${itemUrl}</guid><link>${itemUrl}</link><title>Real local feed fixture</title><description>Fixture summary</description><pubDate>${date}</pubDate></item></channel></rss>`);
+  });
+  await new Promise<void>(resolve => server.listen(0, "127.0.0.1", resolve));
+  t.after(() => { server.closeAllConnections(); server.close(); });
+  const address = server.address();
+  assert.ok(address && typeof address !== "string");
+  const row = await source("rss", { feedUrl: `http://127.0.0.1:${address.port}/feed` });
+  const boss = await getBoss();
+  const oldIds = [
+    await enqueue(QUEUES.analyze, { articleId: "parked-analysis" }),
+    await enqueue(QUEUES.extractBody, { articleId: "parked-extraction" }),
+    await enqueue(QUEUES.group, { articleId: "parked-grouping" }),
+    await enqueue(QUEUES.digest, { storyId: 987654 }),
+  ].filter((id): id is string => !!id);
+  assert.equal(oldIds.length, 4);
+  const parked = () => sql`SELECT to_jsonb(j) AS row FROM pgboss.job j WHERE id = ANY(${oldIds}::uuid[]) ORDER BY id`;
+  const before = await parked();
+  const [used] = await sql`SELECT count(*)::int AS count FROM receipt_attempts`;
+  await boss.createQueue("cron.test.keep");
+  await boss.schedule("cron.test.keep", "0 0 * * *", {}, { tz: "Asia/Shanghai" });
+  await registerCollectorJobs(boss);
+  const schedules = await boss.getSchedules();
+  assert.ok(schedules.some(s => s.name === "cron.test.keep"), "collector must not retire another role's schedule");
+  const scheduled = schedules.find(s => s.name === "cron.sources.schedule");
+  assert.ok(scheduled);
+  assert.equal(scheduled.cron, "* * * * *");
+  assert.equal(scheduled.timezone, "Asia/Shanghai");
+  const waitFor = async (predicate: () => Promise<boolean>) => {
+    const deadline = Date.now() + 35_000;
+    while (!await predicate()) {
+      assert.ok(Date.now() < deadline, "collector did not finish the local scheduled fetch");
+      await delay(100);
+    }
+  };
+  const successful = async () => (await sql`SELECT count(*)::int AS count FROM fetch_runs WHERE source_id = ${row.id} AND status = 'ok'`)[0]!.count;
+  await boss.send("cron.sources.schedule", {});
+  await waitFor(async () => await successful() >= 1);
+  const articles = await sql`SELECT id, revision, published_at FROM articles WHERE source_id = ${row.id}`;
+  assert.equal(articles.length, 1);
+  assert.equal(articles[0]!.published_at.toISOString(), new Date(date).toISOString());
+  assert.equal((await sql`SELECT processing_state FROM articles WHERE id = ${articles[0]!.id}`)[0]!.processing_state, "new");
+  await sql`UPDATE sources SET next_fetch_at = now() - interval '1 minute' WHERE id = ${row.id}`;
+  await boss.send("cron.sources.schedule", {});
+  await waitFor(async () => await successful() >= 2);
+  assert.ok(requests >= 2);
+  assert.deepEqual(await sql`SELECT id, revision, published_at FROM articles WHERE source_id = ${row.id}`, articles);
+  assert.deepEqual(await parked(), before, "no parked processing task may be claimed or changed");
+  assert.equal((await sql`SELECT count(*)::int AS count FROM receipt_attempts`)[0]!.count, used!.count);
+  assert.ok((await sql`SELECT count(*)::int AS count FROM job_runs WHERE job = 'sources.schedule' AND status = 'ok'`)[0]!.count >= 2);
+});
+
+test("isolated collector refuses startup with model calls enabled before accessing the database", async () => {
+  const { spawnSync } = await import("node:child_process");
+  const run = spawnSync(process.execPath, ["apps/worker/src/collector.ts"], {
+    env: { ...process.env, COLLECT_ENABLED: "true", MODEL_CALLS_ENABLED: "true", DATABASE_URL: "postgres://127.0.0.1:1/unreachable_test" },
+    encoding: "utf8", timeout: 10_000,
+  });
+  assert.notEqual(run.status, 0);
+  assert.match(run.stderr, /requires MODEL_CALLS_ENABLED=false/);
+});

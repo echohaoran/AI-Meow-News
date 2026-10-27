@@ -9,3 +9,13 @@ apps/web/.react-router
 .git
 .github
 *.log
+.secrets
+**/.secrets
+.runtime
+.cache
+.tmp
+.coordination
+artifacts
+coverage
+**/node_modules
+**/.react-router

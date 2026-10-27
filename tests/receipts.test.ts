@@ -14,7 +14,11 @@ import { autoReleaseUnknownReceipts } from "@aihot/backend/operations/recover";
 
 const usage = { prompt_tokens: 80, completion_tokens: 20, total_tokens: 100 };
 let answer: (hit: number) => string = () => '{"ok":true}';
-const provider = await stub((hit) => ({ id: `stub-${hit}`, choices: [{ message: { content: answer(hit) } }], usage }));
+let lastRequest: { messages: Array<{ role: string; content: unknown }>; response_format?: unknown };
+const provider = await stub((hit, req) => {
+  lastRequest = JSON.parse(req.body);
+  return { id: `stub-${hit}`, choices: [{ message: { content: answer(hit) } }], usage };
+});
 process.env.DEEPSEEK_BASE_URL = `${provider.url}/v1`;
 process.env.DEEPSEEK_API_KEY = "test-key";
 
@@ -25,6 +29,24 @@ after(async () => {
   await provider.close();
   await closeDb();
 });
+
+test("JSON gateway accepts text and multimodal requests and reuses the effective input", async () => {
+  answer = () => '{"ok":true}';
+  for (const user of ["只输出合法 JSON", [{ type: "text" as const, text: "只输出合法 JSON" }]]) {
+    const options = { model: "deepseek-flash", purpose: "gateway-json", subject: tag(), promptVersion: "1", system: "", user, schema: z.object({ ok: z.boolean() }) };
+    const before = provider.hits();
+    const first = await chatJson(options);
+    const content = lastRequest!.messages.find(m => m.role === "user")!.content;
+    assert.match(JSON.stringify(content), /json/);
+    assert.deepEqual(lastRequest!.response_format, { type: "json_object" });
+    assert.equal((await chatJson(options)).receiptId, first.receiptId);
+    assert.equal(provider.hits(), before + 1);
+  }
+  await chatJson({ model: "deepseek-flash", purpose: "gateway-text", subject: tag(), promptVersion: "1", system: "", user: "plain text", json: false, schema: z.object({ ok: z.boolean() }) });
+  assert.equal(lastRequest!.messages.at(-1)!.content, "plain text");
+  assert.equal(lastRequest!.response_format, undefined);
+});
+
 
 // HTTP 429 also carries account/plan refusals; the same "insufficient_quota" code means
 // temporary TPM throttling at DashScope. A generic quota match gets both decisions wrong.

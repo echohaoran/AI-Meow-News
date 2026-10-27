@@ -6,7 +6,7 @@
 @source "../../../modules/*/{web.tsx,web/**}";
 
 /* ---------------------------------------------------------------------------
-   Design tokens: warm off-white paper, ink text, one teal accent (cyan in
+   Design tokens: light lilac paper, ink text, one violet accent (lavender in
    dark), hairline borders, no gradients.
    Components use the semantic names below; values change per theme only.
    --------------------------------------------------------------------------- */
@@ -92,27 +92,27 @@
   --gutter-l: max(16px, env(safe-area-inset-left));
   --gutter-r: max(16px, env(safe-area-inset-right));
   color-scheme: light;
-  --bg: #faf9f6;
-  --bg-sunk: #f3f3ef;
-  --bg-muted: #e9ede9;
+  --bg: #f8f7fc;
+  --bg-sunk: #f0eef6;
+  --bg-muted: #e9e6f1;
   /* Sunk fills: wells, pill tracks, search fields, quiet badges. */
   --well: var(--bg-sunk);
   --surface: #ffffff;
-  --surface-2: #fdfdfb;
+  --surface-2: #fcfbff;
   --raised: #ffffff;
-  --sidebar: #fdfdfb;
-  --daybar: #f0f2ee;
-  --ink: #202a30;
-  --ink-2: #303c42;
-  --ink-3: #59656b;
-  --ink-4: #657176;
-  --line: #dfe4e1;
-  --line-strong: #d1d9d5;
-  --line-soft: #e9ede9;
-  --accent: #176b75;
-  --accent-ink: #145f68;
-  --accent-soft: rgba(23, 107, 117, 0.08);
-  --accent-softer: rgba(23, 107, 117, 0.05);
+  --sidebar: #fcfbff;
+  --daybar: #efedf6;
+  --ink: #252238;
+  --ink-2: #373249;
+  --ink-3: #625b73;
+  --ink-4: #71687e;
+  --line: #e2deec;
+  --line-strong: #d4cde3;
+  --line-soft: #e9e6f1;
+  --accent: #6650b8;
+  --accent-ink: #543e9f;
+  --accent-soft: rgba(102, 80, 184, 0.08);
+  --accent-softer: rgba(102, 80, 184, 0.05);
   --accent-contrast: #ffffff;
   --note: #526f72;
   --hot: #b3402a;
@@ -140,7 +140,7 @@
   --code-title: #6f42c1;
   --code-variable: #a13d10;
   --code-meta: #b42348;
-  --selection: rgba(23, 107, 117, 0.16);
+  --selection: rgba(102, 80, 184, 0.16);
 }
 
 @media (min-width: 961px) {
@@ -151,26 +151,26 @@
 
 [data-theme="dark"] {
   color-scheme: dark;
-  --bg: #13191c;
-  --bg-sunk: #182024;
-  --bg-muted: #202a2f;
+  --bg: #171522;
+  --bg-sunk: #1d1a2b;
+  --bg-muted: #282338;
   --well: color-mix(in oklab, var(--bg-muted) 60%, transparent);
-  --surface: #1a2226;
-  --surface-2: #1d272b;
-  --raised: #202a2f;
-  --sidebar: #161e21;
-  --daybar: #182024;
-  --ink: #e7eceb;
-  --ink-2: #d2dada;
-  --ink-3: #a5b0b3;
-  --ink-4: #89979d;
+  --surface: #211d30;
+  --surface-2: #272237;
+  --raised: #282338;
+  --sidebar: #1b1828;
+  --daybar: #1d1a2b;
+  --ink: #f0edf9;
+  --ink-2: #dbd5eb;
+  --ink-3: #b9afce;
+  --ink-4: #a297b8;
   --line: rgba(255, 255, 255, 0.08);
   --line-strong: rgba(255, 255, 255, 0.12);
   --line-soft: rgba(255, 255, 255, 0.06);
-  --accent: #12ccd8;
-  --accent-ink: #2ce2e8;
-  --accent-soft: rgba(18, 204, 216, 0.12);
-  --accent-softer: rgba(18, 204, 216, 0.06);
+  --accent: #bba5ff;
+  --accent-ink: #cfbfff;
+  --accent-soft: rgba(187, 165, 255, 0.12);
+  --accent-softer: rgba(187, 165, 255, 0.06);
   --accent-contrast: #000000;
   --note: #8fb8a8;
   --hot: #d86a52;
@@ -198,7 +198,7 @@
   --code-title: #ab9df2;
   --code-variable: #fc9867;
   --code-meta: #ff6188;
-  --selection: rgba(18, 204, 216, 0.22);
+  --selection: rgba(187, 165, 255, 0.22);
 }
 
 @layer base {
@@ -575,4 +575,40 @@
    the archive column is halfway between the site sidebar and white. */
 :root:not([data-theme="dark"]) body:has(.report-shell) {
   background: color-mix(in srgb, var(--bg) 60%, var(--surface));
+}
+
+
+/* AI喵实验室首页：小屏竖排、宽屏双栏，入口保持原生链接与键盘焦点。 */
+.news-intro {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1.75rem 0 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--line-strong);
+}
+.news-shortcuts { display: grid; gap: 0.5rem; }
+.news-shortcut {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 44px;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink-2);
+  font-size: 13px;
+  font-weight: 600;
+}
+.news-shortcut:hover { border-color: var(--accent); color: var(--accent); }
+.news-shortcut > :last-child { margin-left: auto; color: var(--accent); }
+.news-shortcut-no { color: var(--ink-4); font-family: var(--font-mono); font-size: 11px; }
+@media (min-width: 641px) and (max-width: 960px) {
+  .news-shortcuts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (min-width: 961px) {
+  .news-intro { grid-template-columns: minmax(0, 1fr) 220px; gap: 2rem; padding-top: 0.5rem; padding-bottom: 2rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .news-intro *, .news-shortcuts * { animation: none !important; transition: none !important; }
 }

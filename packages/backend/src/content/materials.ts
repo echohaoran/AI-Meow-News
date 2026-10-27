@@ -261,6 +261,8 @@ async function upsertIn(db: Db, m: MaterialInput): Promise<MaterialResult> {
       await db`INSERT INTO article_discoveries (article_id, source_id, via, discovered_at)
                VALUES (${newId}, ${m.sourceId}, ${m.via}, ${discoveredAt}) ON CONFLICT DO NOTHING`;
       await reconcileMaterialSource(db, newId, { sourceId: m.sourceId, author: m.author });
+      // Store a source-only projection immediately; no judgement, selection, or model call is implied.
+      await publishArticleTx(db as Tx, newId);
       return { articleId: newId, created: true, revised: false, backfill: t.backfill };
     }
     existing = await lockMaterial(db, identityKey);
@@ -373,7 +375,7 @@ export async function reviseMaterial(db: Db, articleId: string, revision: { set:
     RETURNING revision`;
   await db`INSERT INTO article_revisions (article_id, revision, content_hash, title, body_text)
            VALUES (${articleId}, ${row!.revision}, ${revision.hash}, ${revision.title}, ${revision.bodyText})`;
-  // Only withdraw an existing projection; the first publication still belongs to completed analysis.
+  // Rebuild the existing source projection and remove any selection no longer supported by this revision.
   if ((await db`SELECT 1 FROM publications WHERE article_id = ${articleId}`).length) {
     const published = await publishArticleTx(db as Tx, articleId);
     await emit("articleChanged", { id: articleId, kind: "content", reduced: published?.reduced, reason: "material revision" }, db);

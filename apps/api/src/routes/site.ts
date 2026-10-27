@@ -16,9 +16,11 @@ import { loadSiteStats } from "@aihot/backend/site/stats";
 import { itemAvailability } from "@aihot/backend/publication/availability";
 import { listTopicSummaries, loadTopicPage, topicBrowseLinks } from "@aihot/backend/publication/topics";
 import { registerFeedback } from "./feedback.ts";
+import { loadSourceItems } from "@aihot/backend/publication/source-items";
+import { intParam } from "./v1.ts";
 import { loadHot, loadStoryDetail, resolveStory } from "@aihot/backend/publication/stories";
 import { listReports, loadReport, reportNavigation, loadReportNavigation, loadReportMonth, type ReportKind } from "@aihot/backend/publication/reports";
-import { looseQuery, QueryError, sendJsonWithEtag, sendProblem } from "../http/respond.ts";
+import { looseQuery, strictQuery, QueryError, sendJsonWithEtag, sendProblem } from "../http/respond.ts";
 
 type Handler = (req: FastifyRequest, reply: FastifyReply) => Promise<unknown>;
 
@@ -57,6 +59,20 @@ export function parseFilters(q: Record<string, string>): FilterParams {
 }
 
 export function registerSite(app: FastifyInstance) {
+  app.get("/api/site/source-items", siteHandler(async (req, reply) => {
+    const q = strictQuery(req, ["sourceId", "q", "page", "limit"]);
+    const sourceId = q.sourceId ?? null;
+    if (sourceId !== null && !/^[a-zA-Z0-9_-]{1,120}$/.test(sourceId)) throw new QueryError("invalid sourceId");
+    const search = q.q?.trim() ?? null;
+    if (search !== null && ([...search].length < 2 || [...search].length > 200)) throw new QueryError("q must contain 2 to 200 characters");
+    const data = await loadSourceItems({
+      sourceId, q: search,
+      page: intParam(q.page, "page", 1, 50, 1),
+      limit: intParam(q.limit, "limit", 1, 40, 20),
+    });
+    return sendJsonWithEtag(req, reply, data, { etagPrefix: "source-items", cacheControl: "public, max-age=60, s-maxage=60, must-revalidate" });
+  }));
+
   app.get("/api/site/meta", siteHandler(async (req, reply) => {
     return sendJsonWithEtag(req, reply, siteMeta(), { etagPrefix: "meta", cacheControl: "public, max-age=60, s-maxage=60" });
   }));

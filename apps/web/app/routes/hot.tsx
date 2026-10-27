@@ -1,6 +1,7 @@
 import { useLoaderData } from "react-router";
+import { SourcePreview } from "../features/sources/SourcePreview";
 import { IntentLink } from "../components/ui/IntentLink";
-import type { HotEntryView, HotResponse } from "@aihot/contracts/site";
+import type { HotEntryView, HotResponse, SourceItemsResponse } from "@aihot/contracts/site";
 import { subjectAfter, withSubject } from "@aihot/site";
 import { cachedPage, loadOr404 } from "../lib/api.server";
 import { pageReuse } from "../lib/page-reuse";
@@ -22,7 +23,11 @@ export { pageHeaders as headers } from "../lib/api.server";
 export const { clientLoader, shouldRevalidate } = pageReuse<typeof loader>();
 
 export async function loader({ request }: { request: Request }) {
-  return cachedPage(120, { hot: await loadOr404<HotResponse>("/api/site/hot", { signal: request.signal }) });
+  const hot = await loadOr404<HotResponse>("/api/site/hot", { signal: request.signal });
+  const sources = hot.entries.length === 0
+    ? await loadOr404<SourceItemsResponse>("/api/site/source-items?limit=5", { signal: request.signal })
+    : null;
+  return cachedPage(120, { hot, sources });
 }
 
 export function meta() {
@@ -237,7 +242,7 @@ function showMethod() {
 }
 
 export default function HotPage() {
-  const { hot } = useLoaderData<typeof loader>();
+  const { hot, sources } = useLoaderData<typeof loader>();
   const [lead, ...rest] = hot.entries;
   const runners = rest.slice(0, 2);
   const others = rest.slice(2);
@@ -248,7 +253,7 @@ export default function HotPage() {
         large
         sub={
           <>
-            过去 {hot.windowHours}{`${subjectAfter(" 小时", "圈")}讨论最多的 `}{hot.entries.length || 10} 件事
+            过去 {hot.windowHours}{`${subjectAfter(" 小时", "圈")}讨论最多的 `}{hot.entries.length} 件事
             {hot.computedAt && (
               <>
                 {" · "}
@@ -270,10 +275,10 @@ export default function HotPage() {
               <span className="absolute inline-flex size-full animate-ping rounded-full bg-hot opacity-30" />
               <span className="relative inline-flex size-2 rounded-full bg-hot" />
             </span>
-            实时热度
+            来源讨论热度
           </div>
           <h1 className="mt-1.5 text-[24px] font-bold leading-[1.3] tracking-[-0.01em] text-ink lg:text-[26px]">{withSubject("热点榜")}</h1>
-          <p className="mt-1.5 text-[13.5px] text-ink-3">过去 {hot.windowHours}{` 小时，${withSubject("圈")}讨论最多的 `}{hot.entries.length || 10} 件事</p>
+          <p className="mt-1.5 text-[13.5px] text-ink-3">过去 {hot.windowHours}{` 小时，${withSubject("圈")}讨论最多的 `}{hot.entries.length} 件事</p>
         </div>
         {hot.computedAt && (
           <p className="text-[12px] text-ink-4">
@@ -283,9 +288,12 @@ export default function HotPage() {
       </header>
 
       {!lead ? (
-        <div className="card rounded-sheet">
-          <EmptyState title="暂时没有热点">还没有足够多来源共同讨论的事件。</EmptyState>
-        </div>
+        <>
+          <div className="card rounded-sheet">
+            <EmptyState title="暂时没有热点">过去 48 小时内，尚无足够多独立来源共同讨论的事件。可以先阅读下面的来源新闻。</EmptyState>
+          </div>
+          <SourcePreview data={sources} />
+        </>
       ) : (
         <>
           <section aria-label="热度前三" className="grid grid-cols-1 gap-3 lg:grid-cols-12 lg:gap-4">

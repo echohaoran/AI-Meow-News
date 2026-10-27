@@ -118,14 +118,21 @@ function isConnectFailure(error: unknown): boolean {
 function requestFor<S extends z.ZodType>(opts: ChatJsonOptions<S>, spec: ModelSpec) {
   const temperature = opts.temperature ?? 0.2;
   const maxTokens = Math.max(opts.maxTokens ?? 1500, 512) + (spec.reasoningTokens ?? 0);
-  const userText = typeof opts.user === "string" ? opts.user : JSON.stringify(opts.user);
+  // The configured OpenAI-compatible gateway requires lowercase json in the user message.
+  // Hash and send the same effective input, including multimodal text, for receipt reuse.
+  let user: string | ContentPart[] = typeof opts.user === "string" || Array.isArray(opts.user) ? opts.user : JSON.stringify(opts.user);
+  if (spec.jsonMode && opts.json !== false) {
+    const text = typeof user === "string" ? user : user.filter((part) => part.type === "text").map((part) => part.text).join("\n");
+    if (!text.includes("json")) user = typeof user === "string" ? `${user}\n\nReturn valid json.` : [...user, { type: "text", text: "Return valid json." }];
+  }
+  const userText = typeof user === "string" ? user : JSON.stringify(user);
   const request: ReceiptRequest = {
     service: spec.service, model: spec.model, purpose: opts.purpose, subject: opts.subject,
     identity: { model: spec.model, promptVersion: opts.promptVersion, system: sha256(opts.system), user: sha256(userText), temperature, maxTokens, extra: spec.extra ?? null },
     requestSummary: { promptVersion: opts.promptVersion, systemHash: sha256(opts.system), userHash: sha256(userText), userChars: userText.length, temperature, maxTokens },
     attemptTag: opts.attemptTag,
   };
-  return { request, temperature, maxTokens, userText };
+  return { request, temperature, maxTokens, user };
 }
 
 /** A call without a backup waits this long for its answer. */
@@ -168,7 +175,7 @@ async function chatOnce<S extends z.ZodType>(opts: ChatJsonOptions<S>, circuit =
   const apiKey = credential("models", spec.apiKeyEnv);
   if (!baseUrl || !apiKey || !spec.model) throw new ModelUnavailableError(`Model ${opts.model} is not configured (${spec.baseUrlEnv}, ${spec.apiKeyEnv}${spec.key === "default" ? ", LLM_MODEL" : ""})`);
 
-  const { request, temperature, maxTokens, userText } = requestFor(opts, spec);
+  const { request, temperature, maxTokens, user } = requestFor(opts, spec);
   const timeoutMs = opts.timeoutMs ?? (circuit ? FAILOVER_TIMEOUT_MS : TIMEOUT_MS);
   let permit: CircuitPermit;
   const body: Record<string, unknown> = {
@@ -177,7 +184,7 @@ async function chatOnce<S extends z.ZodType>(opts: ChatJsonOptions<S>, circuit =
       // A prompt given as one user message (the title/summary prompts) has no system message.
       ...(opts.system ? [{ role: "system", content: opts.system }] : []),
       // Multimodal parts go through as parts; plain objects are sent as JSON text.
-      { role: "user", content: typeof opts.user === "string" || Array.isArray(opts.user) ? opts.user : userText },
+      { role: "user", content: user },
     ],
     temperature,
     max_tokens: maxTokens,

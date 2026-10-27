@@ -7,7 +7,7 @@ import { apiGet, cachedPage } from "../lib/api.server";
 import { pageReuse } from "../lib/page-reuse";
 import { pageMeta } from "../lib/seo";
 import { setChangelogSeen } from "../lib/local-state";
-import { AsideCard, ReadingLayout } from "../components/ui/Page";
+import { AsideCard, EmptyState, ReadingLayout } from "../components/ui/Page";
 import { IconChevronRight } from "../components/icons";
 import { Inline, dateHeading } from "../features/changelog/text";
 import { PhoneBar } from "../components/shell/PhoneBar";
@@ -20,7 +20,8 @@ export const { clientLoader, shouldRevalidate } = pageReuse<typeof loader>();
 type Release = ChangelogRelease;
 
 export async function loader({ request }: { request: Request }) {
-  return cachedPage(300, await apiGet<ChangelogResponse>("/api/site/changelog", { signal: request.signal }));
+  const response = await apiGet<ChangelogResponse>("/api/site/changelog", { signal: request.signal });
+  return cachedPage(300, response);
 }
 
 export function meta() {
@@ -188,6 +189,7 @@ export default function ChangelogPage() {
         <p className="mt-1.5 text-[13px] text-ink-3">新功能、调整、下线，都写在这里。</p>
       </header>
       <div className="space-y-4">
+        {data.releases.length === 0 && <EmptyState title="暂无发布记录">站点实际发布的更新会记录在这里。</EmptyState>}
         {[...groups.entries()].map(([date, releases]) => {
           if (SITE_FEATURE && releases.some((r) => r.feature)) return <FeatureDay key={date} date={date} releases={releases} Drawing={SITE_FEATURE} />;
           return <Day key={date} id={`d-${date}`} date={date} releases={releases} />;

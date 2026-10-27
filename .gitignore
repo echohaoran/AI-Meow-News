@@ -14,3 +14,20 @@ apps/web/.react-router/
 # Font package unpacked to regenerate the report nameplates (docs/customize.md)
 package/
 fontsource-noto-sans-sc-*.tgz
+
+# Deployment configuration and generated state stay outside version control.
+.secrets/
+**/.secrets/
+.runtime/
+.coordination/
+.tmp/
+.tooling/
+coverage/
+artifacts/
+*.log
+*.dump
+*.sqlite
+*.sqlite3
+*.db
+*.pem
+*.key

@@ -1,0 +1,7 @@
+{
+  auto_https off
+  admin off
+}
+:43180 {
+  reverse_proxy web:43181
+}

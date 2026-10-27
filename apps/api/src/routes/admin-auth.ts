@@ -67,7 +67,7 @@ export function adminHandler(fn: AdminHandler) {
       }
       if ((error as { code?: string }).code === "conflict") return sendProblem(req, reply, { status: 409, code: "conflict", detail: (error as Error).message });
       req.log.error({ err: error, path: req.url.split("?")[0] }, "admin api error");
-      return sendProblem(req, reply, { status: 500, code: "internal_error", detail: String((error as Error).message).slice(0, 300) });
+      return sendProblem(req, reply, { status: 500, code: "internal_error", detail: "The admin operation failed; retry later." });
     }
   };
 }

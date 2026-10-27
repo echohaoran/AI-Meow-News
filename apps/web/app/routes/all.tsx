@@ -134,6 +134,7 @@ export default function AllPage() {
         </div>
       )}
 
+      <p className="mb-4 text-[13px] text-ink-3">尚未进入编辑流程的资料请到 <Link to="/source-news" className="text-accent underline">来源动态·未核验</Link> 阅读。</p>
       <div className={`transition-opacity duration-200 ${busy ? "opacity-50" : ""}`}>
         {data.items.length === 0 ? (
           <div className="mt-2 lg:card">
