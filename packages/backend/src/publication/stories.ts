@@ -257,7 +257,7 @@ export async function loadHot(): Promise<HotResponse> {
     windowHours: 48,
     entries: ranking.entries.map((e) => {
       const picture = covers.get(e.storyId);
-      const coverUrl = picture ? proxiedImage(picture.url, "full") : null;
+      const coverUrl = picture ? proxiedImage(picture.url, "article-full") : null;
       const text = extras.text(e);
       // The card clips its text to a few lines; complete public words belong to the event page.
       const summary = text.summary ? Array.from(text.summary) : null;

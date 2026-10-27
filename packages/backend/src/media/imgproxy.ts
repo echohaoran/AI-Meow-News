@@ -82,7 +82,8 @@ export function proxyBodyImages(html: string, absolute = false, lifetimeSeconds 
       if (!src) return tag;
       if (isNonArticleImage(src[1]!, attrs.match(/\bwidth="([^"]+)"/i)?.[1], attrs.match(/\bheight="([^"]+)"/i)?.[1])) return "";
       const decoded = src[1]!.replace(/&amp;/g, "&");
-      const proxied = proxiedImage(decoded, "full", absolute, now, lifetimeSeconds);
+      const proxied = decoded.startsWith("data:") ? null : proxiedImage(decoded, "article-full", absolute, now, lifetimeSeconds);
+      if (!proxied) return "";
       // Width descriptors change an image's natural CSS size. Only use them for a body image with
       // an explicit display width: unknown and small pictures must retain their intrinsic size.
       // RSS keeps its existing single signed full image.
@@ -95,7 +96,7 @@ export function proxyBodyImages(html: string, absolute = false, lifetimeSeconds 
       return `<img${attrs.replace(src[0], source)}>`;
     })
     .replace(/<video\b([^>]*?)\sposter="([^"]+)"/gi, (_m, pre: string, src: string) => {
-      const proxied = proxiedImage(src.replace(/&amp;/g, "&"), "thumb", absolute, now, lifetimeSeconds);
+      const proxied = proxiedImage(src.replace(/&amp;/g, "&"), "article-thumb", absolute, now, lifetimeSeconds);
       return proxied ? `<video${pre} poster="${proxied.replace(/&/g, "&amp;")}"` : `<video${pre}`;
     });
   if (!/<video\b/i.test(rewritten)) return rewritten;

@@ -7,6 +7,7 @@ import { createHash, randomBytes } from "node:crypto";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import sharp from "sharp";
+import { renderSVG } from "uqr";
 import { SITE } from "@aihot/site";
 
 const dir = await mkdtemp(path.join(tmpdir(), "aihot-media-test-"));
@@ -22,6 +23,8 @@ let imageHits = 0;
 let failureHits = 0;
 let animationHits = 0;
 const png = await sharp({ create: { width: 800, height: 400, channels: 3, background: "#176b75" } }).png().toBuffer();
+const code = await sharp(Buffer.from(renderSVG("https://example.org/test", { pixelSize: 4, border: 4 }))).png().toBuffer();
+const qrPng = await sharp(png).composite([{ input: code, left: 450, top: 100 }]).png().toBuffer();
 // Ten noisy 160×120 frames: a GIF that animated WebP clearly beats.
 const frames = await sharp({ create: { width: 160, height: 1200, channels: 3, background: "#808080", noise: { type: "gaussian", mean: 128, sigma: 40 } } }).raw().toBuffer();
 const animatedGif = await sharp(frames, { raw: { width: 160, height: 1200, channels: 3, pageHeight: 120 } }).gif({ loop: 0, delay: Array(10).fill(90) }).toBuffer();
@@ -35,6 +38,7 @@ for (let at = overBudgetGif.indexOf(descriptor); at !== -1; at = overBudgetGif.i
   overBudgetGif.writeUInt16LE(11000, at + 7);
 }
 const server = createServer(async (req, res) => {
+  if (req.url === "/qr.png") { res.writeHead(200, { "content-type": "image/png" }); return res.end(qrPng); }
   if (req.url === "/anim.gif") { animationHits++; res.writeHead(200, { "content-type": "image/gif" }); return res.end(animatedGif); }
   if (req.url === "/tiny.gif") { res.writeHead(200, { "content-type": "image/gif" }); return res.end(tinyGif); }
   if (req.url === "/over-budget.gif") { res.writeHead(200, { "content-type": "image/gif" }); return res.end(overBudgetGif); }
@@ -148,11 +152,11 @@ test("a retained large SVG still supplies the model's raster thumbnail", async (
 
 test("site media exposes responsive previews and full lightboxes while RSS retains thumb images", () => {
   const row = { zh_text: null, x_post: { media: [{ url: "https://example.org/1.png" }, { url: "https://example.org/2.png", poster: "https://example.org/poster.png" }] } };
-  assert.ok(xView(row, true)!.media.every((m) => m.url.includes("mode=card") && m.fullUrl?.includes("mode=full")));
-  assert.ok(xView(row, true)!.media[1]!.poster!.includes("mode=card"));
-  assert.ok(xView(row)!.media.every((m) => m.url.includes("mode=thumb") && m.fullUrl === undefined));
+  assert.ok(xView(row, true)!.media.every((m) => m.url.includes("mode=article-card") && m.fullUrl?.includes("mode=article-full")));
+  assert.ok(xView(row, true)!.media[1]!.poster!.includes("mode=article-card"));
+  assert.ok(xView(row)!.media.every((m) => m.url.includes("mode=article-thumb") && m.fullUrl === undefined));
   const detail = xView(row, false, true)!.media;
-  assert.ok(detail.every((m) => m.url.includes("mode=full") && m.srcSet?.includes("mode=thumb")));
+  assert.ok(detail.every((m) => m.url.includes("mode=article-full") && m.srcSet?.includes("mode=article-thumb")));
   for (const media of detail.filter((m) => !m.poster)) {
     // Opening a picture already displayed at full resolution must reuse its browser cache entry.
     assert.equal(media.srcSet!.split(", ").at(-1), `${media.poster ?? media.url} 1600w`);
@@ -160,7 +164,7 @@ test("site media exposes responsive previews and full lightboxes while RSS retai
   row.x_post.media[1]!.url = "javascript:invalid";
   const single = xView(row, true)!.media;
   assert.equal(single.length, 1);
-  assert.ok(single[0]!.url.includes("mode=thumb"));
+  assert.ok(single[0]!.url.includes("mode=article-thumb"));
 });
 
 test("concurrent cold OG and poster requests all succeed with identical cached bytes", async () => {
@@ -195,14 +199,14 @@ test("responsive URLs and web body candidates retain exact signatures and stable
     assert.deepEqual([...u.searchParams.keys()].sort(), ["exp", "mode", "sig", "u"]);
     const query = Object.fromEntries(u.searchParams);
     assert.equal(verifyProxyRequest(query, now).ok, true);
-    assert.equal(width, query.mode === "card" ? "336w" : "720w");
+    assert.equal(width, query.mode === "article-card" ? "336w" : "720w");
     assert.equal(verifyProxyRequest({ ...query, mode: "full" }, now).ok, false);
   }
   const html = '<p><img src="https://example.org/image.png?a=1&amp;b=2" width="800" height="400"></p>';
   assert.ok(!proxyBodyImages('<img src="https://example.org/small.png" width="160" height="80">').includes('srcset='));
   assert.ok(!proxyBodyImages('<img src="https://example.org/unknown.png">').includes('srcset='));
   const web = proxyBodyImages(html);
-  assert.match(web, /srcset="[^"]+mode=thumb/);
+  assert.match(web, /srcset="[^"]+mode=article-thumb/);
   const tag = web.match(/<img\b[^>]+>/)![0];
   const bodySource = tag.match(/\bsrc="([^"]+)"/)![1];
   assert.equal(tag.match(/\bsrcset="([^"]+)"/)![1]!.split(", ").at(-1), `${bodySource} 1600w`);
@@ -241,6 +245,26 @@ test("image HTTP responses keep earlier URLs valid, reject tampering before fetc
   assert.equal((await app.inject({ url: short })).statusCode, 200);
   assert.equal((await app.inject({ url: short.replace(/sig=(.)/, (_m, c: string) => `sig=${c === "0" ? "1" : "0"}`) })).statusCode, 403);
   await app.close();
+});
+
+test("article images reject QR codes across sizes even if an old rendition is cached", async () => {
+  const { default: Fastify } = await import("fastify");
+  const { registerMedia } = await import("../apps/api/src/routes/media.ts");
+  const { proxiedImage } = await import("@aihot/backend/media/imgproxy");
+  const app = Fastify();
+  registerMedia(app);
+  try {
+    const source = `${base}/qr.png`;
+    assert.equal((await app.inject({ url: proxiedImage(source, "card")! })).statusCode, 200);
+    for (const mode of ["article-card", "article-thumb", "article-1200", "article-full"] as const) {
+      const rejected = await app.inject({ url: proxiedImage(source, mode)!, headers: { "if-none-match": "*" } });
+      assert.equal(rejected.statusCode, 404);
+      assert.equal(rejected.headers["cache-control"], "no-store");
+      assert.equal((await app.inject({ url: proxiedImage(`${base}/plain`, mode)! })).statusCode, 200);
+    }
+  } finally {
+    await app.close();
+  }
 });
 
 // Protocol failures to prevent: validators bypassing signature checks, unchanged bytes downloading

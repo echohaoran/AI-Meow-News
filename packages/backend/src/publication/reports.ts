@@ -305,7 +305,7 @@ async function leadCover(itemId: string): Promise<{ url: string; srcSet?: string
     ORDER BY (p.article_id = ${itemId}) DESC, p.first_party DESC, coalesce(p.score, 0) DESC, p.article_id
     LIMIT 1`;
   if (!row) return null;
-  const url = proxiedImage(row.m.url, "full");
+  const url = proxiedImage(row.m.url, "article-full");
   if (!url) return null;
   const srcSet = proxiedImageSet(row.m.url, "hero");
   return { url, ...(srcSet ? { srcSet } : {}), width: typeof row.m.width === "number" ? row.m.width : null, height: typeof row.m.height === "number" ? row.m.height : null };

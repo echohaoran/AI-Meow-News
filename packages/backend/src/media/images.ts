@@ -9,6 +9,7 @@ import { config } from "../config.ts";
 import { guardedFetch, type GuardedResponse } from "../lib/http-fetch.ts";
 import { IMAGE_WIDTHS } from "./renditions.ts";
 import { recordUpstream, upstreamAllowed } from "./upstream.ts";
+import { containsQr } from "./qr.ts";
 
 const CACHE_DIR = path.join(config.dataDir, "imgcache");
 const ORIGINAL_TTL_MS = 60_000;
@@ -131,6 +132,7 @@ export function decodeIco(buf: Buffer): Buffer | { raw: Buffer; width: number; h
 
 /** The upstream budget is spent (upstream.ts): uncached images wait for the window to reset. */
 export class ImageBudgetExceeded extends Error {}
+export class ImageContainsQr extends Error {}
 
 /** The cached rendition of an image for a mode, fetched and resized on first use. */
 export function produceImage(url: string, mode: string): Promise<PreparedImage> {
@@ -187,6 +189,7 @@ async function produce(url: string, mode: string): Promise<PreparedImage> {
     // not cached
   }
   const res = await original(url);
+  if (mode.startsWith("article-") && await containsQr(url, res.body)) throw new ImageContainsQr();
   const image = await resizeImage(res.body, res.headers.get("content-type") ?? "", mode);
   await mkdir(path.dirname(file), { recursive: true });
   await saveImage(file, image);

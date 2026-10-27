@@ -125,6 +125,12 @@ export function ArticleBody({ html }: { html: string }) {
     const onLoad = (e: Event) => {
       if (e.target instanceof HTMLImageElement) mark(e.target);
     };
+    const onError = (e: Event) => {
+      if (e.target instanceof HTMLImageElement) e.target.remove();
+    };
+    for (const img of root.querySelectorAll("img")) {
+      if (img.currentSrc && img.complete && !img.naturalWidth) img.remove();
+    }
     const showImage = (e: MouseEvent | KeyboardEvent) => {
       const img = e.target instanceof HTMLImageElement ? e.target : null;
       if (!img || !img.classList.contains("zoomable")) return;
@@ -139,11 +145,13 @@ export function ArticleBody({ html }: { html: string }) {
       if (e.key === "Enter" || e.key === " ") showImage(e);
     };
     root.addEventListener("load", onLoad, true);
+    root.addEventListener("error", onError, true);
     root.addEventListener("click", showImage);
     root.addEventListener("keydown", onKeyDown);
     return () => {
       cleanCode();
       root.removeEventListener("load", onLoad, true);
+      root.removeEventListener("error", onError, true);
       root.removeEventListener("click", showImage);
       root.removeEventListener("keydown", onKeyDown);
     };

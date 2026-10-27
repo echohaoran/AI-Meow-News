@@ -3,7 +3,7 @@
 import type { FastifyInstance } from "fastify";
 import { createHash } from "node:crypto";
 import { enqueue, QUEUES } from "@aihot/backend/jobs/queue";
-import { ImageBudgetExceeded, produceImage } from "@aihot/backend/media/images";
+import { ImageBudgetExceeded, ImageContainsQr, produceImage } from "@aihot/backend/media/images";
 import { LONGEST_CACHE_SECONDS, verifyProxyRequest } from "@aihot/backend/media/imgproxy";
 import { etagMatches, looseQuery } from "../http/respond.ts";
 
@@ -50,6 +50,9 @@ export function registerMedia(app: FastifyInstance) {
       if (etagMatches(req.headers["if-none-match"], etag)) return reply.code(304).send();
       return reply.send(body);
     } catch (error) {
+      if (error instanceof ImageContainsQr) {
+        return reply.code(404).header("Cache-Control", "no-store").type("text/plain; charset=utf-8").send("Image unavailable");
+      }
       if (error instanceof ImageBudgetExceeded) {
         return reply.code(503).header("Retry-After", "60").header("Cache-Control", "no-store").type("text/plain; charset=utf-8").send("Image proxy is busy; try again later");
       }

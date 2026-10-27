@@ -103,18 +103,19 @@ export function tagCondition(tag: string | null | undefined) {
 }
 
 function mediaView(m: Record<string, any>, mode: "card" | "thumb" | "full" = "thumb", responsive = false): MediaView | null {
-  const url = proxiedImage(m.url, mode);
+  const articleMode = mode === "card" ? "article-card" : mode === "thumb" ? "article-thumb" : "article-full";
+  const url = proxiedImage(m.url, articleMode);
   if (!url) return null;
   const srcSet = responsive ? proxiedImageSet(m.poster ?? m.url, mode === "full" ? "body" : "card") : null;
   return {
     kind: m.kind === "video" ? "video" : "image",
     url,
-    ...(responsive && mode !== "full" ? { fullUrl: proxiedImage(m.url, "full")! } : {}),
+    ...(responsive && mode !== "full" ? { fullUrl: proxiedImage(m.url, "article-full")! } : {}),
     ...(srcSet ? { srcSet } : {}),
     width: typeof m.width === "number" ? m.width : null,
     height: typeof m.height === "number" ? m.height : null,
     alt: m.alt ?? null,
-    poster: m.poster ? proxiedImage(m.poster, mode === "card" ? "card" : "thumb") : null,
+    poster: m.poster ? proxiedImage(m.poster, mode === "card" ? "article-card" : "article-thumb") : null,
   };
 }
 
@@ -202,7 +203,7 @@ function feedImage(media: ItemRow["article_media"]): FeedImage | null {
     const width = typeof candidate.width === "number" ? candidate.width : null;
     const height = typeof candidate.height === "number" ? candidate.height : null;
     if (isNonArticleImage(url, width === null ? undefined : String(width), height === null ? undefined : String(height))) continue;
-    const proxied = proxiedImage(url, "card");
+    const proxied = proxiedImage(url, "article-card");
     const srcSet = proxiedImageSet(url, "card");
     if (proxied) return { url: proxied, ...(srcSet ? { srcSet } : {}), width, height };
   }
