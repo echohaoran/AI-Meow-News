@@ -56,7 +56,8 @@ test("an empty selected feed displays API source news with its original date and
     const $ = cheerio.load(await response.text());
     assert.match($("#main").text(), /AI-News · AI喵实验室/);
     assert.match($("#main").text(), /还没有精选内容/);
-    for (const path of ["/source-news", "/hot", "/daily"]) assert.ok($(`#main a[href="${path}"]`).length > 0);
+    assert.equal($('#main a[href="/feed.xml"]').length, 1);
+    assert.ok($('#main button').toArray().some((button) => $(button).text().includes("Agent 提示词快速复制")));
     const preview = $('[aria-label="来源新闻"]');
     assert.ok(preview.text().includes(sourceItem.title));
     assert.match(preview.text(), /未核验/);
