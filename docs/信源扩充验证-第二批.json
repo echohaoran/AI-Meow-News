@@ -1,0 +1,2331 @@
+{
+  "checkedAt": "2026-10-27T13:35:39.546042+00:00",
+  "method": "生产 worker 同版本 fetchRss；匿名只读抓取，未调用模型",
+  "candidatesTested": 298,
+  "selected": 101,
+  "sources": [
+    {
+      "id": "rss-more-e5fe6cb1c5f3",
+      "name": "DeepSeek（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/1709da4f538d4ce4fb6d7a8ba1a5a1c297919601.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/1709da4f538d4ce4fb6d7a8ba1a5a1c297919601.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-20T08:54:00+00:00",
+      "samples": [
+        {
+          "title": "DeepSeek 开源推理框架：走向真正普惠的未来",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzk0OTYwNzc3NQ==&mid=2247485884&idx=1&sn=d457981abe7db1f1b5d600fc109dc836",
+          "date": "2026-10-20T08:54:00.000Z"
+        },
+        {
+          "title": "DeepSeek V4.1 Flash 新版本：许愿式编程一键成真",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzk0OTYwNzc3NQ==&mid=2247485876&idx=1&sn=2606d3fa9ac085f94290ddd1d94649cc",
+          "date": "2026-10-17T08:11:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-b4647fa8818e",
+      "name": "大模型智能（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/bfc6440c1a2443fab9a6bf607137d41db5cd5c93.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/bfc6440c1a2443fab9a6bf607137d41db5cd5c93.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-26T16:00:00+00:00",
+      "samples": [
+        {
+          "title": "OpenAI开始断网训练最强模型：“安全起见”",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzU3NjE4NjQ4MA==&mid=2247557599&idx=1&sn=87ce461fffdf4675510110ba897295da",
+          "date": "2026-10-26T16:00:00.000Z"
+        },
+        {
+          "title": "从白盒蒸馏、黑盒蒸馏，再到自蒸馏！深度理解 OPD 训练的本质",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzU3NjE4NjQ4MA==&mid=2247557592&idx=1&sn=99ed19f13f9e82b016e1b4f88f91e2eb",
+          "date": "2026-10-25T16:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-105a86cf0537",
+      "name": "我爱计算机视觉（公众号订阅）",
+      "feedUrl": "https://wechat2rss.xlab.app/feed/b81ffcfff1107b5265cd7e39de610dc7ca72caf4.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "公众号目录",
+      "responseUrl": "https://wechat2rss.xlab.app/feed/b81ffcfff1107b5265cd7e39de610dc7ca72caf4.xml",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-10-26T14:54:00+00:00",
+      "samples": [
+        {
+          "title": "NeurIPS 2026｜字幕缺词、音画掉线，SemMSA如何稳住情感判断？",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzIwMTE1NjQxMQ==&mid=2247666759&idx=1&sn=5f8ed6d76abcd042b9fbec4c6898af25",
+          "date": "2026-10-26T14:54:00.000Z"
+        },
+        {
+          "title": "看懂、听懂，还要找准：OmniCompass评测50个MLLMs的全模态视频定位与理解能力",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzIwMTE1NjQxMQ==&mid=2247666714&idx=1&sn=f5020c92647c8997b59878a27aed5c59",
+          "date": "2026-10-25T15:29:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-66242ceed483",
+      "name": "新智元（公众号订阅）",
+      "feedUrl": "https://wechat2rss.xlab.app/feed/ede30346413ea70dbef5d485ea5cbb95cca446e7.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "公众号目录",
+      "responseUrl": "https://wechat2rss.xlab.app/feed/ede30346413ea70dbef5d485ea5cbb95cca446e7.xml",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-10-27T03:48:00+00:00",
+      "samples": [
+        {
+          "title": "刚刚，百度开源再拿全球第一！1000万下载神作杀回来了",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzI3MTA0MTk1MA==&mid=2652738252&idx=1&sn=cd9635665f1240282aa9d610ebe2dac6",
+          "date": "2026-10-27T03:48:00.000Z"
+        },
+        {
+          "title": "OpenAI改写人类科学史！「王的猜想」全维度告破，30年铁律ETH塌了",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzI3MTA0MTk1MA==&mid=2652738252&idx=2&sn=2ca4bd9a18c41d92c82323a6c9e58813",
+          "date": "2026-10-27T03:48:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-590f6db1e612",
+      "name": "智谱（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/433d2134dca54d80804daf32e8be546155be3300.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/433d2134dca54d80804daf32e8be546155be3300.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-09-18T04:37:00+00:00",
+      "samples": [
+        {
+          "title": "GLM-5.3-FlashX上线：大大方方、好好用用、嗖嗖嗖嗖",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkyMzI3NzQ0Mg==&mid=2247494219&idx=1&sn=f42bab9190e6e13f6db5cf5c90d850a9",
+          "date": "2026-09-18T04:37:00.000Z"
+        },
+        {
+          "title": "智谱2026中报发布：智能上界，新局加载",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkyMzI3NzQ0Mg==&mid=2247494166&idx=1&sn=5cb5f14428ff775112f4e6fe9e5a6e1a",
+          "date": "2026-08-31T16:25:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-787427d3a63f",
+      "name": "月之暗面 Kimi（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/c5c43d4bc17bae656763859ed0903bb6314ec6fe.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/c5c43d4bc17bae656763859ed0903bb6314ec6fe.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-23T17:16:00+00:00",
+      "samples": [
+        {
+          "title": "Kimi K3.1 Pro：智能前沿，更进一步",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzcwMjM3ODEzOA==&mid=2247487748&idx=1&sn=ceec50327d6be7c1e07203c9306c9ebc",
+          "date": "2026-10-23T17:16:00.000Z"
+        },
+        {
+          "title": "10 分钟，Kimi Work 从入门到精通",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzcwMjM3ODEzOA==&mid=2247487633&idx=1&sn=16d7e00bdc390709f314cc8f229bba6e",
+          "date": "2026-10-15T10:20:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-e42dc409e5e1",
+      "name": "机器之心（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/8d97af31b0de9e48da74558af128a4673d78c9a3.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/8d97af31b0de9e48da74558af128a4673d78c9a3.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-27T04:03:00+00:00",
+      "samples": [
+        {
+          "title": "人类数据如何变成机器人真实能力？Ropedia重磅发布六项研究成果",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2651070489&idx=1&sn=979e5eb39baa3b368af94c9c73dd2afc",
+          "date": "2026-10-27T04:03:00.000Z"
+        },
+        {
+          "title": "从单点突破到系统性验证：分子之心MMDesign实现94.7%项目成功率、六大GPCR靶点全获命中",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2651070489&idx=2&sn=f3e51965ac1b19d0ae372dceaf7db200",
+          "date": "2026-10-27T04:03:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-2b5acb5e7f46",
+      "name": "机器之心SOTA模型（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/2f520471856d56c7b3a95cd09eb777149b32828a.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/2f520471856d56c7b3a95cd09eb777149b32828a.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-27T10:32:00+00:00",
+      "samples": [
+        {
+          "title": "OpenAI发布GPT-6.1 Terra通用模型，腾讯开源Hy-SimulMT流式同传模型",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkyMzcwMDIyMQ==&mid=2247503953&idx=1&sn=932a148077a9b56fe39dbe5d2c1ebecb",
+          "date": "2026-10-27T10:32:00.000Z"
+        },
+        {
+          "title": "月之暗面发布Kimi K3.1 Pro与Pro Highspeed，南北阁开源Nanbeige4.3-33B模型",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkyMzcwMDIyMQ==&mid=2247503944&idx=1&sn=722f50dee47a7b89b3a2c5fe80b9c5c1",
+          "date": "2026-10-26T10:33:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-004ab6a979ab",
+      "name": "腾讯混元（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/306ce19a1ca590c9c2df781789e828d1acfa1356.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/306ce19a1ca590c9c2df781789e828d1acfa1356.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-26T11:53:00+00:00",
+      "samples": [
+        {
+          "title": "腾讯混元同声传译大模型开源，效果跑赢主流商用 API",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkwODU2OTQyNQ==&mid=2247498743&idx=1&sn=3ffbc2e287aaedc8c3814e4c75030b96",
+          "date": "2026-10-26T11:53:00.000Z"
+        },
+        {
+          "title": "大模型如何胜任职场？WorkForge让大模型进入真实职场工作流",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkwODU2OTQyNQ==&mid=2247498710&idx=1&sn=f4e7e6d5084def4dcbb134ba6c7ba1c6",
+          "date": "2026-10-22T09:05:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-52ffc392c397",
+      "name": "通义实验室（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/4ebee6222ae08705b8aabc9116f0defbcb6b17c6.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/4ebee6222ae08705b8aabc9116f0defbcb6b17c6.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-07-20T08:54:00+00:00",
+      "samples": [
+        {
+          "title": "从“能说话”到“会表达”：Qwen-Audio-3.0-TTS 发布",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkxMTYyMTAzNA==&mid=2247501821&idx=1&sn=48ad8d176a6373940bf5c60b2cbb6b7a",
+          "date": "2026-07-20T08:54:00.000Z"
+        },
+        {
+          "title": "Wan-Streamer v0.2：响应延迟仅550ms，让 AI 真正与你\"面对面\"",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkxMTYyMTAzNA==&mid=2247501801&idx=1&sn=45dac08fa9aa34bcbb5f405e1d179224",
+          "date": "2026-07-17T07:14:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-b951a095192c",
+      "name": "阶跃StepFun（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/3e2714d06aa36142e8ed6b3f4e5cf9090a069dd2.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/3e2714d06aa36142e8ed6b3f4e5cf9090a069dd2.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-20T02:00:00+00:00",
+      "samples": [
+        {
+          "title": "阶跃星辰StepFun校园人才交流专场，10月31日邀你赴约",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkyNTYxNzg5Mg==&mid=2247488170&idx=1&sn=7f68687ce0046ed69d92818bdbfc71a0",
+          "date": "2026-10-20T02:00:00.000Z"
+        },
+        {
+          "title": "阶跃 Step 5 Preview 权重开放，技术博客同步上线",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkyNTYxNzg5Mg==&mid=2247488160&idx=1&sn=427a3dc2e5b84b0977e1e5ea075cfbd7",
+          "date": "2026-10-15T03:02:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-1eea54235f92",
+      "name": "vivo互联网技术（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/b3ceb5cb1e4602ca55704650a157ec9c5b2f0d31.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/b3ceb5cb1e4602ca55704650a157ec9c5b2f0d31.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-21T12:00:00+00:00",
+      "samples": [
+        {
+          "title": "域名埋点零侵入实时校验实践：基于代理转发与规则驱动的工具设计",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzI4NjY4MTU5Nw==&mid=2247507075&idx=1&sn=fecfcb90bd0fb3d1bf0fd7cfc34d3cc3",
+          "date": "2026-10-21T12:00:00.000Z"
+        },
+        {
+          "title": "记忆不是存历史，而是治理未来行动｜KDC 系列 04",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzI4NjY4MTU5Nw==&mid=2247507075&idx=2&sn=dfdedded05faa95e804c621d8c54161f",
+          "date": "2026-10-21T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-e3c985a5627d",
+      "name": "哔哩哔哩技术（公众号订阅）",
+      "feedUrl": "https://wechat2rss.xlab.app/feed/434235d4815fdb8447ff3127fc053ceb8b3aada6.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "公众号目录",
+      "responseUrl": "https://wechat2rss.xlab.app/feed/434235d4815fdb8447ff3127fc053ceb8b3aada6.xml",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-10-20T04:00:00+00:00",
+      "samples": [
+        {
+          "title": "Index-Translate：支持 150 种语言的多模态翻译模型是如何炼成的？",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzg3Njc0NTgwMg==&mid=2247504445&idx=1&sn=f75fce7106f8ba37e7ee3918ab5aa787",
+          "date": "2026-10-20T04:00:00.000Z"
+        },
+        {
+          "title": "EMNLP 2026 Oral｜HOMURA：面向时间受限场景的 LLM 翻译强化学习优化",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzg3Njc0NTgwMg==&mid=2247504425&idx=1&sn=00e091f6f49d042e070bfb345f4369f6",
+          "date": "2026-10-10T03:59:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-984e62ff0cb2",
+      "name": "字节跳动技术团队（公众号订阅）",
+      "feedUrl": "https://wechat2rss.xlab.app/feed/4025ea55575daf8bfd8227e68b28d9638b073267.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "公众号目录",
+      "responseUrl": "https://wechat2rss.xlab.app/feed/4025ea55575daf8bfd8227e68b28d9638b073267.xml",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-10-23T11:20:00+00:00",
+      "samples": [
+        {
+          "title": "OpenViking 网关：让任意客户端用上 Agentic 记忆",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzI1MzYzMjE0MQ==&mid=2247523647&idx=1&sn=f96a64e413be6cdbaf0936f0a2a69f23",
+          "date": "2026-10-23T11:20:00.000Z"
+        },
+        {
+          "title": "火山引擎云数据库 Lakebase 正式发布：让 Agent 高效访问库、湖数据",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzI1MzYzMjE0MQ==&mid=2247523456&idx=1&sn=33fb7c4c1b2c914c92ab3bd1ae11a117",
+          "date": "2026-10-22T10:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-0909e6fd7e8e",
+      "name": "腾讯技术工程（公众号订阅）",
+      "feedUrl": "https://wechat2rss.xlab.app/feed/9685937b45fe9c7a526dbc32e4f24ba879a65b9a.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "公众号目录",
+      "responseUrl": "https://wechat2rss.xlab.app/feed/9685937b45fe9c7a526dbc32e4f24ba879a65b9a.xml",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-10-26T09:32:00+00:00",
+      "samples": [
+        {
+          "title": "你的Personal Agent 如何真正跑起来？Agent实战指南",
+          "url": "https://mp.weixin.qq.com/s?__biz=MjM5ODYwMjI2MA==&mid=2649804831&idx=1&sn=bcfae266ff83331edd3f2a72643592d3",
+          "date": "2026-10-26T09:32:00.000Z"
+        },
+        {
+          "title": "腾讯员工下班后都在玩这么刺激的？？？",
+          "url": "https://mp.weixin.qq.com/s?__biz=MjM5ODYwMjI2MA==&mid=2649804818&idx=1&sn=586605bd73d8e757fee932a5da596e9d",
+          "date": "2026-10-23T09:36:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-6e76f940a5bb",
+      "name": "阿里云开发者（公众号订阅）",
+      "feedUrl": "https://wechat2rss.xlab.app/feed/c74ed6db00cfbf16f2a048a165b4453f982681f0.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "公众号目录",
+      "responseUrl": "https://wechat2rss.xlab.app/feed/c74ed6db00cfbf16f2a048a165b4453f982681f0.xml",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-10-27T05:21:00+00:00",
+      "samples": [
+        {
+          "title": "深度解析 Codex Harness 架构及其全新上下文压缩记忆体系的设计思路",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzIzOTU0NTQ0MA==&mid=2247562567&idx=1&sn=66f9aa9e8cfbbbb6bda19db56d51514b",
+          "date": "2026-10-27T05:21:00.000Z"
+        },
+        {
+          "title": "千问 AI Arena × 沙利文｜联合发布二期任务，聚焦“消费决策助手 Agent”",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzIzOTU0NTQ0MA==&mid=2247562482&idx=1&sn=97225f4837d67d92f49753bec0744a52",
+          "date": "2026-10-16T03:35:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-e64bd31a2472",
+      "name": "腾讯研究院（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/6152301e0978bffb0a8284cab339262b9764dcfb.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/6152301e0978bffb0a8284cab339262b9764dcfb.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-27T09:00:00+00:00",
+      "samples": [
+        {
+          "title": "从大语言模型迈向世界模型",
+          "url": "https://mp.weixin.qq.com/s?__biz=MjM5OTE0ODA2MQ==&mid=2650999236&idx=1&sn=50171364fab961b43de27fa27c5682d2",
+          "date": "2026-10-27T09:00:00.000Z"
+        },
+        {
+          "title": "我和 AI，有些私事｜腾讯研究院 × 故事FM，10 月 31 日深圳见",
+          "url": "https://mp.weixin.qq.com/s?__biz=MjM5OTE0ODA2MQ==&mid=2650999236&idx=2&sn=af98c8611367ea620558f89e064e5d9c",
+          "date": "2026-10-27T09:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-a1142ae83749",
+      "name": "阿里研究院（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/e2f1190c120f7f3d74b630bfcfe9e58296bd535c.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/e2f1190c120f7f3d74b630bfcfe9e58296bd535c.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-15T06:41:00+00:00",
+      "samples": [
+        {
+          "title": "苹果iPhone Duo完成大模型备案！搭载Apple智能、通义千问等",
+          "url": "https://mp.weixin.qq.com/s?__biz=MjM5NTg0NDE1Mw==&mid=2652628383&idx=1&sn=4dc044370bc2bb80b94865af0bf3ca44",
+          "date": "2026-10-15T06:41:00.000Z"
+        },
+        {
+          "title": "千问办公发布电商版，开启邀测",
+          "url": "https://mp.weixin.qq.com/s?__biz=MjM5NTg0NDE1Mw==&mid=2652628374&idx=1&sn=8450f3c7069b63f51d9e31dbbad2df01",
+          "date": "2026-10-14T07:33:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-1502ebfb03ff",
+      "name": "阿里技术（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/6535a444e9651fecae3383363be7589acdebe2b6.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/6535a444e9651fecae3383363be7589acdebe2b6.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-27T10:05:00+00:00",
+      "samples": [
+        {
+          "title": "Personal Agent 对比分析及未来技术发展趋势",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzg4NTczNzg2OA==&mid=2247512207&idx=1&sn=0e0559f8a74ee5a838ca4e3684272ab5",
+          "date": "2026-10-27T10:05:00.000Z"
+        },
+        {
+          "title": "Personal Agent 落地思考：主动性从哪来，又卡在哪？",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzg4NTczNzg2OA==&mid=2247512178&idx=1&sn=78ebbd60fa0df076d9e53b5ae7d109e0",
+          "date": "2026-10-26T10:08:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-2c364acefc49",
+      "name": "腾讯云开发者（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/6cec2c211479a5502896375860009782cf10c2ba.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/6cec2c211479a5502896375860009782cf10c2ba.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-27T00:45:00+00:00",
+      "samples": [
+        {
+          "title": "33万star、超过Ghidra三倍：REA为什么一夜爆火",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzI2NDU4OTExOQ==&mid=2247697904&idx=1&sn=d593ff48cba425ac128c5c665fdc5827",
+          "date": "2026-10-27T00:45:00.000Z"
+        },
+        {
+          "title": "腾讯WorkBuddy FDE人才培养计划暨FDE精英班正式启动",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzI2NDU4OTExOQ==&mid=2247697880&idx=1&sn=840a0ad54e5ba73796bf35d4ce5a0e0f",
+          "date": "2026-10-24T02:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-46a02bfc0228",
+      "name": "歸藏的AI工具箱（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/1c3e3571b1627d23ee9c64521a0b0a41d3fe2987.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/1c3e3571b1627d23ee9c64521a0b0a41d3fe2987.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-21T00:20:00+00:00",
+      "samples": [
+        {
+          "title": "有了AI，终于不用忍受满是广告的电视界面了",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzU0MDk3NTUxMA==&mid=2247498250&idx=1&sn=61192ad009172329df6feb9a5d49cf7e",
+          "date": "2026-10-21T00:20:00.000Z"
+        },
+        {
+          "title": "Deepseek 1017开源，还有最好的AI搜索 API",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzU0MDk3NTUxMA==&mid=2247498238&idx=1&sn=11a0a20b4ca245f39c729c29df07be58",
+          "date": "2026-10-17T08:56:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-f225041626b3",
+      "name": "腾讯科技（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/a81bdfcbb9eefe870d285e81510ffa1af26e4520.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/a81bdfcbb9eefe870d285e81510ffa1af26e4520.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-27T08:46:00+00:00",
+      "samples": [
+        {
+          "title": "讯飞星火，90后上前线",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mjc1NjM3MjY2MA==&mid=2691573745&idx=1&sn=585074bb6dc1002a5e0f2a37b572f4a8",
+          "date": "2026-10-27T08:46:00.000Z"
+        },
+        {
+          "title": "将在2031年全面超越人类的AI，没有泡沫｜著名投资人拉斯·特维德",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mjc1NjM3MjY2MA==&mid=2691573737&idx=1&sn=57e999c24dbff556db4c35a2a640638d",
+          "date": "2026-10-27T04:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-090a4748ee94",
+      "name": "InfoQ（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/13da94d7eb314b49fa251cb7e8399cae29d772db.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/13da94d7eb314b49fa251cb7e8399cae29d772db.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-27T08:11:00+00:00",
+      "samples": [
+        {
+          "title": "Claude Code 撑起史上最大 IPO，被封号不退费的中国开发者撑起那 5%“脏收入”",
+          "url": "https://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&mid=2651296067&idx=1&sn=c6f6f20c4cd5e3c829c672de5a61d3ba",
+          "date": "2026-10-27T08:11:00.000Z"
+        },
+        {
+          "title": "从三天 Demo 到一个月全员可用：小红书企业级 AI 助理 Seal 的规模化实践",
+          "url": "https://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&mid=2651296067&idx=2&sn=f783a9c1898aa1bcbc0a6cac8aec0f5a",
+          "date": "2026-10-27T08:11:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-b90e591f0bbc",
+      "name": "AI前线（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/25185b01482da0f485418ecb92e208b4416712fb.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/25185b01482da0f485418ecb92e208b4416712fb.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-27T08:20:00+00:00",
+      "samples": [
+        {
+          "title": "微软向 6 万员工发出自愿离职邀请：覆盖全球超四分之一员工，副总裁也在列",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzU1NDA4NjU2MA==&mid=2247668888&idx=1&sn=d6595d8bd6ddf4d001dd4e3f64de6f2a",
+          "date": "2026-10-27T08:20:00.000Z"
+        },
+        {
+          "title": "AI 都开始抢着干活了，人们的工作会变成什么样？",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzU1NDA4NjU2MA==&mid=2247668888&idx=2&sn=19df3975f7997bc05661a73d759b3815",
+          "date": "2026-10-27T08:20:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-7a9da4eb566c",
+      "name": "谷歌开发者（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/9c65b8470acb8a5400199616536995d5ba90f52e.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/9c65b8470acb8a5400199616536995d5ba90f52e.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-26T09:30:00+00:00",
+      "samples": [
+        {
+          "title": "社区说｜AI 驱动产业革新：Google 多模态与 Agent 赋能短剧与时尚出海",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzAwODY4OTk2Mg==&mid=2652163186&idx=1&sn=364d5f93f8df79c0997f0743b01da1b9",
+          "date": "2026-10-26T09:30:00.000Z"
+        },
+        {
+          "title": "1024 程序员节：与 Google 开发出海无限可能！",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzAwODY4OTk2Mg==&mid=2652163153&idx=1&sn=416e23e6e832ae1aa685145e026fc233",
+          "date": "2026-10-24T09:30:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-9077ab335dc6",
+      "name": "甲子光年（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/1c4008936645d5c17239d99bba91522cf2bdfa26.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/1c4008936645d5c17239d99bba91522cf2bdfa26.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-27T08:51:00+00:00",
+      "samples": [
+        {
+          "title": "原力无限，一支给机器人造大脑的顶尖科学家战队｜甲子光年",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzU5OTI0NTc3Mg==&mid=2247559636&idx=1&sn=8cd64b2e02b8805a3a6df387f7336828",
+          "date": "2026-10-27T08:51:00.000Z"
+        },
+        {
+          "title": "当一场AI大会没有了围墙｜甲子光年",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzU5OTI0NTc3Mg==&mid=2247559617&idx=1&sn=7ebb153f301e9297ca26f9989e4d0894",
+          "date": "2026-10-26T14:52:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-59bdd8a03bd5",
+      "name": "Jina AI（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/ff2c5468828ebe7236afd6c1d128e219774487c2.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/ff2c5468828ebe7236afd6c1d128e219774487c2.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-09-18T07:00:00+00:00",
+      "samples": [
+        {
+          "title": "jina-ocr-v1：在低成本 GPU 上更快解析文档",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkyODIxMjczMA==&mid=2247503626&idx=1&sn=8b4cd6a8470c0ac7a4bca09f3ab1425f",
+          "date": "2026-09-18T07:00:00.000Z"
+        },
+        {
+          "title": "活动报名｜2026 年做搜索就是在做 Test Time Compute",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkyODIxMjczMA==&mid=2247503475&idx=1&sn=b319183bfec7a848a6dd9b7d42dec232",
+          "date": "2026-08-14T10:40:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-aa03d676e4de",
+      "name": "Datawhale（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/ea0dd8bddfe4fbfb32eaa81a1e1b628d45e97a80.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/ea0dd8bddfe4fbfb32eaa81a1e1b628d45e97a80.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-27T03:25:00+00:00",
+      "samples": [
+        {
+          "title": "Datawhale招人啦！多个岗位开放中！",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzIyNjM2MzQyNg==&mid=2247729227&idx=1&sn=33d3bb614fa1445ecedff08a6a65a654",
+          "date": "2026-10-27T03:25:00.000Z"
+        },
+        {
+          "title": "Anthropic最新长文：请谨慎使用子智能体！",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzIyNjM2MzQyNg==&mid=2247729220&idx=1&sn=1510321b33cef5b10c39d58b5780f641",
+          "date": "2026-10-26T15:40:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-a0cb50c5f61c",
+      "name": "Dify（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/e46c03a4cb65509e22ab9a8507888a2096319d65.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/e46c03a4cb65509e22ab9a8507888a2096319d65.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-23T11:19:00+00:00",
+      "samples": [
+        {
+          "title": "Dify 企业版通过红帽 OpenShift 认证，进一步完善企业级 AI 部署能力",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzg5MDkyOTY3NA==&mid=2247488740&idx=1&sn=c49ff73a7015c36b48a59663767bc6b9",
+          "date": "2026-10-23T11:19:00.000Z"
+        },
+        {
+          "title": "看见灵感，听见回音：Dify Marketplace 让创作彼此连接",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzg5MDkyOTY3NA==&mid=2247488732&idx=1&sn=a3e93cd577965c1a1942ebda5d633bf8",
+          "date": "2026-09-24T10:53:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-cd865bbd7cd8",
+      "name": "百度文心（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/d0767d885e6ba213344fb0c0408c51331e23a994.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/d0767d885e6ba213344fb0c0408c51331e23a994.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-27T09:27:00+00:00",
+      "samples": [
+        {
+          "title": "OCR界出了个魔法师？",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzI5NzUyMzM1Mg==&mid=2247670434&idx=1&sn=56c5aed1c7365834218290917e580894",
+          "date": "2026-10-27T09:27:00.000Z"
+        },
+        {
+          "title": "百度世界2026十余场分论坛，给咱公司组织上点强度",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzI5NzUyMzM1Mg==&mid=2247670411&idx=1&sn=a7c90abe26772b536781bc0057100780",
+          "date": "2026-10-26T03:29:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-55ae6a47e8ea",
+      "name": "智东西（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/cfd52b4245ca6119b2fda4ef934832c689028927.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/cfd52b4245ca6119b2fda4ef934832c689028927.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-26T01:00:00+00:00",
+      "samples": [
+        {
+          "title": "工博会名场面！机器人集群亮相，群体智能时代来了？",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzA4MTQ4NjQzMw==&mid=2652812644&idx=1&sn=1f590be4d51893dcfc35d40eb96060bd",
+          "date": "2026-10-26T01:00:00.000Z"
+        },
+        {
+          "title": "DeepSeek Bot民间版作者来了！中国AI智能体大会，北京站12月见",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzA4MTQ4NjQzMw==&mid=2652812642&idx=1&sn=cba392063435bd105c8c3f208ca90ede",
+          "date": "2026-10-25T11:25:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-2c75cee2acd6",
+      "name": "字节跳动Seed（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/6efd40bb335d2037f365d284cb5e00f0843e737e.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/6efd40bb335d2037f365d284cb5e00f0843e737e.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-08-05T04:05:00+00:00",
+      "samples": [
+        {
+          "title": "SeedRealtime 音视频全双工大模型发布：走向全模态自然交互",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkzMDY5MzYxNg==&mid=2247494289&idx=1&sn=e1f4c54a9cebdbe23addd820b4909865",
+          "date": "2026-08-05T04:05:00.000Z"
+        },
+        {
+          "title": "一镜成片，随心参考｜Seedance 2.5 正式发布",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkzMDY5MzYxNg==&mid=2247494218&idx=1&sn=97f04a7a0200a366db2aeb1f4b38b3ae",
+          "date": "2026-07-31T04:47:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-4e4a648b874b",
+      "name": "MiniMax 稀宇科技（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/00306b171f754d463b28cf83f3ba086ad009b430.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/00306b171f754d463b28cf83f3ba086ad009b430.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-23T00:56:00+00:00",
+      "samples": [
+        {
+          "title": "MiniMax M3.1 Flash开源，上线72小时处理Token超过100万亿",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzE5MTA3NzcxMQ==&mid=2247489204&idx=1&sn=bc21e172929a366edfe02c720bef9208",
+          "date": "2026-10-23T00:56:00.000Z"
+        },
+        {
+          "title": "MiniMax M3.1 Flash：重新定义 Agent 的性能与成本",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzE5MTA3NzcxMQ==&mid=2247489196&idx=1&sn=4c8b969db8bd136f47d7b1a7650790c4",
+          "date": "2026-10-19T11:20:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-a576e66af6b6",
+      "name": "AINLP（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/875df1d1a991bf9250ba9813e3148f58ef2240d4.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/875df1d1a991bf9250ba9813e3148f58ef2240d4.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-27T02:09:00+00:00",
+      "samples": [
+        {
+          "title": "全网疯传！终于轮到我用Agent卷别人了",
+          "url": "https://mp.weixin.qq.com/s?__biz=MjM5ODkzMzMwMQ==&mid=2650455853&idx=1&sn=d4a9a9dad68ff720372244f64a5287e2",
+          "date": "2026-10-27T02:09:00.000Z"
+        },
+        {
+          "title": "第 22 天：GPT-6.1 Terra 回归！",
+          "url": "https://mp.weixin.qq.com/s?__biz=MjM5ODkzMzMwMQ==&mid=2650455852&idx=1&sn=bad136a496c18db6ec38ca95e1c71329",
+          "date": "2026-10-27T01:36:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-c433391d09af",
+      "name": "小米技术（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/8bbc1ba1d363e70cd42d1ce89fb9070cb075c3b3.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/8bbc1ba1d363e70cd42d1ce89fb9070cb075c3b3.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-27T04:09:00+00:00",
+      "samples": [
+        {
+          "title": "采了1800+工厂数据集，我们做了只21自由度仿生手",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzUxMDQxMDMyNg==&mid=2247520602&idx=1&sn=d374bbe848be7641a77ebabf1b28e19f",
+          "date": "2026-10-27T04:09:00.000Z"
+        },
+        {
+          "title": "工程师的节日能有多精彩？小米技术嘉年华给你答案",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzUxMDQxMDMyNg==&mid=2247520547&idx=1&sn=ea4c65f5ae11c78f37a7a7228740bfc6",
+          "date": "2026-10-24T02:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-c0e9003c13a1",
+      "name": "小红书技术REDtech（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/0f8c47df6fd304112518544776e0bbf1d98ba0b9.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/0f8c47df6fd304112518544776e0bbf1d98ba0b9.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-27T09:59:00+00:00",
+      "samples": [
+        {
+          "title": "拆解小红书存储底座 00｜从孤岛走向融合：小红书存储与数据库架构进化",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzg4OTc2MzczNg==&mid=2247496855&idx=1&sn=f426a8f58708ca0fbef34b7e3308e468",
+          "date": "2026-10-27T09:59:00.000Z"
+        },
+        {
+          "title": "怎么让大模型更好地利用上下文？小红书 AllSpark 提出增强上下文学习能力的数据管线",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzg4OTc2MzczNg==&mid=2247496854&idx=1&sn=7f37444de70222f3906b0e06f7de5a98",
+          "date": "2026-10-26T11:13:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-c0b453229f19",
+      "name": "快手技术（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/c4cc10d2e32a5fa12927581ae581a336f399fe75.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/c4cc10d2e32a5fa12927581ae581a336f399fe75.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-27T11:08:00+00:00",
+      "samples": [
+        {
+          "title": "评审结果公示丨2026年度CCF-快手大模型探索者基金",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzg2NzU4MDM0MQ==&mid=2247501530&idx=1&sn=12dca9bfea88387dbb2ca605944ed393",
+          "date": "2026-10-27T11:08:00.000Z"
+        },
+        {
+          "title": "快手程序员都做啥工作？独家揭秘！",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzg2NzU4MDM0MQ==&mid=2247501519&idx=1&sn=d424bc5f510460796f83ed717469f1f8",
+          "date": "2026-10-23T09:51:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-1bf50866cb41",
+      "name": "晚点LatePost（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/c442206ec9957f3c52f2f40300ca532079538b31.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/c442206ec9957f3c52f2f40300ca532079538b31.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-23T15:33:00+00:00",
+      "samples": [
+        {
+          "title": "还原田柯宇事件：被破坏的训练，和一个争抢 “天才” 的时代",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzU3Mjk1OTQ0Ng==&mid=2247539392&idx=1&sn=de725de2215481d2055f10aa13f194ff",
+          "date": "2026-10-23T15:33:00.000Z"
+        },
+        {
+          "title": "一座西班牙老厂，等来了一家中国车企",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzU3Mjk1OTQ0Ng==&mid=2247539392&idx=2&sn=ff61c2c15e2122418e33c453b97eae88",
+          "date": "2026-10-23T15:33:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-2e86e246d8ff",
+      "name": "夕小瑶科技说（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/64b57d666259aee6bd097e76164e4a8371f0ad04.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/64b57d666259aee6bd097e76164e4a8371f0ad04.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-26T23:29:00+00:00",
+      "samples": [
+        {
+          "title": "Anthropic正式交表IPO，7%收入来自违规账号。。",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzIwNzc2NTk0NQ==&mid=2247622775&idx=1&sn=b83e09842df65eab296e61579006b5b5",
+          "date": "2026-10-26T23:29:00.000Z"
+        },
+        {
+          "title": "同时管好多个Agent，我总结了3个办法",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzIwNzc2NTk0NQ==&mid=2247622759&idx=1&sn=e4d75135104426121ecf628966b26885",
+          "date": "2026-10-26T09:47:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-0e69b662d7bc",
+      "name": "魔搭ModelScope社区（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/d993a885260f96057b9a4c96212cb2c95bb5054b.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/d993a885260f96057b9a4c96212cb2c95bb5054b.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-27T12:21:00+00:00",
+      "samples": [
+        {
+          "title": "腾讯混元开源Hy-SimulMT ：同声传译大模型，响应时延3秒内，效果跑赢主流商用 API",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzk3NTc1NTU0Mw==&mid=2247515004&idx=1&sn=27c6663bbef7cdfe9055c8fdd07c8e1a",
+          "date": "2026-10-27T12:21:00.000Z"
+        },
+        {
+          "title": "ms-swift倾情奉献：决策模型的从原理到上手定制",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzk3NTc1NTU0Mw==&mid=2247514990&idx=1&sn=1f7b4e314aff2fb39a934f3737181353",
+          "date": "2026-10-26T11:04:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-5a47e5e12c81",
+      "name": "PaperAgent（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/54001ca616dbc4b55d2b25d79d68a70191a0ddf4.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/54001ca616dbc4b55d2b25d79d68a70191a0ddf4.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-26T03:03:00+00:00",
+      "samples": [
+        {
+          "title": "一篇多模态Agentic框架最新前沿综述",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzk0MTYzMzMxMA==&mid=2247513014&idx=1&sn=b2768db5e1d492e4b51d5c429691122a",
+          "date": "2026-10-26T03:03:00.000Z"
+        },
+        {
+          "title": "谷歌：用了20年的Softmax竟藏了2个Bug",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzk0MTYzMzMxMA==&mid=2247513014&idx=2&sn=b58f074a6103308be4ddf866b163f5c2",
+          "date": "2026-10-26T03:03:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-bf3713a41a5d",
+      "name": "Xiaomi MiMo（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/19c2af88005704d49ea397c203dcb45339532946.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/19c2af88005704d49ea397c203dcb45339532946.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-09-24T07:19:00+00:00",
+      "samples": [
+        {
+          "title": "HySparse2：Xiaomi MiMo-V3 新架构预览",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzk3NTkxMTM2NA==&mid=2247484983&idx=1&sn=cfd96b35ad09e8d51b5e45e05f50c223",
+          "date": "2026-09-24T07:19:00.000Z"
+        },
+        {
+          "title": "Xiaomi MiMo-V2.6：扩展强化学习规模，迈向自我提升",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzk3NTkxMTM2NA==&mid=2247484969&idx=1&sn=76c4757b26a2b646e1b690bf78c386d8",
+          "date": "2026-09-21T20:18:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-1ab8e8c9751a",
+      "name": "蚂蚁技术AntTech（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/15738401f49466ad01b324b69f779f9bef0cb3e7.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/15738401f49466ad01b324b69f779f9bef0cb3e7.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-27T10:09:00+00:00",
+      "samples": [
+        {
+          "title": "论文秀Live #48 | EMNLP 2026论文解读：强化学习如何重塑大模型后训练？",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzI0Nzc3MTQyMw==&mid=2247538506&idx=1&sn=5b5eda3d30e661f01d94c1e83150cb18",
+          "date": "2026-10-27T10:09:00.000Z"
+        },
+        {
+          "title": "“一人三平台交付”：AI 研发的暴力解题法",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzI0Nzc3MTQyMw==&mid=2247538496&idx=1&sn=025f6d44a15c5a3bf9c120cc808b899a",
+          "date": "2026-10-26T04:05:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-e6b230e5174d",
+      "name": "PaperWeekly（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/0120e999fc95e098c74bd5482a2a4c8407c42c38.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/0120e999fc95e098c74bd5482a2a4c8407c42c38.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-23T12:20:00+00:00",
+      "samples": [
+        {
+          "title": "CVPR 2027投稿全指南：新人限投1篇，首份桌拒清单公布",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzIwMTc4ODE0Mw==&mid=2247723647&idx=1&sn=6c97fe2606adfb443d6c7535e9b91930",
+          "date": "2026-10-23T12:20:00.000Z"
+        },
+        {
+          "title": "NeurIPS 2026 | 拒答不等于安全！ReasoningShield直击思维链安全盲区",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzIwMTc4ODE0Mw==&mid=2247723647&idx=2&sn=b2602c1652494088a4365422d4b76d88",
+          "date": "2026-10-23T12:20:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-9dfbfb32829b",
+      "name": "智能涌现（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/049f4d78f94b31ab6afda95b1a65f0e562c8d5c2.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/049f4d78f94b31ab6afda95b1a65f0e562c8d5c2.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-24T09:19:00+00:00",
+      "samples": [
+        {
+          "title": "独家｜字节AI应用再整合：小云雀并入即梦",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkwMDQ2NDU2Nw==&mid=2247518762&idx=1&sn=cadc73f1e69bb09e3277c4dfbb0a4a42",
+          "date": "2026-10-24T09:19:00.000Z"
+        },
+        {
+          "title": "上海交大00后团队融资数千万，让Agent做定制的自进化推理引擎｜智能涌现首发",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkwMDQ2NDU2Nw==&mid=2247518755&idx=1&sn=d18ceb836f00640086acca0e2a44aac7",
+          "date": "2026-10-22T10:56:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-0391625e3420",
+      "name": "水木人工智能学堂（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/87c921eb79326f3c51b4bc6a1704e8dc0420807e.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/87c921eb79326f3c51b4bc6a1704e8dc0420807e.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-26T00:30:00+00:00",
+      "samples": [
+        {
+          "title": "从WRC2026看具身智能：狂欢之下，六大趋势与一组残酷的数据！",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzU0NjEyNDc0Ng==&mid=2247551728&idx=1&sn=33d5cb90ac92343a1274e3d6ba432c31",
+          "date": "2026-10-26T00:30:00.000Z"
+        },
+        {
+          "title": "2026AI原生基础设施白皮书：算力竞赛结束了，效率竞赛刚开始！",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzU0NjEyNDc0Ng==&mid=2247551707&idx=1&sn=9a6c2803ab2be0dc7b4cfb0c0c4975da",
+          "date": "2026-10-23T00:30:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-f70c13c2c6b3",
+      "name": "AI大模型应用实践（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/ab58feca07412e57049e5d8561439c3fb35783c2.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/ab58feca07412e57049e5d8561439c3fb35783c2.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-26T00:30:00+00:00",
+      "samples": [
+        {
+          "title": "一篇讲透：RAG / GraphRAG / LLM-Wiki / PageIndex 在企业知识系统的融合应用",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzk1NzQ1ODk5NQ==&mid=2247526764&idx=1&sn=cc755af80e727a41e39c53cac988577f",
+          "date": "2026-10-26T00:30:00.000Z"
+        },
+        {
+          "title": "手把手教你：用 MCP Apps 把企业应用 UI 接入 WorkBuddy。",
+          "url": "https://mp.weixin.qq.com/s?__biz=Mzk1NzQ1ODk5NQ==&mid=2247526723&idx=1&sn=65bb955c64fba914ece05ed9430c39d5",
+          "date": "2026-10-19T00:30:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-ad5b2767e703",
+      "name": "GitHubDaily（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/5b195b2d021f8151ac4f81ceae54cd48f08b0632.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/5b195b2d021f8151ac4f81ceae54cd48f08b0632.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-27T09:05:00+00:00",
+      "samples": [
+        {
+          "title": "一个超硬核的 GitHub 开源项目，诞生了！",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzAxOTcxNTIwNQ==&mid=2457996761&idx=1&sn=93df66d4bd306c5ff29867b4920c1d8a",
+          "date": "2026-10-27T09:05:00.000Z"
+        },
+        {
+          "title": "Hi3D 正式开源！又一个令人惊艳的国产 AI 3D 模型开放",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzAxOTcxNTIwNQ==&mid=2457996732&idx=1&sn=18103732c68af3b1782d7226ef4496d5",
+          "date": "2026-10-26T05:34:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-c0ea74cb3a5e",
+      "name": "AIBase基地（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/27b06b577fc8f39566b7653621a376479ef3e3a8.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/27b06b577fc8f39566b7653621a376479ef3e3a8.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-27T08:17:00+00:00",
+      "samples": [
+        {
+          "title": "AI日报：即梦AI上线“短剧工作室”；蚂蚁灵光2.0发布；千问App重磅上线三大核心学习功能",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzIzNjg3NTUzOA==&mid=2247504442&idx=1&sn=92aa73570680ff1191038cd990472ceb",
+          "date": "2026-10-27T08:17:00.000Z"
+        },
+        {
+          "title": "AI日报：Kimi就K3.1Pro限流致歉；小米发布开源硬件HachimoDock；MiniMax H3 登顶SuperCLUE总榜",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzIzNjg3NTUzOA==&mid=2247504430&idx=1&sn=9fdbec59722210861de4eb55e6612516",
+          "date": "2026-10-26T09:22:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-98a34af1c6d7",
+      "name": "晚点AI（公众号订阅）",
+      "feedUrl": "https://wechat2rss.bestblogs.dev/feed/316def62ee3a6d499bf3981ffe22a09bf7256265.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.bestblogs.dev/feed/316def62ee3a6d499bf3981ffe22a09bf7256265.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-15T09:01:00+00:00",
+      "samples": [
+        {
+          "title": "晚点具身季报：Astra 冲击后，通用模型会吃掉 Robotics 吗？",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkzMzM4NTIyNQ==&mid=2247485624&idx=1&sn=9f18b6c1133b11f72e36011997756119",
+          "date": "2026-10-15T09:01:00.000Z"
+        },
+        {
+          "title": "晚点 AI 季报：Muse 引爆个人助理，Astra 走进机器人，OpenAI 收入猛增",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzkzMzM4NTIyNQ==&mid=2247485618&idx=1&sn=00e93bf0830e1c4bd4e24860ee81a902",
+          "date": "2026-10-01T02:13:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-aafbb66f21ee",
+      "name": "集智俱乐部（公众号订阅）",
+      "feedUrl": "https://wechat2rss.xlab.app/feed/8540570d27c0bfe0a219173cf1ace83ae79445cb.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "BestBlogs 微信公众号目录",
+      "responseUrl": "https://wechat2rss.xlab.app/feed/8540570d27c0bfe0a219173cf1ace83ae79445cb.xml",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-10-27T06:30:00+00:00",
+      "samples": [
+        {
+          "title": "Entropy：语⾔上下⽂表征中的经验性 5/3 谱标度",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzIzMjQyNzQ5MA==&mid=2247737800&idx=1&sn=0e9e258d35dfacc172deb7ae1b51d119",
+          "date": "2026-10-27T06:30:00.000Z"
+        },
+        {
+          "title": "赛博格的行动边界：新的知识生产实践｜「人工智能与哲学」读书会第10期",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzIzMjQyNzQ5MA==&mid=2247737800&idx=2&sn=128ec5f2628ea43c860005b21c63967e",
+          "date": "2026-10-27T06:30:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-597b3e93ce00",
+      "name": "36氪",
+      "feedUrl": "https://www.36kr.com/feed",
+      "publisherType": "independent",
+      "discovery": "tech-media",
+      "responseUrl": "https://www.36kr.com/feed",
+      "candidates": 30,
+      "dated": 30,
+      "latestPublishedAt": "2026-10-27T12:52:03+00:00",
+      "samples": [
+        {
+          "title": "这回，换技术方带着实际解决方案上桌了——WISE2026「世界咖啡」技术方招募开启",
+          "url": "https://36kr.com/p/4044004395930753?f=rss",
+          "date": "2026-10-27T10:54:53.000Z"
+        },
+        {
+          "title": "当AI学会了预测，发现马斯克的预测不靠谱",
+          "url": "https://36kr.com/p/4043729792635779?f=rss",
+          "date": "2026-10-27T06:40:24.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-ed41ce13f183",
+      "name": "Data4Fun",
+      "feedUrl": "https://data4fun.cc/index.xml",
+      "publisherType": "independent",
+      "discovery": "tech-media",
+      "responseUrl": "https://data4fun.cc/index.xml",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-10-12T03:49:06+00:00",
+      "samples": [
+        {
+          "title": "如何用 AI 接手一个新项目？",
+          "url": "https://data4fun.cc/blog/2026/10/post-20261012/",
+          "date": "2026-10-12T03:49:06.000Z"
+        },
+        {
+          "title": "要不要把大模型搬回本地",
+          "url": "https://data4fun.cc/blog/2026/08/post-20260821/",
+          "date": "2026-08-21T14:27:42.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-28a0521c3b37",
+      "name": "明立非|Mingnify的博客",
+      "feedUrl": "https://mingnify.com/zh/blog/atom.xml",
+      "publisherType": "independent",
+      "discovery": "tech-media",
+      "responseUrl": "https://mingnify.com/zh/blog/atom.xml",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-09-23T16:00:00+00:00",
+      "samples": [
+        {
+          "title": "GPT Images 2.5 怎么用？草图、模板、评论改图，串成一套更快、更精准的图片制作工作流",
+          "url": "https://mingnify.com/zh/blog/p/gpt-images-2-5-sketch-templates-comment-workflow/",
+          "date": "2026-09-23T16:00:00.000Z"
+        },
+        {
+          "title": "Obsidian 接入 AI：任务交给 Agent，还是边写边问 AI？｜以 Codex（ChatGPT） App 与 Claudian + Codex CLI 为例",
+          "url": "https://mingnify.com/zh/blog/p/obsidian-ai-external-embedded-agent-guide/",
+          "date": "2026-09-10T16:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-aa86c8fa1c67",
+      "name": "翔宇工作流",
+      "feedUrl": "https://xiangyugongzuoliu.com/latest/rss/",
+      "publisherType": "independent",
+      "discovery": "tech-media",
+      "responseUrl": "https://xiangyugongzuoliu.com/latest/rss/",
+      "candidates": 15,
+      "dated": 15,
+      "latestPublishedAt": "2026-10-21T08:05:00+00:00",
+      "samples": [
+        {
+          "title": "42. AI 视频剪辑实战：用 Claude Opus 5.5 剪口播长视频，完整工作流教程",
+          "url": "https://xiangyugongzuoliu.com/42-ai-video-editing-skill/",
+          "date": "2026-10-21T08:05:00.000Z"
+        },
+        {
+          "title": "41. Herdr 实战：从零搭建 AI 一人公司，用 Claude Code、Codex 组建 AI 员工团队",
+          "url": "https://xiangyugongzuoliu.com/41-herdr-ai-company/",
+          "date": "2026-10-10T08:43:51.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-33be1953a1cd",
+      "name": "AI2 Blog (Allen Institute)",
+      "feedUrl": "https://allenai.org/rss.xml",
+      "publisherType": "official",
+      "discovery": "ai-signal",
+      "responseUrl": "https://allenai.org/rss.xml",
+      "candidates": 25,
+      "dated": 25,
+      "latestPublishedAt": "2026-10-23T08:00:00+00:00",
+      "samples": [
+        {
+          "title": "LitPivot: Developing research ideas through dynamic contextualization within the literature landscape",
+          "url": "https://allenai.org/blog/litpivot",
+          "date": "2026-10-23T08:00:00.000Z"
+        },
+        {
+          "title": "OlmoEarth v1.3: State-of-the-art embeddings for the whole planet",
+          "url": "https://allenai.org/blog/olmoearth-v1-3",
+          "date": "2026-10-22T08:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-38dcd83aaf69",
+      "name": "vLLM Blog",
+      "feedUrl": "https://vllm.ai/blog/rss.xml",
+      "publisherType": "official",
+      "discovery": "ai-signal",
+      "responseUrl": "https://vllm.ai/blog/rss.xml",
+      "candidates": 50,
+      "dated": 50,
+      "latestPublishedAt": "2026-10-23T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "Serving DeepSeek-V4.1-Flash at Scale: vLLM Matches DeepInfer and Scales to GB300 NVL72",
+          "url": "https://vllm.ai/blog/2026-10-23-deepseek-v41-flash-pd-wide-ep",
+          "date": "2026-10-23T00:00:00.000Z"
+        },
+        {
+          "title": "GLM-5.3 Optimizations, Part 2: PCP, DCP, and Hybrid HiSparse on 16 H200s",
+          "url": "https://vllm.ai/blog/2026-10-23-glm53-part2-pcp-dcp-hisparse",
+          "date": "2026-10-23T00:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-48259a658ccb",
+      "name": "Anyscale Blog",
+      "feedUrl": "https://www.anyscale.com/rss.xml",
+      "publisherType": "official",
+      "discovery": "ai-signal",
+      "responseUrl": "https://www.anyscale.com/rss.xml",
+      "candidates": 18,
+      "dated": 18,
+      "latestPublishedAt": "2026-10-20T09:00:00+00:00",
+      "samples": [
+        {
+          "title": "Announcing Ray support for PyTorch on Google TPUs",
+          "url": "https://anyscale.com/blog/announcing-ray-support-native-pytorch-google-tpu",
+          "date": "2026-10-20T09:00:00.000Z"
+        },
+        {
+          "title": "Running Ray at scale on Kubernetes with KubeRay",
+          "url": "https://anyscale.com/blog/kuberay",
+          "date": "2026-10-15T09:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-fca10909c453",
+      "name": "The Batch (deeplearning.ai)",
+      "feedUrl": "https://charonhub.deeplearning.ai/rss/",
+      "publisherType": "official",
+      "discovery": "ai-signal",
+      "responseUrl": "https://charonhub.deeplearning.ai/rss/",
+      "candidates": 15,
+      "dated": 15,
+      "latestPublishedAt": "2026-10-26T18:21:00+00:00",
+      "samples": [
+        {
+          "title": "Anthropic’s public filing offers clues to its future: Kimi K3.1 Pro performs among top models overall",
+          "url": "https://charonhub.deeplearning.ai/anthropics-public-filing-offers-clues-to-its-future/",
+          "date": "2026-10-26T18:21:00.000Z"
+        },
+        {
+          "title": "A Single Decoder Turns Small Models into Action: TurboVLA turns to a throwback architecture to attend to language and vision",
+          "url": "https://charonhub.deeplearning.ai/a-single-decoder-turns-small-models-into-action/",
+          "date": "2026-10-23T15:15:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-69df255ea31f",
+      "name": "LangChain Blog",
+      "feedUrl": "https://blog.langchain.dev/rss.xml",
+      "publisherType": "official",
+      "discovery": "ai-signal",
+      "responseUrl": "https://www.langchain.com/blog/rss.xml",
+      "candidates": 99,
+      "dated": 99,
+      "latestPublishedAt": "2026-10-26T15:32:16+00:00",
+      "samples": [
+        {
+          "title": "The five components of building a \"company harness\"",
+          "url": "https://www.langchain.com/blog/components-building-company-harness",
+          "date": "2026-10-26T15:32:16.000Z"
+        },
+        {
+          "title": "Context Engineering (Agent Memory) for AI Agents Starts with Retrieval",
+          "url": "https://www.langchain.com/blog/context-engineering-starts-with-retrieval",
+          "date": "2026-10-26T15:32:16.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-dc809a526035",
+      "name": "Arize AI Blog",
+      "feedUrl": "https://arize.com/feed/",
+      "publisherType": "official",
+      "discovery": "ai-signal",
+      "responseUrl": "https://arize.com/feed/",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-26T14:00:54+00:00",
+      "samples": [
+        {
+          "title": "A web page talked our agent into leaking a stranger’s data. Here’s how we caught it.",
+          "url": "https://arize.com/blog/indirect-prompt-injection-ai-agents/",
+          "date": "2026-10-26T14:00:54.000Z"
+        },
+        {
+          "title": "How to build a software factory that tests its own prompts",
+          "url": "https://arize.com/blog/how-to-build-a-software-factory-that-tests-its-own-prompts/",
+          "date": "2026-10-22T16:06:34.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-6afc918125fc",
+      "name": "TLDR AI",
+      "feedUrl": "https://tldr.tech/api/rss/ai",
+      "publisherType": "independent",
+      "discovery": "ai-signal",
+      "responseUrl": "https://tldr.tech/api/rss/ai",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-10-26T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "Apple’s 20B model 📱, Kimi K3.1 Pro 🧠, Block Dessa 🗣️, frontier training security 🔐",
+          "url": "https://tldr.tech/ai/2026-10-26",
+          "date": "2026-10-26T00:00:00.000Z"
+        },
+        {
+          "title": "OpenAI nears $1.25T 💰, ☁️, 1Password for Agents 🔑, Gemini 3.5 Pro postmortem 🤖",
+          "url": "https://tldr.tech/ai/2026-10-23",
+          "date": "2026-10-23T00:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-6cac61535ed4",
+      "name": "Answer.AI",
+      "feedUrl": "https://www.answer.ai/index.xml",
+      "publisherType": "independent",
+      "discovery": "ai-signal",
+      "responseUrl": "https://www.answer.ai/index.xml",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-08-18T14:00:00+00:00",
+      "samples": [
+        {
+          "title": "Why LLMs can’t make your code simpler",
+          "url": "https://www.answer.ai/posts/2026-08-19-llms-code-simpler.html",
+          "date": "2026-08-18T14:00:00.000Z"
+        },
+        {
+          "title": "Risks and Limitations of AI in the Life Sciences",
+          "url": "https://www.answer.ai/posts/2026-03-17-risks-life-sciences/",
+          "date": "2026-03-16T14:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-9aec25fdb2de",
+      "name": "Vicki Boykis",
+      "feedUrl": "https://vickiboykis.com/index.xml",
+      "publisherType": "independent",
+      "discovery": "ai-signal",
+      "responseUrl": "https://vickiboykis.com/index.xml",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-10-17T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "How to Learn ML in 2026 interview",
+          "url": "https://vickiboykis.com/2026/10/17/how-to-learn-ml-in-2026-interview/",
+          "date": "2026-10-17T00:00:00.000Z"
+        },
+        {
+          "title": "Bad code is kudzu",
+          "url": "https://vickiboykis.com/2026/09/01/bad-code-is-kudzu/",
+          "date": "2026-09-01T00:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-fbffb2a74997",
+      "name": "Eric Jang",
+      "feedUrl": "https://evjang.com/feed",
+      "publisherType": "independent",
+      "discovery": "shinn-en-ai-research",
+      "responseUrl": "https://evjang.com/feed",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-09-10T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "Smooth Exponentials for Robotics",
+          "url": "https://evjang.com/2026/09/10/smooth-exponential.html",
+          "date": "2026-09-10T00:00:00.000Z"
+        },
+        {
+          "title": "AutoGo: a Tutorial",
+          "url": "https://evjang.com/2026/04/28/autogo.html",
+          "date": "2026-04-28T00:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-69d4b42f5a8e",
+      "name": "Magenta",
+      "feedUrl": "http://magenta.tensorflow.org/feed.xml",
+      "publisherType": "official",
+      "discovery": "shinn-en-ai-research",
+      "responseUrl": "https://magenta.tensorflow.org/feed.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-07-24T13:00:00+00:00",
+      "samples": [
+        {
+          "title": "From Hackathons to Instruments: MRT2 Out in the World",
+          "url": "https://magenta.withgoogle.com/mrt2-around-the-world",
+          "date": "2026-07-24T13:00:00.000Z"
+        },
+        {
+          "title": "Magenta RealTime 2: Open & Local Live Music Models",
+          "url": "https://magenta.withgoogle.com/magenta-realtime-2",
+          "date": "2026-06-04T13:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-677267dfed91",
+      "name": "AISI Blog (AI Security Institute)",
+      "feedUrl": "https://raw.githubusercontent.com/alan-turing-institute/ai-rss-feeds/refs/heads/main/feeds/aisi-blog.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "turing",
+      "responseUrl": "https://raw.githubusercontent.com/alan-turing-institute/ai-rss-feeds/refs/heads/main/feeds/aisi-blog.xml",
+      "candidates": 100,
+      "dated": 100,
+      "latestPublishedAt": "2026-10-26T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "Third progress report",
+          "url": "https://www.aisi.gov.uk/blog/third-progress-report",
+          "date": "2024-02-05T00:00:00.000Z"
+        },
+        {
+          "title": "Our approach to evaluations",
+          "url": "https://www.aisi.gov.uk/blog/our-approach-to-evaluations",
+          "date": "2024-02-09T00:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-9bff4da16feb",
+      "name": "Anthropic News",
+      "feedUrl": "https://raw.githubusercontent.com/alan-turing-institute/ai-rss-feeds/refs/heads/main/feeds/anthropic-news.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "turing",
+      "responseUrl": "https://raw.githubusercontent.com/alan-turing-institute/ai-rss-feeds/refs/heads/main/feeds/anthropic-news.xml",
+      "candidates": 87,
+      "dated": 87,
+      "latestPublishedAt": "2026-10-26T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "Introducing 100K context windows",
+          "url": "https://www.anthropic.com/news/100k-context-windows",
+          "date": "2023-05-11T00:00:00.000Z"
+        },
+        {
+          "title": "Frontier threats red teaming for AI safety",
+          "url": "https://www.anthropic.com/news/frontier-threats-red-teaming-for-ai-safety",
+          "date": "2023-07-26T00:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-5177a1bc320b",
+      "name": "Anthropic Research",
+      "feedUrl": "https://raw.githubusercontent.com/alan-turing-institute/ai-rss-feeds/refs/heads/main/feeds/anthropic-research.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "turing",
+      "responseUrl": "https://raw.githubusercontent.com/alan-turing-institute/ai-rss-feeds/refs/heads/main/feeds/anthropic-research.xml",
+      "candidates": 49,
+      "dated": 49,
+      "latestPublishedAt": "2026-10-23T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "Predictability and Surprise in Large Generative Models",
+          "url": "https://www.anthropic.com/research/predictability-and-surprise-in-large-generative-models",
+          "date": "2022-02-15T00:00:00.000Z"
+        },
+        {
+          "title": "Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback",
+          "url": "https://www.anthropic.com/research/training-a-helpful-and-harmless-assistant-with-reinforcement-learning-from-human-feedback",
+          "date": "2022-04-12T00:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-b4bf7a6832ca",
+      "name": "Cohere Blog",
+      "feedUrl": "https://raw.githubusercontent.com/alan-turing-institute/ai-rss-feeds/refs/heads/main/feeds/cohere-blog.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "turing",
+      "responseUrl": "https://raw.githubusercontent.com/alan-turing-institute/ai-rss-feeds/refs/heads/main/feeds/cohere-blog.xml",
+      "candidates": 15,
+      "dated": 15,
+      "latestPublishedAt": "2026-10-22T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "Compass is coming to the cloud",
+          "url": "https://cohere.com/blog/compass-cloud-beta",
+          "date": "2026-09-25T00:00:00.000Z"
+        },
+        {
+          "title": "Introducing Embed 5—A new family of frontier embedding models",
+          "url": "https://cohere.com/blog/embed-5",
+          "date": "2026-09-30T00:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-5cdb9d8129ca",
+      "name": "Cosine Blog",
+      "feedUrl": "https://raw.githubusercontent.com/alan-turing-institute/ai-rss-feeds/refs/heads/main/feeds/cosine-blog.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "turing",
+      "responseUrl": "https://raw.githubusercontent.com/alan-turing-institute/ai-rss-feeds/refs/heads/main/feeds/cosine-blog.xml",
+      "candidates": 25,
+      "dated": 25,
+      "latestPublishedAt": "2026-10-07T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "Developer First Agents: Making AI Automation Safe and Manageable",
+          "url": "https://cosine.sh/blog/developer-first-ai-agents",
+          "date": "2026-01-15T00:00:00.000Z"
+        },
+        {
+          "title": "AI Risk Management for Software Engineering",
+          "url": "https://cosine.sh/blog/ai-risk-management-software-engineering",
+          "date": "2026-01-29T00:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-3b37c3ed85f1",
+      "name": "Mila News (Quebec AI Institute)",
+      "feedUrl": "https://raw.githubusercontent.com/alan-turing-institute/ai-rss-feeds/refs/heads/main/feeds/mila-news.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "turing",
+      "responseUrl": "https://raw.githubusercontent.com/alan-turing-institute/ai-rss-feeds/refs/heads/main/feeds/mila-news.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-22T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "Building on Year One: Indigenous AI Gathering Returns More Impactful Than Ever",
+          "url": "https://mila.quebec/en/news/building-on-year-one-indigenous-ai-gathering-returns-more-impactful-than-ever",
+          "date": "2026-08-05T00:00:00.000Z"
+        },
+        {
+          "title": "Télé-Québec and Mila Join Forces to Harness AI in the Service of Quebec Culture",
+          "url": "https://mila.quebec/en/news/tele-quebec-and-mila-join-forces-to-harness-ai-in-the-service-of-quebec-culture",
+          "date": "2026-08-26T00:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-69069766b00f",
+      "name": "Turing Blog (Alan Turing Institute)",
+      "feedUrl": "https://raw.githubusercontent.com/alan-turing-institute/ai-rss-feeds/refs/heads/main/feeds/turing-blog.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "turing",
+      "responseUrl": "https://raw.githubusercontent.com/alan-turing-institute/ai-rss-feeds/refs/heads/main/feeds/turing-blog.xml",
+      "candidates": 17,
+      "dated": 17,
+      "latestPublishedAt": "2026-09-23T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "The UK’s critical infrastructure is at risk from cyber-attacks. Our AI tools will provide a new line of defence",
+          "url": "https://www.turing.ac.uk/blog/uks-critical-infrastructure-risk-cyber-attacks-our-ai-tools-will-provide-new-line-defence",
+          "date": "2025-10-30T00:00:00.000Z"
+        },
+        {
+          "title": "Democratising environmental forecasting in the age of AI",
+          "url": "https://www.turing.ac.uk/blog/democratising-environmental-forecasting-age-ai",
+          "date": "2025-11-05T00:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-bd385bc2b289",
+      "name": "CETaS Research",
+      "feedUrl": "https://raw.githubusercontent.com/alan-turing-institute/ai-rss-feeds/refs/heads/main/feeds/cetas-research.xml",
+      "publisherType": "third-party-relay",
+      "discovery": "turing",
+      "responseUrl": "https://raw.githubusercontent.com/alan-turing-institute/ai-rss-feeds/refs/heads/main/feeds/cetas-research.xml",
+      "candidates": 9,
+      "dated": 9,
+      "latestPublishedAt": "2026-09-30T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "AI Information Threats and Crisis Response: Practitioners’ Handbook",
+          "url": "https://cetas.turing.ac.uk/publications/ai-information-threats-and-crisis-response-practitioners-handbook",
+          "date": "2026-04-30T00:00:00.000Z"
+        },
+        {
+          "title": "AI, Quantum Computing and High-Performance Computing",
+          "url": "https://cetas.turing.ac.uk/publications/ai-quantum-computing-and-high-performance-computing",
+          "date": "2026-04-30T00:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-56273ddd55d9",
+      "name": "Canva - Engineering Blog",
+      "feedUrl": "https://www.canva.dev/blog/engineering/feed.xml",
+      "publisherType": "official",
+      "discovery": "company-tech",
+      "responseUrl": "https://www.canva.dev/blog/engineering/feed.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-09-17T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "Worker Backpressure (Part 1)",
+          "url": "https://www.canva.dev/blog/engineering/worker-backpressure-part-1-how-we-taught-our-queue-workers-to-slow-down/",
+          "date": "2026-09-17T00:00:00.000Z"
+        },
+        {
+          "title": "Session revocations at scale",
+          "url": "https://www.canva.dev/blog/engineering/session-revocations-at-scale/",
+          "date": "2026-07-22T00:00:01.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-f31451a4f14a",
+      "name": "Meta Engineering AI",
+      "feedUrl": "https://engineering.fb.com/category/ai-research/feed/",
+      "publisherType": "official",
+      "discovery": "official-discovery",
+      "responseUrl": "https://engineering.fb.com/category/ai-research/feed/",
+      "candidates": 9,
+      "dated": 9,
+      "latestPublishedAt": "2026-10-19T15:30:37+00:00",
+      "samples": [
+        {
+          "title": "The Thin Orchestrator: How We Made Our AI Agents More Reliable by Giving the Router Less to Do",
+          "url": "https://engineering.fb.com/2026/10/19/ml-applications/thin-orchestrator-ai-agent-architecture/",
+          "date": "2026-10-19T15:30:37.000Z"
+        },
+        {
+          "title": "An Organizational Second Brain: Building an AI That Learns From Experts",
+          "url": "https://engineering.fb.com/2026/09/02/ml-applications/organizational-second-brain-ai-learns-from-experts/",
+          "date": "2026-09-02T09:00:29.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-cde22301ccca",
+      "name": "Netflix TechBlog",
+      "feedUrl": "https://netflixtechblog.com/feed",
+      "publisherType": "official",
+      "discovery": "company-tech",
+      "responseUrl": "https://netflixtechblog.com/feed",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-26T17:04:57+00:00",
+      "samples": [
+        {
+          "title": "Making Failure Diagnosis Reliable with Pensive AI",
+          "url": "https://netflixtechblog.com/making-failure-diagnosis-reliable-with-pensive-ai-6b0811a1c015?source=rss----2615bd06b42e---4",
+          "date": "2026-10-26T17:04:57.000Z"
+        },
+        {
+          "title": "Multi‑Ratio Video Resizing for Mobile Feed and Marketing",
+          "url": "https://netflixtechblog.com/multi-ratio-video-resizing-for-mobile-feed-and-marketing-2e6b42810f49?source=rss----2615bd06b42e---4",
+          "date": "2026-10-26T16:01:02.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-c004f7c9c0b0",
+      "name": "Spotify Engineering",
+      "feedUrl": "https://engineering.atspotify.com/feed/",
+      "publisherType": "official",
+      "discovery": "company-tech",
+      "responseUrl": "https://engineering.atspotify.com/feed",
+      "candidates": 5,
+      "dated": 5,
+      "latestPublishedAt": "2026-10-16T14:29:18+00:00",
+      "samples": [
+        {
+          "title": "Advancing Generative Recommendation Inference: our collaboration with NVIDIA on TensorRT LLM",
+          "url": "https://engineering.atspotify.com/2026/10/advancing-generative-recommendation-inference-our-collaboration-with-nvidia-on-tensorrt-llm/",
+          "date": "2026-10-16T14:29:18.000Z"
+        },
+        {
+          "title": "Introducing: Spotify Technology. Proven at Spotify, now yours.",
+          "url": "https://engineering.atspotify.com/2026/10/introducing-spotify-technology-proven-at-spotify-now-yours/",
+          "date": "2026-10-08T12:30:10.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-aa12cd5f267a",
+      "name": "DataRobot Blog",
+      "feedUrl": "https://www.datarobot.com/blog/feed/",
+      "publisherType": "official",
+      "discovery": "official-discovery",
+      "responseUrl": "https://www.datarobot.com/blog/feed/",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-22T20:03:50+00:00",
+      "samples": [
+        {
+          "title": "Autonomy Where It Pays Off. Control Where It Counts.",
+          "url": "https://www.datarobot.com/blog/long-running-agent-autonomy/",
+          "date": "2026-10-22T20:03:50.000Z"
+        },
+        {
+          "title": "Sovereign AI is an architecture decision",
+          "url": "https://www.datarobot.com/blog/solution-ai-architecture-decision/",
+          "date": "2026-10-21T18:18:10.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-508bf23e5526",
+      "name": "Analytics Vidhya",
+      "feedUrl": "https://www.analyticsvidhya.com/feed/",
+      "publisherType": "independent",
+      "discovery": "official-discovery",
+      "responseUrl": "https://www.analyticsvidhya.com/feed/",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-26T09:52:42+00:00",
+      "samples": [
+        {
+          "title": "GPT-6 Astra vs Gemini 4 Argon vs Claude Opus 5.5: Full Comparsion",
+          "url": "https://www.analyticsvidhya.com/blog/2026/10/astra-vs-argon-vs-opus/",
+          "date": "2026-10-26T09:52:42.000Z"
+        },
+        {
+          "title": "Kimi K3.1 Pro Review: Near-Opus Quality at 1/5th the Cost",
+          "url": "https://www.analyticsvidhya.com/blog/2026/10/kimi-k3-1-pro-review/",
+          "date": "2026-10-25T04:03:03.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-fb435e18ce32",
+      "name": "AI Business",
+      "feedUrl": "https://aibusiness.com/rss.xml",
+      "publisherType": "independent",
+      "discovery": "official-discovery",
+      "responseUrl": "https://aibusiness.com/rss.xml",
+      "candidates": 50,
+      "dated": 50,
+      "latestPublishedAt": "2026-10-26T19:23:26+00:00",
+      "samples": [
+        {
+          "title": "Anthropic maintains its focus on safety in IPO filing",
+          "url": "https://aibusiness.com/generative-ai/anthropic-maintains-focus-on-safety-in-ipo-filing",
+          "date": "2026-10-26T19:23:26.000Z"
+        },
+        {
+          "title": "Honda demonstrates remote-controlled robot for complex physical tasks",
+          "url": "https://aibusiness.com/robotics/honda-demonstrates-remote-controlled-robot-complex-physical-tasks",
+          "date": "2026-10-26T18:31:19.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-56c06ab0a5d2",
+      "name": "The New Stack AI",
+      "feedUrl": "https://thenewstack.io/category/ai/feed/",
+      "publisherType": "independent",
+      "discovery": "official-discovery",
+      "responseUrl": "https://thenewstack.io/category/ai/feed/",
+      "candidates": 26,
+      "dated": 26,
+      "latestPublishedAt": "2026-10-26T19:51:04+00:00",
+      "samples": [
+        {
+          "title": "AI is changing Kubernetes; is your platform ready for 2027?",
+          "url": "https://thenewstack.io/kubernetes-agentic-ai-platforms/",
+          "date": "2026-10-26T19:51:04.000Z"
+        },
+        {
+          "title": "Most of Anthropic’s Q3 revenue came from models that barely existed six months ago",
+          "url": "https://thenewstack.io/anthropic-s1-models-revenue/",
+          "date": "2026-10-26T18:29:26.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-80c23f2f1cf8",
+      "name": "The Guardian AI",
+      "feedUrl": "https://www.theguardian.com/technology/artificialintelligenceai/rss",
+      "publisherType": "independent",
+      "discovery": "official-discovery",
+      "responseUrl": "https://www.theguardian.com/technology/artificialintelligenceai/rss",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-10-27T13:01:46+00:00",
+      "samples": [
+        {
+          "title": "AI book prize judges face a major speed-reading challenge | Brief letters",
+          "url": "https://www.theguardian.com/technology/2026/oct/26/ai-book-prize-judges-face-a-major-speed-reading-challenge",
+          "date": "2026-10-26T17:38:50.000Z"
+        },
+        {
+          "title": "Elon Musk’s AI Odyssey: the dullest, most pointless riposte possible to Christopher Nolan’s brilliant epic",
+          "url": "https://www.theguardian.com/film/2026/oct/27/elon-musk-ai-odyssey-movie-grok-christopher-nolan",
+          "date": "2026-10-27T13:01:46.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-9e34dcce1c42",
+      "name": "TechCrunch Robotics",
+      "feedUrl": "https://techcrunch.com/category/robotics/feed/",
+      "publisherType": "independent",
+      "discovery": "official-discovery",
+      "responseUrl": "https://techcrunch.com/category/robotics/feed/",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-10-22T18:38:47+00:00",
+      "samples": [
+        {
+          "title": "Former OpenAI science lead launches Warp Science to automate wet labs with robots",
+          "url": "https://techcrunch.com/2026/10/22/former-openai-science-lead-launches-warp-science-to-automate-wet-labs-with-robots/",
+          "date": "2026-10-22T18:38:47.000Z"
+        },
+        {
+          "title": "Tesla starts Optimus robot production in California as profit falls 43%",
+          "url": "https://techcrunch.com/2026/10/21/tesla-stars-optimus-robot-production-in-california-as-profit-falls-43/",
+          "date": "2026-10-21T20:33:09.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-3020e5081b97",
+      "name": "IEEE Robotics",
+      "feedUrl": "https://spectrum.ieee.org/feeds/topic/robotics.rss",
+      "publisherType": "independent",
+      "discovery": "official-discovery",
+      "responseUrl": "https://spectrum.ieee.org/feeds/topic/robotics.rss",
+      "candidates": 30,
+      "dated": 30,
+      "latestPublishedAt": "2026-10-23T15:30:02+00:00",
+      "samples": [
+        {
+          "title": "Video Friday: Quadruped Robot Solves Giant Rubik’s Cube by Itself",
+          "url": "https://spectrum.ieee.org/video-friday-rubiks-cube-robot",
+          "date": "2026-10-23T15:30:02.000Z"
+        },
+        {
+          "title": "The Robot I Didn’t Expect to Build",
+          "url": "https://spectrum.ieee.org/agility-robotics-digit-5-redesign",
+          "date": "2026-10-19T13:00:03.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-093d90dab9ee",
+      "name": "Science Robotics",
+      "feedUrl": "https://www.science.org/action/showFeed?type=etoc&feed=rss&jc=scirobotics",
+      "publisherType": "independent",
+      "discovery": "official-discovery",
+      "responseUrl": "https://www.science.org/action/showFeed?type=etoc&feed=rss&jc=scirobotics",
+      "candidates": 6,
+      "dated": 6,
+      "latestPublishedAt": "2026-10-21T07:00:00+00:00",
+      "samples": [
+        {
+          "title": "Fast Feature Field (F3): A general predictive representation of events for robot perception",
+          "url": "https://www.science.org/doi/abs/10.1126/scirobotics.aec8218?af=R",
+          "date": "2026-10-14T07:00:00.000Z"
+        },
+        {
+          "title": "System design of the Ultra Mobility Vehicle: A driving, balancing, and jumping bicycle robot",
+          "url": "https://www.science.org/doi/abs/10.1126/scirobotics.aed3627?af=R",
+          "date": "2026-10-14T07:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-3b1460a4ce37",
+      "name": "Quanta Computer Science",
+      "feedUrl": "https://www.quantamagazine.org/computer-science/feed/",
+      "publisherType": "independent",
+      "discovery": "official-discovery",
+      "responseUrl": "https://www.quantamagazine.org/computer-science/feed/",
+      "candidates": 5,
+      "dated": 5,
+      "latestPublishedAt": "2026-10-16T13:25:08+00:00",
+      "samples": [
+        {
+          "title": "He Wants AI Benchmarking To Be a Science, Not a Dark Art",
+          "url": "https://www.quantamagazine.org/he-wants-ai-benchmarking-to-be-a-science-not-a-dark-art-20261016/",
+          "date": "2026-10-16T13:25:08.000Z"
+        },
+        {
+          "title": "Is ‘Attention’ the Essence of Intelligence?",
+          "url": "https://www.quantamagazine.org/is-attention-the-essence-of-intelligence-20261012/",
+          "date": "2026-10-12T14:20:30.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-ed1a47282cf4",
+      "name": "Cloudflare AI Blog",
+      "feedUrl": "https://blog.cloudflare.com/tag/ai/rss/",
+      "publisherType": "official",
+      "discovery": "official-discovery",
+      "responseUrl": "https://blog.cloudflare.com/tag/ai/rss/",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-10-21T13:00:00+00:00",
+      "samples": [
+        {
+          "title": "How Commerce.com and Cloudflare are getting storefronts ready for AI agents",
+          "url": "https://blog.cloudflare.com/webmcp-commerce/",
+          "date": "2026-10-21T13:00:00.000Z"
+        },
+        {
+          "title": "Cutting our inference bill by 68% by being obsessive about optimization",
+          "url": "https://blog.cloudflare.com/obsessive-inference-optimization/",
+          "date": "2026-10-19T19:12:53.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-a81eb3cce3bd",
+      "name": "Red Hat AI",
+      "feedUrl": "https://www.redhat.com/en/rss/blog/channel/artificial-intelligence",
+      "publisherType": "official",
+      "discovery": "official-discovery",
+      "responseUrl": "https://www.redhat.com/en/rss/blog/channel/artificial-intelligence",
+      "candidates": 6,
+      "dated": 6,
+      "latestPublishedAt": "2026-10-23T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "Top 5 enterprise use cases for AI agents",
+          "url": "https://www.redhat.com/en/blog/top-5-enterprise-use-cases-ai-agents",
+          "date": "2026-10-23T00:00:00.000Z"
+        },
+        {
+          "title": "RHEL for NVIDIA delivers trusted foundation for next-gen AI workloads",
+          "url": "https://www.redhat.com/en/blog/rhel-nvidia-delivers-trusted-foundation-next-gen-ai-workloads",
+          "date": "2026-10-21T00:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-170cb80d4c27",
+      "name": "Cisco AI Blog",
+      "feedUrl": "https://blogs.cisco.com/tag/artificial-intelligence/feed",
+      "publisherType": "official",
+      "discovery": "official-discovery",
+      "responseUrl": "https://blogs.cisco.com/tag/artificial-intelligence/feed",
+      "candidates": 9,
+      "dated": 9,
+      "latestPublishedAt": "2026-10-26T19:59:44+00:00",
+      "samples": [
+        {
+          "title": "Introducing Cisco Model Foundry: Bringing AI to our partners",
+          "url": "https://blogs.cisco.com/ai/cisco-model-foundry-partner-summit",
+          "date": "2026-10-26T19:59:44.000Z"
+        },
+        {
+          "title": "The New Partner Operating Model: Turning Intelligence into Action with Cisco IQ",
+          "url": "https://blogs.cisco.com/customerexperience/the-new-partner-operating-model-turning-intelligence-into-action-with-cisco-iq",
+          "date": "2026-10-26T19:45:50.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-fcb39f1e455b",
+      "name": "ElevenLabs Blog",
+      "feedUrl": "https://elevenlabs.io/blog/rss.xml",
+      "publisherType": "official",
+      "discovery": "official-discovery",
+      "responseUrl": "https://elevenlabs.io/blog/rss.xml",
+      "candidates": 50,
+      "dated": 50,
+      "latestPublishedAt": "2026-10-26T12:00:00+00:00",
+      "samples": [
+        {
+          "title": "How text to speech technology works: From text to natural voice",
+          "url": "https://elevenlabs.io/blog/how-text-to-speech-technology-works",
+          "date": "2026-10-26T12:00:00.000Z"
+        },
+        {
+          "title": "How Immobiliare.it went from one conversational agent to an agentic network",
+          "url": "https://elevenlabs.io/blog/immobiliare",
+          "date": "2026-10-23T12:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-002480f22957",
+      "name": "Stanford CRFM",
+      "feedUrl": "https://crfm.stanford.edu/feed.xml",
+      "publisherType": "official",
+      "discovery": "official-discovery",
+      "responseUrl": "https://crfm.stanford.edu/feed.xml",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-05-26T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "HELM Arabic Enterprise",
+          "url": "https://crfm.stanford.edu//2026/05/26/helm-arabic-enterprise.html",
+          "date": "2026-05-26T00:00:00.000Z"
+        },
+        {
+          "title": "HELM Arabic",
+          "url": "https://crfm.stanford.edu//2025/12/18/helm-arabic.html",
+          "date": "2025-12-18T00:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-4545df935dc7",
+      "name": "CSET · Georgetown",
+      "feedUrl": "https://cset.georgetown.edu/feed/",
+      "publisherType": "official",
+      "discovery": "Feedspot AI 目录",
+      "responseUrl": "https://cset.georgetown.edu/feed/",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-26T13:41:00+00:00",
+      "samples": [
+        {
+          "title": "How Black-Box Distillation Works",
+          "url": "https://cset.georgetown.edu/article/how-black-box-distillation-works/",
+          "date": "2026-10-26T13:41:00.000Z"
+        },
+        {
+          "title": "China’s Next Frontier",
+          "url": "https://cset.georgetown.edu/article/chinas-next-frontier/",
+          "date": "2026-10-14T21:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-637f84c6d50a",
+      "name": "AIhub",
+      "feedUrl": "https://aihub.org/feed/?cat=-473",
+      "publisherType": "independent",
+      "discovery": "Feedspot AI 目录",
+      "responseUrl": "https://aihub.org/feed/?cat=-473",
+      "candidates": 30,
+      "dated": 30,
+      "latestPublishedAt": "2026-10-27T12:14:29+00:00",
+      "samples": [
+        {
+          "title": "Researchers get AI ‘drunk’ to expose new cyber security risks in chatbots",
+          "url": "https://aihub.org/2026/10/27/researchers-get-ai-drunk-to-expose-new-cyber-security-risks-in-chatbots/",
+          "date": "2026-10-27T12:14:29.000Z"
+        },
+        {
+          "title": "AI is creating jobs as well as erasing them – but how rewarding are they?",
+          "url": "https://aihub.org/2026/10/26/ai-is-creating-jobs-as-well-as-erasing-them-but-how-rewarding-are-they/",
+          "date": "2026-10-26T12:13:03.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-5063b770db4c",
+      "name": "The New York Times AI",
+      "feedUrl": "https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/spotlight/artificial-intelligence/rss.xml",
+      "publisherType": "independent",
+      "discovery": "Feedspot AI 目录",
+      "responseUrl": "https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/spotlight/artificial-intelligence/rss.xml",
+      "candidates": 19,
+      "dated": 19,
+      "latestPublishedAt": "2026-10-27T12:15:41+00:00",
+      "samples": [
+        {
+          "title": "Would You Listen to A.I. Music? Maybe You Already Do.",
+          "url": "https://www.nytimes.com/interactive/2026/10/22/business/media/ai-music-streaming-spotify-apple-music.html",
+          "date": "2026-10-22T18:39:00.000Z"
+        },
+        {
+          "title": "This Photo Is an A.I. Fake. Can You Tell?",
+          "url": "https://www.nytimes.com/interactive/2026/10/08/technology/ai-generated-image-look-close.html",
+          "date": "2026-10-09T18:44:04.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-dbe74cfddbb9",
+      "name": "Financial Times AI",
+      "feedUrl": "https://www.ft.com/artificial-intelligence?format=rss",
+      "publisherType": "independent",
+      "discovery": "Feedspot AI 目录",
+      "responseUrl": "https://www.ft.com/artificial-intelligence?format=rss",
+      "candidates": 25,
+      "dated": 25,
+      "latestPublishedAt": "2026-10-27T05:30:08+00:00",
+      "samples": [
+        {
+          "title": "Anthropic’s constitutional order",
+          "url": "https://www.ft.com/content/69a623e0-8605-4b1d-b147-770649efb53a?syn-25a6b1a6=1",
+          "date": "2026-10-27T05:30:08.000Z"
+        },
+        {
+          "title": "India’s outsourcers defy AI threat",
+          "url": "https://www.ft.com/content/42dc1a1c-2454-4eaf-bafe-ded5ad7855e4?syn-25a6b1a6=1",
+          "date": "2026-10-27T05:15:12.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-308038c7a6c0",
+      "name": "Crunchbase AI",
+      "feedUrl": "https://news.crunchbase.com/sections/ai/feed/",
+      "publisherType": "independent",
+      "discovery": "Feedspot AI 目录",
+      "responseUrl": "https://news.crunchbase.com/sections/ai/feed/",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-27T11:00:53+00:00",
+      "samples": [
+        {
+          "title": "Crunchbase Data Shows Q3 Robotics Startup Funding Jumps 185% As US And China Lead Physical AI Push",
+          "url": "https://news.crunchbase.com/venture/q3-2026-us-china-robotics-startup-funding-jumps-physical-ai-push/",
+          "date": "2026-10-27T11:00:53.000Z"
+        },
+        {
+          "title": "Your AI Agents Need A Chief Operating Officer, Too",
+          "url": "https://news.crunchbase.com/real-estate-property-tech/agentic-ai-staffing-coo-folgmann-get-covered/",
+          "date": "2026-10-27T11:00:44.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-37cb831f2ce0",
+      "name": "SAS Artificial Intelligence",
+      "feedUrl": "https://blogs.sas.com/content/topic/artificial-intelligence/feed/",
+      "publisherType": "official",
+      "discovery": "Feedspot AI 目录",
+      "responseUrl": "https://blogs.sas.com/content/topic/artificial-intelligence/feed/",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-20T11:00:36+00:00",
+      "samples": [
+        {
+          "title": "How can organizations close the AI decision gap?",
+          "url": "https://blogs.sas.com/content/sascom/2026/10/20/how-can-organizations-close-the-ai-decision-gap/",
+          "date": "2026-10-20T11:00:36.000Z"
+        },
+        {
+          "title": "A “favorable cancer”",
+          "url": "https://blogs.sas.com/content/sascom/2026/10/19/a-favorable-cancer/",
+          "date": "2026-10-19T09:00:38.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-8e33aad3173b",
+      "name": "Machine Intelligence Research Institute",
+      "feedUrl": "https://intelligence.org/feed/",
+      "publisherType": "official",
+      "discovery": "Feedspot AI 目录",
+      "responseUrl": "https://intelligence.org/feed/",
+      "candidates": 6,
+      "dated": 6,
+      "latestPublishedAt": "2026-09-30T20:00:11+00:00",
+      "samples": [
+        {
+          "title": "MIRI Newsletter #127",
+          "url": "https://intelligence.org/2026/09/30/miri-newsletter-127/",
+          "date": "2026-09-30T20:00:11.000Z"
+        },
+        {
+          "title": "MIRI’s Position on the Ban Artificial Superintelligence Act of 2026",
+          "url": "https://intelligence.org/2026/09/23/miris-position-on-the-ban-artificial-superintelligence-act-of-2026/",
+          "date": "2026-09-23T19:22:42.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-6525ee5007bb",
+      "name": "Microsoft News AI",
+      "feedUrl": "https://news.microsoft.com/source/topics/ai/feed/",
+      "publisherType": "official",
+      "discovery": "Feedspot AI 目录",
+      "responseUrl": "https://news.microsoft.com/source/topics/ai/feed/",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-21T16:24:40+00:00",
+      "samples": [
+        {
+          "title": "Before the ambulance arrives: How AI is helping the NHS rethink patient care",
+          "url": "https://news.microsoft.com/source/emea/features/before-the-ambulance-arrives-how-ai-is-helping-the-nhs-rethink-patient-care/",
+          "date": "2026-10-21T16:24:40.000Z"
+        },
+        {
+          "title": "A concrete vision: Saint-Gobain and Microsoft Discovery build for the future",
+          "url": "https://news.microsoft.com/source/emea/features/a-concrete-vision-saint-gobain-and-microsoft-discovery-build-for-the-future/",
+          "date": "2026-10-20T12:28:37.000Z"
+        }
+      ]
+    },
+    {
+      "id": "rss-more-c5360098c25c",
+      "name": "LearnOpenCV",
+      "feedUrl": "https://learnopencv.com/feed/",
+      "publisherType": "independent",
+      "discovery": "Feedspot AI 目录",
+      "responseUrl": "https://learnopencv.com/feed/",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-16T02:32:53+00:00",
+      "samples": [
+        {
+          "title": "YOLO26 Depth Estimation: Metric Monocular Depth and What You Can Build With It",
+          "url": "https://learnopencv.com/yolo26-depth-estimation-metric-monocular-depth-and-what-you-can-build-with-it/",
+          "date": "2026-10-16T02:32:53.000Z"
+        },
+        {
+          "title": "How to Master Qwen3.8-27B for Real Computer Vision Tasks",
+          "url": "https://learnopencv.com/qwen3-8-27b-computer-vision/",
+          "date": "2026-10-04T16:28:44.000Z"
+        }
+      ]
+    }
+  ]
+}

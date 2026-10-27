@@ -2282,6 +2282,2135 @@
       "syndicate_fulltext": false,
       "owner_entity_id": null,
       "enabled": true
+    },
+    {
+      "id": "rss-more-e5fe6cb1c5f3",
+      "name": "DeepSeek（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/1709da4f538d4ce4fb6d7a8ba1a5a1c297919601.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-b4647fa8818e",
+      "name": "大模型智能（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/bfc6440c1a2443fab9a6bf607137d41db5cd5c93.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-105a86cf0537",
+      "name": "我爱计算机视觉（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.xlab.app/feed/b81ffcfff1107b5265cd7e39de610dc7ca72caf4.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-66242ceed483",
+      "name": "新智元（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.xlab.app/feed/ede30346413ea70dbef5d485ea5cbb95cca446e7.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-590f6db1e612",
+      "name": "智谱（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/433d2134dca54d80804daf32e8be546155be3300.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-787427d3a63f",
+      "name": "月之暗面 Kimi（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/c5c43d4bc17bae656763859ed0903bb6314ec6fe.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-e42dc409e5e1",
+      "name": "机器之心（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/8d97af31b0de9e48da74558af128a4673d78c9a3.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-2b5acb5e7f46",
+      "name": "机器之心SOTA模型（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/2f520471856d56c7b3a95cd09eb777149b32828a.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-004ab6a979ab",
+      "name": "腾讯混元（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/306ce19a1ca590c9c2df781789e828d1acfa1356.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-52ffc392c397",
+      "name": "通义实验室（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/4ebee6222ae08705b8aabc9116f0defbcb6b17c6.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-b951a095192c",
+      "name": "阶跃StepFun（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/3e2714d06aa36142e8ed6b3f4e5cf9090a069dd2.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-1eea54235f92",
+      "name": "vivo互联网技术（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/b3ceb5cb1e4602ca55704650a157ec9c5b2f0d31.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-e3c985a5627d",
+      "name": "哔哩哔哩技术（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.xlab.app/feed/434235d4815fdb8447ff3127fc053ceb8b3aada6.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-984e62ff0cb2",
+      "name": "字节跳动技术团队（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.xlab.app/feed/4025ea55575daf8bfd8227e68b28d9638b073267.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-0909e6fd7e8e",
+      "name": "腾讯技术工程（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.xlab.app/feed/9685937b45fe9c7a526dbc32e4f24ba879a65b9a.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-6e76f940a5bb",
+      "name": "阿里云开发者（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.xlab.app/feed/c74ed6db00cfbf16f2a048a165b4453f982681f0.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-e64bd31a2472",
+      "name": "腾讯研究院（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/6152301e0978bffb0a8284cab339262b9764dcfb.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-a1142ae83749",
+      "name": "阿里研究院（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/e2f1190c120f7f3d74b630bfcfe9e58296bd535c.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-1502ebfb03ff",
+      "name": "阿里技术（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/6535a444e9651fecae3383363be7589acdebe2b6.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-2c364acefc49",
+      "name": "腾讯云开发者（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/6cec2c211479a5502896375860009782cf10c2ba.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-46a02bfc0228",
+      "name": "歸藏的AI工具箱（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/1c3e3571b1627d23ee9c64521a0b0a41d3fe2987.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-f225041626b3",
+      "name": "腾讯科技（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/a81bdfcbb9eefe870d285e81510ffa1af26e4520.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-090a4748ee94",
+      "name": "InfoQ（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/13da94d7eb314b49fa251cb7e8399cae29d772db.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-b90e591f0bbc",
+      "name": "AI前线（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/25185b01482da0f485418ecb92e208b4416712fb.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-7a9da4eb566c",
+      "name": "谷歌开发者（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/9c65b8470acb8a5400199616536995d5ba90f52e.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-9077ab335dc6",
+      "name": "甲子光年（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/1c4008936645d5c17239d99bba91522cf2bdfa26.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-59bdd8a03bd5",
+      "name": "Jina AI（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/ff2c5468828ebe7236afd6c1d128e219774487c2.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-aa03d676e4de",
+      "name": "Datawhale（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/ea0dd8bddfe4fbfb32eaa81a1e1b628d45e97a80.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-a0cb50c5f61c",
+      "name": "Dify（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/e46c03a4cb65509e22ab9a8507888a2096319d65.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-cd865bbd7cd8",
+      "name": "百度文心（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/d0767d885e6ba213344fb0c0408c51331e23a994.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-55ae6a47e8ea",
+      "name": "智东西（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/cfd52b4245ca6119b2fda4ef934832c689028927.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-2c75cee2acd6",
+      "name": "字节跳动Seed（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/6efd40bb335d2037f365d284cb5e00f0843e737e.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-4e4a648b874b",
+      "name": "MiniMax 稀宇科技（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/00306b171f754d463b28cf83f3ba086ad009b430.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-a576e66af6b6",
+      "name": "AINLP（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/875df1d1a991bf9250ba9813e3148f58ef2240d4.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-c433391d09af",
+      "name": "小米技术（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/8bbc1ba1d363e70cd42d1ce89fb9070cb075c3b3.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-c0e9003c13a1",
+      "name": "小红书技术REDtech（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/0f8c47df6fd304112518544776e0bbf1d98ba0b9.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-c0b453229f19",
+      "name": "快手技术（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/c4cc10d2e32a5fa12927581ae581a336f399fe75.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-1bf50866cb41",
+      "name": "晚点LatePost（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/c442206ec9957f3c52f2f40300ca532079538b31.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-2e86e246d8ff",
+      "name": "夕小瑶科技说（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/64b57d666259aee6bd097e76164e4a8371f0ad04.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-0e69b662d7bc",
+      "name": "魔搭ModelScope社区（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/d993a885260f96057b9a4c96212cb2c95bb5054b.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-5a47e5e12c81",
+      "name": "PaperAgent（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/54001ca616dbc4b55d2b25d79d68a70191a0ddf4.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-bf3713a41a5d",
+      "name": "Xiaomi MiMo（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/19c2af88005704d49ea397c203dcb45339532946.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-1ab8e8c9751a",
+      "name": "蚂蚁技术AntTech（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/15738401f49466ad01b324b69f779f9bef0cb3e7.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-e6b230e5174d",
+      "name": "PaperWeekly（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/0120e999fc95e098c74bd5482a2a4c8407c42c38.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-9dfbfb32829b",
+      "name": "智能涌现（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/049f4d78f94b31ab6afda95b1a65f0e562c8d5c2.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-0391625e3420",
+      "name": "水木人工智能学堂（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/87c921eb79326f3c51b4bc6a1704e8dc0420807e.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-f70c13c2c6b3",
+      "name": "AI大模型应用实践（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/ab58feca07412e57049e5d8561439c3fb35783c2.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-ad5b2767e703",
+      "name": "GitHubDaily（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/5b195b2d021f8151ac4f81ceae54cd48f08b0632.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-c0ea74cb3a5e",
+      "name": "AIBase基地（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/27b06b577fc8f39566b7653621a376479ef3e3a8.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-98a34af1c6d7",
+      "name": "晚点AI（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.bestblogs.dev/feed/316def62ee3a6d499bf3981ffe22a09bf7256265.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-aafbb66f21ee",
+      "name": "集智俱乐部（公众号订阅）",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wechat2rss.xlab.app/feed/8540570d27c0bfe0a219173cf1ace83ae79445cb.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "公众号转订阅"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-597b3e93ce00",
+      "name": "36氪",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.36kr.com/feed",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-ed41ce13f183",
+      "name": "Data4Fun",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://data4fun.cc/index.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-28a0521c3b37",
+      "name": "明立非|Mingnify的博客",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://mingnify.com/zh/blog/atom.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-aa86c8fa1c67",
+      "name": "翔宇工作流",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://xiangyugongzuoliu.com/latest/rss/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "中文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-33be1953a1cd",
+      "name": "AI2 Blog (Allen Institute)",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://allenai.org/rss.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-38dcd83aaf69",
+      "name": "vLLM Blog",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://vllm.ai/blog/rss.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-48259a658ccb",
+      "name": "Anyscale Blog",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.anyscale.com/rss.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-fca10909c453",
+      "name": "The Batch (deeplearning.ai)",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://charonhub.deeplearning.ai/rss/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-69df255ea31f",
+      "name": "LangChain Blog",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://blog.langchain.dev/rss.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-dc809a526035",
+      "name": "Arize AI Blog",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://arize.com/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-6afc918125fc",
+      "name": "TLDR AI",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://tldr.tech/api/rss/ai",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-6cac61535ed4",
+      "name": "Answer.AI",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.answer.ai/index.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-9aec25fdb2de",
+      "name": "Vicki Boykis",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://vickiboykis.com/index.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-fbffb2a74997",
+      "name": "Eric Jang",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://evjang.com/feed",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-69d4b42f5a8e",
+      "name": "Magenta",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "http://magenta.tensorflow.org/feed.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-677267dfed91",
+      "name": "AISI Blog (AI Security Institute)",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://raw.githubusercontent.com/alan-turing-institute/ai-rss-feeds/refs/heads/main/feeds/aisi-blog.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "第三方订阅",
+        "研究"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-9bff4da16feb",
+      "name": "Anthropic News",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://raw.githubusercontent.com/alan-turing-institute/ai-rss-feeds/refs/heads/main/feeds/anthropic-news.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "第三方订阅",
+        "研究"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-5177a1bc320b",
+      "name": "Anthropic Research",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://raw.githubusercontent.com/alan-turing-institute/ai-rss-feeds/refs/heads/main/feeds/anthropic-research.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "第三方订阅",
+        "研究"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-b4bf7a6832ca",
+      "name": "Cohere Blog",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://raw.githubusercontent.com/alan-turing-institute/ai-rss-feeds/refs/heads/main/feeds/cohere-blog.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "第三方订阅",
+        "研究"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-5cdb9d8129ca",
+      "name": "Cosine Blog",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://raw.githubusercontent.com/alan-turing-institute/ai-rss-feeds/refs/heads/main/feeds/cosine-blog.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "第三方订阅",
+        "研究"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-3b37c3ed85f1",
+      "name": "Mila News (Quebec AI Institute)",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://raw.githubusercontent.com/alan-turing-institute/ai-rss-feeds/refs/heads/main/feeds/mila-news.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "第三方订阅",
+        "研究"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-69069766b00f",
+      "name": "Turing Blog (Alan Turing Institute)",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://raw.githubusercontent.com/alan-turing-institute/ai-rss-feeds/refs/heads/main/feeds/turing-blog.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "第三方订阅",
+        "研究"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-bd385bc2b289",
+      "name": "CETaS Research",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://raw.githubusercontent.com/alan-turing-institute/ai-rss-feeds/refs/heads/main/feeds/cetas-research.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "第三方订阅",
+        "研究"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-56273ddd55d9",
+      "name": "Canva - Engineering Blog",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.canva.dev/blog/engineering/feed.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-f31451a4f14a",
+      "name": "Meta Engineering AI",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://engineering.fb.com/category/ai-research/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-cde22301ccca",
+      "name": "Netflix TechBlog",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://netflixtechblog.com/feed",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-c004f7c9c0b0",
+      "name": "Spotify Engineering",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://engineering.atspotify.com/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-aa12cd5f267a",
+      "name": "DataRobot Blog",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.datarobot.com/blog/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-508bf23e5526",
+      "name": "Analytics Vidhya",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.analyticsvidhya.com/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-fb435e18ce32",
+      "name": "AI Business",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://aibusiness.com/rss.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-56c06ab0a5d2",
+      "name": "The New Stack AI",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://thenewstack.io/category/ai/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-80c23f2f1cf8",
+      "name": "The Guardian AI",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.theguardian.com/technology/artificialintelligenceai/rss",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-9e34dcce1c42",
+      "name": "TechCrunch Robotics",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://techcrunch.com/category/robotics/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-3020e5081b97",
+      "name": "IEEE Robotics",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://spectrum.ieee.org/feeds/topic/robotics.rss",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-093d90dab9ee",
+      "name": "Science Robotics",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.science.org/action/showFeed?type=etoc&feed=rss&jc=scirobotics",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-3b1460a4ce37",
+      "name": "Quanta Computer Science",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.quantamagazine.org/computer-science/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-ed1a47282cf4",
+      "name": "Cloudflare AI Blog",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://blog.cloudflare.com/tag/ai/rss/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-a81eb3cce3bd",
+      "name": "Red Hat AI",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.redhat.com/en/rss/blog/channel/artificial-intelligence",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-170cb80d4c27",
+      "name": "Cisco AI Blog",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://blogs.cisco.com/tag/artificial-intelligence/feed",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-fcb39f1e455b",
+      "name": "ElevenLabs Blog",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://elevenlabs.io/blog/rss.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-002480f22957",
+      "name": "Stanford CRFM",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://crfm.stanford.edu/feed.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "技术"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-4545df935dc7",
+      "name": "CSET · Georgetown",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://cset.georgetown.edu/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "研究"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-637f84c6d50a",
+      "name": "AIhub",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://aihub.org/feed/?cat=-473",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "行业"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-5063b770db4c",
+      "name": "The New York Times AI",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/spotlight/artificial-intelligence/rss.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "行业"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-dbe74cfddbb9",
+      "name": "Financial Times AI",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.ft.com/artificial-intelligence?format=rss",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "行业"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-308038c7a6c0",
+      "name": "Crunchbase AI",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://news.crunchbase.com/sections/ai/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "行业"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-37cb831f2ce0",
+      "name": "SAS Artificial Intelligence",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://blogs.sas.com/content/topic/artificial-intelligence/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "研究"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-8e33aad3173b",
+      "name": "Machine Intelligence Research Institute",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://intelligence.org/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "研究"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-6525ee5007bb",
+      "name": "Microsoft News AI",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://news.microsoft.com/source/topics/ai/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "研究"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-more-c5360098c25c",
+      "name": "LearnOpenCV",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://learnopencv.com/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "英文",
+        "行业"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
     }
   ]
 }
