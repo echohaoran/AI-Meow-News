@@ -241,7 +241,7 @@ export default function AboutPage() {
           {`${SITE.name} 怎么工作`}
         </h2>
         <SignalRiver sources={sources} focus={focus} onArrive={onArrive} className="h-[230px] sm:h-[300px] lg:h-[360px] 2xl:h-[420px]">
-          <Latest item={latest[at]} className="absolute left-1/2 top-[calc(45%+86px)] hidden w-[min(380px,44%)] -translate-x-1/2 rounded-control bg-bg/90 px-4 py-2 text-center lg:block" />
+          <Latest item={latest[at]} className="absolute bottom-6 right-6 hidden w-[min(320px,40%)] rounded-control border border-line bg-bg/95 px-4 py-3 text-left lg:block" />
         </SignalRiver>
         <p className="sr-only">示意图：周围的星星代表已启用的信源，信息沿星系轨迹汇聚，经过收录和精选后流向中央行星，代表成刊。动画用于说明流程，实际数量以下方统计为准。</p>
         <Latest item={latest[at]} className="mt-2 border-t border-line pt-4 lg:hidden" />
