@@ -44,3 +44,12 @@
 - 已发布 `ainews-app:chinese-ea7b3956fd5d`，API/web/worker 通过健康检查及整站 smoke；无 schema 迁移。普通公开文章也进入原生翻译排程，后台补译进行中，不把未完成译文称为完整中文正文。
 - 用户最后查看的 TechCrunch 条目 `yg9nhngql0lckj19kvhaxa57u` 已完成 19 段中文翻译，Simon Willison 条目也已完成并实页验收。
 - 同工作区其他会话的导航、分类、首页、关于页与排行榜改动保留；本任务只提交阅读及翻译相关文件，不自动推送。
+
+## 2026-10-27：按用户要求再次部署当前工作区
+
+- 将当次本地快照的 793 个文件通过 SCP 同步并逐文件校验，包含此前未上线的热点卡片、Agent 页面及排行榜品牌标识与解析更新。保留其开发中的未提交状态，不代替其他会话提交功能代码。
+- 新镜像 `ainews-app:release-ee039a919044`，源码快照摘要 `ee039a919044895d1b24c59064e802dbf4977d05e707910e4c0ec72cfbd83c62`；沿用 `source` Compose 项目及既有运维覆盖，正常停止 worker 后重建 API/web/worker，健康检查通过。数据库、秘密、运行开关及预算保持原样，无新增迁移或 seed。
+- 数据库与旧代码、运维引用备份位于服务器 `/root/netops-backups/ainews-deploy-20261027T032057Z/`。dump 已成功恢复到独立库 `ainews_deploy_restore_20261027032057_test`，确认恢复出 26 个信源，验证记录为该目录的 `verification.json`。
+- 类型检查、前端构建、7 项排行榜离线测试、6 项页面回归及整站 smoke 通过；另外验证 `/?category=ai-products`、文字周排行榜、用户所看 TechCrunch 详情及 health 均为 HTTP 200，health release 与发布摘要一致。未重复宣称全套 npm test 通过。
+- 部署证据与日志：服务器 `.tmp/deploy-request-result.json`、`.tmp/deploy-checks-20261027T032057Z/`。旧补译日志随发布备份保留，容器更新后重新读取尚未完成的文章清单，继续使用原生翻译、回执与预算补译，不释放未知回执或强制重复计费。
+- 本次只将部署记录提交到本地 Git；用户验收后再按其指令推送。
