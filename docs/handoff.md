@@ -134,3 +134,9 @@
 - 用户确认公网现运行于 `192.168.1.84`（SSH `ct105`），此前 `homelab` 192.168.1.77 的 `source` 容器已停止。基于线上 `07df3f7` 镜像与在 homelab 构建验证的前端产物，发布 API/web 镜像 `ainews-app:social-1c58a32`，运行 release `1c58a32fbeec386cc711139aabb4e34fa5cf7630`；worker 容器、镜像和运行阀门未改变。
 - 类型检查、前端构建、7 项页面回归及整站 smoke 通过；公网浏览器检查桌面悬停、收款码和手机入口，五张二维码均可识别。发布日志及回执在服务器 `.tmp/social-deploy-20261027T121723Z/`、`.tmp/social-deploy-result.json`。数据库与附件备份恢复验证在 `/root/netops-backups/ainews-social-20261027T121723Z/verification.json`，恢复库 `ainews_social_restore_20261027121723_test`。
 - 首次发布因宿主缺少 Node 自动回退，第二次因 MCP 要求公网 Host 而回退；随后使用容器内 Node 和公网地址完成 smoke。完整数据库及 Playwright 测试套件本次未重跑。
+
+## 2026-10-27：侧边栏图标及 MCP 接入说明
+
+- 联系方式改为 SVG 图标在上、文字在下的三列布局；“新闻网”换成个人博客，Coffee 位于最后一格并继续展开收款码。手机“我的”页面使用同一组件，短屏侧栏导航可滚动。
+- 用户在 Claude 聊天框直接粘贴 MCP 地址，普通网页访问返回 405，不能自动注册工具。公网 Streamable HTTP 使用 MCP SDK 成功握手、列出 7 个工具并调用 `ainews_get_latest`；Agent 页面新增 Claude Desktop 自定义连接器步骤，不改 MCP 服务协议或许可。
+- 生产 API/web 镜像 `ainews-app:social-icons-a45eaa2`，release `a45eaa2058b0dd9116f35478284ec61d0e00306b`，worker 未改变。类型检查、前端构建、7 项页面回归、线上浏览器检查及整站 smoke 通过。数据库与附件备份恢复验证位于 `/root/netops-backups/ainews-social-icons-20261027T124935Z/verification.json`；回执 `.tmp/social-icons-deploy-result.json`，日志 `.tmp/social-icons-deploy-20261027T124935Z/`。完整数据库和 Playwright 测试套件本次未重跑。
