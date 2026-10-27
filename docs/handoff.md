@@ -107,3 +107,10 @@
 - 爱范儿示例已生成 5 个小节，页面自动由待处理切换为中文稿；The Decoder 英文示例也已生成中文整理。桌面和 375px 手机目录跳转通过，右侧信息保留。一次性历史回填使用同一 composeReading、回执及预算，有限进程/临时容器完成后退出；不是第二个常驻 worker。首次直接 Docker exec 缺少容器入口的 OPENAI→LLM 别名映射，未发送付费请求，按同一映射引导后正常运行。最终回填数量待完成后补记。
 - 最终批量复核：391 篇当前 revision 的可用正文已全部生成中文整理稿，待处理为 0；对应阅读回执均 completed，没有 unknown/failed 遗留。另有 44 个非精选条目原始正文为 unconfirmed，不把它们算作已整理正文；取得真实正文后由原任务继续处理，不能编造缺失原文。一次性四组任务与 12 并发临时回填容器均已正常退出并移除，仍只保留一个常驻 worker。
 - 最终数据证据在服务器 `.tmp/chinese-reading-final-audit.json`；回填日志 `.tmp/chinese-reading-{batch-0,batch-1,batch-2,batch-3,pool,recheck}.log`，发布回执 `.tmp/chinese-reading-release-result.json`。源码冻结后其他会话新增的首页 MCP 按钮和关于页精选卡片位置改动保留在本地工作区，不纳入本次阅读提交或重新部署。
+
+## 2026-10-27：重启 worker 并推送项目
+
+- 用户明确要求重启 worker、推送仓库。已按现有 `source` Compose 项目使用 515 秒优雅停机等待重启 worker；日志确认队列排空后停止并重新启动。worker 继续使用 `ainews-app:reading-cf7f5c2324b1`，采集、模型及推送开关保持原状；API/web 当时运行 `ainews-app:feed-images-4e1f87afb1cc`，重启没有更换或重建它们。
+- 重启前的数据库备份和隔离恢复验证位于 `/root/netops-backups/ainews-worker-restart-20261027T060655Z/verification.json`，恢复库 `ainews_worker_restore_20261027060655_test`；恢复后源数量不少于 102。重启结果保存于服务器 `.tmp/worker-restart-result.json`。
+- 工作区待推送内容还包括列表新闻缩略图、首页 MCP 快捷复制、关于页精选卡片位置及对应文档；列表图片代码与线上 API/web 镜像逐文件校验一致，首页/关于页的当前修改尚未部署。它们会随本次用户授权的仓库推送提交，推送不等同部署。
+- 在独立源码快照、既有依赖和 Node 24 下，类型检查、前端构建、2 项列表图片回归及 7 项页面回归通过；重启后确认 `sources.schedule`、`content.translate` 和 `reading.compose` 定时任务已注册。完整数据库及浏览器套件未在本次重跑。
