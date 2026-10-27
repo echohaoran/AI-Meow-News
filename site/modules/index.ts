@@ -4,5 +4,6 @@
 import type { ModuleDeclaration } from "@aihot/contracts/modules";
 import rankings from "@aihot/openrouter-rankings/module";
 import companyMarks from "../../modules/company-marks/module.ts";
+import chineseReading from "../../modules/chinese-reading/module.ts";
 
-export const MODULES: readonly ModuleDeclaration[] = [rankings, companyMarks];
+export const MODULES: readonly ModuleDeclaration[] = [rankings, companyMarks, chineseReading];

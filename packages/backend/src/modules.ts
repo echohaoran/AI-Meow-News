@@ -207,6 +207,8 @@ export interface ServerModule {
     runs?: () => Promise<unknown>;
   };
   models?: Record<string, ModelStep>;
+  /** A site's independently written reading copy. Read-only: never generates on a page request. */
+  itemReading?: (item: { id: string; revision: number }) => Promise<{ html: string | null } | null>;
   /** Cron schedules (the worker). */
   schedules?: Scheduled[];
   /** What is wrong now, for the owner's alerts (operations/alerts.ts), after the engine's problems. */

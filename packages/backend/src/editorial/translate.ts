@@ -20,7 +20,7 @@ import { sha256 } from "../lib/ids.ts";
 import { modelFor } from "./models.ts";
 import { shutdownSignal } from "../jobs/queue.ts";
 import { promptText, promptVersion } from "./prompts.ts";
-import { emit } from "../modules.ts";
+import { emit, serverModules } from "../modules.ts";
 
 export const TRANSLATE_PROMPT_VERSION = promptVersion("translate-body", "translate-post");
 const BATCH_CHARS = 3500;
@@ -340,6 +340,7 @@ export async function translatePending(opts: { limit?: number; budgetMs?: number
     FROM publications p JOIN articles a ON a.id = p.article_id
     LEFT JOIN translations tr ON tr.article_id = p.article_id AND tr.lang = 'zh'
     WHERE (p.channel <> 'x' OR p.selected) AND p.visibility = 'public' AND p.body_mode = 'full'
+      AND (${serverModules().some(m => !!m.itemReading)} = false OR p.channel = 'x')
       AND (p.channel='x' OR a.body_html IS NOT NULL)
       AND (tr.article_id IS NULL OR (tr.origin <> 'source' AND (tr.revision < a.revision OR NOT tr.complete)))
       AND NOT EXISTS (SELECT 1 FROM translation_attempts t WHERE t.article_id = p.article_id AND t.revision = a.revision

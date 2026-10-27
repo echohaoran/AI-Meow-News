@@ -152,3 +152,28 @@ test("an empty hot board keeps the heat rule and offers source news directly", a
     assert.equal(preview.find('a[href="https://example.com/fixture-news"]').length, 1);
   } finally { await web.stop(); }
 });
+
+test("edited Chinese reading shows its sections and pending copy never claims the original is unavailable", async () => {
+  const ready = itemDetail({ id: "edited-reading", title: "中文整理示例", summary: "列表短摘要",
+    outline: [{ id: "sec-1", level: 2, text: "关键事实" }],
+    body: { zh: '<h2 id="sec-1">关键事实</h2><p>根据来源事实独立整理的中文段落。</p>', original: null, zhKind: "edited", complete: true } });
+  const pending = itemDetail({ id: "pending-edited-reading", title: "待整理示例", summary: "列表短摘要",
+    body: { zh: null, original: null, zhKind: "edited", complete: false, pending: true }, outline: [] });
+  const web = await startWebServer(fakeApi(url => [ready,pending].find(item => url.pathname === `/api/site/items/${item.id}`)));
+  try {
+    for (const item of [ready,pending]) {
+      const response = await fetch(`${web.origin}/items/${item.id}`);
+      assert.equal(response.status,200);
+      const $ = cheerio.load(await response.text()), article=$("article");
+      assert.ok(article.children("a").first().text().includes("打开原文"));
+      assert.ok(!article.text().includes("AI 导读"));
+      assert.ok(!article.text().includes("列表短摘要"));
+      assert.ok(!article.text().includes("正文暂不可用"));
+      if (item.id === ready.id) {
+        assert.ok(article.text().includes("中文整理稿 · AI 辅助"));
+        assert.ok(article.text().includes("独立整理的中文段落"));
+        assert.equal($('nav[aria-label="本文目录"] a[href="#sec-1"]').length,1);
+      } else assert.ok(article.text().includes("中文整理稿正在后台生成"));
+    }
+  } finally { await web.stop(); }
+});

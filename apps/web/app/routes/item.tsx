@@ -307,12 +307,13 @@ function ItemView({ item }: { item: SiteItemDetail }) {
 
   const bodyHtml = item.body?.zh && (item.body.zhKind === "original" || item.body.complete) ? item.body.zh : null;
   const pendingTranslation = !!item.body && !bodyHtml;
-  const bodyLabel = item.body?.zhKind === "translation" ? "中文正文 · AI 翻译" : "正文";
+  const pendingReading = pendingTranslation || item.body?.pending;
+  const bodyLabel = item.body?.zhKind === "edited" ? "中文整理稿 · AI 辅助" : item.body?.zhKind === "translation" ? "中文正文 · AI 翻译" : "正文";
   useEffect(() => {
-    if (!pendingTranslation) return;
+    if (!pendingReading) return;
     const timer = setInterval(() => revalidator.revalidate(), 10_000);
     return () => clearInterval(timer);
-  }, [pendingTranslation, revalidator]);
+  }, [pendingReading, revalidator]);
   const isX = item.channel === "x" && !!item.x;
   // Without a reliable date from the original, the time shown is when it was collected, labelled as such.
   const shownAt = item.publishedAt ?? item.discoveredAt;
@@ -509,7 +510,7 @@ function ItemView({ item }: { item: SiteItemDetail }) {
           )}
 
           {summaryOnly && <p className="mt-7 rounded-control bg-bg-sunk px-4 py-3 text-[13.5px] leading-relaxed text-ink-3">应来源方要求，这里只提供摘要与原文入口。完整内容请阅读原文。</p>}
-          {!bodyHtml && !summaryOnly && !isX && <p className="mt-7 text-[14px] leading-relaxed text-ink-3">{pendingTranslation ? "中文正文正在后台翻译，完成后将自动显示。也可以点击“打开原文”阅读。" : "正文暂不可用，请点击“打开原文”阅读全文。"}</p>}
+          {!bodyHtml && !summaryOnly && !isX && <p className="mt-7 text-[14px] leading-relaxed text-ink-3">{item.body?.zhKind === "edited" ? "中文整理稿正在后台生成，完成后将自动显示。也可以先打开原文阅读。" : pendingTranslation ? "中文正文正在后台翻译，完成后将自动显示。也可以点击“打开原文”阅读。" : "尚未取得可用正文，请先打开原文阅读。"}</p>}
 
           {item.body && bodyHtml && (
             <section className="mt-9 border-t border-line pt-4 xl:mt-10">

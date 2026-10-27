@@ -12,8 +12,10 @@ import { evidenceCondition, listedCondition } from "./scope.ts";
 import { itemUrl, siteUrl } from "./links.ts";
 import { hasItemPage, publicSourceName } from "./rules.ts";
 import { topicLinks, topicMembership } from "./topics.ts";
+import { serverModules } from "../modules.ts";
 
 interface DetailRow extends ItemRow {
+  revision: number;
   body_html: string | null;
   body_text: string | null;
   body_status: string;
@@ -59,7 +61,7 @@ function withOutline(html: string): { html: string; outline: OutlineEntry[] } {
 
 async function loadRow(id: string): Promise<DetailRow | null> {
   const [row] = await sql<DetailRow[]>`
-    SELECT ${ITEM_COLUMNS}, a.body_html, a.body_text, a.body_status, tr.body_html AS tr_html, tr.complete AS tr_complete, tr.title AS tr_title,
+    SELECT ${ITEM_COLUMNS}, a.revision, a.body_html, a.body_text, a.body_status, tr.body_html AS tr_html, tr.complete AS tr_complete, tr.title AS tr_title,
       ${topicMembership()} AS topics
     ${ITEM_FROM}
     WHERE p.article_id = ${id}`;
@@ -150,6 +152,15 @@ export async function loadItemDetail(id: string, language: "zh" | "original" = "
     const zh = chinese ? { html: row.body_html, kind: "original" as const } : row.tr_html ? { html: row.tr_html, kind: "translation" as const } : null;
     reading = readingBody(language, zh, chinese ? null : row.body_html, chinese ? true : row.tr_complete ?? false, (html) => withOutline(proxyBodyImages(html)));
   }
+  if (language === "zh" && row.channel !== "x" && row.visibility === "public") {
+    const edited = await moduleReading(row);
+    if (edited?.html) {
+      const sent = withOutline(edited.html);
+      reading = { body: { zh: sent.html, original: null, zhKind: "edited", complete: true }, outline: sent.outline, hasTranslation: false, bodyLanguage: "zh" };
+    } else if (edited) {
+      reading.body = reading.body ? { ...reading.body, pending: true } : { zh: null, original: null, zhKind: "edited", complete: false, pending: true };
+    }
+  }
 
   let group: SiteItemDetail["group"] = null;
   if (row.fact_id) {
@@ -188,6 +199,14 @@ export async function loadItemDetail(id: string, language: "zh" | "original" = "
   return { kind: "found", item, row };
 }
 
+async function moduleReading(row: DetailRow) {
+  for (const module of serverModules()) {
+    const reading = await module.itemReading?.({ id: row.id, revision: row.revision });
+    if (reading) return reading;
+  }
+  return null;
+}
+
 /**
  * Same predicate for the export button and the export route: a public page with something to export
  * (a summary, the post where pages show it, or a full-text body).
@@ -223,10 +242,14 @@ export async function exportMarkdown(id: string): Promise<{ filename: string; bo
     const q = post?.quoted;
     if (q?.text) lines.push(`## 引用 @${q.handle ?? ""}`, "", ...String(q.text).split("\n").map((l) => `> ${l}`), "", ...(q.url ? [q.url, ""] : []));
     if (q?.text && q.translation) lines.push("### 引用中文译文", "", ...q.translation.split("\n").map((l) => `> ${l}`), "");
-  } else if (row.body_mode === "full" && row.body_html) {
-    const translation = exportTranslation(row);
-    if (translation) lines.push("## 正文 · 中文译文", "", bodyToMarkdown(translation, row.url), "");
-    lines.push(isChineseBody(row) ? "## 正文" : "## 正文 · 原文", "", bodyToMarkdown(row.body_html, row.url), "");
+  } else {
+    const edited = await moduleReading(row);
+    if (edited?.html) lines.push("## 中文整理稿 · AI 辅助", "", bodyToMarkdown(edited.html, row.url), "");
+    else if (row.body_mode === "full" && row.body_html) {
+      const translation = exportTranslation(row);
+      if (translation) lines.push("## 正文 · 中文译文", "", bodyToMarkdown(translation, row.url), "");
+      lines.push(isChineseBody(row) ? "## 正文" : "## 正文 · 原文", "", bodyToMarkdown(row.body_html, row.url), "");
+    }
   }
   return { filename: `${SITE.mcpPrefix}-${row.id}.md`, body: lines.join("\n").replace(/\n{3,}/g, "\n\n") };
 }

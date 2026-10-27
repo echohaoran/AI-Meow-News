@@ -2,5 +2,6 @@
 import type { ServerModule } from "@aihot/backend/modules";
 import rankings from "@aihot/openrouter-rankings/server";
 import companyMarks from "../../modules/company-marks/server.ts";
+import chineseReading from "../../modules/chinese-reading/server.ts";
 
-export const SERVER_MODULES: readonly ServerModule[] = [rankings, companyMarks];
+export const SERVER_MODULES: readonly ServerModule[] = [rankings, companyMarks, chineseReading];
