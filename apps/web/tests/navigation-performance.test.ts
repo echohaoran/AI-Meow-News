@@ -55,9 +55,7 @@ const api=fakeApi((url,res,req)=>{
     return {filters:{channel:'all',category:null,tag:null,q:null,tab:'time'},items:[{...item,title:'全部第 '+page+' 页'}],page,pageCount:3,total:3,todayCount:1,freshness:at};
   }
   if(p==='/api/site/items/navigation-fixture')return detail;
-  if(p==='/api/site/items/navigation-fixture/original')return {...detail,body:{zh:null,original:'<p>Original fixture</p>',zhKind:null,complete:true},bodyLanguage:'original'};
   if(p==='/api/site/items/reader-fixture')return {...detail,id:'reader-fixture',title:'阅读增强检查',body:{...detail.body,zh:readerBody}};
-  if(p==='/api/site/items/reader-fixture/original')return {...detail,id:'reader-fixture',title:'阅读增强检查',body:{...detail.body,zh:null,original:'<p>Original reader text</p>'},bodyLanguage:'original'};
   if(p.startsWith('/api/site/items/long-'))return {...detail,id:p.split('/').at(-1),title:'长列表详情'};
   const kind=p.match(/^\/api\/site\/reports\/(daily|weekly|monthly)\/latest-page$/)?.[1] as 'daily'|'weekly'|'monthly'|undefined;
   if(kind){const r=report(kind);return {report:r,index:[{key:r.key,issueNumber:1,title:r.title,count:0}]};}
@@ -270,9 +268,7 @@ test('reader enhancements wait for visible code and update only the picture that
     const tiny=page.locator('.prose img[alt="小图标"]');await tiny.scrollIntoViewIfNeeded();
     await expect(tiny).not.toHaveAttribute('role','button');
     await expect(page.locator('.prose a img')).not.toHaveAttribute('role','button');
-    await page.getByRole('navigation',{name:'正文语言'}).getByRole('link',{name:'原文',exact:true}).click();
-    await expect(page.getByText('Original reader text',{exact:true})).toBeVisible();
-    assert.equal(await page.locator('.code-block-copy').count(),0);
+    await expect(page.getByRole('navigation',{name:'正文语言'})).toHaveCount(0);
   }finally{await context.close();}
 });
 

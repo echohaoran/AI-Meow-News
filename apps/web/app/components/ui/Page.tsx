@@ -25,13 +25,13 @@ export function ReadingLayout({ children, aside }: { children: ReactNode; aside?
  * 16:9 screen with the column in the middle; from lg only the right rail shows, beside the centred
  * column; phones read one column.
  */
-export function ArticleLayout({ children, left, right }: { children: ReactNode; left?: ReactNode; right?: ReactNode }) {
+export function ArticleLayout({ children, left, right, leftPrimary = false }: { children: ReactNode; left?: ReactNode; right?: ReactNode; leftPrimary?: boolean }) {
   const [leftRail, leftOverscroll] = useContainedScroll<HTMLDivElement>();
   const [rightRail, rightOverscroll] = useContainedScroll<HTMLDivElement>();
   return (
-    <div className="mx-auto grid max-w-[var(--page-max-reading)] grid-cols-[minmax(0,1fr)] lg:grid-cols-[minmax(0,1fr)_240px] lg:gap-x-12 2xl:grid-cols-[minmax(200px,1fr)_minmax(0,760px)_minmax(200px,1fr)] 2xl:gap-x-12">
-      <aside className="hidden 2xl:block">
-        <div ref={leftRail} className={`scrollbar-thin sticky top-6 flex max-h-[calc(100vh-3rem)] max-w-[260px] flex-col space-y-8 overflow-y-auto ${leftOverscroll}`}>{left}</div>
+    <div className={`mx-auto grid max-w-[var(--page-max-reading)] grid-cols-[minmax(0,1fr)] ${leftPrimary ? "lg:grid-cols-[140px_minmax(0,1fr)_200px] lg:gap-x-6 xl:grid-cols-[160px_minmax(0,1fr)_220px]" : "lg:grid-cols-[minmax(0,1fr)_240px] lg:gap-x-12"} 2xl:grid-cols-[minmax(200px,1fr)_minmax(0,760px)_minmax(200px,1fr)] 2xl:gap-x-12`}>
+      <aside className={leftPrimary ? "hidden lg:block" : "hidden 2xl:block"}>
+        <div ref={leftRail} className={`scrollbar-thin sticky ${leftPrimary ? "top-[50vh] mx-auto w-full -translate-y-1/2" : "top-6"} flex max-h-[calc(100vh-3rem)] max-w-[260px] flex-col space-y-8 overflow-y-auto ${leftOverscroll}`}>{left}</div>
       </aside>
       <div className="min-w-0">
         <div className="mx-auto max-w-[760px]">{children}</div>

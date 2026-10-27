@@ -11,14 +11,15 @@ const sourceItem = {
 };
 const sourceFeed = { mode: "source", verificationStatus: "unverified", items: [sourceItem], page: 1, limit: 5, hasMore: false };
 
-test("article reading keeps its short guide and original link, with outlines only for translated bodies", async () => {
-  const outline = [{ id: "sec-1", level: 2, text: "译文小节" }];
-  const translated = itemDetail({ id: "translated-reading", title: "译文阅读", summary: "原始短导读", outline,
-    body: { zh: '<h2 id="sec-1">译文小节</h2><p>英文原文的中文译文。</p>', original: null, zhKind: "translation", complete: true } });
-  const chinese = itemDetail({ id: "chinese-reading", title: "中文阅读", summary: "中文短导读", outline,
-    body: { zh: '<h2 id="sec-1">原文小节</h2><p>不重复显示的中文原文。</p>', original: null, zhKind: "original", complete: true }, hasTranslation: false });
-  const pending = itemDetail({ id: "pending-reading", title: "待译文章", summary: "待译短导读", outline,
-    body: { zh: null, original: '<h2 id="sec-1">Untranslated section</h2><p>Pending English body.</p>', zhKind: null, complete: false }, hasTranslation: false, bodyLanguage: "original" });
+test("Chinese reading retains both sidebars and never substitutes an untranslated body or AI guide", async () => {
+  const outline = [{ id: "sec-1", level: 2, text: "正文小节" }];
+  const translated = itemDetail({ id: "translated-reading", title: "中文阅读", summary: "不显示的短导读", outline,
+    topics: [{ slug: "ai-models", name: "模型主题" }], tags: ["模型发布"],
+    body: { zh: '<h2 id="sec-1">正文小节</h2><p>完整的中文译文。</p>', original: null, zhKind: "translation", complete: true } });
+  const chinese = itemDetail({ id: "chinese-reading", title: "中文原文", summary: "中文短导读", outline,
+    body: { zh: '<h2 id="sec-1">正文小节</h2><p>完整的中文原文。</p>', original: null, zhKind: "original", complete: true }, hasTranslation: false });
+  const pending = itemDetail({ id: "pending-reading", title: "翻译中", summary: "不显示的摘要", outline,
+    body: { zh: null, original: '<p>Untranslated English body.</p>', zhKind: null, complete: false }, bodyLanguage: "original" });
   const items = [translated, chinese, pending];
   const web = await startWebServer(fakeApi(url => items.find(item => url.pathname === `/api/site/items/${item.id}`)));
   try {
@@ -28,19 +29,25 @@ test("article reading keeps its short guide and original link, with outlines onl
       const $ = cheerio.load(await response.text());
       const article = $("article");
       assert.equal(article.children("a").first().attr("href"), item.links.original);
-      assert.ok(article.text().includes(item.summary!));
-      assert.ok(article.text().includes("AI 导读"));
-      if (item.id === translated.id) {
-        assert.ok(article.text().includes("英文原文的中文译文。"));
+      assert.ok(article.children("a").first().text().includes("打开原文"));
+      assert.ok(!article.text().includes(item.summary!));
+      assert.ok(!article.text().includes("AI 导读"));
+      assert.ok(!article.text().includes("Untranslated English body."));
+      if (item.id !== pending.id) {
+        assert.ok(article.text().includes(item.id === translated.id ? "完整的中文译文。" : "完整的中文原文。"));
         const directory = $('nav[aria-label="本文目录"]');
         assert.equal(directory.length, 1);
         assert.equal(directory.closest("aside").length, 1);
         assert.equal(directory.find('a[href="#sec-1"]').length, 1);
         assert.equal(article.find("#sec-1").length, 1);
+        if (item.id === translated.id) {
+          const right = directory.closest("aside").parent().children("aside").last();
+          for (const text of ["推荐理由", "AI 评分", "模型主题", "模型发布"]) assert.ok(right.text().includes(text));
+          assert.equal(right.find('button[aria-label="收藏"]').length, 1);
+        }
       } else {
         assert.equal($('nav[aria-label="本文目录"]').length, 0);
-        assert.ok(!article.text().includes("不重复显示的中文原文。"));
-        assert.ok(!article.text().includes("Pending English body."));
+        assert.ok(article.text().includes("中文正文正在后台翻译"));
       }
     }
   } finally { await web.stop(); }

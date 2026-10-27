@@ -3,7 +3,7 @@ import type { OutlineEntry, SiteItemDetail, StoryRef } from "@aihot/contracts/si
 import { ITEM_COPY, SITE } from "@aihot/site";
 import { bodyToMarkdown } from "../content/markdown.ts";
 import { sql } from "../db.ts";
-import { stripTagMarkup } from "../lib/text.ts";
+import { isChineseText, stripTagMarkup } from "../lib/text.ts";
 import { proxyBodyImages } from "../media/imgproxy.ts";
 import { textToHtml } from "../content/sanitize.ts";
 import { exportTranslation, isChineseBody, ITEM_COLUMNS, ITEM_FROM, seatHolders, showsPost, toItemSummary, xView, type ItemRow } from "./items.ts";
@@ -18,6 +18,7 @@ interface DetailRow extends ItemRow {
   body_status: string;
   tr_html: string | null;
   tr_complete: boolean | null;
+  tr_title: string | null;
   topics: string[];
 }
 
@@ -29,19 +30,28 @@ export type DetailResult =
 function withOutline(html: string): { html: string; outline: OutlineEntry[] } {
   const outline: OutlineEntry[] = [];
   let n = 0;
-  const out = html.replace(/<h([2-4])(?: id="sec-\d+")?>([\s\S]*?)<\/h\1>/gi, (_m, level: string, inner: string) => {
+  let out = html.replace(/<h([2-4])(?: id="sec-\d+")?>([\s\S]*?)<\/h\1>/gi, (_m, level: string, inner: string) => {
     n += 1;
     const id = `sec-${n}`;
     const text = stripTagMarkup(inner, "").trim();
     if (text) outline.push({ id, text: text.slice(0, 80), level: Number(level) });
     return `<h${level} id="${id}">${inner}</h${level}>`;
   });
+  if (!outline.length && stripTagMarkup(html, "").trim()) {
+    outline.push({ id: "sec-1", text: "正文", level: 2 });
+    out = out.replace(/<pre([^>]*)>/gi, (_m, attributes: string) => {
+      const id = `sec-${outline.length + 1}`;
+      outline.push({ id, text: `代码示例 ${outline.length}`, level: 3 });
+      return `<pre${attributes.replace(/\s+id="[^"]*"/gi, "")} id="${id}">`;
+    });
+    out = `<div id="sec-1">${out}</div>`;
+  }
   return { html: out, outline };
 }
 
 async function loadRow(id: string): Promise<DetailRow | null> {
   const [row] = await sql<DetailRow[]>`
-    SELECT ${ITEM_COLUMNS}, a.body_html, a.body_text, a.body_status, tr.body_html AS tr_html, tr.complete AS tr_complete,
+    SELECT ${ITEM_COLUMNS}, a.body_html, a.body_text, a.body_status, tr.body_html AS tr_html, tr.complete AS tr_complete, tr.title AS tr_title,
       ${topicMembership()} AS topics
     ${ITEM_FROM}
     WHERE p.article_id = ${id}`;
@@ -81,6 +91,7 @@ export async function loadItemDetail(id: string, language: "zh" | "original" = "
   if (!row || !hasItemPage({ visibility: row.visibility, sourceMode: row.source_mode })) return { kind: "not_found" };
 
   const summary = toItemSummary(row);
+  if (row.tr_complete && row.tr_title && !isChineseText(row.title)) summary.title = row.tr_title;
   if (row.visibility === "summary-only") {
     const item: SiteItemDetail = {
       ...summary,

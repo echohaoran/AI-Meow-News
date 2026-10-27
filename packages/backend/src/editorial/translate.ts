@@ -1,5 +1,5 @@
 // Full-text Chinese translations: made by the worker after an item
-// is selected, for sources whose full text may be shown on the site; a page read never translates.
+// is public, for sources whose full text may be shown on the site; a page read never translates.
 // Bodies are translated block by block (paragraphs, headings, list items, captions, table cells) so the
 // sanitised structure stays as it is. Inside a block, images and inline code never reach the model
 // (placeholders) and links keep only their text and an id; a block whose answer loses or repeats any of
@@ -24,8 +24,6 @@ import { emit } from "../modules.ts";
 
 export const TRANSLATE_PROMPT_VERSION = promptVersion("translate-body", "translate-post");
 const BATCH_CHARS = 3500;
-/** Longer bodies get their first part translated and are marked incomplete. */
-const MAX_CHARS = 60_000;
 /** X posts shorter than this carry their meaning in the Chinese title and summary. */
 const X_MIN_CHARS = 60;
 
@@ -183,7 +181,7 @@ export async function translateArticle(articleId: string): Promise<TranslateResu
     for (const id of new Set(receiptIds)) await rejectReceivedResponse(id, `unusable translation: ${reason}`);
     return result({ status: "failed", reason });
   };
-  if (!row.selected || row.visibility !== "public" || row.body_mode !== "full") return result({ status: "skipped", reason: "not a selected full-text item" });
+  if (row.visibility !== "public" || row.body_mode !== "full" || (row.channel === "x" && !row.selected)) return result({ status: "skipped", reason: "not a public full-text item" });
 
   if (row.channel === "x") {
     const text = String(row.x_post?.text ?? row.body_text ?? "").trim();
@@ -202,22 +200,16 @@ export async function translateArticle(articleId: string): Promise<TranslateResu
   const $ = cheerio.load(row.body_html, null, false);
   const blocks = segmentsOf($);
   if (!blocks.length) return result({ status: "skipped", reason: "no translatable text" });
-  // Beyond the cap, only the leading blocks are translated; the rest keep the original text.
-  let budget = MAX_CHARS;
-  const chosen: Element[] = [];
-  for (const el of blocks) {
-    const html = $(el).html() ?? "";
-    if (html.length > budget) break;
-    budget -= html.length;
-    chosen.push(el);
-  }
-  // No model request was made when even the first block exceeds the text cap.
-  if (!chosen.length) return result({ status: "skipped", reason: "no batch translated" });
+  const chosen = blocks;
   const shielded = chosen.map((el) => shield($(el).html() ?? ""));
   const restore = (answers: Array<string | null>) => answers.map((t, i) => (t === null ? null : unshield(t, shielded[i]!)));
-  const first = await translateAll(articleId, row.revision, shielded.map((b) => b.html), SYSTEM_BODY);
+  const titleNeedsTranslation = !isChineseText(row.title);
+  const parts = shielded.map((b) => b.html);
+  if (titleNeedsTranslation) parts.unshift(textToHtml(row.title));
+  const first = await translateAll(articleId, row.revision, parts, SYSTEM_BODY);
   const receiptIds = [...first.receiptIds];
-  const translations = restore(first.translations);
+  const title = titleNeedsTranslation && first.translations[0] ? cheerio.load(first.translations[0], null, false).root().text().trim() : row.title;
+  const translations = restore(first.translations.slice(titleNeedsTranslation ? 1 : 0));
   // Blocks whose answer dropped a link or an image are asked once more, on their own receipt.
   const missing = translations.flatMap((t, i) => (t === null ? [i] : []));
   if (missing.length) {
@@ -234,9 +226,9 @@ export async function translateArticle(articleId: string): Promise<TranslateResu
     }
   });
   if (!done) return unusable(receiptIds, "no batch translated");
-  const complete = done === blocks.length;
+  const complete = done === blocks.length && (!titleNeedsTranslation || !!first.translations[0]);
   const html = sanitizeBody($.html());
-  await store(articleId, row.revision, row.title, html, cheerio.load(html, null, false).root().text().trim(), complete, receiptIds, row.body_html);
+  await store(articleId, row.revision, title, html, cheerio.load(html, null, false).root().text().trim(), complete, receiptIds, row.body_html);
   return result({ status: complete ? "translated" : "partial", segments: done });
 }
 
@@ -335,7 +327,7 @@ export async function translateQuotes(opts: { days?: number; limit?: number; bud
 }
 
 /**
- * Every few minutes: selected full-text items discovered or revised in the last three days that lack a
+ * Every few minutes: public full-text articles and selected posts that lack a complete
  * translation of their current revision, then the posts selected X posts quote. Stops after a time
  * budget. A translation of an older revision is not shown (items.ts), so a revised item is translated
  * again whatever its age. Three failed attempts give an item up; only failures of the item itself count.
@@ -347,16 +339,13 @@ export async function translatePending(opts: { limit?: number; budgetMs?: number
       CASE WHEN p.channel='x' THEN coalesce(a.x_post->>'text',a.body_text) ELSE a.body_text END AS text
     FROM publications p JOIN articles a ON a.id = p.article_id
     LEFT JOIN translations tr ON tr.article_id = p.article_id AND tr.lang = 'zh'
-    WHERE p.selected AND p.visibility = 'public' AND p.body_mode = 'full'
+    WHERE (p.channel <> 'x' OR p.selected) AND p.visibility = 'public' AND p.body_mode = 'full'
       AND (p.channel='x' OR a.body_html IS NOT NULL)
-      AND (p.discovered_at > now() - interval '3 days'
-           OR EXISTS (SELECT 1 FROM article_revisions r WHERE r.article_id = a.id AND r.revision = a.revision AND r.revision > 1
-                      AND r.created_at > now() - interval '3 days'))
-      AND (tr.article_id IS NULL OR (tr.origin <> 'source' AND tr.revision < a.revision))
+      AND (tr.article_id IS NULL OR (tr.origin <> 'source' AND (tr.revision < a.revision OR NOT tr.complete)))
       AND NOT EXISTS (SELECT 1 FROM translation_attempts t WHERE t.article_id = p.article_id AND t.revision = a.revision
-                      AND (t.outcome IN ('translated', 'partial') OR t.attempts >= 3
+                      AND (t.outcome = 'translated' OR t.attempts >= 3
                         OR (t.outcome='skipped' AND t.reason NOT IN ('already Chinese','no foreign-language body'))))
-    ORDER BY p.discovered_at DESC`;
+    ORDER BY p.selected DESC, p.discovered_at DESC`;
   // Reconsider language skips with the shared rule. Filter before taking the batch so Chinese
   // originals do not occupy every slot and starve foreign-language bodies behind them.
   const rows = pending.filter(row => !isChineseText(row.text ?? "", row.language)).slice(0, opts.limit ?? 30);

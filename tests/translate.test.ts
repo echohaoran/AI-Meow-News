@@ -24,7 +24,9 @@ const asks = new Map<string, number>();
 // Return a schema-valid response with the wrong segment count for selected inputs.
 const misalignedAnswers = new Map<string, number>();
 const provider = await stub(async (_hit, req) => {
-  const { segments } = JSON.parse(JSON.parse(req.body).messages[1].content) as { segments: string[] };
+  const content = JSON.parse(req.body).messages[1].content as string;
+  // JSON mode may append the gateway's plain-text instruction after the input object.
+  const { segments } = JSON.parse(content.slice(0, content.lastIndexOf("}") + 1)) as { segments: string[] };
   if (hold) {
     asked.open();
     await hold.promise;
@@ -74,6 +76,22 @@ after(async () => {
   await provider.close();
   await stopBoss();
   await closeDb();
+});
+
+test("non-selected public articles receive complete Chinese bodies too", async () => {
+  pointModels(provider.url);
+  process.env.TRANSLATE_MODEL = "deepseek-flash";
+  const { articleId } = await upsertMaterial({ sourceId: SOURCE, url: `${URL_}-ordinary-reader`, title: '普通文章', language: 'en',
+    bodyText: `Original article body ${T}.`, bodyHtml: `<p>Original article body ${T}.</p>`, bodyStatus: 'ok', via: 'fetch', publishedAt: new Date() });
+  await sql`INSERT INTO analyses(article_id,input_revision,origin,relevance,title_zh,summary_zh,score,selected)
+    VALUES (${articleId},1,'rule','pass','普通文章','卡片摘要',40,false)`;
+  await publishArticle(articleId);
+  assert.equal((await sql`SELECT selected FROM publications WHERE article_id=${articleId}`)[0]!.selected, false);
+  const result = await translateArticle(articleId);
+  assert.equal(result.status, "translated");
+  const item = await detail(articleId);
+  assert.ok(item.body.complete);
+  assert.match(item.body.zh ?? "", /译文/);
 });
 
 test("Japanese bodies with kanji are translated with or without a language hint", async () => {

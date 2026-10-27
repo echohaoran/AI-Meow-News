@@ -454,6 +454,7 @@
 .prose > * + * { margin-top: 1.2em; }
 .prose p { margin: 0; }
 .prose p + p { margin-top: 1.2em; }
+.prose [id^="sec-"] { scroll-margin-top: 88px; }
 .prose h2, .prose h3, .prose h4, .prose h5 {
   color: var(--ink);
   font-weight: 650;

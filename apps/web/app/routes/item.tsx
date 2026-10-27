@@ -11,7 +11,6 @@ import { markRead } from "../lib/local-state";
 import { copyText } from "../lib/clipboard";
 import { SameEventBadge, SelectedBadge } from "../components/ui/Badge";
 import { ScoreLabel, shownScore } from "../components/ui/Score";
-import { PillTabs } from "../components/ui/Tabs";
 import { ArticleLayout, RailSection, useContainedScroll } from "../components/ui/Page";
 import { Menu, MenuItem } from "../components/ui/Menu";
 import { StarButton } from "../features/feed/parts";
@@ -35,13 +34,13 @@ const PosterSheet = lazy(() => import("../features/item/PosterSheet"));
 
 export async function loader({ params, request }: Route.LoaderArgs) {
   const item = await loadOr404<SiteItemDetail>(`/api/site/items/${encodeURIComponent(params.id)}`, { signal: request.signal });
-  return cachedPage(600, { item });
+  return cachedPage(item.body && !item.body.complete ? 10 : 600, { item });
 }
 
 type Preview = { item: null; preview: FeedItemSummary; detail: Promise<{ item: SiteItemDetail }> };
 
 /**
- * Phones: an article tapped in a list opens at once with what the card showed (title, summary, reason),
+ * Phones: an article tapped in a list opens at once with its title and reason,
  * while its full text loads. Opened any other way, or on desktop, the page waits for its data as usual.
  */
 const reuse = pageReuse<typeof loader>();
@@ -223,12 +222,6 @@ function ItemPreview({ preview }: { preview: FeedItemSummary }) {
           )}
         </div>
         {!isX && <h1 data-page-title="" className="text-[26px] font-bold leading-[1.38] tracking-[-0.01em] text-ink">{preview.title}</h1>}
-        {preview.summary && (
-          <section className={isX ? "mt-4" : "mt-7"}>
-            <div className="mb-2 text-[12px] font-semibold text-accent">{isX && preview.summary.replace(/\s+/g, " ").trim() === preview.title ? "原文" : "AI 导读"}</div>
-            <p className="text-[18px] leading-[1.7] text-ink">{preview.summary}</p>
-          </section>
-        )}
         {preview.reason && (
           <section className="mt-6 border-t border-line pt-4">
             <div className="mb-1 text-[12px] font-semibold text-ink-3">{ITEM_COPY.reasonLabel}</div>
@@ -276,7 +269,7 @@ function ItemGone() {
 
 function ItemView({ item }: { item: SiteItemDetail }) {
   const navigate = useNavigate();
-  const hasTranslation = item.hasTranslation;
+  const revalidator = useRevalidator();
   const lang = item.bodyLanguage;
   const [posterRequested, setPosterRequested] = useState(false);
   const [posterOpen, setPosterOpen] = useState(false);
@@ -312,10 +305,14 @@ function ItemView({ item }: { item: SiteItemDetail }) {
     }
   };
 
-  // News articles show the Chinese translation; Chinese originals need no duplicate body.
-  const bodyHtml = item.channel !== "x" && item.body?.zhKind !== "translation" ? null
-    : lang === "zh" ? (item.body?.zh ?? item.body?.original) : (item.body?.original ?? item.body?.zh);
-  const bodyLabel = !item.body ? null : lang === "zh" && item.body.zhKind === "translation" ? "正文 · AI 翻译" : lang === "original" ? "正文 · 原文" : "正文";
+  const bodyHtml = item.body?.zh && (item.body.zhKind === "original" || item.body.complete) ? item.body.zh : null;
+  const pendingTranslation = !!item.body && !bodyHtml;
+  const bodyLabel = item.body?.zhKind === "translation" ? "中文正文 · AI 翻译" : "正文";
+  useEffect(() => {
+    if (!pendingTranslation) return;
+    const timer = setInterval(() => revalidator.revalidate(), 10_000);
+    return () => clearInterval(timer);
+  }, [pendingTranslation, revalidator]);
   const isX = item.channel === "x" && !!item.x;
   // Without a reliable date from the original, the time shown is when it was collected, labelled as such.
   const shownAt = item.publishedAt ?? item.discoveredAt;
@@ -379,7 +376,7 @@ function ItemView({ item }: { item: SiteItemDetail }) {
     </div>
   );
 
-  // Source facts stay on the left on wide screens; the outline heads the notes on the right.
+  // The outline and source facts stay left of the original; editor's notes use the wide-screen right rail.
   const facts = (
     <RailSection title="来源">
       <div className="text-[14px] font-semibold leading-snug text-ink">{isX ? item.x!.authorName : item.source.name}</div>
@@ -448,26 +445,24 @@ function ItemView({ item }: { item: SiteItemDetail }) {
 
       {/* The text on the page in one column; back and the facts in the left rail, actions and notes in the right. */}
       <ArticleLayout
+        leftPrimary
         left={
           <>
             {backButton}
+            {outline}
             {facts}
           </>
         }
         right={
           <>
             {actions}
-            {outline}
             {notes}
           </>
         }
       >
-        {/* Between lg and 2xl the left rail is hidden: 返回 stays at the top while reading, as on the original site. */}
-        <div className="sticky top-0 z-20 -mx-2 hidden bg-bg/95 px-2 py-1.5 backdrop-blur lg:block 2xl:hidden">{backButton}</div>
         <article className="pb-6 pt-3 lg:pt-2 2xl:pt-1">
-          <a href={item.links.original} target="_blank" rel="noopener noreferrer" className="mb-4 flex items-start gap-1.5 break-all text-[13px] leading-relaxed text-accent hover:underline">
-            <IconExternal size={14} className="mt-0.5 shrink-0" />
-            <span>原文：{item.links.original}</span>
+          <a href={item.links.original} target="_blank" rel="noopener noreferrer" className="mb-4 inline-flex items-center gap-2 rounded-full border border-line-strong bg-surface px-4 py-2 text-[13px] font-medium text-accent transition-colors hover:border-accent">
+            {originalLabel} <IconExternal size={14} />
           </a>
           <div className={`flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[13px] text-ink-3 2xl:hidden ${isX ? "" : "mb-3"}`}>
             <span className="font-semibold text-ink-2">{isX ? item.x!.authorName : item.source.name}</span>
@@ -489,14 +484,6 @@ function ItemView({ item }: { item: SiteItemDetail }) {
             )}
           </div>
           {!isX && <h1 data-page-title="" className="text-[26px] font-bold leading-[1.38] tracking-[-0.01em] text-ink lg:text-[32px] lg:leading-[1.34] xl:text-[36px] xl:leading-[1.3]">{item.title}</h1>}
-          {!isX && item.originalTitle && <p className="mt-2.5 text-[14px] leading-relaxed text-ink-4">{item.originalTitle}</p>}
-
-          {item.summary && (!isX || item.summary.replace(/\s+/g, " ").trim() !== item.title) && (
-            <section className={isX ? "mt-4" : "mt-7 xl:mt-8"}>
-              <div className="mb-2 text-[12px] font-semibold text-accent">{summaryOnly ? "摘要" : "AI 导读"}</div>
-              <p className="text-[18px] leading-[1.7] text-ink xl:text-[20px] xl:leading-[1.7]">{item.summary}</p>
-            </section>
-          )}
 
           {item.reason && !summaryOnly && (
             <section className="mt-6 border-t border-line pt-4 lg:hidden">
@@ -522,27 +509,13 @@ function ItemView({ item }: { item: SiteItemDetail }) {
           )}
 
           {summaryOnly && <p className="mt-7 rounded-control bg-bg-sunk px-4 py-3 text-[13.5px] leading-relaxed text-ink-3">应来源方要求，这里只提供摘要与原文入口。完整内容请阅读原文。</p>}
+          {!bodyHtml && !summaryOnly && !isX && <p className="mt-7 text-[14px] leading-relaxed text-ink-3">{pendingTranslation ? "中文正文正在后台翻译，完成后将自动显示。也可以点击“打开原文”阅读。" : "正文暂不可用，请点击“打开原文”阅读全文。"}</p>}
 
           {item.body && bodyHtml && (
             <section className="mt-9 border-t border-line pt-4 xl:mt-10">
               <div className="mb-6 flex items-center justify-between gap-3">
                 <span className="text-[12px] text-ink-4">{bodyLabel}</span>
-                {hasTranslation && (
-                  <PillTabs
-                    size="xs"
-                    layoutId="item-body-lang"
-                    label="正文语言"
-                    active={lang}
-                    items={[
-                      { key: "zh", label: "中文", prefetchOnPress: true, replace: true, to: `/items/${item.id}` },
-                      { key: "original", label: "原文", prefetchOnPress: true, replace: true, to: `/items/${item.id}/original` },
-                    ]}
-                  />
-                )}
               </div>
-              {hasTranslation && lang === "zh" && !item.body.complete && (
-                <p className="mb-5 rounded-control bg-bg-sunk px-3 py-2 text-[13px] text-ink-3">译文尚不完整，完整内容请切换到原文。</p>
-              )}
               <ArticleBody html={bodyHtml} />
             </section>
           )}

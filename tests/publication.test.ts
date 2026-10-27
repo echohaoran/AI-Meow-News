@@ -146,6 +146,18 @@ test("Markdown retains numeric superscripts, subscripts and fenced code while re
   await sql`UPDATE sources SET site_fulltext = true WHERE id = ${SOURCE}`;
 });
 
+test("headingless originals get body and code anchors without changing their content", async () => {
+  const id = await article();
+  await sql`UPDATE articles SET language='en', body_html='<p>First paragraph.</p><pre><code>print("hello")</code></pre><p>Last paragraph.</p>' WHERE id=${id}`;
+  await publishArticle(id, released());
+  const item = JSON.parse((await get(`/api/site/items/${id}/original`)).body);
+  assert.deepEqual(item.outline.map((entry: { text: string }) => entry.text), ["正文", "代码示例 1"]);
+  const $ = cheerio.load(item.body.original);
+  assert.equal($("#sec-1 p").first().text(), "First paragraph.");
+  assert.equal($("#sec-2 code").text(), 'print("hello")');
+  assert.equal($("p").last().text(), "Last paragraph.");
+});
+
 test("site reading sends one language while exports retain both, including after withdrawal", async () => {
   const id = await article();
   await sql`UPDATE articles SET language = 'en', body_html = '<h2>Original heading</h2><p>Original full body</p>' WHERE id = ${id}`;
