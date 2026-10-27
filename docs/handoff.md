@@ -127,3 +127,10 @@
 - 按用户要求将“最近精选”卡片放在动画右下角，背景不透明度 40%；手机压缩卡片尺寸，标题和来源仍可见。线上桌面及 320/375px 预览确认卡片没有遮住中心球体、页面无横向溢出，线上点击可进入文章。
 - 基于线上快照仅替换关于页，发布 API/web 镜像 `ainews-app:about-card-7431e90ac5f5`，源码摘要 `7431e90ac5f5f214f8043c50f7ee3c866c1ca10b02f6a1304ccd613e1a36b398`，worker 容器、镜像和开关未改变。类型检查、前端构建、7 项页面回归与整站 smoke 通过。
 - 生产备份及隔离恢复验证位于服务器 `/root/netops-backups/ainews-about-card-20261027T064433Z/verification.json`，发布回执与日志在 `.tmp/about-card-result.json` 和 `.tmp/about-card-checks-20261027T064433Z/`。完整 `npm test` 因隔离测试数据库密码认证失败未启动；web 全量测试受服务器缺少 Playwright 浏览器影响，未完整通过，相关日志在 `.tmp/about-card-checks-20261027T064105Z/`。另用实际浏览器完成页面验证。
+
+## 2026-10-27：联系方式与咖啡支持
+
+- 按用户要求复用个人博客的微信公众号、小红书、QQ群、CNB、GitHub、Gitee、新闻网、邮箱及微信/支付宝收款码。桌面入口位于侧边栏底部，手机入口位于“我的”；联系方式支持悬停或键盘聚焦查看二维码，咖啡入口点击展开。微信群因二维码到期维护问题按博客既有决定不显示。素材存于 `site/brand/social/`，更换博客二维码时需同步更新本站。
+- 用户确认公网现运行于 `192.168.1.84`（SSH `ct105`），此前 `homelab` 192.168.1.77 的 `source` 容器已停止。基于线上 `07df3f7` 镜像与在 homelab 构建验证的前端产物，发布 API/web 镜像 `ainews-app:social-1c58a32`，运行 release `1c58a32fbeec386cc711139aabb4e34fa5cf7630`；worker 容器、镜像和运行阀门未改变。
+- 类型检查、前端构建、7 项页面回归及整站 smoke 通过；公网浏览器检查桌面悬停、收款码和手机入口，五张二维码均可识别。发布日志及回执在服务器 `.tmp/social-deploy-20261027T121723Z/`、`.tmp/social-deploy-result.json`。数据库与附件备份恢复验证在 `/root/netops-backups/ainews-social-20261027T121723Z/verification.json`，恢复库 `ainews_social_restore_20261027121723_test`。
+- 首次发布因宿主缺少 Node 自动回退，第二次因 MCP 要求公网 Host 而回退；随后使用容器内 Node 和公网地址完成 smoke。完整数据库及 Playwright 测试套件本次未重跑。
