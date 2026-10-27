@@ -25,6 +25,7 @@ function addressOf({ base, tag }: AgentPanelProps, path: string): string {
 }
 
 const MCP_CLIENTS = [
+  { key: "desktop", label: "Claude Desktop" },
   { key: "claude", label: "Claude Code" },
   { key: "codex", label: "Codex" },
   { key: "json", label: "JSON 配置" },
@@ -34,7 +35,7 @@ const MCP_CLIENTS = [
 export function McpPanel(props: AgentPanelProps) {
   const url = addressOf(props, "/api/mcp");
   const name = SITE.mcpPrefix;
-  const [client, setClient] = useState<string>("claude");
+  const [client, setClient] = useState<string>("desktop");
   return (
     <>
       <PanelHead label={`MCP · ${V}`} title={`填一个地址，Agent 多出 ${mcpToolCount()} 个工具`}>
@@ -47,6 +48,7 @@ export function McpPanel(props: AgentPanelProps) {
         </Step>
         <Step n={2} title="加到你的客户端">
           <PillTabs className="mt-3" size="xs" layoutId="agent-mcp-client" label="客户端" active={client} onSelect={setClient} items={MCP_CLIENTS.map((c) => ({ key: c.key, label: c.label }))} />
+          {client === "desktop" && <p className="mt-3">在 Claude Desktop 的“自定义 → 连接器”中选择“添加 → 自定义 → Web”，名称填写 AI-News，地址填写上方网址，认证选择无需登录并完成添加。然后在聊天中启用该连接器；把地址直接发到聊天框不会连接 MCP。</p>}
           {client === "claude" && <CodeBlock className="mb-0 mt-3" lang="bash" code={`claude mcp add --transport http ${name} '${url}'`} />}
           {client === "codex" && <CodeBlock className="mb-0 mt-3" lang="bash" code={`codex mcp add ${name} --url '${url}'`} />}
           {client === "json" && <CodeBlock className="mb-0 mt-3" title="Cursor、Cherry Studio 等用 JSON 配置的客户端" lang="json" code={JSON.stringify({ mcpServers: { [name]: { type: "http", url } } }, null, 2)} />}
