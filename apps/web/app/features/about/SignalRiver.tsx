@@ -152,7 +152,9 @@ function planet(ctx: CanvasRenderingContext2D, g: Galaxy, col: Colors, glow: num
   ctx.fillRect(cx - r * 2.2, cy - r * 2.2, r * 4.4, r * 4.4);
   ctx.save();
   ctx.translate(cx, cy);
-  ctx.rotate(-0.3 + Math.sin(seconds * 0.12) * 0.035);
+  const ringTilt = -0.3 + Math.sin(seconds * 0.12) * 0.035;
+  ctx.save();
+  ctx.rotate(ringTilt);
   // The far half of the planetary rings sits behind the sphere.
   ctx.strokeStyle = rgba(col.accent, col.dark ? 0.45 : 0.3);
   ctx.lineWidth = r * 0.12;
@@ -161,6 +163,7 @@ function planet(ctx: CanvasRenderingContext2D, g: Galaxy, col: Colors, glow: num
   ctx.stroke();
   const particles = g.w < 560 ? 12 : 18;
   orbitParticles(ctx, r, col.dark, seconds, false, particles);
+  ctx.restore();
   ctx.save();
   ctx.beginPath();
   ctx.arc(0, 0, r, 0, TAU);
@@ -179,16 +182,30 @@ function planet(ctx: CanvasRenderingContext2D, g: Galaxy, col: Colors, glow: num
     ctx.ellipse(-r * 0.12, i * r * 0.3, r * 1.1, r * 0.28, 0, 0.1, Math.PI - 0.1);
     ctx.stroke();
   }
-  // Surface markings move across the lit hemisphere; the light itself stays fixed.
-  const rotation = seconds * 0.18;
-  for (let i = 0; i < 9; i++) {
-    const longitude = rotation + i * TAU / 9, depth = Math.cos(longitude);
+  // Project rotating longitudes around the screen's vertical axis; lighting and silhouette stay fixed.
+  const rotation = seconds * TAU / 16;
+  for (let i = 0; i < 12; i++) {
+    const longitude = rotation + i * TAU / 12, depth = Math.cos(longitude);
     if (depth <= 0) continue;
-    const latitude = Math.sin(i * 2.4) * 0.72;
+    ctx.beginPath();
+    for (let j = 0; j <= 28; j++) {
+      const latitude = -1.3 + j / 28 * 2.6;
+      const x = Math.sin(longitude + Math.sin(latitude * 3 + i) * 0.08) * Math.cos(latitude) * r;
+      const y = Math.sin(latitude) * r;
+      if (j === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.lineWidth = r * 0.045;
+    ctx.strokeStyle = rgba(col.ink, depth * 0.1);
+    ctx.stroke();
+  }
+  for (let i = 0; i < 24; i++) {
+    const longitude = rotation + i * 2.39996, depth = Math.cos(longitude);
+    if (depth <= 0) continue;
+    const latitude = Math.sin(i * 2.4) * 1.05;
     const x = Math.sin(longitude) * Math.cos(latitude) * r, y = Math.sin(latitude) * r;
     ctx.beginPath();
-    ctx.ellipse(x, y, r * (0.12 + i % 3 * 0.025) * depth, r * 0.035, -0.12, 0, TAU);
-    ctx.fillStyle = i % 2 ? `rgba(255,255,255,${depth * 0.17})` : rgba(col.ink, depth * 0.12);
+    ctx.ellipse(x, y, r * (0.14 + i % 3 * 0.035) * depth, r * (0.025 + i % 2 * 0.015), 0, 0, TAU);
+    ctx.fillStyle = i % 2 ? `rgba(255,255,255,${depth * 0.3})` : rgba(col.ink, depth * 0.22);
     ctx.fill();
   }
   ctx.restore();
@@ -203,6 +220,8 @@ function planet(ctx: CanvasRenderingContext2D, g: Galaxy, col: Colors, glow: num
   ctx.lineWidth = Math.max(1.2, r * 0.035); ctx.strokeStyle = rim;
   ctx.shadowColor = rgba(col.accent, 0.65); ctx.shadowBlur = r * 0.13; ctx.stroke();
   ctx.restore();
+  ctx.save();
+  ctx.rotate(ringTilt);
   ctx.lineWidth = r * 0.13;
   ctx.strokeStyle = rgba(col.accent, col.dark ? 0.82 : 0.76);
   ctx.beginPath();
@@ -214,6 +233,7 @@ function planet(ctx: CanvasRenderingContext2D, g: Galaxy, col: Colors, glow: num
   ctx.ellipse(0, 0, r * 1.83, r * 0.56, 0, 0.12, Math.PI - 0.12);
   ctx.stroke();
   orbitParticles(ctx, r, col.dark, seconds, true, particles);
+  ctx.restore();
   ctx.restore();
 }
 

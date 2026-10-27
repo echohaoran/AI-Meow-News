@@ -83,3 +83,16 @@
 - 已发布 API/web 镜像 `ainews-app:binance-d93374bbd5a2`，源码快照 `d93374bbd5a2e90126095377eef5669a465a1658da492f096fa352fcf85a8a85`，806 个文件逐一校验。worker 容器 ID 与镜像 `ainews-app:outline-183236ec8b72` 均保持原样。健康检查、全站 smoke 与线上主题/首页浏览器复核通过。
 - 发布备份在服务器 `/root/netops-backups/ainews-binance-20261027T045942Z/`，`verification.json` 记录 dump 摘要、隔离恢复库 `ainews_binance_restore_20261027045942_test` 及恢复出的 26 个信源。旧 API/web 镜像与 release 在 `roles.json`，旧完整源码上下文在 `previous-context.json`；运维引用已备份。可用备份中的 env 和对应每角色镜像覆盖，仅重建 API/web 回退；worker 不动。
 - 发布构建/烟测日志在服务器 `.tmp/binance-checks-20261027T045942Z/`；发布后仅补充文档与组件注释，因此本地 Git 与发布快照的非运行时文字有差异。预览服务在验收后停止。
+
+## 2026-10-27：中心球体垂直轴自转与扩充信源
+
+- 用户要求中心球体绕垂直线自转，且自行寻找信源扩充至至少 100 个。`SignalRiver.tsx` 将球面经纬度投影与星环倾斜分开，球面纹理约每 16 秒旋转一周，光照与轮廓固定，继续遵守减少动态效果及页面可见性。
+- 经搜索发现和 Homelab 原生 RSS 采集器实测，新增 76 个可读、有标题、链接与发布日期的订阅，数据库实测 102 个总源、102 个启用；没有重复创建。新源 28 个 T1，21 个中文、1 个双语、54 个英文，覆盖官方、研究、开源与技术媒体。名单及证据见 [信源扩充说明](信源扩充-20261027.md) 和 `sources-validation-20261027.json`。
+- 生产添加经过现有 `createSource` 与审计；每源首次最多导入 3 条近 6 个月文章，沿用历史归档、预算与预筛选。未更改已有来源配置、评分门槛、预算和 worker 开关。新来源保持默认摘要与原文链接许可。
+- 数据变更前备份并成功恢复原有 26 个信源；服务器 `/root/netops-backups/ainews-expand-20261027T051432Z/verification.json` 保存校验与恢复证据，隔离恢复库为 `ainews_expand_restore_20261027051432_test`。新增源可经后台按名单停用，无需整库恢复覆盖新采集数据。
+- 类型检查、生产构建与 6 项页面回归通过，浏览器对比不同时刻的球面纹理，确认垂直轴自转。实际 worker 抓取及最终应用镜像在发布后补记。
+- 已部署 API/web 镜像 `ainews-app:sources-spin-4f9aeec046de`，源码快照 `4f9aeec046de38d10593baccde974238c5d26a0dd6738f83c53c235280cd76dc`，808 文件逐一校验，健康检查与整站 smoke 通过。线上关于页统计及匿名 `/api/site/stats` 均返回 102，手机 375px 无页面横向溢出；减少动态效果模式下 Canvas 连续截图保持相同。
+- 应用发布前另做一次包含 102 个来源的备份与隔离恢复验证：`/root/netops-backups/ainews-sources-spin-20261027T051754Z/verification.json`，恢复库 `ainews_spin_restore_20261027051754_test`。旧 API/web 镜像 `ainews-app:binance-d93374bbd5a2` 与运行引用保留，可仅回退应用；worker 容器 ID 与 `ainews-app:outline-183236ec8b72` 镜像保持不变。
+- 05:19 UTC 时新源 75 个实际采集成功，新增 212 篇文章；掘金首次超时后经原生 `fetchNow` 重试成功。NVIDIA 中文源初次与重试超时，但在同一个 worker 容器内用原生只读 RSS 抓取实测返回 18 条，继续经原生队列复核，不修改超时机制、预算或直接伪造健康状态。最终回执在服务器 `.tmp/sources-expansion-health.json`。
+- 首次应用发布准备脚本误引用上次快照，校验在修改应用运行引用前中止；修正路径后重建成功。上次发布回执曾被准备状态覆盖，已从保留的不可变源码、备份角色引用及在线 release 恢复；当前发布回执单独保存在 `.tmp/sources-expansion-release-result.json`。故障没有重启或替换 worker，也没有回滚或删除采集数据。
+- 最终复核：76 个新增源均已有成功抓取记录、health 为 ok，共新增 215 篇文章；其中 75 个源当前存有文章，另一源本轮无符合导入范围的新条目。NVIDIA 中文源经原生队列复核成功，未直接改健康状态。生产总数保持 102 个且全部启用。最终验证结果已补进逐源证据 JSON；发布后文档补记通过 SCP 同步，本地代码提交后不自动推送。

@@ -1,0 +1,2544 @@
+{
+  "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+  "method": "Homelab native fetchRss; anonymous public HTTP only; no model requests",
+  "newSources": 76,
+  "totalConfigured": 102,
+  "sources": [
+    {
+      "id": "rss-mit-ai-news",
+      "name": "MIT News · AI",
+      "feedUrl": "https://news.mit.edu/rss/topic/artificial-intelligence2",
+      "tier": "T1",
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 50,
+      "dated": 50,
+      "latestPublishedAt": "2026-10-26T19:00:00+00:00",
+      "samples": [
+        {
+          "title": "At New York Climate Week 2026, MIT connects with a global network",
+          "url": "https://news.mit.edu/2026/at-new-york-climate-week-mit-connects-global-network-1026",
+          "date": "2026-10-26T19:00:00.000Z",
+          "categories": [
+            "Special events and guest speakers",
+            "Climate change",
+            "Energy",
+            "Environment",
+            "Policy",
+            "Pollution",
+            "Cleaner industry",
+            "Water",
+            "Climate",
+            "Artificial intelligence",
+            "Sustainability",
+            "Emissions",
+            "Food",
+            "Data",
+            "Logistics",
+            "Urban studies and planning",
+            "Civil and environmental engineering",
+            "Mechanical engineering",
+            "Computer science and technology",
+            "Supply chains",
+            "DMSE",
+            "Innovation and Entrepreneurship (I&E)",
+            "Abdul Latif Jameel Poverty Action Lab (J-PAL)",
+            "Center for Transportation and Logistics",
+            "Lincoln Laboratory",
+            "Office of Open Learning",
+            "Abdul Latif Jameel Water and Food Systems Lab (J-WAFS)",
+            "School of Engineering",
+            "School of Science",
+            "School of Architecture and Planning",
+            "MIT Sloan School of Management",
+            "MIT Schwarzman College of Computing"
+          ]
+        },
+        {
+          "title": "At MIT, Martha Minow speaks on sustaining democracy, both by using and overcoming AI",
+          "url": "https://news.mit.edu/2026/martha-minow-speaks-on-sustaining-democracy-using-overcoming-ai-1023",
+          "date": "2026-10-23T21:00:00.000Z",
+          "categories": [
+            "Special events and guest speakers",
+            "Technology and society",
+            "Artificial intelligence",
+            "Community",
+            "Government",
+            "Democracy",
+            "Policy",
+            "Education, teaching, academics",
+            "Law",
+            "STEM education",
+            "Social media",
+            "Political science",
+            "K-12 education",
+            "President Sally Kornbluth"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-together-ai",
+      "name": "Together AI",
+      "feedUrl": "https://www.together.ai/blog/rss.xml",
+      "tier": "T1",
+      "tags": [
+        "官方",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 81,
+      "dated": 81,
+      "latestPublishedAt": "2026-10-19T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "Together Post-Training: frontier-grade model shaping, the way that fits you",
+          "url": "https://www.together.ai/blog/together-post-training",
+          "date": "2026-10-19T00:00:00.000Z",
+          "categories": []
+        },
+        {
+          "title": "Meta Muse Spark Open is live on Together AI",
+          "url": "https://www.together.ai/blog/meta-muse-spark-open",
+          "date": "2026-10-15T00:00:00.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-ollama",
+      "name": "Ollama Blog",
+      "feedUrl": "https://ollama.com/blog/rss.xml",
+      "tier": "T1",
+      "tags": [
+        "开源",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 63,
+      "dated": 63,
+      "latestPublishedAt": "2026-10-24T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "Speech models in Ollama",
+          "url": "https://ollama.com/blog/speech-models",
+          "date": "2026-10-24T00:00:00.000Z",
+          "categories": []
+        },
+        {
+          "title": "Clef is available on Ollama's cloud",
+          "url": "https://ollama.com/blog/clef",
+          "date": "2026-10-19T00:00:00.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-weights-biases",
+      "name": "Weights & Biases",
+      "feedUrl": "https://wandb.ai/fully-connected/rss.xml",
+      "tier": "T1",
+      "tags": [
+        "开发",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 50,
+      "dated": 50,
+      "latestPublishedAt": "2026-09-24T23:54:00+00:00",
+      "samples": [
+        {
+          "title": "Comparing Modern Transformer Architectures at GPT-2 Scale with ARIA and W&B",
+          "url": "https://wandb.ai/ai-team-articles/gpt-2.5/reports/Comparing-Modern-Transformer-Architectures-at-GPT-2-Scale-with-ARIA-and-W-B--VmlldzoxODAwMDI2Mw",
+          "date": "2026-09-24T23:54:00.000Z",
+          "categories": [
+            "Articles",
+            "Community Posts"
+          ]
+        },
+        {
+          "title": "Tutorial: Jev-as-a-Judge for LLM Evals",
+          "url": "https://wandb.ai/ai-team-articles/jev-as-evals/reports/Tutorial-Jev-as-a-Judge-for-LLM-Evals---VmlldzoxODAwMTA4OA",
+          "date": "2026-09-24T10:24:00.000Z",
+          "categories": [
+            "Articles",
+            "Community Posts",
+            "NLP",
+            "Evaluations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-zenml",
+      "name": "ZenML Blog",
+      "feedUrl": "https://www.zenml.io/blog/rss.xml",
+      "tier": "T1",
+      "tags": [
+        "开发",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 327,
+      "dated": 327,
+      "latestPublishedAt": "2026-09-28T06:37:52+00:00",
+      "samples": [
+        {
+          "title": "Langfuse Pricing Guide: How Much Does It Cost?",
+          "url": "https://www.zenml.io/blog/langfuse-pricing",
+          "date": "2026-09-28T06:37:52.000Z",
+          "categories": []
+        },
+        {
+          "title": "LangSmith Pricing Guide: How Much Does It Cost?",
+          "url": "https://www.zenml.io/blog/langsmith-pricing",
+          "date": "2026-09-23T08:47:19.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-scikit-learn",
+      "name": "Scikit-learn Blog",
+      "feedUrl": "https://blog.scikit-learn.org/feed.xml",
+      "tier": "T1",
+      "tags": [
+        "开源",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-09-23T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "Community Voices: Interview with Lucy Liu, scikit-learn core maintainer",
+          "url": "https://blog.scikit-learn.org/team/community-voices-lucy/",
+          "date": "2026-09-23T00:00:00.000Z",
+          "categories": [
+            "Team",
+            "Open Source",
+            "Machine Learning",
+            "Community"
+          ]
+        },
+        {
+          "title": "An Update on Metadata Routing",
+          "url": "https://blog.scikit-learn.org/updates/update-on-metadata-routing/",
+          "date": "2026-08-25T00:00:00.000Z",
+          "categories": [
+            "Updates",
+            "Metadata Routing",
+            "New Feature",
+            "API",
+            "Machine Learning"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-qdrant",
+      "name": "Qdrant Blog",
+      "feedUrl": "https://qdrant.tech/blog/index.xml",
+      "tier": "T1",
+      "tags": [
+        "开发",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 200,
+      "dated": 200,
+      "latestPublishedAt": "2026-10-23T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "Vultr and Qdrant Hybrid Cloud Support Next-Gen AI Projects",
+          "url": "https://qdrant.tech/blog/hybrid-cloud-vultr/",
+          "date": "2024-04-10T00:08:00.000Z",
+          "categories": []
+        },
+        {
+          "title": "STACKIT and Qdrant Hybrid Cloud for Best Data Privacy",
+          "url": "https://qdrant.tech/blog/hybrid-cloud-stackit/",
+          "date": "2024-04-10T00:07:00.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-weaviate",
+      "name": "Weaviate Blog",
+      "feedUrl": "https://weaviate.io/blog/rss.xml",
+      "tier": "T1",
+      "tags": [
+        "开发",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-10-26T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "Deprecating the GraphQL API: timeline and migration paths",
+          "url": "https://weaviate.io/blog/graphql-api-deprecation",
+          "date": "2026-10-26T00:00:00.000Z",
+          "categories": [
+            "engineering"
+          ]
+        },
+        {
+          "title": "How Weaviate responded to the eMudhra certificate compromise",
+          "url": "https://weaviate.io/blog/weaviate-emudhra-response",
+          "date": "2026-10-22T00:00:00.000Z",
+          "categories": [
+            "security"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-mlflow",
+      "name": "MLflow Blog",
+      "feedUrl": "https://mlflow.org/blog/rss.xml",
+      "tier": "T1",
+      "tags": [
+        "开发",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-10-16T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "5 Simple Tips to Supercharge Your Claude SDK Experience with MLflow",
+          "url": "https://mlflow.org/blog/claude-sdk-otel-tips/",
+          "date": "2026-10-16T00:00:00.000Z",
+          "categories": [
+            "genai",
+            "tracing",
+            "evaluation",
+            "claude",
+            "anthropic",
+            "opentelemetry"
+          ]
+        },
+        {
+          "title": "How to trace Claude agents via Native OpenTelemetry Export",
+          "url": "https://mlflow.org/blog/claude-otel-tracing/",
+          "date": "2026-10-14T00:00:00.000Z",
+          "categories": [
+            "mlflow",
+            "genai",
+            "tracing",
+            "claude",
+            "claude-code",
+            "anthropic",
+            "opentelemetry",
+            "agents",
+            "observability"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-databricks",
+      "name": "Databricks Blog",
+      "feedUrl": "https://www.databricks.com/feed",
+      "tier": "T1",
+      "tags": [
+        "官方",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-26T23:20:12+00:00",
+      "samples": [
+        {
+          "title": "Unify your productivity and AI data with Lakeflow Connect",
+          "url": "https://www.databricks.com/blog/unify-your-productivity-and-ai-data-lakeflow-connect",
+          "date": "2026-10-26T23:20:12.000Z",
+          "categories": [
+            "Platform",
+            "Product",
+            "Lakeflow"
+          ]
+        },
+        {
+          "title": "How to teach with Databricks Free Edition",
+          "url": "https://www.databricks.com/blog/how-teach-databricks-free-edition",
+          "date": "2026-10-26T19:40:00.000Z",
+          "categories": [
+            "Industries",
+            "Public Sector"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-elastic-search",
+      "name": "Elastic Search Labs",
+      "feedUrl": "https://www.elastic.co/search-labs/rss/feed.xml",
+      "tier": "T1",
+      "tags": [
+        "开发",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 200,
+      "dated": 200,
+      "latestPublishedAt": "2026-10-22T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "56 scanned pages to a cited answer in 5 minutes: RAG pipeline for the documents search cannot read",
+          "url": "https://www.elastic.co/search-labs/blog/rag-pipeline-scanned-pdf-jina-ocr",
+          "date": "2026-10-22T00:00:00.000Z",
+          "categories": [
+            "Jina AI",
+            "Hybrid Search",
+            "Vector Database"
+          ]
+        },
+        {
+          "title": "Bringing Elastic into Claude: The ‘why,’ the ‘how,’ and the ‘gotchas’",
+          "url": "https://www.elastic.co/search-labs/blog/publish-claude-plugin-directory",
+          "date": "2026-10-21T00:00:00.000Z",
+          "categories": [
+            "AI Tools ",
+            "Developer Experience",
+            "Agentic AI"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-amazon-science",
+      "name": "Amazon Science",
+      "feedUrl": "https://www.amazon.science/index.rss",
+      "tier": "T1",
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 25,
+      "dated": 25,
+      "latestPublishedAt": "2026-10-23T15:20:02+00:00",
+      "samples": [
+        {
+          "title": "Better speech synthesis for audiobooks",
+          "url": "https://www.amazon.science/blog/better-speech-synthesis-for-audiobooks",
+          "date": "2026-10-23T15:20:02.000Z",
+          "categories": []
+        },
+        {
+          "title": "The science behind TorchNeuron, Amazon’s new PyTorch backend for AWS Trainium chips",
+          "url": "https://www.amazon.science/blog/the-science-behind-torchneuron-amazons-new-pytorch-backend-for-aws-trainium-chips",
+          "date": "2026-10-22T19:36:42.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-sony-ai",
+      "name": "Sony AI",
+      "feedUrl": "https://ai.sony/blog/rss.xml",
+      "tier": "T1",
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-07-01T02:43:23+00:00",
+      "samples": [
+        {
+          "title": "Gran Turismo Sophy™, Five Years On: From Nature Cover to Open Frontier",
+          "url": "https://ai.sony/archive/gran-turismo-sophy-five-years-on-from-nature-cover-to-open-frontier",
+          "date": "2026-07-01T02:43:23.000Z",
+          "categories": [
+            "Gaming",
+            "GT Sophy",
+            "Game AI Gaming"
+          ]
+        },
+        {
+          "title": "Advancing AI: Highlights from June",
+          "url": "https://ai.sony/archive/advancing-ai-highlights-from-june-1",
+          "date": "2026-07-01T02:17:43.000Z",
+          "categories": [
+            "Sony AI"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-azure-ai",
+      "name": "Microsoft Azure AI",
+      "feedUrl": "https://azure.microsoft.com/en-us/blog/category/ai-machine-learning/feed/",
+      "tier": "T1",
+      "tags": [
+        "官方",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-20T17:34:47+00:00",
+      "samples": [
+        {
+          "title": "Advancing digital sovereignty with greater control and choice",
+          "url": "https://blogs.microsoft.com/blog/2026/10/20/advancing-digital-sovereignty-with-greater-control-and-choice/",
+          "date": "2026-10-20T17:34:47.000Z",
+          "categories": [
+            "AI + machine learning",
+            "Hybrid + multicloud",
+            "Microsoft Sovereign Cloud"
+          ]
+        },
+        {
+          "title": "Managing open-weight model risk in enterprise deployments",
+          "url": "https://azure.microsoft.com/en-us/blog/managing-open-weight-model-risk-in-enterprise-deployments/",
+          "date": "2026-10-16T16:05:00.000Z",
+          "categories": [
+            "AI + machine learning"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-mozilla-ai",
+      "name": "Mozilla AI",
+      "feedUrl": "https://blog.mozilla.ai/rss/",
+      "tier": "T1",
+      "tags": [
+        "开源",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 15,
+      "dated": 15,
+      "latestPublishedAt": "2026-10-19T13:06:43+00:00",
+      "samples": [
+        {
+          "title": "Who searches the web for your agent?",
+          "url": "https://blog.mozilla.ai/who-searches-the-web-for-your-agent/",
+          "date": "2026-10-19T13:06:43.000Z",
+          "categories": [
+            "Expert Opinion"
+          ]
+        },
+        {
+          "title": "Building the Missing Half",
+          "url": "https://blog.mozilla.ai/building-the-missing-half/",
+          "date": "2026-10-13T13:28:31.000Z",
+          "categories": [
+            "Expert Opinion"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-salesforce-ai",
+      "name": "Salesforce AI Research",
+      "feedUrl": "https://www.salesforce.com/blog/category/ai-research/feed/",
+      "tier": "T1",
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-19T18:34:47+00:00",
+      "samples": [
+        {
+          "title": "Meet Launa-Omni, Salesforce’s Voice Model for Real-Time Conversation",
+          "url": "https://www.salesforce.com/blog/launa-omni/",
+          "date": "2026-10-19T18:34:47.000Z",
+          "categories": []
+        },
+        {
+          "title": "Can You Become an Agentic Enterprise? Get a Sneak Peek in The Latest Guide",
+          "url": "https://www.salesforce.com/blog/small-business/agentic-enterprise-guide-takeaways/",
+          "date": "2026-09-30T13:00:00.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-alignment-forum",
+      "name": "Alignment Forum",
+      "feedUrl": "https://www.alignmentforum.org/feed.xml",
+      "tier": "T2",
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-25T07:52:23+00:00",
+      "samples": [
+        {
+          "title": "Setting the Scene (Public v1; October 25)",
+          "url": "https://www.alignmentforum.org/posts/dmYP7DS3ERyXGAYe6/setting-the-scene-public-v1-october-25",
+          "date": "2026-10-25T07:52:23.000Z",
+          "categories": []
+        },
+        {
+          "title": "Monitorability evaluations and policy proposals",
+          "url": "https://www.alignmentforum.org/posts/zAczYuHQS6jdG5DTg/monitorability-evaluations-and-policy-proposals",
+          "date": "2026-10-22T14:01:40.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-google-cloud-ai",
+      "name": "Google Cloud · AI & ML",
+      "feedUrl": "https://cloudblog.withgoogle.com/products/ai-machine-learning/rss/",
+      "tier": "T1",
+      "tags": [
+        "官方",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-10-26T20:00:00+00:00",
+      "samples": [
+        {
+          "title": "Easy to integrate, compliant by design: Bringing the Swiss Franc to Google Cloud Universal Ledger",
+          "url": "https://cloud.google.com/blog/topics/financial-services/easy-to-integrate-compliant-by-design-bringing-the-swiss-franc-to-google-cloud-universal-ledger/",
+          "date": "2026-10-26T20:00:00.000Z",
+          "categories": [
+            "AI & Machine Learning",
+            "Customers",
+            "Financial Services"
+          ]
+        },
+        {
+          "title": "Expanding Claude availability and deployment choice on Google Cloud",
+          "url": "https://cloud.google.com/blog/products/ai-machine-learning/expanding-claude-availability-on-google-cloud/",
+          "date": "2026-10-22T21:00:00.000Z",
+          "categories": [
+            "Partners",
+            "AI & Machine Learning"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-nvidia-developer",
+      "name": "NVIDIA Developer Blog",
+      "feedUrl": "https://developer.nvidia.com/blog/feed/",
+      "tier": "T1",
+      "tags": [
+        "开发",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 100,
+      "dated": 100,
+      "latestPublishedAt": "2026-10-26T16:00:00+00:00",
+      "samples": [
+        {
+          "title": "How NVIDIA Minerva Turns Telemetry Chaos Into Peak GPU Yield",
+          "url": "https://developer.nvidia.com/blog/how-nvidia-minerva-turns-telemetry-chaos-into-peak-gpu-yield/",
+          "date": "2026-10-26T16:00:00.000Z",
+          "categories": [
+            "Data Center / Cloud",
+            "MLOps",
+            "Networking / Communications",
+            "AI Factory",
+            "AI Networking",
+            "Infrastructure",
+            "Software-Defined Data Center",
+            "Spectrum Ethernet",
+            "Spectrum-X",
+            "telemetry"
+          ]
+        },
+        {
+          "title": "How NVIDIA Mission Control 2.5 Brings Autonomous Recovery to Kubernetes",
+          "url": "https://developer.nvidia.com/blog/how-nvidia-mission-control-2-5-brings-autonomous-recovery-to-kubernetes/",
+          "date": "2026-10-26T15:00:00.000Z",
+          "categories": [
+            "Data Center / Cloud",
+            "AI Factory",
+            "Kubernetes",
+            "Slurm"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-aifutures",
+      "name": "AI Futures Project",
+      "feedUrl": "https://blog.ai-futures.org/feed",
+      "tier": "T1",
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-10-02T07:37:55+00:00",
+      "samples": [
+        {
+          "title": "Senate Testimony Sept 2026",
+          "url": "https://blog.aifutures.org/p/senate-testimony-sept-2026",
+          "date": "2026-10-02T07:37:55.000Z",
+          "categories": []
+        },
+        {
+          "title": "Q2.5 2026 Timelines Update: Uplift and Revenue",
+          "url": "https://blog.aifutures.org/p/q25-2026-timelines-update-uplift",
+          "date": "2026-08-16T18:38:42.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-ultralytics",
+      "name": "Ultralytics Blog",
+      "feedUrl": "https://www.ultralytics.com/blog/rss.xml",
+      "tier": "T1",
+      "tags": [
+        "视觉",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 571,
+      "dated": 571,
+      "latestPublishedAt": "2026-10-26T18:59:46+00:00",
+      "samples": [
+        {
+          "title": "MiniMax-M3.1-Flash auto-annotation: why less reasoning drew better boxes",
+          "url": "https://www.ultralytics.com/blog/minimax-m3-1-flash-auto-annotation",
+          "date": "2026-10-26T18:59:46.000Z",
+          "categories": []
+        },
+        {
+          "title": "Kimi K3.1 Pro auto-annotation: a third better than K3, at high effort",
+          "url": "https://www.ultralytics.com/blog/kimi-k3-1-pro-auto-annotation",
+          "date": "2026-10-24T01:12:32.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-ieee-spectrum-ai",
+      "name": "IEEE Spectrum · AI",
+      "feedUrl": "https://spectrum.ieee.org/feeds/topic/artificial-intelligence.rss",
+      "tier": "T2",
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 30,
+      "dated": 30,
+      "latestPublishedAt": "2026-10-26T18:00:03+00:00",
+      "samples": [
+        {
+          "title": "IEEE Xplore Digital Library Adds AI Assistant",
+          "url": "https://spectrum.ieee.org/ieee-xplore-digital-library-ai",
+          "date": "2026-10-26T18:00:03.000Z",
+          "categories": [
+            "Ieee-news",
+            "Ieee-products-and-services",
+            "Ieee-xplore-digital-library",
+            "Ai",
+            "Research",
+            "Type-ti"
+          ]
+        },
+        {
+          "title": "Poetry for Engineers: Of Code and Shortleaf Pine",
+          "url": "https://spectrum.ieee.org/poetry-for-engineers-of-code-and-shortleaf-pine",
+          "date": "2026-10-25T12:00:02.000Z",
+          "categories": [
+            "Poetry",
+            "Verse-becomes-electric",
+            "Artificial-intelligence",
+            "Typedepartments"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-techxplore-ai",
+      "name": "Tech Xplore · AI",
+      "feedUrl": "https://techxplore.com/rss-feed/machine-learning-ai-news/",
+      "tier": "T2",
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 30,
+      "dated": 30,
+      "latestPublishedAt": "2026-10-26T19:40:09+00:00",
+      "samples": [
+        {
+          "title": "Meta plans to raise $35 billion to fund its AI ambitions",
+          "url": "https://techxplore.com/news/2026-10-meta-billion-fund-ai-ambitions.html",
+          "date": "2026-10-26T19:40:09.000Z",
+          "categories": [
+            "Machine learning & AI"
+          ]
+        },
+        {
+          "title": "Anthropic files for potentially the biggest IPO ever as CEO warns of risk to humanity from AI",
+          "url": "https://techxplore.com/news/2026-10-anthropic-potentially-biggest-ipo-ceo.html",
+          "date": "2026-10-26T19:20:10.000Z",
+          "categories": [
+            "Business"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-science-daily-ai",
+      "name": "ScienceDaily · AI",
+      "feedUrl": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
+      "tier": "T2",
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 60,
+      "dated": 60,
+      "latestPublishedAt": "2026-10-26T10:06:16+00:00",
+      "samples": [
+        {
+          "title": "Tiny magnetic vortices could help computers work more like your brain",
+          "url": "https://www.sciencedaily.com/releases/2026/10/261025073038.htm",
+          "date": "2026-10-26T10:06:16.000Z",
+          "categories": []
+        },
+        {
+          "title": "Scientists overcome a hidden obstacle to more powerful quantum computers",
+          "url": "https://www.sciencedaily.com/releases/2026/10/261024222024.htm",
+          "date": "2026-10-26T01:42:48.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-roboflow",
+      "name": "Roboflow Blog",
+      "feedUrl": "https://blog.roboflow.com/rss/",
+      "tier": "T1",
+      "tags": [
+        "视觉",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 50,
+      "dated": 50,
+      "latestPublishedAt": "2026-10-26T19:45:58+00:00",
+      "samples": [
+        {
+          "title": "PatchCore Anomaly Detection: Tutorial and FoundAD Comparison",
+          "url": "https://roboflow.com/blog/patchcore-anomaly-detection",
+          "date": "2026-10-26T19:45:58.000Z",
+          "categories": [
+            "Computer Vision"
+          ]
+        },
+        {
+          "title": "How to Use Roboflow in ChatGPT",
+          "url": "https://roboflow.com/blog/how-to-use-roboflow-in-chatgpt",
+          "date": "2026-10-26T19:24:21.000Z",
+          "categories": [
+            "Computer Vision"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-robotics-automation-news",
+      "name": "Robotics & Automation News",
+      "feedUrl": "https://roboticsandautomationnews.com/feed/",
+      "tier": "T2",
+      "tags": [
+        "机器人",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 15,
+      "dated": 15,
+      "latestPublishedAt": "2026-10-26T23:06:30+00:00",
+      "samples": [
+        {
+          "title": "Comau integrates Nvidia technology to accelerate development of AI-powered robots",
+          "url": "https://roboticsandautomationnews.com/2026/10/26/comau-integrates-nvidia-technology-to-accelerate-development-of-ai-powered-robots/106373/",
+          "date": "2026-10-26T23:06:30.000Z",
+          "categories": [
+            "Artificial Intelligence",
+            "News",
+            "Robotics",
+            "artificial intelligence",
+            "comau",
+            "industrial robotics",
+            "intralogistics",
+            "manufacturing automation",
+            "mobile robots",
+            "nvidia",
+            "Nvidia Isaac Lab",
+            "nvidia isaac sim",
+            "Nvidia Jetson",
+            "physical ai",
+            "robot simulation"
+          ]
+        },
+        {
+          "title": "Edeka adds Knapp robots to automate meat picking at German distribution center",
+          "url": "https://roboticsandautomationnews.com/2026/10/26/edeka-adds-knapp-robots-to-automate-meat-picking-at-german-distribution-center/106368/",
+          "date": "2026-10-26T22:56:31.000Z",
+          "categories": [
+            "Logistics",
+            "Robotics",
+            "edeka",
+            "food logistics",
+            "germany",
+            "intralogistics",
+            "knapp",
+            "logistics automation",
+            "pick-it-easy robot",
+            "robotic picking",
+            "supply chain",
+            "warehouse automation",
+            "warehouse robotics"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-nature-ai",
+      "name": "Nature · Machine Learning",
+      "feedUrl": "https://www.nature.com/subjects/machine-learning.rss",
+      "tier": "T1",
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 30,
+      "dated": 30,
+      "latestPublishedAt": "2026-10-26T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "Efficient structural information integration into protein language models with implicit mixture-of-experts ProBEiT",
+          "url": "https://www.nature.com/articles/s42003-026-10816-6",
+          "date": "2026-10-26T00:00:00.000Z",
+          "categories": []
+        },
+        {
+          "title": "Comparative analysis of end-to-end learning and foundation models for clinical-grade prostate pathology",
+          "url": "https://www.nature.com/articles/s41467-026-78996-7",
+          "date": "2026-10-26T00:00:00.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-nature-machine",
+      "name": "Nature Machine Intelligence",
+      "feedUrl": "https://www.nature.com/natmachintell.rss",
+      "tier": "T1",
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 8,
+      "dated": 8,
+      "latestPublishedAt": "2026-10-22T16:00:00+00:00",
+      "samples": [
+        {
+          "title": "Guidelines for evaluating structure-based methods for protein–ligand binding prediction",
+          "url": "https://www.nature.com/articles/s42256-026-01331-8",
+          "date": "2026-10-22T16:00:00.000Z",
+          "categories": []
+        },
+        {
+          "title": "Efficient equivariant framework for universal charge density prediction",
+          "url": "https://www.nature.com/articles/s42256-026-01326-5",
+          "date": "2026-10-22T16:00:00.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-lilianweng",
+      "name": "Lilian Weng",
+      "feedUrl": "https://lilianweng.github.io/index.xml",
+      "tier": "T2",
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 53,
+      "dated": 52,
+      "latestPublishedAt": "2026-07-04T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "Harness Engineering for Self-Improvement",
+          "url": "https://lilianweng.github.io/posts/2026-07-04-harness/",
+          "date": "2026-07-04T00:00:00.000Z",
+          "categories": []
+        },
+        {
+          "title": "Scaling Laws, Carefully",
+          "url": "https://lilianweng.github.io/posts/2026-06-24-scaling-laws/",
+          "date": "2026-06-24T00:00:00.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-sebastian-raschka",
+      "name": "Ahead of AI · Sebastian Raschka",
+      "feedUrl": "https://magazine.sebastianraschka.com/feed",
+      "tier": "T2",
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-10-24T11:14:32+00:00",
+      "samples": [
+        {
+          "title": "Building Reasoning Models from the Ground Up: A Full Video Course",
+          "url": "https://magazine.sebastianraschka.com/p/building-reasoning-models",
+          "date": "2026-10-24T11:14:32.000Z",
+          "categories": []
+        },
+        {
+          "title": "Language Models for Text Classification: From Bag-of-Words to Jev",
+          "url": "https://magazine.sebastianraschka.com/p/classifier-history-and-jev",
+          "date": "2026-09-29T10:50:25.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-eugeneyan",
+      "name": "Eugene Yan",
+      "feedUrl": "https://eugeneyan.com/rss/",
+      "tier": "T2",
+      "tags": [
+        "开发",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 212,
+      "dated": 212,
+      "latestPublishedAt": "2026-06-21T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "Patterns for Building Cybersecurity Evals",
+          "url": "https://eugeneyan.com//writing/cybersecurity-evals/",
+          "date": "2026-06-21T00:00:00.000Z",
+          "categories": []
+        },
+        {
+          "title": "Using LLMs to Secure Source Code",
+          "url": "https://eugeneyan.com//writing/secure-source-code/",
+          "date": "2026-05-27T00:00:00.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-hamelhusain",
+      "name": "Hamel Husain",
+      "feedUrl": "https://hamel.dev/index.xml",
+      "tier": "T2",
+      "tags": [
+        "开发",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-10-20T07:00:00+00:00",
+      "samples": [
+        {
+          "title": "How To Use Decision Models for Evals",
+          "url": "https://hamel.dev/blog/posts/decision-model-evals/",
+          "date": "2026-10-20T07:00:00.000Z",
+          "categories": [
+            "LLMs",
+            "Evals"
+          ]
+        },
+        {
+          "title": "Claude’s new auto eval tool",
+          "url": "https://hamel.dev/blog/posts/claude-auto-evals/",
+          "date": "2026-09-30T07:00:00.000Z",
+          "categories": [
+            "AI",
+            "Evals"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-oneusefulthing",
+      "name": "One Useful Thing · Ethan Mollick",
+      "feedUrl": "https://www.oneusefulthing.org/feed",
+      "tier": "T2",
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-10-20T15:57:59+00:00",
+      "samples": [
+        {
+          "title": "30 Months on the Exponential (in Charts)",
+          "url": "https://www.oneusefulthing.org/p/30-months-on-the-exponential-in-charts",
+          "date": "2026-10-20T15:57:59.000Z",
+          "categories": []
+        },
+        {
+          "title": "The Dot and the Swarm",
+          "url": "https://www.oneusefulthing.org/p/the-dot-and-the-swarm",
+          "date": "2026-10-01T10:54:12.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-interconnects",
+      "name": "Interconnects · Nathan Lambert",
+      "feedUrl": "https://www.interconnects.ai/feed",
+      "tier": "T2",
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-10-25T11:49:00+00:00",
+      "samples": [
+        {
+          "title": "Podcast: Kimi K3.1 Pro, the new cyber reality, and Muse musings",
+          "url": "https://www.interconnects.ai/p/podcast-kimi-k31-pro-the-new-cyber",
+          "date": "2026-10-25T11:49:00.000Z",
+          "categories": []
+        },
+        {
+          "title": "Latest open artifacts (#25): DeepSeek V4.1 Flash 1017, American-made models, and new regulatory controls in the US & China",
+          "url": "https://www.interconnects.ai/p/latest-open-artifacts-25-deepseek",
+          "date": "2026-10-20T17:04:21.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-jeremyhoward",
+      "name": "fast.ai",
+      "feedUrl": "https://www.fast.ai/index.xml",
+      "tier": "T1",
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-08-17T14:00:00+00:00",
+      "samples": [
+        {
+          "title": "My friends all hate AI; I just joined an AI startup",
+          "url": "https://www.fast.ai/posts/2026-08-18-returning-to-AI/",
+          "date": "2026-08-17T14:00:00.000Z",
+          "categories": [
+            "education",
+            "ai-in-society"
+          ]
+        },
+        {
+          "title": "I Don’t Want a Learning Dashboard for My Child",
+          "url": "https://www.fast.ai/posts/2026-02-17-education/",
+          "date": "2026-02-16T14:00:00.000Z",
+          "categories": [
+            "education",
+            "technical"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-scitechdaily-ai",
+      "name": "SciTechDaily · AI",
+      "feedUrl": "https://scitechdaily.com/tag/artificial-intelligence/feed/",
+      "tier": "T2",
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 24,
+      "dated": 24,
+      "latestPublishedAt": "2026-10-20T17:40:40+00:00",
+      "samples": [
+        {
+          "title": "Scientists Discover a Hidden Electrical Signal in the Heart That Could Predict Sudden Death",
+          "url": "https://scitechdaily.com/scientists-discover-a-hidden-electrical-signal-in-the-heart-that-could-predict-sudden-death/",
+          "date": "2026-10-20T17:40:40.000Z",
+          "categories": [
+            "Health",
+            "Artificial Intelligence",
+            "Cardiology",
+            "Heart",
+            "UC Berkeley"
+          ]
+        },
+        {
+          "title": "Reddit Users Are Experimenting With an Unapproved Weight-Loss Drug. AI Found Something Surprising",
+          "url": "https://scitechdaily.com/reddit-users-are-experimenting-with-an-unapproved-weight-loss-drug-ai-found-something-surprising/",
+          "date": "2026-10-19T22:15:55.000Z",
+          "categories": [
+            "Health",
+            "Artificial Intelligence",
+            "Pharmacology",
+            "Public Health",
+            "University of Pennsylvania",
+            "Weight Loss"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-machinelearningmastery",
+      "name": "Machine Learning Mastery",
+      "feedUrl": "https://machinelearningmastery.com/feed/",
+      "tier": "T2",
+      "tags": [
+        "教程",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-26T11:00:00+00:00",
+      "samples": [
+        {
+          "title": "Robust Serialization with JSON and Custom Types",
+          "url": "https://machinelearningmastery.com/robust-serialization-with-json-and-custom-types/",
+          "date": "2026-10-26T11:00:00.000Z",
+          "categories": []
+        },
+        {
+          "title": "Speculative Decoding Explained: How to Get 3× Faster Inference from Any LLM",
+          "url": "https://machinelearningmastery.com/speculative-decoding-explained-how-to-get-3x-faster-inference-from-any-llm/",
+          "date": "2026-10-23T11:00:00.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-towardsdatascience",
+      "name": "Towards Data Science",
+      "feedUrl": "https://towardsdatascience.com/feed/",
+      "tier": "T2",
+      "tags": [
+        "教程",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-10-26T15:30:00+00:00",
+      "samples": [
+        {
+          "title": "What Makes AI-Written Stories Feel Off?",
+          "url": "https://towardsdatascience.com/what-makes-ai-written-stories-feel-off/",
+          "date": "2026-10-26T15:30:00.000Z",
+          "categories": [
+            "Artificial Intelligence",
+            "Generative Ai",
+            "Editor's Picks",
+            "Writing",
+            "Ai Detection",
+            "Storytelling"
+          ]
+        },
+        {
+          "title": "Opening the Box: Can Machine Learning Resolve Schrödinger’s Cat?",
+          "url": "https://towardsdatascience.com/opening-the-box-can-machine-learning-resolve-schrdingers-cat/",
+          "date": "2026-10-26T14:00:00.000Z",
+          "categories": [
+            "machine",
+            "deep learning",
+            "Physics",
+            "Quantum Computing",
+            "Reinforcement Learning",
+            "Quantum Mechanics",
+            "Deep Learning"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-kdnuggets",
+      "name": "KDnuggets",
+      "feedUrl": "https://www.kdnuggets.com/feed",
+      "tier": "T2",
+      "tags": [
+        "教程",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-26T14:00:00+00:00",
+      "samples": [
+        {
+          "title": "The Roadmap to Becoming a Computer Vision Engineer in 2026",
+          "url": "https://www.kdnuggets.com/the-roadmap-to-becoming-a-computer-vision-engineer-in-2026",
+          "date": "2026-10-26T14:00:00.000Z",
+          "categories": []
+        },
+        {
+          "title": "Building Your First AI Agent in Python with the OpenAI Agents SDK",
+          "url": "https://www.kdnuggets.com/building-your-first-ai-agent-in-python-with-the-openai-agents-sdk",
+          "date": "2026-10-26T14:00:00.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-marktechpost",
+      "name": "MarkTechPost",
+      "feedUrl": "https://www.marktechpost.com/feed/",
+      "tier": "T2",
+      "tags": [
+        "媒体",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-27T02:45:27+00:00",
+      "samples": [
+        {
+          "title": "OpenAI Launches GPT-6.1 Terra, Halving GPT-6.1 Sol’s API Price for Agent Work",
+          "url": "https://www.marktechpost.com/2026/10/26/openai-gpt-6-1-terra/",
+          "date": "2026-10-27T02:45:27.000Z",
+          "categories": [
+            "Agentic AI",
+            "AI Shorts",
+            "Applications",
+            "Artificial Intelligence",
+            "Computer-Use",
+            "Context Engineering",
+            "Editors Pick",
+            "Enterprise AI",
+            "For Devs",
+            "Language Model",
+            "Large Language Model",
+            "New Releases",
+            "Software Engineering",
+            "Staff",
+            "Tech News",
+            "Technology"
+          ]
+        },
+        {
+          "title": "Nace AI Releases Drex for Search for AI Agents: 92.05% on BrowseComp-Plus With 12.6 Search Calls",
+          "url": "https://www.marktechpost.com/2026/10/26/nace-ai-releases-drex-for-search-for-ai-agents/",
+          "date": "2026-10-26T16:46:09.000Z",
+          "categories": [
+            "Agentic AI",
+            "AI Shorts",
+            "Applications",
+            "Artificial Intelligence",
+            "Context Engineering",
+            "Decision Models",
+            "Editors Pick",
+            "Enterprise AI",
+            "For Devs",
+            "Language Model",
+            "Large Language Model",
+            "Machine Learning",
+            "New Releases",
+            "Promote",
+            "Software Engineering",
+            "Sponsored",
+            "Staff",
+            "Tech News",
+            "Technology"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-wired-ai",
+      "name": "WIRED · AI",
+      "feedUrl": "https://www.wired.com/feed/tag/ai/latest/rss",
+      "tier": "T2",
+      "tags": [
+        "媒体",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-26T21:27:15+00:00",
+      "samples": [
+        {
+          "title": "Why Anthropic’s IPO Prospectus Is Missing So Many Key Figures",
+          "url": "https://www.wired.com/story/anthropic-prospectus-leaves-out-some-numbers/",
+          "date": "2026-10-26T21:27:15.000Z",
+          "categories": [
+            "Business",
+            "Business / Artificial Intelligence"
+          ]
+        },
+        {
+          "title": "The Anthropic S-1 Filing Is Also an AI Doomsday Primer",
+          "url": "https://www.wired.com/story/the-anthropic-ipo-is-also-a-doomsday-primer/",
+          "date": "2026-10-26T16:01:55.000Z",
+          "categories": [
+            "Business",
+            "Business / Artificial Intelligence"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-uniteai",
+      "name": "Unite.AI",
+      "feedUrl": "https://www.unite.ai/feed/",
+      "tier": "T2",
+      "tags": [
+        "媒体",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 25,
+      "dated": 25,
+      "latestPublishedAt": "2026-10-27T04:18:10+00:00",
+      "samples": [
+        {
+          "title": "IBM Brings Governed Identity and Credential Controls to AI Agents",
+          "url": "https://www.unite.ai/ibm-brings-governed-identity-and-credential-controls-to-ai-agents/",
+          "date": "2026-10-27T04:18:10.000Z",
+          "categories": [
+            "Cybersecurity",
+            "AI Models & Platforms",
+            "Gartner",
+            "HashiCorp Vault",
+            "ibm",
+            "IBM Agent Identity"
+          ]
+        },
+        {
+          "title": "symplr Launches AI Time and Scheduling to Predict Healthcare Staffing Needs",
+          "url": "https://www.unite.ai/symplr-ai-time-scheduling-predictive-healthcare-staffing/",
+          "date": "2026-10-26T23:12:12.000Z",
+          "categories": [
+            "Healthcare",
+            "symplr"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-jiemian",
+      "name": "界面新闻",
+      "feedUrl": "https://a.jiemian.com/index.php?m=article&a=rss",
+      "tier": "T2",
+      "tags": [
+        "媒体",
+        "中文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 30,
+      "dated": 30,
+      "latestPublishedAt": "2026-10-27T04:45:33+00:00",
+      "samples": [
+        {
+          "title": "小米披露灵巧手最新技术探索成果",
+          "url": "https://www.jiemian.com/article/15246439.html",
+          "date": "2026-10-27T04:45:33.000Z",
+          "categories": []
+        },
+        {
+          "title": "行元发布机器人跨本体数据引擎Chorus",
+          "url": "https://www.jiemian.com/article/15246444.html",
+          "date": "2026-10-27T04:45:19.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-ifanr",
+      "name": "爱范儿",
+      "feedUrl": "https://www.ifanr.com/feed",
+      "tier": "T2",
+      "tags": [
+        "媒体",
+        "中文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-10-27T05:02:30+00:00",
+      "samples": [
+        {
+          "title": "中国版Muse能管事！我把宠物保单、双11算价和周末旅行全交给了灵光2.0",
+          "url": "https://www.ifanr.com/1686050?utm_source=rss&utm_medium=rss&utm_campaign=",
+          "date": "2026-10-27T05:02:30.000Z",
+          "categories": [
+            "产品",
+            "个人智能体",
+            "支付宝",
+            "灵光 2.0",
+            "蚂蚁集团"
+          ]
+        },
+        {
+          "title": "刚刚，GPT-6.1 Terra 骨折价发布，Agent 时代的打工模型来了",
+          "url": "https://www.ifanr.com/1686080?utm_source=rss&utm_medium=rss&utm_campaign=",
+          "date": "2026-10-27T05:00:58.000Z",
+          "categories": [
+            "公司",
+            "AI",
+            "ChatGPT"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-solidot",
+      "name": "Solidot",
+      "feedUrl": "https://www.solidot.org/index.rss",
+      "tier": "T2",
+      "tags": [
+        "媒体",
+        "中文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 13,
+      "dated": 13,
+      "latestPublishedAt": "2026-10-26T11:12:57+00:00",
+      "samples": [
+        {
+          "title": "科学家重现古罗马的分色玻璃",
+          "url": "https://www.solidot.org/story?sid=85713",
+          "date": "2026-10-26T11:12:57.000Z",
+          "categories": []
+        },
+        {
+          "title": "Netflix 用户观看量下降，应用打开量下降",
+          "url": "https://www.solidot.org/story?sid=85711",
+          "date": "2026-10-26T09:07:39.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-arxiv-ai",
+      "name": "arXiv · Artificial Intelligence",
+      "feedUrl": "https://rss.arxiv.org/rss/cs.AI",
+      "tier": "T1",
+      "tags": [
+        "论文",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 321,
+      "dated": 321,
+      "latestPublishedAt": "2026-10-27T04:00:00+00:00",
+      "samples": [
+        {
+          "title": "Tradeoff-Aware Territory Design: A Multi-Objective Decision System for Enterprise Customer-to-Seller Allocation",
+          "url": "https://arxiv.org/abs/2610.31701",
+          "date": "2026-10-27T04:00:00.000Z",
+          "categories": [
+            "cs.AI"
+          ]
+        },
+        {
+          "title": "Phronix: The Capability-Centric Learning Paradigm for Agents",
+          "url": "https://arxiv.org/abs/2610.31789",
+          "date": "2026-10-27T04:00:00.000Z",
+          "categories": [
+            "cs.AI"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-oschina",
+      "name": "开源中国",
+      "feedUrl": "https://www.oschina.net/news/rss",
+      "tier": "T2",
+      "tags": [
+        "开发",
+        "中文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 50,
+      "dated": 50,
+      "latestPublishedAt": "2026-10-27T03:56:20+00:00",
+      "samples": [
+        {
+          "title": "Jync v1.8.0 支持企业统一认证，菜单调整，日志优化，bug修复",
+          "url": "https://www.oschina.net/news/503236",
+          "date": "2026-10-27T03:56:20.000Z",
+          "categories": [
+            "软件更新新闻"
+          ]
+        },
+        {
+          "title": "GrantForge 2026.3.0 发布：新增 5 大数据系统，统一权限治理再进一步",
+          "url": "https://www.oschina.net/news/503235",
+          "date": "2026-10-27T03:43:10.000Z",
+          "categories": [
+            "软件更新新闻"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-sspai",
+      "name": "少数派",
+      "feedUrl": "https://sspai.com/feed",
+      "tier": "T2",
+      "tags": [
+        "产品",
+        "中文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-27T03:02:18+00:00",
+      "samples": [
+        {
+          "title": "一日一技｜NAS 作为 UPS 总控，实现局域网多设备断电自动关机",
+          "url": "https://sspai.com/post/115855",
+          "date": "2026-10-27T03:02:18.000Z",
+          "categories": []
+        },
+        {
+          "title": "派早报：Apple 发布 iPad mini (A20 Pro) 等",
+          "url": "https://sspai.com/post/117600",
+          "date": "2026-10-27T00:27:58.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-ruanyifeng",
+      "name": "阮一峰的网络日志",
+      "feedUrl": "https://www.ruanyifeng.com/blog/atom.xml",
+      "tier": "T2",
+      "tags": [
+        "开发",
+        "中文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 3,
+      "dated": 3,
+      "latestPublishedAt": "2026-10-23T00:06:16+00:00",
+      "samples": [
+        {
+          "title": "科技爱好者周刊（第 416 期）：编程已经面目全非",
+          "url": "http://www.ruanyifeng.com/blog/2026/10/weekly-issue-416.html",
+          "date": "2026-10-23T00:06:16.000Z",
+          "categories": [
+            "Weekly"
+          ]
+        },
+        {
+          "title": "科技爱好者周刊（第 415 期）：3D 版《看不见的城市》",
+          "url": "http://www.ruanyifeng.com/blog/2026/10/weekly-issue-415.html",
+          "date": "2026-10-16T00:02:56.000Z",
+          "categories": [
+            "Weekly"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-ithome",
+      "name": "IT之家",
+      "feedUrl": "https://www.ithome.com/rss/",
+      "tier": "T2",
+      "tags": [
+        "媒体",
+        "中文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 60,
+      "dated": 60,
+      "latestPublishedAt": "2026-10-27T05:04:13+00:00",
+      "samples": [
+        {
+          "title": "国家广电总局：交互式网络电视 IPTV 应实现开机看全屏直播功能，不得播放开机广告",
+          "url": "https://www.ithome.com/1/018/350.htm",
+          "date": "2026-10-27T05:04:13.000Z",
+          "categories": []
+        },
+        {
+          "title": "持续 27 天，天文学家发现破纪录伽马射线暴",
+          "url": "https://www.ithome.com/1/018/349.htm",
+          "date": "2026-10-27T04:58:33.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-juejin",
+      "name": "稀土掘金",
+      "feedUrl": "https://juejin.cn/rss",
+      "tier": "T2",
+      "tags": [
+        "开发",
+        "中文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-10-27T04:25:10+00:00",
+      "samples": [
+        {
+          "title": "副业搞钱点子之赛事与活动",
+          "url": "https://juejin.cn/post/7700901949990895659",
+          "date": "2026-10-27T04:25:10.000Z",
+          "categories": []
+        },
+        {
+          "title": "PHP 9.2 分 RCE 的补丁比公告早公开 3 天，我读完 389 个文件的 diff，也把\"死在代码之前\"跑了出来",
+          "url": "https://juejin.cn/post/7700912127129255987",
+          "date": "2026-10-27T04:13:23.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-geekpark",
+      "name": "极客公园",
+      "feedUrl": "https://www.geekpark.net/rss",
+      "tier": "T2",
+      "tags": [
+        "媒体",
+        "中文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 30,
+      "dated": 30,
+      "latestPublishedAt": "2026-10-27T00:26:51+00:00",
+      "samples": [
+        {
+          "title": "苹果回应 iPhone 折叠屏问题：可申请换机；传腾讯绿泡泡短剧月活过亿；；Anthropic或下月上市｜极客早知道",
+          "url": "http://www.geekpark.net/news/372952",
+          "date": "2026-10-27T00:26:51.000Z",
+          "categories": []
+        },
+        {
+          "title": "今年的 1024，可能是最后一个程序员节",
+          "url": "http://www.geekpark.net/news/372944",
+          "date": "2026-10-26T10:16:50.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-cnbeta",
+      "name": "cnBeta",
+      "feedUrl": "https://www.cnbeta.com.tw/backend.php",
+      "tier": "T2",
+      "tags": [
+        "媒体",
+        "中文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 150,
+      "dated": 150,
+      "latestPublishedAt": "2026-10-27T05:02:09+00:00",
+      "samples": [
+        {
+          "title": "《GTA6》发售日请假申请量增加9%至17%",
+          "url": "https://www.cnbeta.com.tw/articles/game/1584000.htm",
+          "date": "2026-10-27T05:02:09.000Z",
+          "categories": []
+        },
+        {
+          "title": "GPT-6.1 Terra发布 电脑操作比肩Astra 成本仅其1/10",
+          "url": "https://www.cnbeta.com.tw/articles/tech/1583998.htm",
+          "date": "2026-10-27T04:46:38.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-frostming",
+      "name": "Frost Ming",
+      "feedUrl": "https://frostming.com/feed.xml",
+      "tier": "T2",
+      "tags": [
+        "开发",
+        "中文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 118,
+      "dated": 118,
+      "latestPublishedAt": "2026-10-26T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "笑傲江湖",
+          "url": "https://frostming.com/posts/2026/swordsman/",
+          "date": "2026-10-26T00:00:00.000Z",
+          "categories": []
+        },
+        {
+          "title": "变与不变",
+          "url": "https://frostming.com/posts/2026/old-house/",
+          "date": "2026-10-05T00:00:00.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-phodal",
+      "name": "Phodal",
+      "feedUrl": "https://www.phodal.com/blog/feeds/rss/",
+      "tier": "T2",
+      "tags": [
+        "开发",
+        "中文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-08-30T09:48:00+00:00",
+      "samples": [
+        {
+          "title": "从生成动画到可编程产物：在 Harness 中构建 Lottie 创作运行时",
+          "url": "http://www.phodal.com/blog/agentic-programming-artifact/",
+          "date": "2026-08-30T09:48:00.000Z",
+          "categories": [
+            "AI"
+          ]
+        },
+        {
+          "title": "面向人机交互设计 Harness：构建以产物为中心的 Agent Loop",
+          "url": "http://www.phodal.com/blog/artifact-centered-agent-harness/",
+          "date": "2026-08-22T14:49:00.000Z",
+          "categories": [
+            "AI"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-baoyu",
+      "name": "宝玉的分享",
+      "feedUrl": "https://baoyu.io/feed.xml",
+      "tier": "T2",
+      "tags": [
+        "开发",
+        "中文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 50,
+      "dated": 50,
+      "latestPublishedAt": "2026-10-20T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "NotebookLM's Video Overview System Prompt: The Full Creation Workflow",
+          "url": "https://baoyu.io/blog/2026-10-20/notebooklm-video-overview-system-prompt",
+          "date": "2026-10-20T00:00:00.000Z",
+          "categories": [
+            "NotebookLM",
+            "Video Overview",
+            "System Prompts",
+            "AI"
+          ]
+        },
+        {
+          "title": "我用 GPT 6 Astra 做了一个 3D 版的《桃花源记》（文中含提示词）",
+          "url": "https://baoyu.io/blog/gpt-6-astra-peach-blossom-land",
+          "date": "2026-09-19T00:00:00.000Z",
+          "categories": [
+            "GPT 6 Astra",
+            "Codex",
+            "3D 网页",
+            "桃花源记",
+            "AI 编程"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-nvidia-zh",
+      "name": "NVIDIA 中国",
+      "feedUrl": "https://blogs.nvidia.cn/feed/",
+      "tier": "T1",
+      "tags": [
+        "官方",
+        "中文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 18,
+      "dated": 18,
+      "latestPublishedAt": "2026-10-22T06:18:07+00:00",
+      "samples": [
+        {
+          "title": "NVIDIA 开放模型推动欧洲各行业自主智能发展",
+          "url": "https://blogs.nvidia.cn/blog/open-models-europe-industry/",
+          "date": "2026-10-22T06:18:07.000Z",
+          "categories": [
+            "AI",
+            "智能汽车",
+            "软件",
+            "Agentic AI",
+            "Cosmos",
+            "GTC 2026",
+            "Healthcare and Life Sciences",
+            "Nemotron",
+            "Open Source",
+            "Physical AI",
+            "quantum computing"
+          ]
+        },
+        {
+          "title": "NVIDIA OpenShell 助力矩阵起源构建更安全的企业数据 Agent 执行环境",
+          "url": "https://blogs.nvidia.cn/blog/matrixorigin-openshell/",
+          "date": "2026-10-22T01:08:51.000Z",
+          "categories": [
+            "AI",
+            "人工智能",
+            "成功案例",
+            "软件",
+            "Agentic AI",
+            "cybersecurity",
+            "Open Source",
+            "OpenShell"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-aws-zh",
+      "name": "AWS 中文博客 · AI",
+      "feedUrl": "https://aws.amazon.com/cn/blogs/china/category/artificial-intelligence/feed/",
+      "tier": "T1",
+      "tags": [
+        "官方",
+        "中文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-19T07:30:50+00:00",
+      "samples": [
+        {
+          "title": "从本地到数千门店：FastAgent 与 Amazon Bedrock AgentCore 的企业级 Agent 实践",
+          "url": "https://aws.amazon.com/cn/blogs/china/fastagent-amazon-bedrock-agentcore-enterprise-agent-practice/",
+          "date": "2026-10-19T07:30:50.000Z",
+          "categories": [
+            "Artificial Intelligence"
+          ]
+        },
+        {
+          "title": "新一代 AWS Resilience Hub 实战：使用 Agent 加速韧性工程",
+          "url": "https://aws.amazon.com/cn/blogs/china/aws-resilience-hub-using-agent-resilience-engineering/",
+          "date": "2026-10-15T08:12:06.000Z",
+          "categories": [
+            "Artificial Intelligence"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-leovan",
+      "name": "范叶亮的博客",
+      "feedUrl": "https://leovan.me/cn/index.xml",
+      "tier": "T2",
+      "tags": [
+        "研究",
+        "中文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 96,
+      "dated": 96,
+      "latestPublishedAt": "2026-06-20T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "多智能体系统",
+          "url": "https://leovan.me/cn/2026/06/multi-agent-system/",
+          "date": "2026-06-20T00:00:00.000Z",
+          "categories": []
+        },
+        {
+          "title": "确定性和掌控欲",
+          "url": "https://leovan.me/cn/2026/05/certainty-and-control-your-ai-is-not-your-ai/",
+          "date": "2026-05-23T00:00:00.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-changkun",
+      "name": "欧长坤的博客",
+      "feedUrl": "https://changkun.de/blog/posts/index.xml",
+      "tier": "T2",
+      "tags": [
+        "研究",
+        "双语"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 285,
+      "dated": 285,
+      "latestPublishedAt": "2026-10-03T07:00:00+00:00",
+      "samples": [
+        {
+          "title": "A Book on Bayesian Optimization",
+          "url": "https://changkun.de/blog/posts/bayesian-optimization-book/",
+          "date": "2026-10-03T07:00:00.000Z",
+          "categories": []
+        },
+        {
+          "title": "See You Down the Road",
+          "url": "https://changkun.de/blog/posts/see-you-down-the-road/",
+          "date": "2026-09-30T15:00:00.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-tmtpost",
+      "name": "钛媒体",
+      "feedUrl": "https://www.tmtpost.com/feed",
+      "tier": "T2",
+      "tags": [
+        "媒体",
+        "中文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 18,
+      "dated": 18,
+      "latestPublishedAt": "2026-10-27T04:25:16+00:00",
+      "samples": [
+        {
+          "title": "从卖车到造车，零跑在欧洲换了种打法",
+          "url": "https://www.tmtpost.com/8178750.html",
+          "date": "2026-10-27T04:25:16.000Z",
+          "categories": [
+            "出海参考",
+            "汽车行业",
+            "汽车产业报道"
+          ]
+        },
+        {
+          "title": "按周结算生活费，这届大学生成了家里的\"临时工\"",
+          "url": "https://www.tmtpost.com/8183176.html",
+          "date": "2026-10-27T04:22:49.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-laike9m",
+      "name": "laike9m 的博客",
+      "feedUrl": "https://laike9m.com/blog/rss/",
+      "tier": "T2",
+      "tags": [
+        "开发",
+        "中文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 5,
+      "dated": 5,
+      "latestPublishedAt": "2026-06-02T06:50:18+00:00",
+      "samples": [
+        {
+          "title": "What's Next for Agentic Coding Products?",
+          "url": "https://laike9m.com/blog/agent-coding-trend,173/",
+          "date": "2026-06-02T06:50:18.000Z",
+          "categories": []
+        },
+        {
+          "title": "First Month at the Jules Team",
+          "url": "https://laike9m.com/blog/jules-team,172/",
+          "date": "2026-02-01T23:16:25.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-woshipm",
+      "name": "人人都是产品经理",
+      "feedUrl": "https://www.woshipm.com/feed",
+      "tier": "T2",
+      "tags": [
+        "产品",
+        "中文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 15,
+      "dated": 15,
+      "latestPublishedAt": "2026-10-27T03:59:07+00:00",
+      "samples": [
+        {
+          "title": "轻松学会用WorkBuddy自动控制浏览器",
+          "url": "https://www.woshipm.com/ai/6484704.html",
+          "date": "2026-10-27T03:59:07.000Z",
+          "categories": [
+            "AI",
+            "个人随笔",
+            "AI应用",
+            "Chrome",
+            "CodeBuddy",
+            "WorkBuddy"
+          ]
+        },
+        {
+          "title": "从医疗IT转做商协会系统，我把私有化部署改成了SaaS",
+          "url": "https://www.woshipm.com/share/6484669.html",
+          "date": "2026-10-27T03:16:36.000Z",
+          "categories": [
+            "个人随笔",
+            "SaaS",
+            "商协会",
+            "数字化",
+            "私有化部署",
+            "经验总结",
+            "跨商会互联"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-yufree",
+      "name": "于淼",
+      "feedUrl": "https://yufree.cn/cn/index.xml",
+      "tier": "T2",
+      "tags": [
+        "研究",
+        "中文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-04T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "上下五千米",
+          "url": "https://yufree.cn/cn/2026/10/04/5000-m/",
+          "date": "2026-10-04T00:00:00.000Z",
+          "categories": []
+        },
+        {
+          "title": "日常用大语言模型",
+          "url": "https://yufree.cn/cn/2026/09/13/daily-llm/",
+          "date": "2026-09-13T00:00:00.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-zhayong",
+      "name": "ZMonster · AI 与技术笔记",
+      "feedUrl": "https://www.zmonster.me/atom.xml",
+      "tier": "T2",
+      "tags": [
+        "研究",
+        "中文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 190,
+      "dated": 190,
+      "latestPublishedAt": "2026-07-30T00:00:00+00:00",
+      "samples": [
+        {
+          "title": "我给自己建了一个数据库",
+          "url": "http://www.zmonster.me/2026/07/30/build-self-db.html",
+          "date": "2026-07-30T00:00:00.000Z",
+          "categories": [
+            "数字生活"
+          ]
+        },
+        {
+          "title": "找工作啦",
+          "url": "http://www.zmonster.me/2024/05/13/ready-to-work.html",
+          "date": "2024-05-13T00:00:00.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-lastweekinai",
+      "name": "Last Week in AI",
+      "feedUrl": "https://lastweekin.ai/feed",
+      "tier": "T2",
+      "tags": [
+        "媒体",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-10-09T05:06:58+00:00",
+      "samples": [
+        {
+          "title": "Last Week in AI #346 - 719 math manuscripts, 2 Western open models, 1 more safety resignation",
+          "url": "https://lastweekin.ai/p/last-week-in-ai-346-719-math-manuscripts",
+          "date": "2026-10-09T05:06:58.000Z",
+          "categories": []
+        },
+        {
+          "title": "LWiAI Podcast #258 - Opus 5.5, Sol and Luna, Muse, DeepSeek-V4.1-Flash, Xi",
+          "url": "https://lastweekin.ai/p/lwiai-podcast-258-opus-55-sol-and",
+          "date": "2026-10-03T07:32:03.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-bensbites",
+      "name": "Ben's Bites",
+      "feedUrl": "https://www.bensbites.com/feed",
+      "tier": "T2",
+      "tags": [
+        "媒体",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-10-22T13:01:21+00:00",
+      "samples": [
+        {
+          "title": "Claude’s personal agent",
+          "url": "https://www.bensbites.com/p/claudes-personal-agent",
+          "date": "2026-10-22T13:01:21.000Z",
+          "categories": []
+        },
+        {
+          "title": "How I built my ‘everything’ app",
+          "url": "https://www.bensbites.com/p/how-i-built-my-everything-app",
+          "date": "2026-10-20T13:02:28.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-minimaxir",
+      "name": "Max Woolf",
+      "feedUrl": "https://minimaxir.com/index.xml",
+      "tier": "T2",
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-25T21:00:00+00:00",
+      "samples": [
+        {
+          "title": "OpenAI and Anthropic cut their LLM prices by up to 80% within a few months. Why?",
+          "url": "https://minimaxir.com/2026/10/cheap-llms/",
+          "date": "2026-10-25T21:00:00.000Z",
+          "categories": []
+        },
+        {
+          "title": "Writing Rust code that's faster than state-of-the-art libraries by asking agents to make the code faster",
+          "url": "https://minimaxir.com/2026/09/agentic-iteration/",
+          "date": "2026-09-21T16:30:00.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-sander-dieleman",
+      "name": "Sander Dieleman",
+      "feedUrl": "https://sander.ai/feed.xml",
+      "tier": "T2",
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-08-23T23:00:00+00:00",
+      "samples": [
+        {
+          "title": "Continuous diffusion language models",
+          "url": "https://sander.ai/2026/08/24/continuous-dlms.html",
+          "date": "2026-08-23T23:00:00.000Z",
+          "categories": [
+            "diffusion",
+            "language",
+            "LLM",
+            "DLM",
+            "flow matching",
+            "continuous",
+            "discrete"
+          ]
+        },
+        {
+          "title": "Learning the integral of a diffusion model",
+          "url": "https://sander.ai/2026/05/06/flow-maps.html",
+          "date": "2026-05-05T23:00:00.000Z",
+          "categories": [
+            "diffusion",
+            "flow matching",
+            "flow map",
+            "distillation",
+            "mean flow"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-aiweirdness",
+      "name": "AI Weirdness",
+      "feedUrl": "https://www.aiweirdness.com/rss/",
+      "tier": "T2",
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 15,
+      "dated": 15,
+      "latestPublishedAt": "2026-10-23T21:22:11+00:00",
+      "samples": [
+        {
+          "title": "The Worm With 100 Butts",
+          "url": "https://www.aiweirdness.com/the-worm-with-100-butts/",
+          "date": "2026-10-23T21:22:11.000Z",
+          "categories": [
+            "science",
+            "biology",
+            "worm",
+            "butts",
+            "zine"
+          ]
+        },
+        {
+          "title": "Bonus: Irish music zine",
+          "url": "https://www.aiweirdness.com/bonus-irish-music-zine/",
+          "date": "2026-10-23T21:21:51.000Z",
+          "categories": [
+            "bonus post"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-singularityhub",
+      "name": "Singularity Hub",
+      "feedUrl": "https://singularityhub.com/feed/",
+      "tier": "T2",
+      "tags": [
+        "媒体",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-10-26T22:41:53+00:00",
+      "samples": [
+        {
+          "title": "Is AI Really a Black Box? Neural Networks May Be Easier to Understand Than We Thought",
+          "url": "https://singularityhub.com/2026/10/26/is-ai-really-a-black-box-neural-networks-may-be-easier-to-understand-than-we-thought/",
+          "date": "2026-10-26T22:41:53.000Z",
+          "categories": [
+            "Artificial Intelligence"
+          ]
+        },
+        {
+          "title": "This Week’s Awesome Tech Stories From Around the Web (Through October 24)",
+          "url": "https://singularityhub.com/2026/10/24/this-weeks-awesome-tech-stories-from-around-the-web-through-october-24-2/",
+          "date": "2026-10-24T14:00:00.000Z",
+          "categories": [
+            "Curation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-tim-dettmers",
+      "name": "Tim Dettmers",
+      "feedUrl": "https://timdettmers.com/feed/",
+      "tier": "T2",
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 10,
+      "dated": 10,
+      "latestPublishedAt": "2026-09-21T14:23:46+00:00",
+      "samples": [
+        {
+          "title": "dlab Open Source Week: Frontier AI on Your Own Hardware",
+          "url": "https://timdettmers.com/2026/09/21/dlab-open-source-week/",
+          "date": "2026-09-21T14:23:46.000Z",
+          "categories": [
+            "Uncategorized"
+          ]
+        },
+        {
+          "title": "My Journey Towards Coding Agents: Building SERA",
+          "url": "https://timdettmers.com/2026/01/27/building-open-coding-agent-sera/",
+          "date": "2026-01-27T12:32:00.000Z",
+          "categories": [
+            "Uncategorized"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rss-promptlayer",
+      "name": "PromptLayer Blog",
+      "feedUrl": "https://blog.promptlayer.com/rss/",
+      "tier": "T1",
+      "tags": [
+        "开发",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 15,
+      "dated": 15,
+      "latestPublishedAt": "2026-07-05T10:47:14+00:00",
+      "samples": [
+        {
+          "title": "Top 5 Chinese LLMs Compared: Technical Innovation and Strategic Advantages",
+          "url": "https://blog.promptlayer.com/top-5-chinese-llms-compared-technical-innovation-and-strategic-advantages-a-comprehensive-analysis-of-chinas-breakthrough-ai-models-reshaping-the-global-landscape-through-innovative-arc/",
+          "date": "2026-07-05T10:47:14.000Z",
+          "categories": []
+        },
+        {
+          "title": "(Untitled)",
+          "url": "https://blog.promptlayer.com/untitled-3/",
+          "date": "2026-07-05T03:19:32.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-cameron-wolfe",
+      "name": "Deep Learning Focus",
+      "feedUrl": "https://cameronrwolfe.substack.com/feed",
+      "tier": "T2",
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-10-21T09:33:32+00:00",
+      "samples": [
+        {
+          "title": "Evaluating Agents on Highly Subjective Tasks",
+          "url": "https://cameronrwolfe.substack.com/p/subjective-evals",
+          "date": "2026-10-21T09:33:32.000Z",
+          "categories": []
+        },
+        {
+          "title": "Notes on NVIDIA Nemotron",
+          "url": "https://cameronrwolfe.substack.com/p/nemotron",
+          "date": "2026-09-28T09:33:59.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-ai-snake-oil",
+      "name": "AI Snake Oil",
+      "feedUrl": "https://www.aisnakeoil.com/feed",
+      "tier": "T2",
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 20,
+      "dated": 20,
+      "latestPublishedAt": "2026-10-19T20:11:55+00:00",
+      "samples": [
+        {
+          "title": "New paper: Emerging trends in AI agent evaluation",
+          "url": "https://www.normaltech.ai/p/new-paper-emerging-trends-in-ai-agent",
+          "date": "2026-10-19T20:11:55.000Z",
+          "categories": []
+        },
+        {
+          "title": "Steering AI Beyond Automation",
+          "url": "https://www.normaltech.ai/p/steering-ai-beyond-automation",
+          "date": "2026-10-14T19:56:44.000Z",
+          "categories": []
+        }
+      ]
+    },
+    {
+      "id": "rss-practicalai",
+      "name": "Practical AI",
+      "feedUrl": "https://changelog.com/practicalai/feed",
+      "tier": "T2",
+      "tags": [
+        "开发",
+        "英文"
+      ],
+      "checkedAt": "2026-10-27T05:14:11.244609+00:00",
+      "candidates": 379,
+      "dated": 379,
+      "latestPublishedAt": "2026-10-22T09:00:00+00:00",
+      "samples": [
+        {
+          "title": "Exploit Development, Agentic Vulnerability Discovery, and Fake PoCs",
+          "url": "https://share.transistor.fm/s/9a42098b",
+          "date": "2026-10-22T09:00:00.000Z",
+          "categories": []
+        },
+        {
+          "title": "Is Education Failing our Students in this AI-Driven World?",
+          "url": "https://share.transistor.fm/s/4f81adfa",
+          "date": "2026-10-15T13:32:00.000Z",
+          "categories": []
+        }
+      ]
+    }
+  ],
+  "productionValidation": {
+    "checkedAt": "2026-10-27T05:22:45.068448+00:00",
+    "totalEnabled": 102,
+    "newSourcesHealthy": 76,
+    "newArticles": 215,
+    "sourcesWithStoredArticles": 75,
+    "nativeFetchRuns": 79,
+    "successfulNativeFetchRuns": 76,
+    "note": "Two timeout failures recovered through existing fetchNow queue; no health state was manually edited."
+  }
+}

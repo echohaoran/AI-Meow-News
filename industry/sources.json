@@ -534,6 +534,1754 @@
       ],
       "site_fulltext": true,
       "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-ai-snake-oil",
+      "name": "AI Snake Oil",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.aisnakeoil.com/feed",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-aifutures",
+      "name": "AI Futures Project",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://blog.ai-futures.org/feed",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-aiweirdness",
+      "name": "AI Weirdness",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.aiweirdness.com/rss/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-alignment-forum",
+      "name": "Alignment Forum",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.alignmentforum.org/feed.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-amazon-science",
+      "name": "Amazon Science",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.amazon.science/index.rss",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-arxiv-ai",
+      "name": "arXiv · Artificial Intelligence",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://rss.arxiv.org/rss/cs.AI",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 360,
+      "tags": [
+        "论文",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-aws-zh",
+      "name": "AWS 中文博客 · AI",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://aws.amazon.com/cn/blogs/china/category/artificial-intelligence/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "官方",
+        "中文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-azure-ai",
+      "name": "Microsoft Azure AI",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://azure.microsoft.com/en-us/blog/category/ai-machine-learning/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "官方",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-baoyu",
+      "name": "宝玉的分享",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://baoyu.io/feed.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "开发",
+        "中文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-bensbites",
+      "name": "Ben's Bites",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.bensbites.com/feed",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "媒体",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-cameron-wolfe",
+      "name": "Deep Learning Focus",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://cameronrwolfe.substack.com/feed",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-changkun",
+      "name": "欧长坤的博客",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://changkun.de/blog/posts/index.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "研究",
+        "双语"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-cnbeta",
+      "name": "cnBeta",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.cnbeta.com.tw/backend.php",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "媒体",
+        "中文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-databricks",
+      "name": "Databricks Blog",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.databricks.com/feed",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "官方",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-elastic-search",
+      "name": "Elastic Search Labs",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.elastic.co/search-labs/rss/feed.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "开发",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-eugeneyan",
+      "name": "Eugene Yan",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://eugeneyan.com/rss/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "开发",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-frostming",
+      "name": "Frost Ming",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://frostming.com/feed.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "开发",
+        "中文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-geekpark",
+      "name": "极客公园",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.geekpark.net/rss",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "媒体",
+        "中文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-google-cloud-ai",
+      "name": "Google Cloud · AI & ML",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://cloudblog.withgoogle.com/products/ai-machine-learning/rss/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "官方",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-hamelhusain",
+      "name": "Hamel Husain",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://hamel.dev/index.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "开发",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-ieee-spectrum-ai",
+      "name": "IEEE Spectrum · AI",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://spectrum.ieee.org/feeds/topic/artificial-intelligence.rss",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-ifanr",
+      "name": "爱范儿",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.ifanr.com/feed",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "媒体",
+        "中文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-interconnects",
+      "name": "Interconnects · Nathan Lambert",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.interconnects.ai/feed",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-ithome",
+      "name": "IT之家",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.ithome.com/rss/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "媒体",
+        "中文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-jeremyhoward",
+      "name": "fast.ai",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.fast.ai/index.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-jiemian",
+      "name": "界面新闻",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://a.jiemian.com/index.php?m=article&a=rss",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "媒体",
+        "中文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-juejin",
+      "name": "稀土掘金",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://juejin.cn/rss",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "开发",
+        "中文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-kdnuggets",
+      "name": "KDnuggets",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.kdnuggets.com/feed",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "教程",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-laike9m",
+      "name": "laike9m 的博客",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://laike9m.com/blog/rss/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "开发",
+        "中文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-lastweekinai",
+      "name": "Last Week in AI",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://lastweekin.ai/feed",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "媒体",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-leovan",
+      "name": "范叶亮的博客",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://leovan.me/cn/index.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "研究",
+        "中文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-lilianweng",
+      "name": "Lilian Weng",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://lilianweng.github.io/index.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-machinelearningmastery",
+      "name": "Machine Learning Mastery",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://machinelearningmastery.com/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "教程",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-marktechpost",
+      "name": "MarkTechPost",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.marktechpost.com/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "媒体",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-minimaxir",
+      "name": "Max Woolf",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://minimaxir.com/index.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-mit-ai-news",
+      "name": "MIT News · AI",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://news.mit.edu/rss/topic/artificial-intelligence2",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-mlflow",
+      "name": "MLflow Blog",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://mlflow.org/blog/rss.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "开发",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-mozilla-ai",
+      "name": "Mozilla AI",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://blog.mozilla.ai/rss/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "开源",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-nature-ai",
+      "name": "Nature · Machine Learning",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.nature.com/subjects/machine-learning.rss",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-nature-machine",
+      "name": "Nature Machine Intelligence",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.nature.com/natmachintell.rss",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-nvidia-developer",
+      "name": "NVIDIA Developer Blog",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://developer.nvidia.com/blog/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "开发",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-nvidia-zh",
+      "name": "NVIDIA 中国",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://blogs.nvidia.cn/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "官方",
+        "中文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-ollama",
+      "name": "Ollama Blog",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://ollama.com/blog/rss.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "开源",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-oneusefulthing",
+      "name": "One Useful Thing · Ethan Mollick",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.oneusefulthing.org/feed",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-oschina",
+      "name": "开源中国",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.oschina.net/news/rss",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "开发",
+        "中文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-phodal",
+      "name": "Phodal",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.phodal.com/blog/feeds/rss/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "开发",
+        "中文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-practicalai",
+      "name": "Practical AI",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://changelog.com/practicalai/feed",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "开发",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-promptlayer",
+      "name": "PromptLayer Blog",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://blog.promptlayer.com/rss/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "开发",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-qdrant",
+      "name": "Qdrant Blog",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://qdrant.tech/blog/index.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "开发",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-roboflow",
+      "name": "Roboflow Blog",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://blog.roboflow.com/rss/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "视觉",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-robotics-automation-news",
+      "name": "Robotics & Automation News",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://roboticsandautomationnews.com/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "机器人",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-ruanyifeng",
+      "name": "阮一峰的网络日志",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.ruanyifeng.com/blog/atom.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "开发",
+        "中文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-salesforce-ai",
+      "name": "Salesforce AI Research",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.salesforce.com/blog/category/ai-research/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-sander-dieleman",
+      "name": "Sander Dieleman",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://sander.ai/feed.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-science-daily-ai",
+      "name": "ScienceDaily · AI",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-scikit-learn",
+      "name": "Scikit-learn Blog",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://blog.scikit-learn.org/feed.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "开源",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-scitechdaily-ai",
+      "name": "SciTechDaily · AI",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://scitechdaily.com/tag/artificial-intelligence/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-sebastian-raschka",
+      "name": "Ahead of AI · Sebastian Raschka",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://magazine.sebastianraschka.com/feed",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-singularityhub",
+      "name": "Singularity Hub",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://singularityhub.com/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "媒体",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-solidot",
+      "name": "Solidot",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.solidot.org/index.rss",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "媒体",
+        "中文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-sony-ai",
+      "name": "Sony AI",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://ai.sony/blog/rss.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-sspai",
+      "name": "少数派",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://sspai.com/feed",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "产品",
+        "中文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-techxplore-ai",
+      "name": "Tech Xplore · AI",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://techxplore.com/rss-feed/machine-learning-ai-news/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-tim-dettmers",
+      "name": "Tim Dettmers",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://timdettmers.com/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "研究",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-tmtpost",
+      "name": "钛媒体",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.tmtpost.com/feed",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "媒体",
+        "中文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-together-ai",
+      "name": "Together AI",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.together.ai/blog/rss.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "官方",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-towardsdatascience",
+      "name": "Towards Data Science",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://towardsdatascience.com/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "教程",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-ultralytics",
+      "name": "Ultralytics Blog",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.ultralytics.com/blog/rss.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "视觉",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-uniteai",
+      "name": "Unite.AI",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.unite.ai/feed/",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "媒体",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-weaviate",
+      "name": "Weaviate Blog",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://weaviate.io/blog/rss.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "开发",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-weights-biases",
+      "name": "Weights & Biases",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://wandb.ai/fully-connected/rss.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "开发",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-wired-ai",
+      "name": "WIRED · AI",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.wired.com/feed/tag/ai/latest/rss",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "媒体",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-woshipm",
+      "name": "人人都是产品经理",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.woshipm.com/feed",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "产品",
+        "中文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-yufree",
+      "name": "于淼",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://yufree.cn/cn/index.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "研究",
+        "中文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-zenml",
+      "name": "ZenML Blog",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.zenml.io/blog/rss.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "开发",
+        "英文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
+    },
+    {
+      "id": "rss-zhayong",
+      "name": "ZMonster · AI 与技术笔记",
+      "kind": "rss",
+      "config": {
+        "feedUrl": "https://www.zmonster.me/atom.xml",
+        "_aihot": {
+          "initialBackfillLimit": 3,
+          "initialBackfillMonths": 6
+        }
+      },
+      "tier": "T2",
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": [
+        "研究",
+        "中文"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false,
+      "owner_entity_id": null,
+      "enabled": true
     }
   ]
 }
