@@ -7,7 +7,9 @@ import { after, beforeEach, test } from "node:test";
 import { spawn } from "node:child_process";
 import { z } from "zod";
 import { sql, closeDb } from "@aihot/backend/db";
-import { chatJson } from "@aihot/backend/providers/llm";
+import { chatJson, MODELS } from "@aihot/backend/providers/llm";
+import { runSelectionPrefilter, runSelectionScores } from "@aihot/backend/editorial/analyze";
+import type { AnalyzeInputArticle } from "@aihot/backend/editorial/input";
 import { BudgetExceededError, failureKind, ModelOutputError, ReceiptUnknownError } from "@aihot/backend/providers/receipts";
 import { autoReleaseUnknownReceipts } from "@aihot/backend/operations/recover";
 import { collectFindings } from "@aihot/backend/operations/alerts";
@@ -45,6 +47,33 @@ test("a 503 uses the backup and a retry reuses its saved answer after the primar
   assert.equal(again.receiptId, first.receiptId);
   assert.equal(again.reused, true);
   assert.deepEqual([primary.hits(), backup.hits()], calls);
+});
+
+test("article prefilter and scoring use the configured backup and record mixed score models", async () => {
+  MODELS["test-route-primary"] = { ...MODELS["deepseek-flash"]!, key: "test-route-primary" };
+  MODELS["test-route-backup"] = { ...MODELS["qwen3.8-flash"]!, key: "test-route-backup", fallbackFor: { prefilter: "test-route-primary", score: "test-route-primary" } };
+  const previousPrefilter = process.env.PREFILTER_MODEL, previousScore = process.env.SCORE_MODEL;
+  process.env.PREFILTER_MODEL = process.env.SCORE_MODEL = "test-route-primary";
+  const input: AnalyzeInputArticle = { id: `failover-${T}`, revision: 1, title: "New AI model", url: "https://example.org/article", author: null, publishedAt: null, bodyText: "A lab announced a new model with pricing and technical details.", excerpt: null, xPost: null, media: [], source: { name: "Test", kind: "rss", tier: "T1", firstParty: true } };
+  const reply = (data: unknown) => ({ choices: [{ message: { content: JSON.stringify(data) } }] });
+  try {
+    primaryAnswer = () => new Reply(503, { error: "unavailable" });
+    backupAnswer = () => reply({ label: "PASS", reason: "AI model announcement" });
+    const prefilter = await runSelectionPrefilter(input);
+    assert.equal(prefilter.label, "PASS");
+    assert.equal(prefilter.model, "test-route-backup");
+    let scoreCalls = 0;
+    primaryAnswer = () => ++scoreCalls === 1 ? reply({ attentionScore: 80 }) : new Reply(503, { error: "unavailable" });
+    backupAnswer = () => reply({ attentionScore: 60 });
+    const scores = await runSelectionScores(input);
+    assert.deepEqual(scores?.values, [80, 60]);
+    assert.equal(scores?.model, "test-route-primary + test-route-backup");
+  } finally {
+    if (previousPrefilter === undefined) delete process.env.PREFILTER_MODEL; else process.env.PREFILTER_MODEL = previousPrefilter;
+    if (previousScore === undefined) delete process.env.SCORE_MODEL; else process.env.SCORE_MODEL = previousScore;
+    delete MODELS["test-route-primary"];
+    delete MODELS["test-route-backup"];
+  }
 });
 
 test("ten consecutive failures within five minutes stop primary calls across steps and a fresh process, then one probe restores it", async () => {

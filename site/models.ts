@@ -23,6 +23,7 @@ export const PRESETS: Record<string, ModelPreset> = {
   "deepseek-flash": {
     service: "deepseek", model: "deepseek-flash", baseUrlEnv: "DEEPSEEK_BASE_URL", apiKeyEnv: "DEEPSEEK_API_KEY",
     extra: { thinking: { type: "disabled" } }, jsonMode: true,
+    fallbackFor: { prefilter: "default", score: "default", structure: "default", understand: "default", summarize: "default", wording: "default", group: "default", groupReview: "default", digest: "default", report: "default", translate: "default" },
   },
   "deepseek-flash-think": {
     service: "deepseek", model: "deepseek-flash", baseUrlEnv: "DEEPSEEK_BASE_URL", apiKeyEnv: "DEEPSEEK_API_KEY", reasoningTokens: 4000, jsonMode: true,

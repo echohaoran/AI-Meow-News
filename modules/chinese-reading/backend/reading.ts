@@ -5,7 +5,7 @@ import { sql } from "@aihot/backend/db";
 import { bodyToMarkdown } from "@aihot/backend/content/markdown";
 import { textToHtml, trimTrailingChrome } from "@aihot/backend/content/sanitize";
 import { escapeXml, isChineseText } from "@aihot/backend/lib/text";
-import { modelFor } from "@aihot/backend/editorial/models";
+import { modelRoute } from "@aihot/backend/editorial/models";
 import { promptText, promptVersion } from "@aihot/backend/editorial/prompts";
 import { chatJson } from "@aihot/backend/providers/llm";
 import { completeReceipt, failureKind, ProviderRejectedError } from "@aihot/backend/providers/receipts";
@@ -38,7 +38,7 @@ export async function composeReading(articleId: string) {
   shutdownSignal.signal.throwIfAborted();
   const html = row.body_html ? trimTrailingChrome(row.body_html) : textToHtml(row.body_text);
   const response = await chatJson({
-    model: await modelFor("translate"), purpose: "translate_body", subject: `reading:${articleId}@${row.revision}`,
+    ...await modelRoute("translate"), purpose: "translate_body", subject: `reading:${articleId}@${row.revision}`,
     promptVersion: VERSION, system: SYSTEM,
     user: JSON.stringify({ source: row.source, title: row.title, url: row.url, material: bodyToMarkdown(html, row.url) }),
     schema: Output, temperature: 0.2, maxTokens: 8000, timeoutMs: 180_000,
