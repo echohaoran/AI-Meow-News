@@ -88,7 +88,7 @@ test("an unavailable feed remains an uncached 503 with branded retry content", a
     const $ = cheerio.load(await response.text());
     assert.match($("#main").text(), /暂时无法加载/);
     assert.match($("#main").text(), /AI-News/);
-    assert.equal($('#main a[href="/"]').first().text().trim(), "重新加载");
+    assert.equal($('#main a[href="/"]').filter((_, link) => $(link).text().trim() === "重新加载").length, 1);
     assert.equal($('#main a[href^="/items/"]').length, 0);
   } finally { await web.stop(); }
 });

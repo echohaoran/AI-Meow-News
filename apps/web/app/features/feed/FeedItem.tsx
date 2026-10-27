@@ -37,7 +37,7 @@ export const FeedItem = memo(function FeedItem({ item, group, filters, read = fa
   const tags = showTags ? item.tags.slice(0, 3) : [];
 
   return (
-    <article className="relative min-w-0 lg:card lg:card-hover lg:px-[18px] lg:pb-[14px] lg:pt-[15px]" data-item-id={item.id}>
+    <article className="relative min-w-0 lg:card lg:card-hover lg:p-6" data-item-id={item.id}>
       <header className="flex min-h-[22px] items-center gap-1.5 text-[12.5px] leading-[18px] text-ink-4 lg:min-h-[18px] lg:gap-2">
         <SourceLine item={item} className="text-ink-4" />
         {at && (
@@ -58,7 +58,7 @@ export const FeedItem = memo(function FeedItem({ item, group, filters, read = fa
             <ScoreLabel score={item.score} compact />
           </span>
           <span className="-my-[11px] -mr-3 inline-flex lg:-my-1 lg:mr-0">
-            <StarButton item={item} className="size-11 lg:size-[26px]" />
+            <StarButton item={item} className="size-11 lg:size-9" />
           </span>
         </span>
       </header>
@@ -71,12 +71,12 @@ export const FeedItem = memo(function FeedItem({ item, group, filters, read = fa
         </p> : <IntentLink viewTransition to={`/items/${item.id}`} onClick={open} aria-label={`查看 ${item.x!.authorName} 的帖子`} className="absolute inset-0" />
       ) : (
         <>
-          <h3 className={`mt-1.5 line-clamp-2 text-[17px] font-[650] leading-[1.5] lg:mt-2 lg:line-clamp-none lg:leading-[1.55] ${readTone(read, "text-ink")}`}>
+          <h3 className={`mt-1.5 line-clamp-2 text-[18px] font-semibold leading-[1.5] lg:mt-2 lg:line-clamp-none lg:leading-[1.55] ${readTone(read, "text-ink")}`}>
             <IntentLink viewTransition to={`/items/${item.id}`} onClick={open} className="after:absolute after:inset-0 after:content-['']">
               {item.title}
             </IntentLink>
           </h3>
-          {item.summary && <p className="mt-1 line-clamp-2 text-[14.5px] leading-[1.7] text-ink-3 lg:mt-2 lg:line-clamp-3 lg:text-[15px] lg:leading-[1.75]">{item.summary}</p>}
+          {item.summary && <p className="mt-1 line-clamp-2 text-[15px] leading-[1.75] text-ink-3 lg:mt-3 lg:line-clamp-3 lg:text-[16px]">{item.summary}</p>}
         </>
       )}
 

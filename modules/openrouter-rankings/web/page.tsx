@@ -49,16 +49,16 @@ export default function RankingsPage() {
   const largest = Math.max(0, ...(board?.entries.map((entry) => Number(entry.value)) ?? []));
 
   return (
-    <div className="mx-auto max-w-[1280px] pb-12">
+    <div className="mx-auto max-w-[1120px] pb-12">
       <PhoneBar back={{ to: "/more", label: "我的" }} title={pageTitle} />
       <header className="border-b border-line pb-7 pt-4 lg:pt-2">
         <Kicker>OpenRouter · 每日快照</Kicker>
         <div className="mt-4 flex flex-wrap items-end justify-between gap-5">
           <div>
-            <h1 data-page-title="" className="text-[32px] font-black tracking-tight text-ink lg:text-[42px]">{pageTitle}</h1>
-            <p className="mt-3 max-w-[48em] text-[14px] leading-relaxed text-ink-3">查看各类模型的实际使用情况、能力基准与热门应用。用量仅代表 OpenRouter 平台流量，不代表全行业份额或模型能力。</p>
+            <h1 data-page-title="" className="text-[28px] font-semibold leading-[1.35] text-ink lg:text-[40px]">{pageTitle}</h1>
+            <p className="mt-3 max-w-[48em] text-[16px] leading-relaxed text-ink-3">查看各类模型的实际使用情况、能力基准与热门应用。用量仅代表 OpenRouter 平台流量，不代表全行业份额或模型能力。</p>
           </div>
-          <a href="https://openrouter.ai/rankings" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-10 items-center gap-2 rounded-full border border-line-strong bg-surface px-4 text-[13px] text-ink-2 hover:text-accent">
+          <a href="https://openrouter.ai/rankings" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 rounded-control border border-line-strong bg-surface px-4 text-[13px] text-ink-2 hover:text-accent">
             查看来源 <IconExternal size={14} />
           </a>
         </div>
@@ -67,26 +67,26 @@ export default function RankingsPage() {
 
       <nav aria-label="排行榜分类" className="mt-6 flex flex-wrap gap-2">
         {CATEGORIES.map((c) => <Link key={c.id} to={href(c.id, c.id === "apps" && period === "trending" ? "week" : period)} aria-current={category === c.id ? "page" : undefined}
-          className={`inline-flex min-h-10 items-center rounded-full border px-4 text-[13px] font-medium transition-colors ${category === c.id ? "border-accent bg-accent text-[var(--accent-contrast)]" : "border-line bg-surface text-ink-3 hover:border-accent hover:text-accent"}`}>
+          className={`inline-flex min-h-11 items-center rounded-control border px-4 text-[13px] font-medium transition-colors ${category === c.id ? "border-action bg-action text-on-action" : "border-line bg-surface text-ink-3 hover:border-accent hover:text-accent"}`}>
           {c.label}
         </Link>)}
       </nav>
 
       <div className="mt-7 flex flex-wrap items-center justify-between gap-4">
-        <h2 className="text-[20px] font-bold text-ink">{boardTitle}</h2>
+        <h2 className="text-[24px] font-semibold text-ink">{boardTitle}</h2>
         {category === "benchmarks" ? available.length > 0 && (
           <Form method="get" className="flex max-w-full items-center gap-2">
             <input type="hidden" name="category" value="benchmarks" />
             <label htmlFor="ranking-benchmark" className="sr-only">能力基准</label>
-            <select id="ranking-benchmark" name="board" defaultValue={board?.id} className="min-h-10 min-w-0 max-w-[260px] rounded-control border border-line bg-surface px-3 text-[13px] text-ink">
+            <select id="ranking-benchmark" name="board" defaultValue={board?.id} className="min-h-11 min-w-0 max-w-[260px] rounded-control border border-control bg-surface px-3 text-[14px] text-ink">
               {available.map((b) => <option key={b.id} value={b.id}>{b.title}</option>)}
             </select>
-            <button type="submit" className="min-h-10 rounded-control bg-well px-3 text-[13px] text-ink">查看</button>
+            <button type="submit" className="min-h-11 rounded-control bg-well px-3 text-[13px] text-ink">查看</button>
           </Form>
         ) : (
-          <nav aria-label="统计周期" className="flex flex-wrap gap-1 rounded-full bg-well p-1">
+          <nav aria-label="统计周期" className="flex flex-wrap gap-1 rounded-control bg-well p-1">
             {PERIODS.filter((p) => category !== "apps" || p.id !== "trending").map((p) => <Link key={p.id} to={href(category, p.id)} aria-current={period === p.id ? "page" : undefined}
-              className={`rounded-full px-3 py-2 text-[12px] sm:px-4 ${period === p.id ? "bg-surface font-semibold text-ink shadow-sm" : "text-ink-3 hover:text-ink"}`}>{p.label}</Link>)}
+              className={`rounded-mark px-3 py-2 text-[14px] sm:px-4 ${period === p.id ? "bg-surface font-semibold text-ink ring-1 ring-line" : "text-ink-3 hover:text-ink"}`}>{p.label}</Link>)}
           </nav>
         )}
       </div>
@@ -115,12 +115,12 @@ export default function RankingsPage() {
             <tbody className="divide-y divide-line-soft">
               {board.entries.map((entry) => <tr key={`${entry.rank}:${entry.name}`} className="hover:bg-bg-sunk">
                 <td className={`num px-4 py-4 text-[16px] ${entry.rank <= 3 ? "font-black text-accent" : "text-ink-4"}`}>{String(entry.rank).padStart(2, "0")}</td>
-                <td className="px-3 py-4"><div className="flex items-center gap-3">
+                <td className="px-3 py-5"><div className="flex items-center gap-3">
                   {category !== "apps" && <BrandMark brand={publisherBrand(entry.author)} size={28} />}
                   <div className="min-w-0"><div className="font-semibold leading-relaxed text-ink">{entry.url ? <a href={entry.url} target="_blank" rel="noopener noreferrer" className="hover:text-accent hover:underline">{entry.name}</a> : entry.name}</div>{entry.author && <div className="mt-0.5 text-[12px] text-ink-4">{entry.author}</div>}</div>
                 </div></td>
-                <td className="px-3 py-4 text-right"><span className="num font-semibold text-ink" title={entry.value}>{metric(entry.value)}</span>{category !== "benchmarks" && <div className="mt-2 ml-auto h-1 w-20 overflow-hidden rounded-full bg-well" aria-hidden="true"><div className="h-full rounded-full bg-accent/40" style={{ width: `${largest > 0 ? Number(entry.value) / largest * 100 : 0}%` }} /></div>}</td>
-                {category !== "benchmarks" && category !== "apps" && <td className="num whitespace-nowrap px-4 py-4 text-right text-[13px] text-ink-3">{entry.change === null ? "新" : `${entry.change > 0 ? "+" : ""}${(entry.change * 100).toFixed(1)}%`}</td>}
+                <td className="px-3 py-5 text-right"><span className="num font-semibold text-ink" title={entry.value}>{metric(entry.value)}</span>{category !== "benchmarks" && <div className="mt-2 ml-auto h-1 w-20 overflow-hidden rounded-full bg-well" aria-hidden="true"><div className="h-full rounded-full bg-action" style={{ width: `${largest > 0 ? Number(entry.value) / largest * 100 : 0}%` }} /></div>}</td>
+                {category !== "benchmarks" && category !== "apps" && <td className="num whitespace-nowrap px-4 py-5 text-right text-[14px] text-ink-3">{entry.change === null ? "新" : `${entry.change > 0 ? "+" : ""}${(entry.change * 100).toFixed(1)}%`}</td>}
               </tr>)}
             </tbody>
           </table>

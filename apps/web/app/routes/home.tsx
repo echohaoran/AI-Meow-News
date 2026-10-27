@@ -67,8 +67,8 @@ export default function Home() {
           <p className="mb-3 flex items-center gap-2 text-[12px] font-semibold tracking-[0.06em] text-accent">
             <RingMark className="size-5 shrink-0" /> {SITE.name} · AI喵实验室
           </p>
-          <h1 id="news-intro-title" className="text-[26px] font-bold leading-[1.35] tracking-[-0.025em] text-ink sm:text-[34px]">关注 AI 的每一步。</h1>
-          <p className="mt-3 max-w-xl text-[13px] leading-[1.8] text-ink-3 sm:text-[14px]">从动态到事件，从摘要到原文。按你关心的方向，继续阅读。</p>
+          <h1 id="news-intro-title" className="text-[32px] font-semibold leading-[1.35] text-ink sm:text-[40px]">关注 AI 的每一步。</h1>
+          <p className="mt-5 max-w-xl text-[16px] leading-[1.75] text-ink-3">从动态到事件，从摘要到原文。按你关心的方向，继续阅读。</p>
         </div>
         <nav aria-label="订阅与 Agent" className="news-shortcuts">
           <a href="/feed.xml" target="_blank" rel="noopener noreferrer" className="news-shortcut"><span className="news-shortcut-no">01</span><span>RSS 一键订阅</span><span aria-hidden="true">↗</span></a>
@@ -76,8 +76,8 @@ export default function Home() {
         </nav>
       </section>
       <div className="hidden lg:block">
-        <h2 className="text-[20px] font-semibold leading-[1.3] text-ink">{title === "精选" ? "每日精选" : title}</h2>
-        <div className="mb-5 mt-4 flex items-center justify-between gap-4">
+        <h2 className="text-[24px] font-semibold leading-[1.35] text-ink">{title === "精选" ? "每日精选" : title}</h2>
+        <div className="mb-6 mt-5 flex flex-wrap items-center justify-between gap-4">
           <CategoryTabs base="/" category={filters.category} channel={filters.channel} layoutId="home-cat-desk" className="min-w-0" />
           <SearchField keep={{ category: filters.category }} />
         </div>

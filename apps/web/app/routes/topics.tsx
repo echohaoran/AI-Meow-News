@@ -6,7 +6,7 @@ import { apiGet, cachedPage } from "../lib/api.server";
 import { pageReuse } from "../lib/page-reuse";
 import { breadcrumbLd, pageMeta, siteUrl } from "../lib/seo";
 import { relativeTime } from "../lib/format";
-import { IconChevronRight } from "../components/icons";
+import { IconArrowUpRight, IconChevronRight } from "../components/icons";
 import { IntentLink } from "../components/ui/IntentLink";
 import { BrandMark } from "../components/BrandMark";
 import { PhoneBar } from "../components/shell/PhoneBar";
@@ -59,26 +59,27 @@ function TopicCard({ t }: { t: TopicSummary }) {
     <IntentLink
       viewTransition
       to={`/topics/${t.slug}`}
-      className="group flex items-center gap-3 py-3 pl-4 pr-3 transition-colors active:bg-bg-sunk lg:card lg:card-hover lg:h-full lg:flex-col lg:items-stretch lg:gap-0 lg:px-5 lg:py-4 lg:active:bg-surface"
+      className="group flex items-center gap-4 px-4 py-5 transition-colors active:bg-bg-sunk lg:card lg:card-hover lg:h-full lg:min-h-[208px] lg:flex-col lg:items-stretch lg:gap-0 lg:p-6 lg:active:bg-surface"
     >
       {t.brand && (
         <span className="flex shrink-0 lg:hidden">
-          <BrandMark brand={t.brand} size={30} />
+          <BrandMark brand={t.brand} size={36} />
         </span>
       )}
       <span className="min-w-0 flex-1 lg:flex lg:flex-col">
-        <span className="flex items-center gap-2.5 text-[15.5px] font-semibold text-ink transition-colors group-hover:text-accent lg:text-[15px] lg:font-bold">
+        <span className="flex items-center gap-3 text-[16px] font-semibold leading-[1.5] text-ink transition-colors group-hover:text-accent">
           {t.brand && (
             <span className="hidden lg:flex">
-              <BrandMark brand={t.brand} size={22} />
+              <BrandMark brand={t.brand} size={36} />
             </span>
           )}
           {t.name}
+          <IconArrowUpRight size={16} className="ml-auto hidden shrink-0 text-ink-3 group-hover:text-accent lg:block" />
         </span>
-        <span className="mt-0.5 line-clamp-1 text-[12.5px] leading-[1.6] text-ink-4 lg:mt-1.5 lg:line-clamp-2 lg:flex-1 lg:text-[13px] lg:leading-[1.65] lg:text-ink-2">
+        <span className="mt-1 line-clamp-2 text-[14px] leading-[1.75] text-ink-3 lg:mt-4">
           {t.latest?.title ?? t.definition}
         </span>
-        <span className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-0.5 text-[11.5px] text-ink-4 lg:mt-3 lg:justify-between">
+        <span className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px] text-ink-3 lg:mt-auto lg:justify-between lg:pt-5">
           {t.latest && <time dateTime={t.latest.at} suppressHydrationWarning>{relativeTime(t.latest.at)}</time>}
           <span>
             {t.recent > 0 ? (
@@ -101,22 +102,26 @@ export default function TopicsPage() {
   return (
     <div className="pb-10">
       <PhoneBar back={{ to: "/more", label: "我的" }} title="主题" />
-      <header className="pb-2 pt-3 lg:pt-1">
-        <h1 data-page-title="" className="text-[24px] font-semibold leading-[1.3] text-ink">{subjectAfter("按主题看")}</h1>
-        <p className="mt-1.5 text-[13px] leading-relaxed text-ink-3">
+      <header className="border-b border-line pb-8 pt-4 lg:pb-10 lg:pt-2">
+        <p className="mb-3 text-[12px] font-medium tracking-[0.08em] text-accent">主题索引</p>
+        <h1 data-page-title="" className="text-[28px] font-semibold leading-[1.35] text-ink lg:text-[40px]">{subjectAfter("按主题看")}</h1>
+        <p className="mt-4 max-w-[48em] text-[16px] leading-[1.75] text-ink-3">
           {`按${groups.map((g) => g.name).join("、")}浏览 `}
           <span className="num">{topics.length}</span> 个主题，追踪最新精选与重要进展。
         </p>
+        <nav aria-label="主题分组" className="mt-6 flex flex-wrap gap-3">
+          {groups.map((group) => <a key={group.key} href={`#topics-${group.key}`} className="inline-flex min-h-11 items-center gap-3 rounded-control border border-line px-4 text-[14px] text-ink hover:border-accent hover:bg-accent-softer">{group.name}<span className="num text-[12px] text-ink-3">{topics.filter(t => t.group === group.key).length}</span></a>)}
+        </nav>
       </header>
       {groups.map((g) => (
-        <section key={g.key} aria-labelledby={`topics-${g.key}`} className="pt-8">
-          <div className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
-            <h2 id={`topics-${g.key}`} className="text-[15px] font-bold text-ink">
+        <section key={g.key} aria-labelledby={`topics-${g.key}`} className="pt-10 lg:pt-12">
+          <div className="flex flex-wrap items-baseline gap-x-4 gap-y-2">
+            <h2 id={`topics-${g.key}`} className="scroll-mt-20 text-[20px] font-semibold text-ink lg:text-[24px]">
               {g.name}
             </h2>
-            <p className="text-[12px] text-ink-4">{g.blurb}</p>
+            <p className="text-[14px] text-ink-3">{g.blurb}</p>
           </div>
-          <ul className="mt-3 divide-y divide-line-soft overflow-hidden rounded-card border border-line bg-surface lg:mt-3.5 lg:grid lg:grid-cols-3 lg:gap-3 lg:divide-y-0 lg:overflow-visible lg:rounded-none lg:border-0 lg:bg-transparent xl:grid-cols-4">
+          <ul className="mt-5 divide-y divide-line overflow-hidden rounded-card border border-line bg-surface lg:mt-6 lg:grid lg:grid-cols-2 lg:gap-6 lg:divide-y-0 lg:overflow-visible lg:rounded-none lg:border-0 lg:bg-transparent min-[1180px]:grid-cols-3">
             {topics
               .filter((t) => t.group === g.key)
               .map((t) => (

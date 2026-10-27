@@ -9,6 +9,8 @@ import { useEffect, useState, type ReactNode } from "react";
 import type { Route } from "./+types/root";
 import "./app.css";
 import { Sidebar } from "./components/shell/Sidebar";
+import { DesktopHeader } from "./components/shell/DesktopHeader";
+import { useScreen } from "./components/shell/screens";
 import { TabBar } from "./components/shell/TabBar";
 import { PullToRefresh } from "./components/shell/PullToRefresh";
 import { usePageTransition } from "./components/shell/transitions";
@@ -55,8 +57,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta charSet="utf-8" />
         {documentRelease && <meta name="aihot-release" content={documentRelease} />}
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8f7fc" />
-        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#171522" />
+        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#181a20" />
         <meta name="robots" content="noindex, nofollow" />
         <meta name="apple-mobile-web-app-title" content={SITE.name} />
         <script dangerouslySetInnerHTML={{ __html: APPEARANCE_BOOT_SCRIPT }} />
@@ -83,6 +85,7 @@ export function meta({ error }: Route.MetaArgs) {
 /** Sidebar, main column and phone tab bar around a page (or an error). */
 function SiteShell({ changelogVersion, children }: { changelogVersion: string | null; children: ReactNode }) {
   const navigation = useNavigation();
+  const screen = useScreen();
   // The phone search and pull-to-refresh are client-side, mounted once the page is interactive.
   const [interactive, setInteractive] = useState(false);
   useEffect(() => setInteractive(true), []);
@@ -95,8 +98,9 @@ function SiteShell({ changelogVersion, children }: { changelogVersion: string | 
       <Sidebar changelogVersion={changelogVersion} />
       {/* Phone shell (≤ 960px): each page's top bar (PhoneBar), one centred column, the tab bar below.
           Desktop: the page fills the main area up to the list width (--page-max-wide), centred beyond it. */}
-      <main id="main" tabIndex={-1} aria-busy={navigation.state === "loading"} className="min-w-0 flex-1 pb-[calc(72px+env(safe-area-inset-bottom))] lg:px-7 lg:pb-[72px] lg:pt-6">
-        <div className="mx-auto w-full max-w-[640px] pl-[var(--gutter-l)] pr-[var(--gutter-r)] lg:max-w-[var(--page-max-wide)] lg:px-0">
+      <main id="main" tabIndex={-1} aria-busy={navigation.state === "loading"} className="min-w-0 flex-1 pb-[calc(72px+env(safe-area-inset-bottom))] lg:px-8 lg:pb-[72px] lg:pt-6 xl:px-10">
+        <div className={`mx-auto w-full max-w-[640px] pl-[var(--gutter-l)] pr-[var(--gutter-r)] lg:px-0 ${screen.toolbar ? "lg:max-w-[var(--page-max-reading)]" : "lg:max-w-[var(--page-max-wide)]"}`}>
+          <DesktopHeader />
           {webModules().map((m) => m.root?.Top && <m.root.Top key={m.name} />)}
           {children}
         </div>

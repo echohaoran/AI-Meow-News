@@ -103,7 +103,7 @@ function readColors(probe: CanvasRenderingContext2D): Colors {
   const bg = parse(getComputedStyle(document.body).backgroundColor, [250, 249, 246]);
   return {
     ink: parse(root.getPropertyValue("--ink").trim(), [32, 42, 48]),
-    accent: parse(root.getPropertyValue("--accent").trim(), [100, 77, 195]),
+    accent: parse(root.getPropertyValue("--s-action").trim(), [252, 213, 53]),
     bg, dark: bg[0] * 0.3 + bg[1] * 0.59 + bg[2] * 0.11 < 110,
   };
 }
@@ -166,15 +166,15 @@ function planet(ctx: CanvasRenderingContext2D, g: Galaxy, col: Colors, glow: num
   ctx.arc(0, 0, r, 0, TAU);
   ctx.clip();
   const sphere = ctx.createRadialGradient(-r * 0.4, -r * 0.45, r * 0.08, r * 0.2, r * 0.2, r * 1.25);
-  sphere.addColorStop(0, col.dark ? "#e6dcff" : "#e3d9ff");
-  sphere.addColorStop(0.35, "#a38be5");
+  sphere.addColorStop(0, rgba(col.accent, col.dark ? 0.85 : 0.25));
+  sphere.addColorStop(0.35, rgba(col.accent, 0.8));
   sphere.addColorStop(0.7, rgba(col.accent, 1));
-  sphere.addColorStop(1, col.dark ? "#241749" : "#38225f");
+  sphere.addColorStop(1, rgba(col.dark ? col.bg : col.ink, 1));
   ctx.fillStyle = sphere;
   ctx.fillRect(-r, -r, r * 2, r * 2);
   ctx.lineWidth = r * 0.16;
   for (let i = -2; i <= 2; i++) {
-    ctx.strokeStyle = i % 2 ? "rgba(255,255,255,0.1)" : "rgba(45,22,92,0.1)";
+    ctx.strokeStyle = i % 2 ? "rgba(255,255,255,0.1)" : rgba(col.ink, 0.1);
     ctx.beginPath();
     ctx.ellipse(-r * 0.12, i * r * 0.3, r * 1.1, r * 0.28, 0, 0.1, Math.PI - 0.1);
     ctx.stroke();
@@ -188,23 +188,23 @@ function planet(ctx: CanvasRenderingContext2D, g: Galaxy, col: Colors, glow: num
     const x = Math.sin(longitude) * Math.cos(latitude) * r, y = Math.sin(latitude) * r;
     ctx.beginPath();
     ctx.ellipse(x, y, r * (0.12 + i % 3 * 0.025) * depth, r * 0.035, -0.12, 0, TAU);
-    ctx.fillStyle = i % 2 ? `rgba(255,255,255,${depth * 0.17})` : `rgba(45,22,92,${depth * 0.12})`;
+    ctx.fillStyle = i % 2 ? `rgba(255,255,255,${depth * 0.17})` : rgba(col.ink, depth * 0.12);
     ctx.fill();
   }
   ctx.restore();
   // A thin atmospheric rim, rather than a flat outline around the whole planet.
   const rim = ctx.createLinearGradient(-r, -r, r, r);
-  rim.addColorStop(0, "rgba(248,240,255,0.95)");
-  rim.addColorStop(0.32, "rgba(208,182,255,0.75)");
-  rim.addColorStop(0.62, "rgba(139,103,222,0.1)");
+  rim.addColorStop(0, rgba(col.accent, 0.95));
+  rim.addColorStop(0.32, rgba(col.accent, 0.75));
+  rim.addColorStop(0.62, rgba(col.accent, 0.1));
   rim.addColorStop(1, rgba(col.accent, 0.5));
   ctx.save();
   ctx.beginPath(); ctx.arc(0, 0, r * 1.015, 0, TAU);
   ctx.lineWidth = Math.max(1.2, r * 0.035); ctx.strokeStyle = rim;
-  ctx.shadowColor = "rgba(190,155,255,0.65)"; ctx.shadowBlur = r * 0.13; ctx.stroke();
+  ctx.shadowColor = rgba(col.accent, 0.65); ctx.shadowBlur = r * 0.13; ctx.stroke();
   ctx.restore();
   ctx.lineWidth = r * 0.13;
-  ctx.strokeStyle = col.dark ? "rgba(208,192,255,0.82)" : "rgba(164,143,220,0.76)";
+  ctx.strokeStyle = rgba(col.accent, col.dark ? 0.82 : 0.76);
   ctx.beginPath();
   ctx.ellipse(0, 0, r * 1.75, r * 0.48, 0, 0, Math.PI);
   ctx.stroke();

@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "../../../site/brand/binance-reference/tokens.css";
 /* Classes also live in the site's logo and changelog drawings (site/brand, site/changelog) and in the
    modules' web code (their other files are not scanned: words in backend code and data would become classes). */
 @source "../../../site/brand";
@@ -6,8 +7,8 @@
 @source "../../../modules/*/{web.tsx,web/**}";
 
 /* ---------------------------------------------------------------------------
-   Design tokens: light lilac paper, ink text, one violet accent (lavender in
-   dark), hairline borders, no gradients.
+   Design tokens: Binance Reference white/charcoal surfaces, restrained yellow actions,
+   readable gold links, hairline borders and typography-led hierarchy.
    Components use the semantic names below; values change per theme only.
    --------------------------------------------------------------------------- */
 
@@ -20,10 +21,14 @@
 @custom-variant touch (@media (hover: none));
 
 @theme {
-  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "HarmonyOS Sans SC", "Microsoft YaHei", sans-serif;
+  --font-sans: var(--p-font-body);
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
 
   /* Semantic colours. */
+  --color-action: var(--s-action);
+  --color-action-hover: var(--s-action-hover);
+  --color-on-action: var(--s-on-action);
+  --color-control: var(--s-control-border);
   --color-bg: var(--bg);
   --color-bg-sunk: var(--bg-sunk);
   --color-bg-muted: var(--bg-muted);
@@ -59,14 +64,12 @@
   --color-rank-3: var(--rank-3);
   --color-rank-rest: var(--rank-rest);
 
-  /* Radius scale: mark 5 (inline code, kbd, tiny tags and swatches), control 8 (inputs, small
-     blocks), tile 10 (list rows, hover areas), card 12, panel 14 (wells, pictures), sheet 16 (dialogs,
-     sheets, hero shells); pills are rounded-full. Arbitrary radii are not used. */
-  --radius-mark: 5px;
+  /* Reference radii: labels 4, controls 8, content cards 16. */
+  --radius-mark: 4px;
   --radius-control: 8px;
-  --radius-tile: 10px;
-  --radius-card: 12px;
-  --radius-panel: 14px;
+  --radius-tile: 8px;
+  --radius-card: 16px;
+  --radius-panel: 16px;
   --radius-sheet: 16px;
 
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
@@ -80,67 +83,64 @@
 }
 
 :root {
-  /* Page widths follow the screen's shape. Lists fill the screen up to 21:9
-     and centre beyond it (32:9); reading pages fill a 16:9 screen and centre on wider ones. A browser
-     window is shorter than its screen (tabs, address bar), so a 16:9 screen gives a window of about 2:1
-     and a 21:9 screen one of about 2.7:1. 236px is the sidebar and the main area's padding. */
-  --page-max-wide: max(1200px, calc(270dvh - 236px));
-  --page-max-reading: max(1100px, calc(200dvh - 236px));
+  /* Reference content measure; the reading template also makes room for both rails. */
+  --page-max-wide: var(--p-layout-content);
+  --page-max-reading: 1320px;
   /* The phone shell (below lg): the top bar's height, which sticky headers inside pages sit below, and
      side gutters that keep clear of the notch in landscape. The desktop shell has no top bar. */
   --bar-h: 48px;
   --gutter-l: max(16px, env(safe-area-inset-left));
   --gutter-r: max(16px, env(safe-area-inset-right));
   color-scheme: light;
-  --bg: #f8f7fc;
-  --bg-sunk: #f0eef6;
-  --bg-muted: #e9e6f1;
+  --bg: var(--s-canvas);
+  --bg-sunk: var(--s-subtle);
+  --bg-muted: var(--s-subtle);
   /* Sunk fills: wells, pill tracks, search fields, quiet badges. */
-  --well: var(--bg-sunk);
-  --surface: #ffffff;
-  --surface-2: #fcfbff;
-  --raised: #ffffff;
-  --sidebar: #fcfbff;
-  --daybar: #efedf6;
-  --ink: #252238;
-  --ink-2: #373249;
-  --ink-3: #625b73;
-  --ink-4: #71687e;
-  --line: #e2deec;
-  --line-strong: #d4cde3;
-  --line-soft: #e9e6f1;
-  --accent: #6650b8;
-  --accent-ink: #543e9f;
-  --accent-soft: rgba(102, 80, 184, 0.08);
-  --accent-softer: rgba(102, 80, 184, 0.05);
+  --well: var(--s-subtle);
+  --surface: var(--s-surface);
+  --surface-2: var(--s-surface);
+  --raised: var(--s-canvas);
+  --sidebar: var(--s-canvas);
+  --daybar: var(--s-surface);
+  --ink: var(--s-text);
+  --ink-2: var(--s-text);
+  --ink-3: var(--s-secondary);
+  --ink-4: var(--s-secondary);
+  --line: var(--s-border);
+  --line-strong: color-mix(in srgb, var(--s-secondary) 38%, var(--s-canvas));
+  --line-soft: var(--s-border);
+  --accent: var(--s-accent-text);
+  --accent-ink: var(--s-accent-text);
+  --accent-soft: var(--s-selected-bg);
+  --accent-softer: color-mix(in srgb, var(--s-accent-text) 6%, var(--s-canvas));
   --accent-contrast: #ffffff;
-  --note: #526f72;
-  --hot: #b3402a;
-  --hot-soft: rgba(179, 64, 42, 0.08);
-  --amber: #b8873a;
-  --amber-ink: #7c5a24;
-  --amber-soft: rgba(184, 135, 58, 0.1);
-  --ok: #2f7d5c;
-  --ok-soft: rgba(47, 125, 92, 0.1);
-  --ok-ink: #2a6e51;
+  --note: var(--s-secondary);
+  --hot: var(--s-negative);
+  --hot-soft: color-mix(in srgb, var(--s-negative) 6%, var(--s-canvas));
+  --amber: var(--s-accent-text);
+  --amber-ink: var(--s-accent-text);
+  --amber-soft: color-mix(in srgb, var(--s-accent-text) 6%, var(--s-canvas));
+  --ok: var(--s-positive);
+  --ok-soft: color-mix(in srgb, var(--s-positive) 6%, var(--s-canvas));
+  --ok-ink: var(--s-positive);
   --rank-1: #b3402a;
   --rank-2: #a3642f;
   --rank-3: #96702e;
   --rank-rest: #6b7684;
-  --shadow-card: 0 1px 2px rgba(32, 42, 48, 0.025);
-  --shadow-card-hover: 0 3px 12px rgba(32, 42, 48, 0.055);
-  --shadow-soft: 0 4px 12px rgba(28, 39, 51, 0.06);
-  --shadow-thumb: 0 1px 2px rgba(28, 39, 51, 0.1), 0 1px 1px rgba(28, 39, 51, 0.04);
+  --shadow-card: none;
+  --shadow-card-hover: none;
+  --shadow-soft: none;
+  --shadow-thumb: none;
   --shadow-pop: 0 12px 32px rgba(28, 39, 51, 0.12);
-  --prose-ink: #26323a;
-  --code-bg: #f6f7f4;
+  --prose-ink: var(--s-text);
+  --code-bg: var(--s-subtle);
   --code-keyword: #006d77;
   --code-string: #2f6f44;
   --code-number: #9a6700;
   --code-title: #6f42c1;
   --code-variable: #a13d10;
   --code-meta: #b42348;
-  --selection: rgba(102, 80, 184, 0.16);
+  --selection: var(--s-selected-bg);
 }
 
 @media (min-width: 961px) {
@@ -151,54 +151,54 @@
 
 [data-theme="dark"] {
   color-scheme: dark;
-  --bg: #171522;
-  --bg-sunk: #1d1a2b;
-  --bg-muted: #282338;
-  --well: color-mix(in oklab, var(--bg-muted) 60%, transparent);
-  --surface: #211d30;
-  --surface-2: #272237;
-  --raised: #282338;
-  --sidebar: #1b1828;
-  --daybar: #1d1a2b;
-  --ink: #f0edf9;
-  --ink-2: #dbd5eb;
-  --ink-3: #b9afce;
-  --ink-4: #a297b8;
-  --line: rgba(255, 255, 255, 0.08);
-  --line-strong: rgba(255, 255, 255, 0.12);
-  --line-soft: rgba(255, 255, 255, 0.06);
-  --accent: #bba5ff;
-  --accent-ink: #cfbfff;
-  --accent-soft: rgba(187, 165, 255, 0.12);
-  --accent-softer: rgba(187, 165, 255, 0.06);
+  --bg: var(--s-canvas);
+  --bg-sunk: var(--s-subtle);
+  --bg-muted: var(--s-subtle);
+  --well: var(--s-subtle);
+  --surface: var(--s-surface);
+  --surface-2: var(--s-surface);
+  --raised: var(--s-canvas);
+  --sidebar: var(--s-canvas);
+  --daybar: var(--s-surface);
+  --ink: var(--s-text);
+  --ink-2: var(--s-text);
+  --ink-3: var(--s-secondary);
+  --ink-4: var(--s-secondary);
+  --line: var(--s-border);
+  --line-strong: color-mix(in srgb, var(--s-secondary) 38%, var(--s-canvas));
+  --line-soft: var(--s-border);
+  --accent: var(--s-accent-text);
+  --accent-ink: var(--s-accent-text);
+  --accent-soft: var(--s-selected-bg);
+  --accent-softer: color-mix(in srgb, var(--s-accent-text) 6%, var(--s-canvas));
   --accent-contrast: #000000;
-  --note: #8fb8a8;
-  --hot: #d86a52;
-  --hot-soft: rgba(216, 106, 82, 0.12);
-  --amber: #d3b26a;
-  --amber-ink: #d3b26a;
-  --amber-soft: rgba(211, 178, 106, 0.12);
-  --ok: #5fc79a;
-  --ok-soft: rgba(95, 199, 154, 0.12);
-  --ok-ink: #7fd1ad;
+  --note: var(--s-secondary);
+  --hot: var(--s-negative);
+  --hot-soft: color-mix(in srgb, var(--s-negative) 6%, var(--s-canvas));
+  --amber: var(--s-accent-text);
+  --amber-ink: var(--s-accent-text);
+  --amber-soft: color-mix(in srgb, var(--s-accent-text) 6%, var(--s-canvas));
+  --ok: var(--s-positive);
+  --ok-soft: color-mix(in srgb, var(--s-positive) 6%, var(--s-canvas));
+  --ok-ink: var(--s-positive);
   --rank-1: #d86a52;
   --rank-2: #d18a5e;
   --rank-3: #d3b26a;
   --rank-rest: #7b869a;
   --shadow-card: none;
   --shadow-card-hover: none;
-  --shadow-soft: 0 6px 18px rgba(0, 0, 0, 0.35);
-  --shadow-thumb: 0 1px 2px rgba(0, 0, 0, 0.45);
-  --shadow-pop: 0 16px 40px rgba(0, 0, 0, 0.45);
-  --prose-ink: #d7dfdf;
-  --code-bg: #10151c;
+  --shadow-soft: none;
+  --shadow-thumb: none;
+  --shadow-pop: 0 12px 32px rgba(0, 0, 0, 0.24);
+  --prose-ink: var(--s-text);
+  --code-bg: var(--s-subtle);
   --code-keyword: #78dce8;
   --code-string: #a9dc76;
   --code-number: #ffd866;
   --code-title: #ab9df2;
   --code-variable: #fc9867;
   --code-meta: #ff6188;
-  --selection: rgba(187, 165, 255, 0.22);
+  --selection: var(--s-selected-bg);
 }
 
 @layer base {
@@ -213,14 +213,14 @@
     background: var(--bg);
     color: var(--ink);
     font-family: var(--font-sans);
-    font-size: 14px;
-    line-height: 1.5;
+    font-size: 16px;
+    line-height: 1.75;
   }
   ::selection {
     background: var(--selection);
   }
   :focus-visible {
-    outline: 2px solid var(--accent);
+    outline: 2px solid var(--s-focus);
     outline-offset: 2px;
     border-radius: var(--radius-mark);
   }
@@ -253,7 +253,7 @@
     gap: 0.25rem;
     height: 1.625rem;
     padding: 0 0.625rem;
-    border-radius: 9999px;
+    border-radius: var(--radius-mark);
     font-size: 12px;
     color: var(--ink-4);
     background: var(--bg-sunk);
@@ -330,7 +330,7 @@
   &:hover {
     box-shadow: var(--shadow-card-hover);
     border-color: var(--line-strong);
-    transform: translateY(-1px);
+    background: var(--surface-2);
   }
 }
 
@@ -445,7 +445,7 @@
   color: var(--prose-ink);
   font-size: 17px;
   line-height: 1.8;
-  letter-spacing: 0.012em;
+  letter-spacing: 0;
   overflow-wrap: anywhere;
 }
 @media (min-width: 80rem) {
@@ -579,37 +579,46 @@
 }
 
 
-/* AI喵实验室首页：小屏竖排、宽屏双栏，订阅链接与复制按钮支持键盘操作。 */
+/* Editorial home: typography and two useful actions, using the reference component roles. */
 .news-intro {
   display: grid;
-  gap: 1.5rem;
-  padding: 1.75rem 0 1.5rem;
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid var(--line-strong);
+  align-items: center;
+  gap: 32px;
+  padding: 28px 0 36px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--line);
 }
-.news-shortcuts { display: grid; gap: 0.5rem; }
+.news-shortcuts { display: grid; gap: 12px; }
 .news-shortcut {
   display: flex;
   cursor: pointer;
   align-items: center;
-  gap: 0.75rem;
-  min-height: 44px;
-  padding: 0.7rem 0.9rem;
-  border: 1px solid var(--line);
-  border-radius: 10px;
+  gap: 12px;
+  min-height: 52px;
+  padding: 12px 16px;
+  border: 1px solid var(--s-control-border);
+  border-radius: var(--radius-control);
   background: var(--surface);
-  color: var(--ink-2);
-  font-size: 13px;
+  color: var(--ink);
+  font-size: 14px;
   font-weight: 600;
+  transition: background-color var(--p-motion-fast), border-color var(--p-motion-fast);
 }
-.news-shortcut:hover { border-color: var(--accent); color: var(--accent); }
-.news-shortcut > :last-child { margin-left: auto; color: var(--accent); }
-.news-shortcut-no { color: var(--ink-4); font-family: var(--font-mono); font-size: 11px; }
+.news-shortcut:hover { background: var(--bg-sunk); }
+.news-shortcut:first-child { border-color: var(--s-action); background: var(--s-action); color: var(--s-on-action); }
+.news-shortcut:first-child:hover { background: var(--s-action-hover); border-color: var(--s-action-hover); }
+.news-shortcut > :last-child { margin-left: auto; }
+.news-shortcut-no { font-family: var(--font-mono); font-size: 12px; font-weight: 400; }
 @media (min-width: 641px) and (max-width: 960px) {
   .news-shortcuts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (min-width: 961px) {
-  .news-intro { grid-template-columns: minmax(0, 1fr) 220px; gap: 2rem; padding-top: 0.5rem; padding-bottom: 2rem; }
+  .news-intro { grid-template-columns: minmax(0, 1fr) 260px; gap: 40px; padding: 16px 0 48px; margin-bottom: 40px; }
+}
+:where(h1, h2, h3, h4, h5) {
+  font-family: var(--p-font-display);
+  font-weight: 600;
+  letter-spacing: 0;
 }
 @media (prefers-reduced-motion: reduce) {
   .news-intro *, .news-shortcuts * { animation: none !important; transition: none !important; }

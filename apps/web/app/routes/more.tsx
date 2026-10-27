@@ -87,7 +87,7 @@ export default function MorePage() {
               <IconMoon size={20} />
             </span>
             <span className="flex-1">外观</span>
-            <ThemeSwitch className="w-[126px]" />
+            <ThemeSwitch className="w-[144px]" />
           </li>
           <li className="flex min-h-[56px] items-center gap-3 px-4 text-[16px] font-medium text-ink">
             <span className="w-5 text-center text-ink-3" aria-hidden="true">Aa</span>

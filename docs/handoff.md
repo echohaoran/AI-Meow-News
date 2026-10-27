@@ -73,3 +73,13 @@
 - 尚未提交的分类筛选、导航、首页入口、关于页动画、热点角标、Agent 入口与 OpenRouter 模块均属于已部署快照；一并补齐代码、依赖 workspace 元数据、静态品牌素材和文档，使仓库可完整重建当前功能。
 - 功能源文件与当前部署快照一致，差异为后续交接及许可说明；凭据检查覆盖待发布文件与新增提交历史，未发现密钥、运行 env、数据库或 `.data/` 文件。沿用最近部署已通过的检查，不重复触发采集、模型调用或重启服务。
 - 推送结果及最终提交 SHA 以远端 `main` 与本次 Git 回执为准，文档不引用自身提交 SHA。
+
+## 2026-10-27：Binance Reference 前端改版
+
+- 按用户要求从 Open Design MCP 读取 `Binance Reference / 视觉参考设计体系 Design System`，采用白/炭灰画布、黄色主操作、可读金色链接、统一字体间距及控件圆角。保留 AI-News 猫形品牌、真实资讯、厂商 Logo、中文阅读、左侧目录和右侧信息。设计来源、适配与验证见 [视觉改版说明](frontend/binance-reference.md)。
+- 本地分支 `codex/binance-reference-ui`；按照既有本地修改 → SCP → Homelab 检查/部署 → 用户验收 → 再授权推送的流程处理。本次不自动推送远端。
+- 类型检查、生产构建、6 项页面回归及 9 项模块离线回归通过；浏览器验证桌面搜索、收藏、目录跳转、排行榜分类/周期、明暗主题与 375px 手机布局。完整数据库/浏览器测试组的既有环境限制仍在，未声称全部回归通过。
+- 发布仅更新 API/web 与品牌静态资源；worker 继续既有镜像和任务，无数据库迁移、采集/模型开关、预算或秘密变更。发布证据在服务器 `.tmp/binance-reference-result.json`，具体镜像与备份验证路径在部署完成后补记。
+- 已发布 API/web 镜像 `ainews-app:binance-d93374bbd5a2`，源码快照 `d93374bbd5a2e90126095377eef5669a465a1658da492f096fa352fcf85a8a85`，806 个文件逐一校验。worker 容器 ID 与镜像 `ainews-app:outline-183236ec8b72` 均保持原样。健康检查、全站 smoke 与线上主题/首页浏览器复核通过。
+- 发布备份在服务器 `/root/netops-backups/ainews-binance-20261027T045942Z/`，`verification.json` 记录 dump 摘要、隔离恢复库 `ainews_binance_restore_20261027045942_test` 及恢复出的 26 个信源。旧 API/web 镜像与 release 在 `roles.json`，旧完整源码上下文在 `previous-context.json`；运维引用已备份。可用备份中的 env 和对应每角色镜像覆盖，仅重建 API/web 回退；worker 不动。
+- 发布构建/烟测日志在服务器 `.tmp/binance-checks-20261027T045942Z/`；发布后仅补充文档与组件注释，因此本地 Git 与发布快照的非运行时文字有差异。预览服务在验收后停止。

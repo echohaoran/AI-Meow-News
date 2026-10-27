@@ -461,7 +461,7 @@ function ItemView({ item }: { item: SiteItemDetail }) {
         }
       >
         <article className="pb-6 pt-3 lg:pt-2 2xl:pt-1">
-          <a href={item.links.original} target="_blank" rel="noopener noreferrer" className="mb-4 inline-flex items-center gap-2 rounded-full border border-line-strong bg-surface px-4 py-2 text-[13px] font-medium text-accent transition-colors hover:border-accent">
+          <a href={item.links.original} target="_blank" rel="noopener noreferrer" className="mb-6 inline-flex min-h-11 items-center gap-2 rounded-control bg-action px-5 text-[14px] font-semibold text-on-action transition-colors hover:bg-action-hover">
             {originalLabel} <IconExternal size={14} />
           </a>
           <div className={`flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[13px] text-ink-3 2xl:hidden ${isX ? "" : "mb-3"}`}>

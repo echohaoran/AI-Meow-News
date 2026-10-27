@@ -71,7 +71,7 @@ export function useStar(item: Starrable) {
 }
 
 /** Bookmark toggle kept in this browser (收藏): 26px, or sized by `size` or by `className`. */
-export function StarButton({ item, size, className = "size-[26px]" }: { item: Starrable; size?: number; className?: string }) {
+export function StarButton({ item, size, className = "size-9" }: { item: Starrable; size?: number; className?: string }) {
   const { on, toggle, pulse } = useStar(item);
   return (
     <button

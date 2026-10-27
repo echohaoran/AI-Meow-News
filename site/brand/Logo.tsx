@@ -3,8 +3,8 @@ import { SITE } from "../site.ts";
 
 export function Wordmark({ size = 24, className = "", title = SITE.name }: { size?: number; className?: string; title?: string }) {
   return (
-    <span className={`inline-flex items-center gap-[0.28em] whitespace-nowrap font-black leading-none tracking-[-0.035em] ${className}`} style={{ fontSize: Math.round(size * 0.82) }} aria-label={title} role="img">
-      <RingMark className="size-[1.2em] shrink-0 text-accent" />
+    <span className={`inline-flex items-center gap-[0.28em] whitespace-nowrap font-semibold leading-none tracking-[-0.035em] ${className}`} style={{ fontSize: Math.round(size * 0.82) }} aria-label={title} role="img">
+      <RingMark className="size-[1.2em] shrink-0 rounded-control bg-action p-0.5 text-on-action" />
       <span aria-hidden="true">{SITE.name}</span>
     </span>
   );
