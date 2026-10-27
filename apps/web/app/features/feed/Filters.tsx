@@ -70,7 +70,7 @@ export function FeedBar({ base, category, channel }: { base: "/" | "/all"; categ
             active={base === "/" ? "featured" : "all"}
             items={[
               { key: "featured", label: "精选", to: scope("/"), resetScroll: true, prefetchOnPress: true },
-              { key: "all", label: "全部", to: scope("/all"), resetScroll: true, prefetchOnPress: true },
+              { key: "all", label: "全部动态", to: scope("/all"), resetScroll: true, prefetchOnPress: true },
             ]}
           />
         }

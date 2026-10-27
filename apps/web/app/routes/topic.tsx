@@ -56,7 +56,7 @@ function description(data: TopicPage, parts: Part[]): string {
 }
 
 export function meta({ loaderData }: Route.MetaArgs) {
-  if (!loaderData) return [{ title: titled("主题不存在") }, { name: "robots", content: "noindex" }];
+  if (!loaderData) return [{ title: titled("板块不存在") }, { name: "robots", content: "noindex" }];
   const data = loaderData.data;
   const { topic, page } = data;
   const parts = partsOf(data);
@@ -140,7 +140,7 @@ export default function TopicRoute() {
       <h2 className="sr-only">{page === 1 ? `${topic.name}的精选` : `精选归档 · 第 ${page} 页`}</h2>
       {items.length === 0 ? (
         <div className="lg:card">
-          <EmptyState title="这个主题暂时还没有精选内容" />
+          <EmptyState title="这个板块暂时还没有精选内容" />
         </div>
       ) : (
         <DayList items={items} headerAside={<span className="num whitespace-nowrap">第 {first}–{last} 条<span className="hidden sm:inline"> · 共 {topic.total.toLocaleString("zh-CN")} 条</span></span>} />

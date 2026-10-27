@@ -29,7 +29,7 @@ export const SITE = {
   /** 首页的完整标题（浏览器标签、搜索结果）。 */
   homeTitle: "AI-News · AI喵实验室 | AI 资讯与日报",
   /** 主题目录页（/topics）的标题。 */
-  topicsTitle: "AI 主题：公司与模型、技术方向、内容形态的最新动态",
+  topicsTitle: "AI 板块：公司与模型、技术方向、内容形态的最新动态",
   /** 反馈表单输入框里的示例。 */
   feedbackExample: "例如：我在搜索某个关键词时遇到……我原本想……",
   /** 反馈页标题下面的一句话。 */
@@ -149,12 +149,12 @@ export const ABOUT = {
   /** 大标题：第一行正常颜色，第二行强调色。 */
   headline: ["关注 AI 的每一步，", "从有出处的信息开始。"] as [string, string],
   /** 标题下面的一段话。{sources} 会换成实时的信源数（两边自动加空格，所以 {sources} 两边不写空格）；统计没取到时换成 sourcesFallback。 */
-  lead: `${SITE.name} · AI喵实验室的内网资讯阅读站。当前信源数量：{sources}。阅读摘要、回到原文，按主题与事件继续追踪。`,
+  lead: `${SITE.name} · AI喵实验室的内网资讯阅读站。当前信源数量：{sources}。阅读摘要、回到原文，按板块与事件继续追踪。`,
   sourcesFallback: "暂未取得",
   /** 信源河动画下面的四个环节。 */
   steps: {
     collect: "按已配置且启用的信源收录公开信息；实际来源与收录数量以接口返回为准。",
-    store: "按时间和主题索引动态；同一事件的多篇报道可在事件页继续阅读。",
+    store: "按时间和板块索引动态；同一事件的多篇报道可在事件页继续阅读。",
     select: `精选及${ITEM_COPY.reasonLabel}来自后端发布结果；自动处理可能出错，请结合原文判断。`,
     publish: `计划时间为${EDITION_WHEN.daily} 日报、${EDITION_WHEN.weekly} 周报、${EDITION_WHEN.monthly} 月报（北京时间）；以实际发布期次为准。`,
   },
@@ -245,7 +245,7 @@ export const COMMUNITY_FEEDS: { dev: string[]; hn: string[] } = {
 /** 各页分享图（/og/pages/*.png）上的文字。主题目录页的那张按主题数自动生成。 */
 export const CARDS: Record<string, { kicker: string; title: string; subtitle: string; accent?: "hot" | "amber" }> = {
   site: { kicker: subjectAfter("每日", "精选"), title: SITE.tagline, subtitle: SITE.description },
-  all: { kicker: subjectAfter("全部", "动态"), title: "所有信源的最新动态，一站看完", subtitle: "按时间汇总各信源的最新动态，可按类别与标签筛选。" },
+  all: { kicker: "全部动态", title: "所有信源的最新动态，一站看完", subtitle: "按时间汇总各信源的最新动态，可按类别与标签筛选。" },
   hot: { kicker: "热点榜", title: "过去 48 小时，大家在讨论什么", subtitle: "热度指数、趋势与组成热度的公开来源。", accent: "hot" },
   daily: { kicker: withSubject("日报"), title: subjectAfter(`每天 ${spokenTime(EDITION_TIMES.daily)}，一份读得完的`, "日报"), subtitle: `${subjectAfter("前一天值得关注的", "动态")}。` },
   weekly: { kicker: withSubject("周报"), title: `一周${REPORTS.entry.noun}，一次看清`, subtitle: "本周的主线、重要发布与值得回看的讨论。" },

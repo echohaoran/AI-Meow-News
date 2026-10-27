@@ -13,7 +13,7 @@ import { PhoneBar } from "../components/shell/PhoneBar";
 import { navUp } from "../components/shell/nav";
 import type { Screen } from "../components/shell/screens";
 
-export const handle: Screen = { home: navUp("/topics").tab, name: "主题" };
+export const handle: Screen = { home: navUp("/topics").tab, name: "板块" };
 export { pageHeaders as headers } from "../lib/api.server";
 export const { clientLoader, shouldRevalidate } = pageReuse<typeof loader>();
 
@@ -30,7 +30,7 @@ export function meta({ loaderData }: Route.MetaArgs) {
   const base = siteUrl();
   return pageMeta({
     title: SITE.topicsTitle,
-    description: `按${by}${subjectAfter("追踪", "最新动态")}：${named ? `${named}等 ` : ""}${topics.length} 个主题，浏览最新精选与重要进展，持续更新。`,
+    description: `按${by}${subjectAfter("追踪", "最新动态")}：${named ? `${named}等 ` : ""}${topics.length} 个板块，浏览最新精选与重要进展，持续更新。`,
     path: "/topics",
     image: "/og/pages/topics.png",
     jsonLd: [
@@ -39,7 +39,7 @@ export function meta({ loaderData }: Route.MetaArgs) {
         "@type": "CollectionPage",
         "@id": `${base}/topics#collection`,
         url: `${base}/topics`,
-        name: withSubject("主题"),
+        name: withSubject("板块"),
         inLanguage: SITE.locale,
         isPartOf: { "@id": `${base}/#website` },
         mainEntity: {
@@ -48,7 +48,7 @@ export function meta({ loaderData }: Route.MetaArgs) {
           itemListElement: indexed.map((t, i) => ({ "@type": "ListItem", position: i + 1, name: t.name, url: `${base}/topics/${t.slug}` })),
         },
       },
-      breadcrumbLd([{ name: SITE.name, path: "/" }, { name: "主题", path: "/topics" }]),
+      breadcrumbLd([{ name: SITE.name, path: "/" }, { name: "板块", path: "/topics" }]),
     ],
   });
 }
@@ -101,15 +101,15 @@ export default function TopicsPage() {
   const { groups, topics } = useLoaderData<typeof loader>();
   return (
     <div className="pb-10">
-      <PhoneBar back={{ to: "/more", label: "我的" }} title="主题" />
+      <PhoneBar back={{ to: "/more", label: "我的" }} title="板块" />
       <header className="border-b border-line pb-8 pt-4 lg:pb-10 lg:pt-2">
-        <p className="mb-3 text-[12px] font-medium tracking-[0.08em] text-accent">主题索引</p>
-        <h1 data-page-title="" className="text-[28px] font-semibold leading-[1.35] text-ink lg:text-[40px]">{subjectAfter("按主题看")}</h1>
+        <p className="mb-3 text-[12px] font-medium tracking-[0.08em] text-accent">板块索引</p>
+        <h1 data-page-title="" className="text-[28px] font-semibold leading-[1.35] text-ink lg:text-[40px]">{subjectAfter("按板块看")}</h1>
         <p className="mt-4 max-w-[48em] text-[16px] leading-[1.75] text-ink-3">
           {`按${groups.map((g) => g.name).join("、")}浏览 `}
-          <span className="num">{topics.length}</span> 个主题，追踪最新精选与重要进展。
+          <span className="num">{topics.length}</span> 个板块，追踪最新精选与重要进展。
         </p>
-        <nav aria-label="主题分组" className="mt-6 flex flex-wrap gap-3">
+        <nav aria-label="板块分组" className="mt-6 flex flex-wrap gap-3">
           {groups.map((group) => <a key={group.key} href={`#topics-${group.key}`} className="inline-flex min-h-11 items-center gap-3 rounded-control border border-line px-4 text-[14px] text-ink hover:border-accent hover:bg-accent-softer">{group.name}<span className="num text-[12px] text-ink-3">{topics.filter(t => t.group === group.key).length}</span></a>)}
         </nav>
       </header>

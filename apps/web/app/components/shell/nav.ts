@@ -1,7 +1,7 @@
 // Site navigation in one place: the desktop sidebar's sections and the phone tab bar's tabs, the engine's
 // and the site's modules'.
 import type { ReactNode } from "react";
-import { NAV, subjectAfter } from "@aihot/site";
+import { NAV } from "@aihot/site";
 import { webModules } from "../../site-modules";
 import {
   IconBolt, IconBookmark, IconDoc, IconFlame, IconGrid, IconHeart, IconList, IconMessage, IconPlug, IconUser,
@@ -22,9 +22,9 @@ const SECTIONS: Array<{ title: string; items: NavItem[] }> = [
     title: "内容",
     items: [
       { to: "/", label: "精选", icon: IconBolt, end: true },
-      { to: "/all", label: subjectAfter("全部", "动态"), icon: IconList },
+      { to: "/all", label: "全部动态", icon: IconList },
       { to: "/hot", label: "热点榜", icon: IconFlame },
-      { to: "/topics", label: "主题", icon: IconGrid },
+      { to: "/topics", label: "板块", icon: IconGrid },
       { to: "/starred", label: "收藏", icon: IconBookmark },
     ],
   },
@@ -43,7 +43,7 @@ export const inNav = (to: string) => !(NAV.hidden as readonly string[]).includes
 
 const UP = {
   "/hot": { name: "热点榜", back: "热点", tab: "hot" },
-  "/topics": { name: "主题", back: "全部主题", tab: "me" },
+  "/topics": { name: "板块", back: "全部板块", tab: "me" },
 } as const;
 
 /**

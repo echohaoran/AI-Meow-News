@@ -9,7 +9,7 @@ import { BrandMark } from "../../../apps/web/app/components/BrandMark";
 import { CATEGORIES, PERIODS, type RankingsSnapshot } from "../contracts";
 import { publisherBrand } from "./brands";
 
-export const handle = { tab: "me", name: "排行榜" };
+export const handle = { tab: "me", name: "模型榜单" };
 export { pageHeaders as headers } from "../../../apps/web/app/lib/api.server";
 export const { clientLoader, shouldRevalidate } = pageReuse<typeof loader>(() => "/rankings");
 
@@ -42,7 +42,7 @@ export default function RankingsPage() {
   const board = category === "benchmarks" ? available.find((b) => b.id === boardId) ?? available[0]
     : available.find((b) => b.period === period);
   const config = CATEGORIES.find((c) => c.id === category)!;
-  const pageTitle = category === "benchmarks" ? "模型能力排行榜" : category === "apps" ? "应用使用排行榜" : "模型使用排行榜";
+  const pageTitle = "模型榜单";
   const boardTitle = category === "benchmarks" ? "能力基准排行榜" : category === "apps" ? "应用使用排行榜" : `${config.label}模型使用排行榜`;
   const incomplete = snapshot.failures.some((failure) => failure.id === board?.id || failure.id === category);
   const href = (cat: string, per = period) => `/rankings?${new URLSearchParams({ category: cat, period: per })}`;
@@ -65,7 +65,7 @@ export default function RankingsPage() {
         <p className="mt-4 text-[12px] text-ink-4">每天北京时间 08:15 更新 · {snapshot.checkedAt ? `最近检查 ${dateTime(snapshot.checkedAt)}` : "等待首次同步"}</p>
       </header>
 
-      <nav aria-label="排行榜分类" className="mt-6 flex flex-wrap gap-2">
+      <nav aria-label="模型榜单分类" className="mt-6 flex flex-wrap gap-2">
         {CATEGORIES.map((c) => <Link key={c.id} to={href(c.id, c.id === "apps" && period === "trending" ? "week" : period)} aria-current={category === c.id ? "page" : undefined}
           className={`inline-flex min-h-11 items-center rounded-control border px-4 text-[13px] font-medium transition-colors ${category === c.id ? "border-action bg-action text-on-action" : "border-line bg-surface text-ink-3 hover:border-accent hover:text-accent"}`}>
           {c.label}

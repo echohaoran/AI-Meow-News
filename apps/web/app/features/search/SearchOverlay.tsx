@@ -186,7 +186,7 @@ export function SearchOverlay() {
 
           {companies.length > 0 && (
             <section className="pt-6">
-              <h2 className="text-[13px] font-semibold text-ink-3">按主题找</h2>
+              <h2 className="text-[13px] font-semibold text-ink-3">按板块找</h2>
               <div className="mt-2.5 flex flex-wrap gap-2">
                 {companies.map((t) => (
                   <Link viewTransition key={t.slug} to={`/topics/${t.slug}`} className={`${chip} bg-well text-ink-2 ring-1 ring-inset ring-line-soft active:bg-bg-muted`}>
@@ -195,7 +195,7 @@ export function SearchOverlay() {
                 ))}
                 {inNav("/topics") && (
                   <Link viewTransition to="/topics" className={`${chip} gap-0.5 font-medium text-accent`}>
-                    全部 {more!.topics.length} 个主题
+                    全部 {more!.topics.length} 个板块
                   </Link>
                 )}
               </div>

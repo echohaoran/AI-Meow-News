@@ -402,7 +402,7 @@ export default function StoryPage() {
             </RailCard>
           )}
           {story.topics.length > 0 && (
-            <RailCard title="相关主题">
+            <RailCard title="相关板块">
               <div className="flex flex-wrap gap-1.5">
                 {story.topics.map((t) => (
                   <Link viewTransition key={t.slug} to={`/topics/${t.slug}`} className="chip">

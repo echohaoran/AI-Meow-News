@@ -405,7 +405,7 @@ function ItemView({ item }: { item: SiteItemDetail }) {
         verdict && <RailSection title={shownScore(item.score) !== null ? "AI 评分" : undefined}>{verdict}</RailSection>
       )}
       {item.topics.length > 0 && (
-        <RailSection title="主题">
+        <RailSection title="板块">
           <div className="flex flex-wrap gap-1.5">
             {item.topics.map((t) => (
               <Link viewTransition key={t.slug} to={`/topics/${t.slug}`} className="chip">
