@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router";
 import { IntentLink } from "../ui/IntentLink";
 import { SITE } from "@aihot/site";
 import { Wordmark } from "@aihot/site/brand/Logo.tsx";
+import { SocialLinks } from "@aihot/site/brand/SocialLinks.tsx";
 import { useChangelogSeen } from "../../lib/local-state";
 import { sidebar, sidebarIsActive, type NavItem } from "./nav";
 import { ThemeSwitch } from "./ThemeSwitch";
@@ -42,7 +43,7 @@ function SideLink({ item, dot }: { item: NavItem; dot: boolean }) {
 export function Sidebar({ changelogVersion }: { changelogVersion: string | null }) {
   const dot = useChangelogDot(changelogVersion);
   return (
-    <aside className="sticky top-0 hidden h-dvh w-[240px] shrink-0 flex-col border-r border-line bg-sidebar px-5 pb-5 pt-6 lg:flex">
+    <aside className="sticky top-0 z-30 hidden h-dvh w-[240px] shrink-0 flex-col border-r border-line bg-sidebar px-5 pb-5 pt-6 lg:flex">
       <Link to="/" className="mb-6 flex min-h-[72px] flex-col items-start justify-center gap-3 px-3 text-ink" aria-label={`${SITE.name} 首页`}>
         <Wordmark size={30} />
         <span className="text-[12px] text-ink-3">AI喵实验室 · 有出处的 AI 观察</span>
@@ -60,6 +61,7 @@ export function Sidebar({ changelogVersion }: { changelogVersion: string | null 
         ))}
       </nav>
       <div className="mt-2 space-y-2.5 px-1 pt-1">
+        <SocialLinks />
         {SITE.github && (
           <a
             href={SITE.github}
