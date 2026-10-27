@@ -2,7 +2,7 @@
 FROM node:24.22.1-trixie-slim AS base
 WORKDIR /app
 RUN apt-get update \
- && apt-get install -y --no-install-recommends postgresql-client ca-certificates \
+ && apt-get install -y --no-install-recommends postgresql-client ca-certificates fontconfig-config \
  && rm -rf /var/lib/apt/lists/*
 FROM base AS build
 ARG NPM_REGISTRY=
