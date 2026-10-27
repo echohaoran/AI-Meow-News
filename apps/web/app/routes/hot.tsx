@@ -117,8 +117,9 @@ function Lead({ e }: { e: HotEntryView }) {
     <article className="card card-hover group relative flex flex-col overflow-hidden p-5 sm:p-6">
       <div className="flex items-center gap-2.5">
         <span className={`mono text-[12px] font-bold tracking-[0.16em] ${rankColor(e.rank)}`}>NO.{pad(e.rank)}</span>
-        <Badges e={e} />
-        <Delta trend={e.trend} pct={e.trendPct} className="ml-auto" />
+        <span className="ml-auto inline-flex gap-1">
+          <Badges e={e} />
+        </span>
       </div>
       <div className={`mt-4 grid gap-5 ${e.cover || panel ? "xl:grid-cols-[minmax(0,1fr)_minmax(0,0.72fr)] xl:gap-7" : ""}`}>
         <div className="min-w-0">
@@ -169,8 +170,9 @@ function Runner({ e }: { e: HotEntryView }) {
     <article className="card card-hover group relative flex flex-col px-5 py-4">
       <div className="flex items-center gap-2.5">
         <span className={`mono text-[12px] font-bold tracking-[0.16em] ${rankColor(e.rank)}`}>NO.{pad(e.rank)}</span>
-        <Badges e={e} />
-        <Delta trend={e.trend} pct={e.trendPct} className="ml-auto" />
+        <span className="ml-auto inline-flex gap-1">
+          <Badges e={e} />
+        </span>
       </div>
       <h2 className="mt-2.5 line-clamp-2 text-[16px] font-[650] leading-[1.5] text-ink">
         <StoryLink e={e} className="group-hover:text-accent" />

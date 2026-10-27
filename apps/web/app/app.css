@@ -579,7 +579,7 @@
 }
 
 
-/* AI喵实验室首页：小屏竖排、宽屏双栏，入口保持原生链接与键盘焦点。 */
+/* AI喵实验室首页：小屏竖排、宽屏双栏，订阅链接与复制按钮支持键盘操作。 */
 .news-intro {
   display: grid;
   gap: 1.5rem;
@@ -590,6 +590,7 @@
 .news-shortcuts { display: grid; gap: 0.5rem; }
 .news-shortcut {
   display: flex;
+  cursor: pointer;
   align-items: center;
   gap: 0.75rem;
   min-height: 44px;
@@ -605,7 +606,7 @@
 .news-shortcut > :last-child { margin-left: auto; color: var(--accent); }
 .news-shortcut-no { color: var(--ink-4); font-family: var(--font-mono); font-size: 11px; }
 @media (min-width: 641px) and (max-width: 960px) {
-  .news-shortcuts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .news-shortcuts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (min-width: 961px) {
   .news-intro { grid-template-columns: minmax(0, 1fr) 220px; gap: 2rem; padding-top: 0.5rem; padding-bottom: 2rem; }

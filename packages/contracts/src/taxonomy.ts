@@ -1,7 +1,7 @@
 // Public vocabularies shared by the website, the API and the worker. The categories themselves belong to
 // the industry pack (industry/taxonomy.ts); their keys are external identities (URLs, API, RSS) and never change.
 // How the public API, RSS and MCP differ from the website is the site's (site/site.ts PUBLIC_CATEGORIES).
-import { CATEGORIES } from "@aihot/industry/taxonomy";
+import { CATEGORIES, CATEGORY_FILTER_GROUPS, FILTER_CATEGORIES } from "@aihot/industry/taxonomy";
 import { PUBLIC_CATEGORIES } from "@aihot/site";
 
 type Category = (typeof CATEGORIES)[number];
@@ -11,6 +11,17 @@ export const CATEGORY_KEYS = CATEGORIES.map((c) => c.key) as unknown as readonly
 
 /** Website tab labels. */
 export const CATEGORY_LABELS = Object.fromEntries(CATEGORIES.map((c) => [c.key, c.label])) as Record<CategoryKey, string>;
+
+/** Reader filters merge older classifications without changing stored records or public identities. */
+export const FILTER_CATEGORY_KEYS = FILTER_CATEGORIES.map((category) => category.key);
+
+export function categoryFilterKey(category: CategoryKey): CategoryKey {
+  return (Object.entries(CATEGORY_FILTER_GROUPS).find(([, members]) => members.includes(category))?.[0] ?? category) as CategoryKey;
+}
+
+export function categoryFilterValues(category: CategoryKey): readonly (string | null)[] {
+  return CATEGORY_FILTER_GROUPS[categoryFilterKey(category)] ?? [category];
+}
 
 const MERGE: Partial<Record<string, string>> = PUBLIC_CATEGORIES.merge;
 const FEED_LABELS: Partial<Record<string, string>> = PUBLIC_CATEGORIES.feedLabels;

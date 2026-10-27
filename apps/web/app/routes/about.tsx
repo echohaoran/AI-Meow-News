@@ -2,7 +2,7 @@ import { Fragment, useCallback, useMemo, useRef, useState, type ReactNode } from
 import { IntentLink } from "../components/ui/IntentLink";
 import { Link, useLoaderData } from "react-router";
 import type { SiteContact, SiteStats } from "@aihot/contracts/site";
-import { ABOUT, POLICY, REPORTS, SITE, subjectAfter } from "@aihot/site";
+import { ABOUT, POLICY, REPORTS, SITE } from "@aihot/site";
 import { apiGet, cachedPage } from "../lib/api.server";
 import { pageReuse } from "../lib/page-reuse";
 import { organizationLd, pageMeta } from "../lib/seo";
@@ -176,7 +176,7 @@ function Maker({ maker, contact }: { maker: NonNullable<typeof ABOUT.maker>; con
   );
 }
 
-/** The latest 精选 under the river's paper; it moves on each time an item reaches the paper. */
+/** A selected signal reaching the central planet advances the latest article. */
 function Latest({ item, className = "" }: { item: SiteStats["latest"][number] | undefined; className?: string }) {
   if (!item) return null;
   return (
@@ -198,7 +198,7 @@ export default function AboutPage() {
   const sources = useMemo(() => stats?.sampleSources ?? NO_SOURCES, [stats]);
   const stages = useMemo(() => stagesOf(stats), [stats]);
   const latest = stats?.latest ?? [];
-  // A pulse reaches the paper every second or so; the headline under it changes at most every 2.8s.
+  // The headline changes at most every 2.8s when a selected signal reaches the planet.
   const onArrive = useCallback(() => {
     const now = Date.now();
     if (now - shown.current < 2800 || latest.length < 2) return;
@@ -241,9 +241,9 @@ export default function AboutPage() {
           {`${SITE.name} 怎么工作`}
         </h2>
         <SignalRiver sources={sources} focus={focus} onArrive={onArrive} className="h-[230px] sm:h-[300px] lg:h-[360px] 2xl:h-[420px]">
-          <Latest item={latest[at]} className="absolute left-[75%] top-[calc(42%+42px)] hidden w-[25%] px-6 lg:block" />
+          <Latest item={latest[at]} className="absolute left-1/2 top-[calc(45%+86px)] hidden w-[min(380px,44%)] -translate-x-1/2 rounded-control bg-bg/90 px-4 py-2 text-center lg:block" />
         </SignalRiver>
-        <p className="sr-only">{`示意图：每条线是一个信源；线汇成一束束，代表同一件事的多篇报道；经过精选的闸门，只有少数几束通过，${subjectAfter("汇入每天的", "日报")}。`}</p>
+        <p className="sr-only">示意图：周围的星星代表已启用的信源，信息沿星系轨迹汇聚，经过收录和精选后流向中央行星，代表成刊。动画用于说明流程，实际数量以下方统计为准。</p>
         <Latest item={latest[at]} className="mt-2 border-t border-line pt-4 lg:hidden" />
         <ol className="mt-4 grid grid-cols-1 border-t border-line-strong sm:grid-cols-2 lg:mt-0 lg:grid-cols-4">
           {stages.map((s, i) => (

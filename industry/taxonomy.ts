@@ -14,11 +14,25 @@
 export const CATEGORIES = [
   { key: "ai-models", tagColor: "indigo", label: "模型", feedLabel: "AI 模型", section: "模型发布/更新", guide: "模型本身的发布、版本、权重开放、能力或价格变化，以及既有榜单上的模型成绩。公布一次跑分不是发布新基准，也不是教程。" },
   { key: "ai-products", tagColor: "turquoise", label: "产品", feedLabel: "AI 产品", section: "产品发布/更新", guide: "可使用的 AI 产品、功能、应用、工具、API、平台和工程组件的发布更新。模型厂商发布的推理框架、算子库、硬件适配组件仍是产品，不能因为厂商名归成模型。" },
-  { key: "industry", tagColor: "orange", label: "行业", feedLabel: "行业动态", section: "行业动态", guide: "已发生的公司经营、融资并购、人事、合作、诉讼、政策、真实安全事故及调查进展。新闻由当事人发帖、带有态度，也不因此变成观点。" },
+  { key: "industry", tagColor: "orange", label: "行业", feedLabel: "行业动态", section: "行业动态", guide: "AI 行业政策、监管、组织与人才变化、诉讼、生态趋势、真实安全事故及调查进展。商业化和客户合作归商业，融资并购、上市、财务和资本市场归金融；具体模型与产品发布仍归模型或产品。" },
+  { key: "technology", tagColor: "violet", label: "技术", feedLabel: "AI 技术", section: "技术与研究", guide: "AI 论文、研究方法、技术报告、新基准、研究数据集、工程实践、教程和技术讲解。按方法与技术细节归类；模型本身的发布和既有榜单成绩归模型，可使用的工具组件发布归产品。" },
+  { key: "business", tagColor: "green", label: "商业", feedLabel: "AI 商业", section: "商业应用", guide: "AI 商业化、客户落地、商业模式、销售渠道、企业采购和商业合作。关注企业如何使用或销售 AI；具体模型与产品的版本、功能和定价更新仍归模型或产品，融资、并购、上市和财务结果归金融。" },
+  { key: "finance", tagColor: "orange", label: "金融", feedLabel: "AI 金融", section: "金融与资本", guide: "与 AI 直接相关的融资、投资、并购、估值、上市、财报及资本市场动态，以及 AI 在金融服务中的应用。模型调用价格不归金融，普通客户采购和商业合作归商业；不收与 AI 无关的泛财经信息。" },
+  { key: "other", tagColor: "purple", label: "其他", feedLabel: "其他 AI 动态", section: "其他动态", guide: "已确认与 AI 相关、但不属于模型、产品、行业、技术、商业或金融的内容，包括无法归入前述主题的观点和评论。先按内容主题归类，不能只因作者表达观点就放到其他；其他不代表放宽相关性或选稿门槛。" },
+  // 已发布的分类身份保留给旧文章与订阅；新筛选入口及模型分类使用下面的分组。
   { key: "paper", tagColor: "violet", label: "论文", feedLabel: "论文", section: "论文研究", guide: "以新研究方法、实验设计与发现为核心的论文、技术报告、新基准或研究数据集。系统性红队实验属于研究；既有榜单成绩归模型，真实事故的新闻调查归行业。" },
   { key: "tip", tagColor: "green", label: "教程", section: "技巧与观点", guide: "读者可以照着使用的方法、提示词、工具用法、工程实践复盘与技术讲解。重点是可复用的做法；单纯发布工具归产品，只有态度和预测而无做法归观点。", commentary: true },
   { key: "opinion", tagColor: "purple", label: "观点", section: "技巧与观点", guide: "重点是作者的解释、判断、主张、预测、评论或访谈观点。讨论市场不自动归行业，作者是名人不自动归观点。", commentary: true },
 ] as const satisfies ReadonlyArray<{ key: string; tagColor: string; label: string; feedLabel?: string; section: string; guide: string; commentary?: true }>;
+
+/** 旧分类并入新的阅读分组；null 表示尚未分类的动态。 */
+export const CATEGORY_FILTER_GROUPS: Readonly<Record<string, readonly (string | null)[]>> = {
+  technology: ["technology", "paper", "tip"],
+  other: ["other", "opinion", null],
+};
+
+export const FILTER_CATEGORIES = CATEGORIES.filter((category) =>
+  !Object.entries(CATEGORY_FILTER_GROUPS).some(([key, members]) => key !== category.key && members.includes(category.key)));
 
 /**
  * 这个行业最受关注的一类发布（AI 行业是新模型）：日报报头的“N 个新模型”、改分类后修订已出的报告都按它数。

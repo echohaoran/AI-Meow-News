@@ -12,8 +12,8 @@ import { describePublicationTime } from "../sources/dates.ts";
 //      copy that uses a word the site keeps from readers (industry/wording.ts) goes back once to change only those.
 // Material with only a title or a feed summary has its article page fetched before it is judged.
 import { z } from "zod";
-import { CATEGORY_KEYS } from "@aihot/contracts/taxonomy";
-import { CATEGORIES } from "@aihot/industry/taxonomy";
+import { FILTER_CATEGORY_KEYS } from "@aihot/contracts/taxonomy";
+import { FILTER_CATEGORIES } from "@aihot/industry/taxonomy";
 import { SELECTION } from "@aihot/industry/selection";
 import { ITEM_COPY } from "@aihot/site";
 import { sql } from "../db.ts";
@@ -130,7 +130,7 @@ const FactSchema = z
 
 export const StructureSchema = z.object({
   scope: z.enum(["single", "composite", "unknown"]).catch("unknown"),
-  category: z.enum(CATEGORY_KEYS).nullable().catch(null),
+  category: z.enum(FILTER_CATEGORY_KEYS).nullable().catch(null),
   tags: z.array(z.string()).max(12).catch([]),
   subjects: z.array(z.string()).max(6).catch([]),
   fact: FactSchema,
@@ -152,7 +152,7 @@ const ZH_COUNT = ["零", "一", "二", "三", "四", "五", "六", "七", "八",
 
 /** The structure step owns the public category and tags, as well as grouping evidence (filled from the pack's vocabulary). */
 export const STRUCTURE_SYSTEM = promptText("structure", {
-  categoryCount: ZH_COUNT[CATEGORIES.length] ?? String(CATEGORIES.length),
+  categoryCount: ZH_COUNT[FILTER_CATEGORIES.length] ?? String(FILTER_CATEGORIES.length),
   categoryGuide: CATEGORY_GUIDE,
   categoryTags: CATEGORY_TAGS.join("、"),
   topicTags: TOPIC_TAGS.join("、"),

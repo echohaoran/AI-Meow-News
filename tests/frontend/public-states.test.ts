@@ -2,6 +2,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import * as cheerio from "cheerio";
+import type { HotEntryView } from "@aihot/contracts/site";
 import { fakeApi, itemDetail, startWebServer } from "../../apps/web/tests/web-server.ts";
 
 const sourceItem = {
@@ -105,6 +106,35 @@ test("an unpublished changelog shows no release history", async () => {
   } finally { await web.stop(); }
 });
 
+
+test("hot cards use the method's badges even when historical trends cannot be compared", async () => {
+  const entries: HotEntryView[] = [["surge", "new"], ["rising"], []].map((badges, i) => ({
+    rank: i + 1, story: { publicId: `hot-badge-${i}`, title: `热点事件 ${i + 1}` },
+    heat: 23 - i, trend: "unknown", trendPct: null, badges: badges as HotEntryView["badges"],
+    participantCount: 3, sourceCount: 3, sourceNames: [], participants: [], spark: [],
+    summary: null, latest: null, cover: null,
+  }));
+  const web = await startWebServer(fakeApi(url => url.pathname === "/api/site/hot"
+    ? { entries, windowHours: 48, computedAt: "2026-10-27T02:45:00Z" }
+    : undefined));
+  try {
+    const response = await fetch(web.origin + "/hot");
+    assert.equal(response.status, 200);
+    const $ = cheerio.load(await response.text());
+    const expected = [["爆", "新"], ["发酵中"], []];
+    const labels = ["爆", "新", "发酵中"];
+    const cards = $("#main article");
+    assert.equal(cards.length, entries.length);
+    cards.each((i, card) => {
+      const shown = $(card).find("span[title]").toArray()
+        .map(el => $(el).text()).filter(text => labels.includes(text));
+      assert.deepEqual(shown, expected[i]);
+      assert.doesNotMatch($(card).text(), /暂不比较|新上榜|持平/);
+    });
+    const legend = $("#hot-method dl");
+    for (const label of labels) assert.ok(legend.find("dt").toArray().some(el => $(el).text() === label));
+  } finally { await web.stop(); }
+});
 
 test("an empty hot board keeps the heat rule and offers source news directly", async () => {
   const web = await startWebServer(fakeApi(url => url.pathname === "/api/site/hot"

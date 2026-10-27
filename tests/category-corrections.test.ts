@@ -11,8 +11,25 @@ import { publishArticle } from "@aihot/backend/publication/publish";
 import { dailyMetrics } from "@aihot/backend/reports/compose";
 import type { EditionEntry } from "@aihot/backend/reports/edition";
 import { QUEUES, getBoss, stopBoss } from "@aihot/backend/jobs/queue";
+import { CATEGORY_LABELS, FILTER_CATEGORY_KEYS, categoryFilterKey, categoryFilterValues, isCategoryKey } from "@aihot/contracts/taxonomy";
+import { StructureSchema } from "@aihot/backend/editorial/analyze";
 
 after(async () => { await stopBoss(); await closeDb(); });
+
+test("category filters expose the new topics and include older technical and unclassified records", () => {
+  assert.deepEqual(FILTER_CATEGORY_KEYS.map((key) => CATEGORY_LABELS[key]), ["模型", "产品", "行业", "技术", "商业", "金融", "其他"]);
+  const records = ["ai-models", "paper", "tip", "technology", "business", "finance", "industry", "opinion", "other", null];
+  assert.deepEqual(records.filter((category) => categoryFilterValues("technology").includes(category)), ["paper", "tip", "technology"]);
+  assert.deepEqual(records.filter((category) => categoryFilterValues("other").includes(category)), ["opinion", "other", null]);
+  assert.deepEqual(categoryFilterValues("finance"), ["finance"]);
+  assert.deepEqual(categoryFilterValues("business"), ["business"]);
+  for (const key of ["paper", "tip", "opinion"]) assert.equal(isCategoryKey(key), true, "old category URLs remain valid");
+  assert.equal(categoryFilterKey("paper"), "technology");
+  assert.equal(categoryFilterKey("tip"), "technology");
+  assert.equal(categoryFilterKey("opinion"), "other");
+  assert.equal(StructureSchema.parse({ category: "finance", fact: null }).category, "finance");
+  assert.equal(StructureSchema.parse({ category: "paper", fact: null }).category, null, "new model output uses the new categories only");
+});
 
 test("new models require a launch classification as well as an official, new model event", () => {
   const base = { category: "ai-models", tags: ["模型发布"], authority: 0, previous: null,

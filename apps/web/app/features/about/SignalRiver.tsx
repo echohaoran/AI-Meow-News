@@ -1,11 +1,6 @@
-// The about page's river. Every line is one of the site's real sources (hover names it). Lines run in
-// from the left, gather into bundles (many reports of one story), meet the 精选 gate that lets a few
-// bundles through, and the ones that pass turn teal and run into a small newspaper: the day's report.
-// Pulses carry items along the lines; most stop at the gate, and each that reaches the paper calls
-// onArrive (the page brings up the next latest 精选). The four stages line up with the columns under
-// the canvas, and `focus` lights one of them. On first sight the river flows in from the left once.
-// Theme-aware, paused off screen; reduced motion draws it still. The canvas only illustrates: what it
-// says is also written in the page.
+// The about page's galaxy: real source stars feed an illustrative spiral, and selected signals
+// reach the central planet. Arrival keeps the page's existing latest-selection carousel moving.
+// The canvas illustrates the process; counts and article links remain real API data.
 import { useEffect, useRef, type ReactNode } from "react";
 import { withSubject } from "@aihot/site";
 import { EDITION } from "../report/format";
@@ -18,19 +13,13 @@ export interface RiverSource {
   heatOnly: boolean;
 }
 
-/** Stage boundaries as fractions of the width: 采集 | 归并 | 精选 | 成刊. */
-export const STAGES = [0, 0.25, 0.5, 0.75, 1] as const;
-
-const STEP = 3;
 const KIND: Record<string, string> = { x_search: "X 账号", rss: "RSS", web_list: "网页", mp_account: "公众号", json_list: "接口" };
+const TAU = Math.PI * 2;
+const GATE = 0.64;
 const FLASH_MS = 900;
-const INTRO_MS = 1800;
-/** Slow in, slow out: the river starts gently, crosses, and settles. */
-const easeInOut = (u: number) => (1 - Math.cos(Math.PI * Math.min(1, Math.max(0, u)))) / 2;
-
 type RGB = [number, number, number];
 const rgba = (c: RGB, a: number) => `rgba(${c[0]},${c[1]},${c[2]},${a})`;
-const smooth = (u: number) => (u <= 0 ? 0 : u >= 1 ? 1 : u * u * (3 - 2 * u));
+const smooth = (u: number) => { const t = Math.min(1, Math.max(0, u)); return t * t * (3 - 2 * t); };
 
 function prng(seed: number) {
   return () => {
@@ -41,125 +30,72 @@ function prng(seed: number) {
   };
 }
 
-interface Strand {
-  /** y at x = i * STEP. */
-  ys: Float32Array;
-  end: number;
-  bundle: number;
-  /** Items on this line can reach the paper (a kept bundle, and a source that is not heat-only). */
+interface Star {
+  angle: number;
+  turn: number;
+  size: number;
   pass: boolean;
-  source: RiverSource | null;
+  source: RiverSource;
 }
-
-interface Bundle {
-  y: number;
-  n: number;
-  kept: boolean;
-  half: number;
-}
-
-interface Layout {
+interface Galaxy {
   w: number;
   h: number;
-  strands: Strand[];
-  bundles: Bundle[];
-  x1: number;
-  x2: number;
-  gate: number;
-  xo: number;
-  out: number;
-  paper: { x: number; y: number; w: number; h: number };
+  cx: number;
+  cy: number;
+  rx: number;
+  ry: number;
+  radius: number;
+  stars: Star[];
+  dust: Array<{ x: number; y: number; r: number; alpha: number }>;
+}
+interface Colors { ink: RGB; accent: RGB; bg: RGB; dark: boolean }
+interface Pulse { star: number; progress: number; speed: number }
+
+function layout(w: number, h: number, sources: RiverSource[]): Galaxy {
+  const random = prng(20261027 + sources.length);
+  const radius = Math.max(24, Math.min(54, h * 0.15, w * 0.085));
+  const groups = w >= 900 ? 9 : w >= 560 ? 7 : 5;
+  const kept = new Set(Array.from({ length: groups >= 9 ? 3 : 2 }, (_, i) => Math.round((i + 0.5) * groups / (groups >= 9 ? 3 : 2) - 0.5)));
+  return {
+    w, h, cx: w * 0.5, cy: h * 0.45, rx: w * 0.46, ry: h * 0.43, radius,
+    stars: sources.map((source, i) => ({
+      angle: i / sources.length * TAU - Math.PI / 2 + (random() - 0.5) * 0.12,
+      turn: 1.25 + random() * 0.45,
+      size: 1.7 + random() * 1.3,
+      pass: kept.has(i % groups) && !source.heatOnly,
+      source,
+    })),
+    dust: Array.from({ length: Math.min(180, Math.round(w / 5)) }, () => ({
+      x: random() * w, y: random() * h, r: 0.4 + random() * 0.9, alpha: 0.12 + random() * 0.35,
+    })),
+  };
 }
 
-function layout(w: number, h: number, sources: RiverSource[]): Layout {
-  const rand = prng(20260928 + sources.length);
-  const n = Math.max(40, Math.min(160, Math.round(w / 7.5)));
-  const B = w >= 900 ? 9 : w >= 560 ? 7 : 5;
-  const K = B >= 9 ? 3 : 2;
-  const kept = new Set(Array.from({ length: K }, (_, k) => Math.round(((k + 0.5) * B) / K - 0.5)));
-  const pad = Math.max(14, h * 0.07);
-  const x1 = w * STAGES[1];
-  const x2 = w * STAGES[2];
-  const gate = w * 0.625;
-  const xo = w * 0.8;
-  // The paper sits a little above the middle; the page sets the latest 精选 under it (42% + 42px).
-  const out = h * 0.42;
-  const pw = Math.max(26, Math.min(46, w * 0.042));
-  const ph = pw * 1.32;
-  const paper = { x: w * 0.875 - pw / 2, y: out - ph / 2, w: pw, h: ph };
-
-  // A few big stories and more small ones; every bundle has at least two reports.
-  const weights = Array.from({ length: B }, () => 0.45 + rand() ** 1.6 * 1.9);
-  const total = weights.reduce((a, b) => a + b, 0);
-  const sizes = weights.map((x) => Math.max(2, Math.round((x / total) * n)));
-  let diff = n - sizes.reduce((a, b) => a + b, 0);
-  for (let i = 0; diff !== 0; i = (i + 1) % B) {
-    if (diff > 0) {
-      sizes[i]!++;
-      diff--;
-    } else if (sizes[i]! > 2) {
-      sizes[i]!--;
-      diff++;
-    }
-  }
-  const spacing = Math.max(0.8, Math.min(1.6, (h * 0.075) / Math.max(...sizes)));
-  const bundles: Bundle[] = sizes.map((size, j) => ({ y: h * 0.14 + ((j + 0.5) / B) * h * 0.72, n: size, kept: kept.has(j), half: (size * spacing) / 2 }));
-
-  const cols = Math.ceil(w / STEP) + 1;
-  const strands: Strand[] = [];
-  let i = 0;
-  sizes.forEach((size, j) => {
-    const b = bundles[j]!;
-    const mean = pad + ((i + size / 2) / n) * (h - 2 * pad);
-    for (let r = 0; r < size; r++, i++) {
-      const y0 = pad + ((i + 0.5) / n) * (h - 2 * pad) + (rand() - 0.5) * ((h - 2 * pad) / n) * 0.8;
-      const amp = 2 + rand() * 5;
-      const freq = (Math.PI * 2) / (70 + rand() * 140);
-      const phase = rand() * Math.PI * 2;
-      const off = (r - (size - 1) / 2) * spacing;
-      const yA = y0 + (mean - y0) * 0.25 + amp * 0.4 * Math.sin(freq * x1 + phase);
-      const ys = new Float32Array(cols);
-      for (let c = 0; c < cols; c++) {
-        const x = c * STEP;
-        if (x <= x1) {
-          const u = x / x1;
-          ys[c] = y0 + (mean - y0) * 0.25 * smooth(u) + amp * (1 - 0.6 * u) * Math.sin(freq * x + phase);
-        } else if (x <= x2) ys[c] = yA + (b.y + off - yA) * smooth((x - x1) / (x2 - x1));
-        else if (!b.kept || x <= gate) ys[c] = b.y + off;
-        else if (x <= xo) ys[c] = b.y + off + (out + off * 0.5 - b.y - off) * smooth((x - gate) / (xo - gate));
-        else ys[c] = out + off * 0.5;
-      }
-      const source = sources.length > 0 ? sources[i % sources.length]! : null;
-      strands.push({ ys, end: b.kept ? paper.x : gate + w * 0.045, bundle: j, pass: b.kept && !source?.heatOnly, source });
-    }
-  });
-  return { w, h, strands, bundles, x1, x2, gate, xo, out, paper };
+function position(g: Galaxy, star: Star, progress: number) {
+  const t = Math.min(1, Math.max(0, progress));
+  const inward = (1 - t) ** 1.15;
+  const angle = star.angle + star.turn * smooth(t);
+  return {
+    x: g.cx + Math.cos(angle) * (g.radius + (g.rx - g.radius) * inward),
+    y: g.cy + Math.sin(angle) * (g.radius + (g.ry - g.radius) * inward),
+  };
 }
 
-function trace(ctx: CanvasRenderingContext2D, s: Strand, from: number, to: number) {
-  const a = Math.max(0, Math.floor(from / STEP));
-  const b = Math.min(s.ys.length - 1, Math.ceil(to / STEP));
+function trace(ctx: CanvasRenderingContext2D, g: Galaxy, star: Star, from: number, to: number) {
   ctx.beginPath();
-  ctx.moveTo(Math.max(from, 0), s.ys[a]!);
-  for (let c = a + 1; c <= b; c++) ctx.lineTo(Math.min(c * STEP, to), s.ys[c]!);
-}
-
-interface Colors {
-  ink: RGB;
-  accent: RGB;
-  line: RGB;
-  surface: RGB;
-  bg: RGB;
-  dark: boolean;
+  const steps = Math.max(2, Math.ceil((to - from) * 80));
+  for (let i = 0; i <= steps; i++) {
+    const p = position(g, star, from + (to - from) * i / steps);
+    if (i === 0) ctx.moveTo(p.x, p.y); else ctx.lineTo(p.x, p.y);
+  }
 }
 
 function readColors(probe: CanvasRenderingContext2D): Colors {
   const root = getComputedStyle(document.documentElement);
   const parse = (css: string, fallback: RGB): RGB => {
-    if (!css) return fallback;
     probe.clearRect(0, 0, 1, 1);
     probe.fillStyle = `rgb(${fallback.join(",")})`;
-    probe.fillStyle = css;
+    probe.fillStyle = css || probe.fillStyle;
     probe.fillRect(0, 0, 1, 1);
     const d = probe.getImageData(0, 0, 1, 1).data;
     return [d[0]!, d[1]!, d[2]!];
@@ -167,125 +103,153 @@ function readColors(probe: CanvasRenderingContext2D): Colors {
   const bg = parse(getComputedStyle(document.body).backgroundColor, [250, 249, 246]);
   return {
     ink: parse(root.getPropertyValue("--ink").trim(), [32, 42, 48]),
-    accent: parse(root.getPropertyValue("--accent").trim(), [23, 107, 117]),
-    line: parse(root.getPropertyValue("--line-strong").trim(), [200, 205, 205]),
-    surface: parse(root.getPropertyValue("--surface").trim(), [255, 255, 255]),
-    bg,
-    dark: bg[0] * 0.3 + bg[1] * 0.59 + bg[2] * 0.11 < 110,
+    accent: parse(root.getPropertyValue("--accent").trim(), [100, 77, 195]),
+    bg, dark: bg[0] * 0.3 + bg[1] * 0.59 + bg[2] * 0.11 < 110,
   };
 }
 
-function paintStatic(ctx: CanvasRenderingContext2D, L: Layout, col: Colors) {
-  const base = col.dark ? 0.2 : 0.13;
-  ctx.clearRect(0, 0, L.w, L.h);
-  ctx.lineWidth = 1;
-  ctx.lineJoin = "round";
-  for (const s of L.strands) {
-    const kept = L.bundles[s.bundle]!.kept;
-    trace(ctx, s, 0, Math.min(s.end, L.gate));
-    ctx.strokeStyle = rgba(col.ink, base);
-    ctx.stroke();
-    trace(ctx, s, L.gate, s.end);
-    if (kept) ctx.strokeStyle = rgba(col.accent, col.dark ? 0.6 : 0.45);
-    else {
-      const g = ctx.createLinearGradient(L.gate, 0, s.end, 0);
-      g.addColorStop(0, rgba(col.ink, base));
-      g.addColorStop(1, rgba(col.ink, 0));
-      ctx.strokeStyle = g;
-    }
-    ctx.stroke();
-  }
-  // The cable into the paper.
+function sparkle(ctx: CanvasRenderingContext2D, x: number, y: number, radius: number, color: string) {
+  ctx.fillStyle = color;
   ctx.beginPath();
-  ctx.moveTo(L.xo, L.out);
-  ctx.lineTo(L.paper.x, L.out);
-  ctx.lineWidth = 1.6;
-  ctx.strokeStyle = rgba(col.accent, 0.95);
-  ctx.stroke();
-
-  // The gate: a hairline across the river, open only where a kept bundle passes.
-  const top = L.h * 0.05;
-  const bottom = L.h * 0.95;
-  const gaps = L.bundles.filter((b) => b.kept).map((b) => [b.y - b.half - 7, b.y + b.half + 7] as const);
-  ctx.lineWidth = 1;
-  ctx.strokeStyle = rgba(col.line, 1);
-  ctx.beginPath();
-  let y = top;
-  for (const [a, b] of gaps) {
-    ctx.moveTo(L.gate, y);
-    ctx.lineTo(L.gate, a);
-    y = b;
-  }
-  ctx.moveTo(L.gate, y);
-  ctx.lineTo(L.gate, bottom);
-  ctx.stroke();
-  for (const [a, b] of gaps) {
-    for (const yy of [a, b]) {
-      ctx.beginPath();
-      ctx.moveTo(L.gate - 4, yy);
-      ctx.lineTo(L.gate + 4, yy);
-      ctx.stroke();
-    }
-  }
-
-  paintPaper(ctx, L, col, 0);
-
-  // The lines come in from beyond the left edge.
-  ctx.save();
-  ctx.globalCompositeOperation = "destination-out";
-  const fade = ctx.createLinearGradient(0, 0, Math.min(64, L.w * 0.06), 0);
-  fade.addColorStop(0, "rgba(0,0,0,1)");
-  fade.addColorStop(1, "rgba(0,0,0,0)");
-  ctx.fillStyle = fade;
-  ctx.fillRect(0, 0, Math.min(64, L.w * 0.06), L.h);
-  ctx.restore();
-}
-
-/** The day's paper: a nameplate bar, the headline and two columns of rules. `glow` lights it. */
-function paintPaper(ctx: CanvasRenderingContext2D, L: Layout, col: Colors, glow: number) {
-  const p = L.paper;
-  ctx.save();
-  if (glow > 0) {
-    ctx.shadowColor = rgba(col.accent, 0.55 * glow);
-    ctx.shadowBlur = 18 * glow;
-  }
-  ctx.beginPath();
-  if (ctx.roundRect) ctx.roundRect(p.x, p.y, p.w, p.h, 5);
-  else ctx.rect(p.x, p.y, p.w, p.h);
-  ctx.fillStyle = rgba(col.surface, 1);
+  ctx.moveTo(x, y - radius * 2.1);
+  ctx.quadraticCurveTo(x + radius * 0.25, y - radius * 0.25, x + radius * 1.5, y);
+  ctx.quadraticCurveTo(x + radius * 0.25, y + radius * 0.25, x, y + radius * 2.1);
+  ctx.quadraticCurveTo(x - radius * 0.25, y + radius * 0.25, x - radius * 1.5, y);
+  ctx.quadraticCurveTo(x - radius * 0.25, y - radius * 0.25, x, y - radius * 2.1);
   ctx.fill();
-  ctx.shadowBlur = 0;
-  ctx.lineWidth = 1;
-  ctx.strokeStyle = glow > 0 ? rgba(col.accent, 0.35 + 0.65 * glow) : rgba(col.line, 1);
-  ctx.stroke();
-  ctx.restore();
-  const ix = p.x + p.w * 0.17;
-  const iw = p.w * 0.66;
-  ctx.fillStyle = rgba(col.accent, 1);
-  ctx.fillRect(ix, p.y + p.h * 0.13, iw * 0.42, Math.max(2, p.w * 0.06));
-  ctx.fillStyle = glow > 0 ? rgba(col.accent, 0.5 + 0.5 * glow) : rgba(col.ink, 0.82);
-  ctx.fillRect(ix, p.y + p.h * 0.29, iw * 0.9, Math.max(2, p.w * 0.075));
-  ctx.fillStyle = rgba(col.ink, col.dark ? 0.4 : 0.26);
-  for (let r = 0; r < 4; r++) {
-    const yy = p.y + p.h * (0.47 + r * 0.12);
-    ctx.fillRect(ix, yy, iw * 0.45, 1);
-    ctx.fillRect(ix + iw * 0.55, yy, iw * 0.45, 1);
+}
+
+function orbitParticles(ctx: CanvasRenderingContext2D, r: number, dark: boolean, seconds: number, front: boolean, count: number) {
+  for (let i = 0; i < count; i++) {
+    const angle = i * 2.39996 + seconds * (0.28 + i % 3 * 0.045);
+    const a = r * (1.4 + i % 4 * 0.16), b = r * (0.46 + i % 3 * 0.055);
+    if ((Math.sin(angle) >= 0) !== front) continue;
+    const x = Math.cos(angle) * a, y = Math.sin(angle) * b;
+    const alpha = (front ? 0.78 : 0.38) * (0.65 + Math.sin(seconds * 0.8 + i) * 0.25);
+    const color: RGB = i % 5 === 0 ? [247, 211, 151] : dark ? [222, 210, 255] : [143, 114, 215];
+    ctx.save();
+    ctx.shadowBlur = front ? 5 : 2;
+    ctx.shadowColor = rgba(color, alpha);
+    if (i % 4 === 0) sparkle(ctx, x, y, 1.1, rgba(color, alpha));
+    else {
+      ctx.beginPath(); ctx.arc(x, y, 0.7 + i % 3 * 0.3, 0, TAU);
+      ctx.fillStyle = rgba(color, alpha); ctx.fill();
+    }
+    ctx.restore();
+    if (i % 3 === 0) {
+      ctx.beginPath(); ctx.ellipse(0, 0, a, b, 0, angle - 0.12, angle);
+      ctx.lineWidth = 0.7; ctx.strokeStyle = rgba(color, alpha * 0.3); ctx.stroke();
+    }
   }
 }
 
-interface Pulse {
-  s: number;
-  x: number;
-  v: number;
+function planet(ctx: CanvasRenderingContext2D, g: Galaxy, col: Colors, glow: number, seconds: number) {
+  const { cx, cy, radius: r } = g;
+  const halo = ctx.createRadialGradient(cx, cy, r * 0.55, cx, cy, r * 2.15);
+  halo.addColorStop(0, rgba(col.accent, 0.18 + glow * 0.1));
+  halo.addColorStop(1, rgba(col.accent, 0));
+  ctx.fillStyle = halo;
+  ctx.fillRect(cx - r * 2.2, cy - r * 2.2, r * 4.4, r * 4.4);
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.rotate(-0.3 + Math.sin(seconds * 0.12) * 0.035);
+  // The far half of the planetary rings sits behind the sphere.
+  ctx.strokeStyle = rgba(col.accent, col.dark ? 0.45 : 0.3);
+  ctx.lineWidth = r * 0.12;
+  ctx.beginPath();
+  ctx.ellipse(0, 0, r * 1.75, r * 0.48, 0, Math.PI, TAU);
+  ctx.stroke();
+  const particles = g.w < 560 ? 12 : 18;
+  orbitParticles(ctx, r, col.dark, seconds, false, particles);
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(0, 0, r, 0, TAU);
+  ctx.clip();
+  const sphere = ctx.createRadialGradient(-r * 0.4, -r * 0.45, r * 0.08, r * 0.2, r * 0.2, r * 1.25);
+  sphere.addColorStop(0, col.dark ? "#e6dcff" : "#e3d9ff");
+  sphere.addColorStop(0.35, "#a38be5");
+  sphere.addColorStop(0.7, rgba(col.accent, 1));
+  sphere.addColorStop(1, col.dark ? "#241749" : "#38225f");
+  ctx.fillStyle = sphere;
+  ctx.fillRect(-r, -r, r * 2, r * 2);
+  ctx.lineWidth = r * 0.16;
+  for (let i = -2; i <= 2; i++) {
+    ctx.strokeStyle = i % 2 ? "rgba(255,255,255,0.1)" : "rgba(45,22,92,0.1)";
+    ctx.beginPath();
+    ctx.ellipse(-r * 0.12, i * r * 0.3, r * 1.1, r * 0.28, 0, 0.1, Math.PI - 0.1);
+    ctx.stroke();
+  }
+  // Surface markings move across the lit hemisphere; the light itself stays fixed.
+  const rotation = seconds * 0.18;
+  for (let i = 0; i < 9; i++) {
+    const longitude = rotation + i * TAU / 9, depth = Math.cos(longitude);
+    if (depth <= 0) continue;
+    const latitude = Math.sin(i * 2.4) * 0.72;
+    const x = Math.sin(longitude) * Math.cos(latitude) * r, y = Math.sin(latitude) * r;
+    ctx.beginPath();
+    ctx.ellipse(x, y, r * (0.12 + i % 3 * 0.025) * depth, r * 0.035, -0.12, 0, TAU);
+    ctx.fillStyle = i % 2 ? `rgba(255,255,255,${depth * 0.17})` : `rgba(45,22,92,${depth * 0.12})`;
+    ctx.fill();
+  }
+  ctx.restore();
+  // A thin atmospheric rim, rather than a flat outline around the whole planet.
+  const rim = ctx.createLinearGradient(-r, -r, r, r);
+  rim.addColorStop(0, "rgba(248,240,255,0.95)");
+  rim.addColorStop(0.32, "rgba(208,182,255,0.75)");
+  rim.addColorStop(0.62, "rgba(139,103,222,0.1)");
+  rim.addColorStop(1, rgba(col.accent, 0.5));
+  ctx.save();
+  ctx.beginPath(); ctx.arc(0, 0, r * 1.015, 0, TAU);
+  ctx.lineWidth = Math.max(1.2, r * 0.035); ctx.strokeStyle = rim;
+  ctx.shadowColor = "rgba(190,155,255,0.65)"; ctx.shadowBlur = r * 0.13; ctx.stroke();
+  ctx.restore();
+  ctx.lineWidth = r * 0.13;
+  ctx.strokeStyle = col.dark ? "rgba(208,192,255,0.82)" : "rgba(164,143,220,0.76)";
+  ctx.beginPath();
+  ctx.ellipse(0, 0, r * 1.75, r * 0.48, 0, 0, Math.PI);
+  ctx.stroke();
+  ctx.lineWidth = 1;
+  ctx.strokeStyle = "rgba(255,255,255,0.5)";
+  ctx.beginPath();
+  ctx.ellipse(0, 0, r * 1.83, r * 0.56, 0, 0.12, Math.PI - 0.12);
+  ctx.stroke();
+  orbitParticles(ctx, r, col.dark, seconds, true, particles);
+  ctx.restore();
 }
 
-export function SignalRiver({
-  sources,
-  focus,
-  onArrive,
-  className = "",
-  children,
-}: {
+function paintStatic(ctx: CanvasRenderingContext2D, g: Galaxy, col: Colors) {
+  ctx.clearRect(0, 0, g.w, g.h);
+  const nebula = ctx.createRadialGradient(g.cx, g.cy, g.radius, g.cx, g.cy, g.rx);
+  nebula.addColorStop(0, rgba(col.accent, col.dark ? 0.1 : 0.055));
+  nebula.addColorStop(1, rgba(col.accent, 0));
+  ctx.fillStyle = nebula;
+  ctx.fillRect(0, 0, g.w, g.h);
+  for (const d of g.dust) {
+    ctx.fillStyle = rgba(col.accent, d.alpha * (col.dark ? 0.9 : 0.65));
+    ctx.beginPath(); ctx.arc(d.x, d.y, d.r, 0, TAU); ctx.fill();
+  }
+  ctx.save();
+  ctx.translate(g.cx, g.cy);
+  ctx.rotate(-0.13);
+  for (let i = 1; i <= 3; i++) {
+    ctx.beginPath();
+    ctx.ellipse(0, 0, g.rx * (0.24 + i * 0.2), g.ry * (0.24 + i * 0.2), 0, 0, TAU);
+    ctx.setLineDash([2, 8]);
+    ctx.strokeStyle = rgba(col.accent, col.dark ? 0.16 : 0.12);
+    ctx.lineWidth = 0.8; ctx.stroke();
+  }
+  ctx.restore();
+  for (const star of g.stars) {
+    trace(ctx, g, star, 0, star.pass ? 1 : GATE);
+    ctx.strokeStyle = rgba(col.accent, star.pass ? 0.2 : 0.085);
+    ctx.lineWidth = star.pass ? 1 : 0.7;
+    ctx.stroke();
+    const p = position(g, star, 0);
+    sparkle(ctx, p.x, p.y, star.size, rgba(star.source.heatOnly ? col.ink : col.accent, col.dark ? 0.8 : 0.65));
+  }
+}
+
+export function SignalRiver({ sources, focus, onArrive, className = "", children }: {
   sources: RiverSource[];
   focus: number | null;
   onArrive?: () => void;
@@ -299,268 +263,145 @@ export function SignalRiver({
   const arriveRef = useRef(onArrive);
   const redrawRef = useRef<() => void>(() => {});
   arriveRef.current = onArrive;
+  useEffect(() => { focusRef.current = focus; redrawRef.current(); }, [focus]);
 
   useEffect(() => {
-    focusRef.current = focus;
-    redrawRef.current();
-  }, [focus]);
-
-  useEffect(() => {
-    const wrap = wrapRef.current;
-    const canvas = canvasRef.current;
-    const label = labelRef.current;
+    const wrap = wrapRef.current, canvas = canvasRef.current, label = labelRef.current;
     const ctx = canvas?.getContext("2d");
     if (!wrap || !canvas || !label || !ctx) return;
-    const probe = document.createElement("canvas").getContext("2d", { willReadFrequently: true })!;
     const layer = document.createElement("canvas");
     const lctx = layer.getContext("2d")!;
-    const still = reducedMotion();
-
-    let L: Layout | null = null;
-    let col = readColors(probe);
-    let dpr = 1;
-    let pulses: Pulse[] = [];
-    let passing: number[] = [];
-    let spawnDebt = 0;
+    const probe = document.createElement("canvas").getContext("2d", { willReadFrequently: true })!;
+    const motion = matchMedia("(prefers-reduced-motion: reduce)");
+    let still = reducedMotion();
+    let g: Galaxy | null = null;
+    let col = readColors(probe), dpr = 1, frame = 0, last = 0, seconds = 0, spawnDebt = 0;
     let flashAt = -Infinity;
-    let hover: { s: number | null; bundle: number | null; paper: boolean } | null = null;
-    let frame = 0;
-    let last = 0;
-    // The intro starts the first time the river is seen.
-    let introAt = still ? -Infinity : 0;
-    // On screen now (the observer keeps it current after), so the intro plays where it is seen.
+    let pulses: Pulse[] = [];
+    let hover: { star: number; progress: number } | null = null;
     const box = wrap.getBoundingClientRect();
     let visible = box.bottom > 0 && box.top < window.innerHeight;
     let disposed = false;
 
     const build = () => {
-      const w = wrap.clientWidth;
-      const h = wrap.clientHeight;
-      if (w < 10 || h < 10) return;
+      if (wrap.clientWidth < 10 || wrap.clientHeight < 10) return;
       dpr = Math.min(2, window.devicePixelRatio || 1);
-      for (const c of [canvas, layer]) {
-        c.width = Math.round(w * dpr);
-        c.height = Math.round(h * dpr);
-      }
-      L = layout(w, h, sources);
-      passing = L.strands.flatMap((s, i) => (s.pass ? [i] : []));
-      pulses = [];
+      for (const c of [canvas, layer]) { c.width = Math.round(wrap.clientWidth * dpr); c.height = Math.round(wrap.clientHeight * dpr); }
+      g = layout(wrap.clientWidth, wrap.clientHeight, sources);
+      pulses = g.stars.map((_, i) => ({ star: i, progress: (i * 0.137) % 0.58, speed: 0.1 + (i % 4) * 0.008 }));
       lctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      paintStatic(lctx, L, col);
+      paintStatic(lctx, g, col);
     };
 
     const draw = (now: number) => {
-      if (!L) return;
+      if (!g) return;
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const reveal = introAt === 0 ? 0 : easeInOut((now - introAt) / INTRO_MS);
-      if (reveal < 1) {
-        // The river flows in: the drawing is uncovered left to right behind a soft edge.
-        const edge = (L.w + 80) * reveal;
-        ctx.save();
-        ctx.beginPath();
-        ctx.rect(0, 0, Math.max(0, edge) * dpr, canvas.height);
-        ctx.clip();
-        ctx.drawImage(layer, 0, 0);
-        ctx.restore();
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        const soft = ctx.createLinearGradient(edge - 80, 0, edge, 0);
-        soft.addColorStop(0, rgba(col.bg, 0));
-        soft.addColorStop(1, rgba(col.bg, 1));
-        ctx.fillStyle = soft;
-        ctx.fillRect(edge - 80, 0, 80, L.h);
-        return;
-      }
       ctx.drawImage(layer, 0, 0);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.lineJoin = "round";
-      ctx.lineCap = "round";
-
-      if (hover && (hover.s !== null || hover.bundle !== null)) {
-        const lit = hover.bundle !== null ? L.strands.filter((s) => s.bundle === hover!.bundle) : [L.strands[hover.s!]!];
-        ctx.lineWidth = lit.length > 1 ? 1 : 1.5;
-        for (const s of lit) {
-          const kept = L.bundles[s.bundle]!.kept;
-          trace(ctx, s, 0, Math.min(s.end, L.gate));
-          ctx.strokeStyle = rgba(col.ink, lit.length > 1 ? 0.45 : 0.9);
-          ctx.stroke();
-          trace(ctx, s, L.gate, s.end);
-          ctx.strokeStyle = kept ? rgba(col.accent, 0.95) : rgba(col.ink, lit.length > 1 ? 0.3 : 0.6);
-          ctx.stroke();
-        }
+      const stage = focusRef.current;
+      if (stage !== null && stage !== undefined) {
+        const outer = 1 - stage / 4, inner = Math.max(0, outer - 0.25);
+        ctx.beginPath();
+        ctx.ellipse(g.cx, g.cy, g.radius + (g.rx - g.radius) * outer, g.radius + (g.ry - g.radius) * outer, 0, 0, TAU);
+        ctx.ellipse(g.cx, g.cy, g.radius + (g.rx - g.radius) * inner, g.radius + (g.ry - g.radius) * inner, 0, 0, TAU, true);
+        ctx.fillStyle = rgba(col.accent, 0.05); ctx.fill("evenodd");
       }
-
-      const trail = Math.max(24, Math.min(56, L.w * 0.04));
-      ctx.lineWidth = 1.8;
-      for (const p of pulses) {
-        const s = L.strands[p.s]!;
-        const head = Math.min(p.x, s.end);
-        if (head <= 0) continue;
-        const tail = Math.max(0, head - trail);
-        let c = col.ink;
-        let a = col.dark ? 0.85 : 0.7;
-        if (head >= L.gate) {
-          if (s.pass) {
-            c = col.accent;
-            a = 1;
-          } else a *= Math.max(0, 1 - (head - L.gate) / (s.end - L.gate));
-        }
-        if (a <= 0.01) continue;
-        const g = ctx.createLinearGradient(tail, 0, head, 0);
-        g.addColorStop(0, rgba(c, 0));
-        g.addColorStop(1, rgba(c, a));
-        trace(ctx, s, tail, head);
-        ctx.strokeStyle = g;
-        ctx.stroke();
+      if (hover) {
+        const star = g.stars[hover.star]!;
+        trace(ctx, g, star, 0, star.pass ? 1 : GATE);
+        ctx.lineWidth = 1.6; ctx.strokeStyle = rgba(col.accent, 0.65); ctx.stroke();
       }
-
-      const f = (now - flashAt) / FLASH_MS;
-      if (f >= 0 && f < 1) paintPaper(ctx, L, col, 1 - f);
-
-      const fx = focusRef.current;
-      if (fx !== null && fx !== undefined) {
-        ctx.fillStyle = rgba(col.bg, 0.62);
-        for (let k = 0; k < 4; k++) if (k !== fx) ctx.fillRect(L.w * STAGES[k]!, 0, L.w * (STAGES[k + 1]! - STAGES[k]!), L.h);
+      for (const pulse of pulses) {
+        const star = g.stars[pulse.star]!;
+        const fade = star.pass ? 1 : 1 - smooth((pulse.progress - 0.48) / (GATE - 0.48));
+        const focused = stage === null || stage === undefined || Math.min(3, Math.floor(pulse.progress * 4)) === stage;
+        const alpha = fade * (focused ? 1 : 0.25);
+        const start = position(g, star, Math.max(0, pulse.progress - 0.09)), head = position(g, star, pulse.progress);
+        const trail = ctx.createLinearGradient(start.x, start.y, head.x + 0.01, head.y + 0.01);
+        trail.addColorStop(0, rgba(col.accent, 0)); trail.addColorStop(1, rgba(col.accent, alpha * 0.75));
+        trace(ctx, g, star, Math.max(0, pulse.progress - 0.09), pulse.progress);
+        ctx.lineWidth = 1.3; ctx.strokeStyle = trail; ctx.stroke();
+        sparkle(ctx, head.x, head.y, star.size * 0.9, rgba(col.accent, alpha));
       }
+      // Redraw the planet above passing trails, with a quiet glow on each selected arrival.
+      planet(ctx, g, col, Math.max(0, 1 - (now - flashAt) / FLASH_MS), seconds);
     };
-
-    const tick = (now: number) => {
-      frame = 0;
-      if (disposed || !L) return;
-      const dt = Math.min(0.05, last ? (now - last) / 1000 : 0);
-      last = now;
-      if (!introAt) introAt = now;
-      if (now - introAt < INTRO_MS * 0.8) {
-        draw(now);
-        schedule();
-        return;
-      }
-      spawnDebt += dt * (L.w >= 900 ? 7 : 4.5);
-      while (spawnDebt >= 1 && pulses.length < 80) {
-        spawnDebt -= 1;
-        const s = passing.length > 0 && Math.random() < 0.11 ? passing[Math.floor(Math.random() * passing.length)]! : Math.floor(Math.random() * L.strands.length);
-        pulses.push({ s, x: -Math.random() * 30, v: L.w * (0.12 + Math.random() * 0.06) });
-      }
-      const kept: Pulse[] = [];
-      for (const p of pulses) {
-        p.x += p.v * dt;
-        const s = L.strands[p.s]!;
-        if (p.x < s.end) kept.push(p);
-        else if (s.pass) {
-          flashAt = now;
-          arriveRef.current?.();
-        }
-      }
-      pulses = kept;
-      draw(now);
-      schedule();
-    };
-
     const schedule = () => {
       if (!frame && !still && visible && !document.hidden && !disposed) frame = requestAnimationFrame(tick);
     };
-    const redraw = () => {
-      if (still || !frame) draw(performance.now());
-    };
-    redrawRef.current = redraw;
-
-    const place = (x: number, y: number, title: string, note: string) => {
-      const [t, n] = label.children as unknown as [HTMLElement, HTMLElement];
-      t.textContent = title;
-      n.textContent = note;
-      n.hidden = !note;
-      label.hidden = false;
-      const w = label.offsetWidth;
-      const left = Math.min(Math.max(8, x + 14), wrap.clientWidth - w - 8);
-      const top = Math.max(8, y + 16);
-      label.style.transform = `translate(${left}px, ${top}px)`;
-    };
-
-    const onMove = (e: PointerEvent) => {
-      if (!L) return;
-      const box = wrap.getBoundingClientRect();
-      const x = e.clientX - box.left;
-      const y = e.clientY - box.top;
-      const p = L.paper;
-      if (x >= p.x - 8 && x <= p.x + p.w + 8 && y >= p.y - 8 && y <= p.y + p.h + 8) {
-        hover = { s: null, bundle: null, paper: true };
-        place(x, y, withSubject("日报"), EDITION.daily);
-        redraw();
-        return;
+    const tick = (now: number) => {
+      frame = 0;
+      if (disposed || !g || !visible || document.hidden) { last = 0; return; }
+      const dt = Math.min(0.05, last ? (now - last) / 1000 : 0); last = now;
+      seconds += dt;
+      spawnDebt += dt * (g.w >= 900 ? 6 : 4);
+      while (spawnDebt >= 1 && pulses.length < 80 && g.stars.length) {
+        spawnDebt--;
+        pulses.push({ star: Math.floor(Math.random() * g.stars.length), progress: 0, speed: 0.1 + Math.random() * 0.035 });
       }
-      const c = Math.round(x / STEP);
-      let best = -1;
-      let dist = 7;
-      L.strands.forEach((s, i) => {
-        if (x > s.end + 2) return;
-        const d = Math.abs(s.ys[Math.min(c, s.ys.length - 1)]! - y);
-        if (d < dist) {
-          dist = d;
-          best = i;
-        }
+      pulses = pulses.filter((pulse) => {
+        pulse.progress += pulse.speed * dt;
+        const star = g!.stars[pulse.star]!;
+        if (pulse.progress < (star.pass ? 1 : GATE)) return true;
+        if (star.pass) { flashAt = now; arriveRef.current?.(); }
+        return false;
       });
-      if (best < 0) {
-        onLeave();
-        return;
-      }
-      const s = L.strands[best]!;
-      const b = L.bundles[s.bundle]!;
-      if (x < L.x2) {
-        hover = { s: best, bundle: null, paper: false };
-        const kind = s.source ? (KIND[s.source.kind] ?? "信源") : "信源";
-        place(x, y, s.source ? s.source.name : "一个信源", s.source?.heatOnly ? `${kind} · 只计入热度` : kind);
+      draw(now); schedule();
+    };
+    const redraw = () => { if (still || !frame) draw(performance.now()); };
+    redrawRef.current = redraw;
+    const leave = () => { hover = null; label.hidden = true; redraw(); };
+    const move = (event: PointerEvent) => {
+      if (!g) return;
+      if ((event.target as Element).closest("a, button")) { leave(); return; }
+      const rect = wrap.getBoundingClientRect(), x = event.clientX - rect.left, y = event.clientY - rect.top;
+      let title = "", note = "";
+      if (Math.hypot(x - g.cx, y - g.cy) < g.radius * 1.2) {
+        hover = null; title = withSubject("日报"); note = `${EDITION.daily} · 星系汇聚示意`;
       } else {
-        hover = { s: null, bundle: s.bundle, paper: false };
-        if (x < L.gate) place(x, y, "同一件事", `${b.n} 个来源的报道合成一条`);
-        else if (b.kept) place(x, y, "进了精选", "有信息量，分数也够");
-        else place(x, y, "没进精选", "信息不够、重复或只是营销");
+        let distance = 9, best: { star: number; progress: number } | null = null;
+        g.stars.forEach((star, i) => {
+          const end = star.pass ? 1 : GATE;
+          for (let step = 0; step <= 64; step++) {
+            const progress = step / 64 * end, p = position(g!, star, progress);
+            const d = Math.hypot(p.x - x, p.y - y);
+            if (d < distance) { distance = d; best = { star: i, progress }; }
+          }
+        });
+        hover = best;
+        if (hover) {
+          const hit = hover as { star: number; progress: number }, star = g.stars[hit.star]!;
+          if (hit.progress < 0.25) { title = star.source.name; note = `${KIND[star.source.kind] ?? "信源"}${star.source.heatOnly ? " · 只计入热度" : ""}`; }
+          else if (hit.progress < 0.5) { title = "同一件事"; note = "多源报道汇聚 · 流程示意"; }
+          else { title = star.pass ? "进了精选" : "没进精选"; note = star.pass ? "有信息量，分数也够 · 流程示意" : "信息不够、重复或只是营销 · 流程示意"; }
+        }
       }
-      redraw();
+      if (!title) { leave(); return; }
+      const [heading, detail] = label.children as unknown as [HTMLElement, HTMLElement];
+      heading.textContent = title; detail.textContent = note; detail.hidden = !note; label.hidden = false;
+      const left = Math.max(8, Math.min(x + 14, wrap.clientWidth - label.offsetWidth - 8));
+      const top = Math.max(8, Math.min(y + 16, wrap.clientHeight - label.offsetHeight - 8));
+      label.style.transform = `translate(${left}px, ${top}px)`; redraw();
     };
-    const onLeave = () => {
-      hover = null;
-      label.hidden = true;
-      redraw();
+    const resize = new ResizeObserver(() => { build(); redraw(); });
+    const seen = new IntersectionObserver(([entry]) => { visible = !!entry?.isIntersecting; last = 0; schedule(); });
+    const onVisibility = () => { last = 0; schedule(); };
+    const onMotion = () => {
+      still = motion.matches; last = 0;
+      if (still && frame) { cancelAnimationFrame(frame); frame = 0; }
+      redraw(); schedule();
     };
-
-    const resize = new ResizeObserver(() => {
-      build();
-      redraw();
+    build(); draw(performance.now()); schedule(); resize.observe(wrap); seen.observe(wrap);
+    const unwatch = watchAppearance((change) => {
+      if (change === "theme") { col = readColors(probe); if (g) paintStatic(lctx, g, col); redraw(); }
     });
-    const recolour = () => {
-      col = readColors(probe);
-      if (L) paintStatic(lctx, L, col);
-      redraw();
-    };
-    const seen = new IntersectionObserver(([entry]) => {
-      visible = !!entry?.isIntersecting;
-      last = 0;
-      schedule();
-    });
-    const onVisibility = () => {
-      last = 0;
-      schedule();
-    };
-
-    build();
-    draw(performance.now());
-    schedule();
-    resize.observe(wrap);
-    seen.observe(wrap);
-    const unwatch = watchAppearance((change) => change === "theme" && recolour());
-    document.addEventListener("visibilitychange", onVisibility);
-    wrap.addEventListener("pointermove", onMove);
-    wrap.addEventListener("pointerleave", onLeave);
+    document.addEventListener("visibilitychange", onVisibility); motion.addEventListener("change", onMotion);
+    wrap.addEventListener("pointermove", move); wrap.addEventListener("pointerleave", leave);
     return () => {
-      disposed = true;
-      if (frame) cancelAnimationFrame(frame);
-      redrawRef.current = () => {};
-      resize.disconnect();
-      seen.disconnect();
-      unwatch();
-      document.removeEventListener("visibilitychange", onVisibility);
-      wrap.removeEventListener("pointermove", onMove);
-      wrap.removeEventListener("pointerleave", onLeave);
+      disposed = true; if (frame) cancelAnimationFrame(frame); redrawRef.current = () => {};
+      resize.disconnect(); seen.disconnect(); unwatch(); document.removeEventListener("visibilitychange", onVisibility);
+      motion.removeEventListener("change", onMotion); wrap.removeEventListener("pointermove", move); wrap.removeEventListener("pointerleave", leave);
     };
   }, [sources]);
 

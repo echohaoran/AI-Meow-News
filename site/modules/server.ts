@@ -1,6 +1,6 @@
 // The backend of the site's modules, installed by the api and the worker when they start (site/modules/index.ts).
 import type { ServerModule } from "@aihot/backend/modules";
-
+import rankings from "@aihot/openrouter-rankings/server";
 import companyMarks from "../../modules/company-marks/server.ts";
 
-export const SERVER_MODULES: readonly ServerModule[] = [companyMarks];
+export const SERVER_MODULES: readonly ServerModule[] = [rankings, companyMarks];

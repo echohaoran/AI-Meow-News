@@ -22,7 +22,7 @@ export { pageHeaders as headers } from "../lib/api.server";
 
 const V = PUBLIC_INTERFACE_VERSION;
 
-/** The ways in, the modules' first. The chooser's cards are the tabs: `?tab=` (the first is the default and not written). */
+/** The ways in, the modules' first. The selectors use `?tab=` (the first is the default and not written). */
 const TRACKS: AgentTrack[] = [
   ...AGENT_PARTS.flatMap((p) => p.tracks ?? []),
   { key: "mcp", name: "MCP", short: "MCP", pitch: `填一个地址，多出 ${mcpToolCount()} 个工具`, fit: "Claude 桌面版、Cursor 等远程 MCP 客户端", icon: IconPlug, Panel: McpPanel },
@@ -124,13 +124,17 @@ export default function AgentPage() {
   const aside = (
     <>
       <AsideCard title="接入方式" className="hidden lg:block">
-        <nav aria-label="接入方式" className="-mx-2 -mb-1 space-y-0.5">
+        <nav role="tablist" aria-label="接入方式" aria-orientation="vertical" className="-mx-2 -mb-1 space-y-0.5">
           {TRACKS.map((t) => {
             const on = t.key === tab;
             return (
               <a
                 key={t.key}
                 href={hrefOf(t.key)}
+                role="tab"
+                id={`agent-tab-${t.key}`}
+                aria-selected={on}
+                aria-controls="agent-panel"
                 onClick={(e) => {
                   e.preventDefault();
                   select(t.key);
@@ -189,7 +193,7 @@ export default function AgentPage() {
 
       {BANNERS.map((Banner, i) => <Banner key={i} base={base} tag={tag} now={now} href={anchorHref} open={open} />)}
 
-      <div role="tablist" aria-label="接入方式" className="mt-8 grid grid-cols-2 gap-2.5 sm:gap-3 2xl:grid-cols-4">
+      <div role="tablist" aria-label="接入方式" className="mt-6 flex flex-wrap gap-2 lg:hidden">
         {TRACKS.map((t) => {
           const on = t.key === tab;
           return (
@@ -197,24 +201,18 @@ export default function AgentPage() {
               key={t.key}
               href={hrefOf(t.key)}
               role="tab"
-              id={`agent-tab-${t.key}`}
+              id={`agent-mobile-tab-${t.key}`}
               aria-selected={on}
               aria-controls="agent-panel"
               onClick={(e) => {
                 e.preventDefault();
                 select(t.key);
               }}
-              className={`group flex flex-col rounded-card border p-3.5 transition-[border-color,background-color,box-shadow] duration-200 sm:p-4 ${on ? "border-accent/50 bg-accent-softer shadow-[inset_0_0_0_1px_var(--accent)]" : "border-line bg-surface shadow-[var(--shadow-card)] hover:border-line-strong hover:shadow-[var(--shadow-card-hover)]"}`}
+              className={`inline-flex items-center gap-2 rounded-control border px-3 py-2 text-[13px] transition-colors ${on ? "border-accent/50 bg-accent-soft font-medium text-accent" : "border-line bg-surface text-ink-2 hover:border-line-strong hover:text-ink"}`}
             >
-              <span className="flex items-center justify-between gap-2">
-                <span className={`grid size-9 place-items-center rounded-control transition-colors ${on ? "bg-accent text-accent-contrast" : "bg-bg-sunk text-ink-3 group-hover:text-ink"}`}>
-                  <t.icon size={18} />
-                </span>
-                {t.badge && <span className="inline-flex h-[18px] items-center rounded-full bg-accent-soft px-2 text-[11px] font-medium text-accent">{t.badge}</span>}
-              </span>
-              <span className="mt-3 text-[15.5px] font-semibold text-ink">{t.name}</span>
-              <span className="mt-1 text-[13px] leading-snug text-ink-2">{t.pitch}</span>
-              <span className="mt-2 hidden text-[12px] leading-snug text-ink-4 sm:block">{t.fit}</span>
+              <t.icon size={16} />
+              <span>{t.name}</span>
+              {t.badge && <span className="inline-flex h-[18px] items-center rounded-full bg-accent-soft px-2 text-[11px] font-medium text-accent">{t.badge}</span>}
             </a>
           );
         })}
