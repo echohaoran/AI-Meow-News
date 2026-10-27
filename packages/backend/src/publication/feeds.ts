@@ -9,7 +9,7 @@ import { sql } from "../db.ts";
 import { escapeXml } from "../lib/text.ts";
 import { proxyBodyImages } from "../media/imgproxy.ts";
 import { feedIssues, type FeedIssue, type ReportKind } from "./reports.ts";
-import { textToHtml } from "../content/sanitize.ts";
+import { textToHtml, trimTrailingChrome } from "../content/sanitize.ts";
 import type { FeedNotice } from "../modules.ts";
 import { publicCategoryCondition, exportTranslation, xView, type ItemRow } from "./items.ts";
 import { publicSourceName } from "./rules.ts";
@@ -119,7 +119,7 @@ function fullContent(r: FeedRow, aihot: string): string | null {
         : `<p><img src="${escapeXml(url)}" alt="${escapeXml(String(media.alt ?? ""))}"></p>`;
     }
   } else if (r.body_html) {
-    html = exportTranslation(r) ?? r.body_html;
+    html = trimTrailingChrome(exportTranslation(r) ?? r.body_html);
   }
   if (!html) return null;
   return `${proxyBodyImages(html, true, FEED_IMAGE_SECONDS)}<p>—— 本文由 ${escapeXml(SITE.name)} 聚合整理，完整版与${escapeXml(subjectAfter("更多", "动态"))}见 <a href="${aihot}">${aihot}</a></p>`;

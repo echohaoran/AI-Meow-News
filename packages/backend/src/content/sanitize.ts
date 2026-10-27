@@ -92,7 +92,7 @@ export function sanitizeBody(html: string, baseUrl?: string): string {
     exclusiveFilter: (frame) =>
       frame.tag === "img" && (!frame.attribs.src || isNonArticleImage(frame.attribs.src, frame.attribs.width, frame.attribs.height)),
   });
-  return normalizeBlocks(cleaned);
+  return trimTrailingChrome(normalizeBlocks(cleaned));
 }
 
 const BLOCK_TAGS = new Set(["p", "h2", "h3", "h4", "h5", "ul", "ol", "li", "blockquote", "pre", "table", "figure", "hr", "dl", "picture", "video"]);
@@ -157,6 +157,38 @@ export function trimTrailingChrome(html: string): string {
   while (blocks.length > 1) {
     const last = $(blocks[blocks.length - 1]!);
     const text = collapse(last.text());
+    const links = last.find("a[href]").toArray();
+    const profile = links.length === 1 && text === collapse($(links[0]!).text()) &&
+      /^(?:view bio|查看简介|查看作者简介|作者简介)$/i.test(text) &&
+      /^https:\/\/techcrunch\.com\/author\//.test($(links[0]!).attr("href") ?? "");
+    if (profile) {
+      last.remove();
+      blocks.pop();
+      const bio = $(blocks[blocks.length - 1]!);
+      // The publisher's profile card, not an article paragraph mentioning a journalist.
+      const isBio = (text: string) => /TechCrunch/i.test(text) && /reporter|journalist|记者/i.test(text);
+      if (blocks.length > 2 && !isBio(bio.text()) && isBio($(blocks[blocks.length - 2]!).text()) &&
+          bio.find('a[href^="https://techcrunch.com/cdn-cgi/l/email-protection"], a[href^="mailto:"]').length) {
+        bio.remove();
+        blocks.pop();
+      }
+      const author = $(blocks[blocks.length - 1]!);
+      if (blocks.length > 1 && isBio(author.text())) {
+        author.remove();
+        blocks.pop();
+      }
+      removed = true;
+      continue;
+    }
+    const affiliate = last.is("p") && links.length === 1 &&
+      /^https:\/\/techcrunch\.com\/techcrunch-affiliate-monetization-standards\/?$/.test($(links[0]!).attr("href") ?? "") &&
+      /^(?:When you purchase through links in our articles|当[您你]通过我们(?:的)?文章中的链接购买商品时)/i.test(text);
+    if (affiliate) {
+      last.remove();
+      blocks.pop();
+      removed = true;
+      continue;
+    }
     if (last.find("img, video, picture").length || /[.。!！?？:：]$/.test(text) || !TRAILING_CHROME.some((re) => re.test(text))) break;
     last.remove();
     blocks = blocks.slice(0, -1);

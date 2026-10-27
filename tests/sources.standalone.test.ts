@@ -136,6 +136,28 @@ test("promotions a feed rotates inside its posts are left out of the body", () =
   assert.ok(a.includes("native integration"), "the post's own text stays");
 });
 
+test("publisher commission and author-profile footers are removed in English and Chinese", () => {
+  for (const chinese of [false, true]) {
+    const reporting = '<p>Cohere sells models to governments and stands to benefit from restrictions.</p>' +
+      '<p>The report discusses advertising, commissions and a journalist’s investigation.</p>';
+    const commission = chinese
+      ? '当您通过我们文章中的链接购买商品时，<a href="https://techcrunch.com/techcrunch-affiliate-monetization-standards/">我们可能会获得少量佣金</a>。这不会影响我们的编辑独立性。'
+      : 'When you purchase through links in our articles, <a href="https://techcrunch.com/techcrunch-affiliate-monetization-standards/">we may earn a small commission</a>. This doesn’t affect our editorial independence.';
+    const bio = chinese ? 'Aditya Mehta 是 TechCrunch 的记者。' : 'Aditya Mehta is a reporter at TechCrunch.';
+    const html = reporting + `<p><em>${commission}</em></p><p>${bio} <a href="https://techcrunch.com/cdn-cgi/l/email-protection">[email protected]</a></p>` +
+      `<p><a href="https://techcrunch.com/author/aditya-mehta/">${chinese ? '查看简介' : 'View Bio'}</a></p>`;
+    assert.equal(trimTrailingChrome(html), reporting);
+    assert.equal(sanitizeBody(html), reporting);
+    assert.equal(sanitizeBody(sanitizeBody(html)), reporting);
+    const splitBio = reporting + `<p><em>${commission}</em></p><p>${bio}</p>` +
+      '<p>Contact <a href="https://techcrunch.com/cdn-cgi/l/email-protection#abcd">[email protected]</a> via email or Signal.</p>' +
+      '<p><a href="https://techcrunch.com/author/rebecca-bellan/">View Bio</a></p>';
+    assert.equal(trimTrailingChrome(splitBio), reporting, 'split biography/contact cards are removed together');
+    const bodyReference = '<p>We investigated the <a href="https://techcrunch.com/techcrunch-affiliate-monetization-standards/">commission policy</a> as part of our reporting.</p>';
+    assert.equal(trimTrailingChrome(reporting + bodyReference), reporting + bodyReference);
+  }
+});
+
 test("a listing that links other articles in its teasers takes only the links that begin a line", () => {
   // A news listing through Jina: each headline stands on its own line; its teaser links older stories inline.
   const md = [

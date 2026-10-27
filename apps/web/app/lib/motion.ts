@@ -10,6 +10,7 @@ export const scrollBehavior = (): ScrollBehavior => (reducedMotion() ? "auto" : 
 
 /** Where an anchor stops after a jump: its scroll margin below the window's top. */
 const landing = (el: Element) => parseFloat(getComputedStyle(el).scrollMarginTop) || 0;
+let releaseAnchor: (() => void) | null = null;
 
 /**
  * Scrolls an anchor to the top (its scroll margin keeps it clear of the bar) and puts it in the address
@@ -18,6 +19,30 @@ const landing = (el: Element) => parseFloat(getComputedStyle(el).scrollMarginTop
 export function scrollToAnchor(id: string) {
   const target = document.getElementById(id);
   if (!target) return;
+  releaseAnchor?.();
+  // A long jump loads pictures above its destination. Follow their layout changes until the
+  // reader interacts again, otherwise the selected section can end up several screens away.
+  let height = document.body.getBoundingClientRect().height;
+  const resized = new ResizeObserver(() => {
+    if (!target.isConnected) return release();
+    const next = document.body.getBoundingClientRect().height;
+    if (next === height) return;
+    height = next;
+    window.scrollTo({ top: window.scrollY + target.getBoundingClientRect().top - landing(target), behavior: "instant" });
+  });
+  const interactions = ["wheel", "touchstart", "pointerdown", "keydown"] as const;
+  const release = () => {
+    resized.disconnect();
+    for (const event of interactions) window.removeEventListener(event, release, true);
+    window.removeEventListener("popstate", release);
+    document.removeEventListener("visibilitychange", release);
+    releaseAnchor = null;
+  };
+  releaseAnchor = release;
+  resized.observe(document.body);
+  for (const event of interactions) window.addEventListener(event, release, { capture: true, passive: true });
+  window.addEventListener("popstate", release);
+  document.addEventListener("visibilitychange", release);
   target.scrollIntoView({ behavior: scrollBehavior(), block: "start" });
   history.replaceState(history.state, "", `${location.pathname}${location.search}#${id}`);
 }

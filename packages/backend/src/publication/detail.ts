@@ -1,11 +1,12 @@
 // Item detail and Markdown export, both behind the same visibility and licence rules.
 import type { OutlineEntry, SiteItemDetail, StoryRef } from "@aihot/contracts/site";
+import * as cheerio from "cheerio";
 import { ITEM_COPY, SITE } from "@aihot/site";
 import { bodyToMarkdown } from "../content/markdown.ts";
 import { sql } from "../db.ts";
-import { isChineseText, stripTagMarkup } from "../lib/text.ts";
+import { collapseWhitespace, isChineseText, truncate } from "../lib/text.ts";
 import { proxyBodyImages } from "../media/imgproxy.ts";
-import { textToHtml } from "../content/sanitize.ts";
+import { textToHtml, trimTrailingChrome } from "../content/sanitize.ts";
 import { exportTranslation, isChineseBody, ITEM_COLUMNS, ITEM_FROM, seatHolders, showsPost, toItemSummary, xView, type ItemRow } from "./items.ts";
 import { evidenceCondition, listedCondition } from "./scope.ts";
 import { itemUrl, siteUrl } from "./links.ts";
@@ -26,27 +27,34 @@ export type DetailResult =
   | { kind: "found"; item: SiteItemDetail; row: DetailRow }
   | { kind: "not_found" };
 
-/** Adds stable ids to h2–h4 and returns the outline. */
+/** Publisher headings include standalone bold paragraphs; plain articles use their paragraph openings. */
 function withOutline(html: string): { html: string; outline: OutlineEntry[] } {
+  const $ = cheerio.load(html, null, false);
   const outline: OutlineEntry[] = [];
-  let n = 0;
-  let out = html.replace(/<h([2-4])(?: id="sec-\d+")?>([\s\S]*?)<\/h\1>/gi, (_m, level: string, inner: string) => {
-    n += 1;
-    const id = `sec-${n}`;
-    const text = stripTagMarkup(inner, "").trim();
-    if (text) outline.push({ id, text: text.slice(0, 80), level: Number(level) });
-    return `<h${level} id="${id}">${inner}</h${level}>`;
+  const headings = $("h2, h3, h4, h5, p").filter((_, el) => {
+    const node = $(el);
+    if (!collapseWhitespace(node.text()) || node.parents("pre, code, blockquote, li, table, figure").length) return false;
+    if (el.tagName !== "p") return true;
+    if (!node.find("strong, b").length || node.find("img, video, picture, br").length) return false;
+    const plain = node.clone();
+    plain.find("strong, b").remove();
+    return !collapseWhitespace(plain.text());
   });
-  if (!outline.length && stripTagMarkup(html, "").trim()) {
+  const targets = headings.length ? headings : $("p, pre").filter((_, el) =>
+    !!collapseWhitespace($(el).text()) && !$(el).parents("pre, blockquote, li, table, figure").length);
+  let code = 0;
+  targets.each((_, el) => {
+    const node = $(el);
+    const id = `sec-${outline.length + 1}`;
+    const text = el.tagName === "pre" ? `代码示例 ${++code}` : truncate(collapseWhitespace(node.text()), 80);
+    outline.push({ id, text, level: /^h[2-5]$/.test(el.tagName) ? Number(el.tagName[1]) : el.tagName === "pre" ? 3 : 2 });
+    node.attr("id", id);
+  });
+  if (!outline.length && collapseWhitespace($.root().text())) {
     outline.push({ id: "sec-1", text: "正文", level: 2 });
-    out = out.replace(/<pre([^>]*)>/gi, (_m, attributes: string) => {
-      const id = `sec-${outline.length + 1}`;
-      outline.push({ id, text: `代码示例 ${outline.length}`, level: 3 });
-      return `<pre${attributes.replace(/\s+id="[^"]*"/gi, "")} id="${id}">`;
-    });
-    out = `<div id="sec-1">${out}</div>`;
+    return { html: `<div id="sec-1">${$.html()}</div>`, outline };
   }
-  return { html: out, outline };
+  return { html: $.html(), outline };
 }
 
 async function loadRow(id: string): Promise<DetailRow | null> {
@@ -55,6 +63,8 @@ async function loadRow(id: string): Promise<DetailRow | null> {
       ${topicMembership()} AS topics
     ${ITEM_FROM}
     WHERE p.article_id = ${id}`;
+  if (row?.body_html) row.body_html = trimTrailingChrome(row.body_html);
+  if (row?.tr_html) row.tr_html = trimTrailingChrome(row.tr_html);
   return row ?? null;
 }
 

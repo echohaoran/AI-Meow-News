@@ -146,16 +146,53 @@ test("Markdown retains numeric superscripts, subscripts and fenced code while re
   await sql`UPDATE sources SET site_fulltext = true WHERE id = ${SOURCE}`;
 });
 
-test("headingless originals get body and code anchors without changing their content", async () => {
+test("headingless originals get paragraph and code anchors without changing their content", async () => {
   const id = await article();
   await sql`UPDATE articles SET language='en', body_html='<p>First paragraph.</p><pre><code>print("hello")</code></pre><p>Last paragraph.</p>' WHERE id=${id}`;
   await publishArticle(id, released());
   const item = JSON.parse((await get(`/api/site/items/${id}/original`)).body);
-  assert.deepEqual(item.outline.map((entry: { text: string }) => entry.text), ["正文", "代码示例 1"]);
+  assert.deepEqual(item.outline.map((entry: { text: string }) => entry.text), ["First paragraph.", "代码示例 1", "Last paragraph."]);
   const $ = cheerio.load(item.body.original);
-  assert.equal($("#sec-1 p").first().text(), "First paragraph.");
+  assert.equal($("#sec-1").text(), "First paragraph.");
   assert.equal($("#sec-2 code").text(), 'print("hello")');
   assert.equal($("p").last().text(), "Last paragraph.");
+});
+
+test("news roundups use their standalone bold paragraph headings in the reading outline", async () => {
+  const id = await article();
+  // Leiphone's roundup uses p/span/strong for sections and p/strong for individual headlines.
+  const html = '<p><span><strong>要闻提示</strong></span></p><p>1. 首条要闻</p>' +
+    '<p><span><strong>今日头条</strong></span></p><p><strong>公司发布新模型</strong></p>' +
+    '<p>报道包含<strong>局部强调</strong>，仍然是普通段落。</p>' +
+    '<p><span><strong>国内资讯</strong></span></p><p><b>产品 A &amp; B 上线</b></p>' +
+    '<blockquote><p><strong>引语不作为章节</strong></p></blockquote><h5>数据说明</h5><p>末段正文。</p>';
+  await sql`UPDATE articles SET language='zh',body_html=${html},body_text='中文新闻正文' WHERE id=${id}`;
+  await publishArticle(id, released());
+  const item = JSON.parse((await get(`/api/site/items/${id}`)).body);
+  assert.deepEqual(item.outline.map((entry: { text: string }) => entry.text),
+    ['要闻提示', '今日头条', '公司发布新模型', '国内资讯', '产品 A & B 上线', '数据说明']);
+  const $ = cheerio.load(item.body.zh);
+  for (const entry of item.outline) assert.equal($(`#${entry.id}`).text(), entry.text);
+  assert.ok($("p").toArray().some(p => $(p).text() === '报道包含局部强调，仍然是普通段落。'));
+  assert.equal(item.outline.at(-1).level, 5);
+});
+
+test("saved originals and translations omit publisher profile and commission footers on every body exit", async () => {
+  const id = await article();
+  const profile = '<p><a href="https://techcrunch.com/author/aditya-mehta/">View Bio</a></p>';
+  const footer = '<p><em>When you purchase through links in our articles, <a href="https://techcrunch.com/techcrunch-affiliate-monetization-standards/">we may earn a small commission</a>.</em></p>' +
+    '<p>Aditya Mehta is a reporter at TechCrunch. Contact <a href="https://techcrunch.com/cdn-cgi/l/email-protection">[email protected]</a>.</p>' + profile;
+  await sql`UPDATE articles SET language='en',body_html=${'<p>Preserved reporting and conflicts of interest.</p>' + footer} WHERE id=${id}`;
+  await sql`INSERT INTO translations (article_id,lang,revision,title,body_html,body_text,complete,origin)
+    VALUES (${id},'zh',1,'中文报道',${'<p>保留报道事实与利益冲突说明。</p>' + footer},'保留报道事实与利益冲突说明。',true,'model')`;
+  await publishArticle(id, released());
+  for (const path of [`/api/site/items/${id}`, `/api/site/items/${id}/original`, `/items/${id}/markdown`, '/feed/full.xml']) {
+    const result = await get(path);
+    assert.equal(result.status, 200);
+    assert.doesNotMatch(result.body, /affiliate-monetization|View Bio|Aditya Mehta is a reporter/);
+  }
+  assert.match((await get(`/api/site/items/${id}`)).body, /保留报道事实与利益冲突说明/);
+  assert.match((await get(`/api/site/items/${id}/original`)).body, /Preserved reporting and conflicts of interest/);
 });
 
 test("site reading sends one language while exports retain both, including after withdrawal", async () => {
