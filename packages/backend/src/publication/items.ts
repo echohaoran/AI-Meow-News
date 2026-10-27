@@ -1,12 +1,14 @@
 // Public read layer, item level. Every exit (site API, v1, RSS, MCP, sitemap) reads
 // items through these columns and views; which rows are public is decided by scope.ts.
 import { CATEGORY_KEYS, categoryFilterValues, toPublicApiCategory, type CategoryKey, type ChannelKey, type PublicApiCategoryKey } from "@aihot/contracts/taxonomy";
-import type { FeedItemSummary, ItemSummary, MediaView, XPostView } from "@aihot/contracts/site";
+import type { ItemSummary, MediaView, XPostView } from "@aihot/contracts/site";
+import type { FeedImage, FeedItemWithImage } from "@aihot/contracts/feed-image";
 import { POLICY } from "@aihot/site";
 import { sql, type Db } from "../db.ts";
 import { isChineseText } from "../lib/text.ts";
 import { isEmptyOrLinkOnly } from "../content/posts.ts";
 import { proxiedImage, proxiedImageSet } from "../media/imgproxy.ts";
+import { isNonArticleImage } from "../lib/image-url.ts";
 import { sourceOwnsPost } from "../sources/account.ts";
 import { displayTags, publicSourceName } from "./rules.ts";
 import { foldableSelectionCondition, seatedCondition } from "./scope.ts";
@@ -36,6 +38,7 @@ export interface ItemRow {
   /** Participation mode of the source now (editorial, hot_signal, isolated). */
   source_mode: string;
   x_post: Record<string, any> | null;
+  article_media?: Array<{ kind?: string; url?: string; width?: number | null; height?: number | null }> | null;
   /** Current source icon only when that account is this post's author. */
   author_avatar_url?: string | null;
   author: string | null;
@@ -52,7 +55,7 @@ export const ITEM_COLUMNS = sql`
   p.article_id AS id, p.title, p.original_title, p.summary, p.reason, p.category, p.tags, p.score,
   p.selected, p.seat, p.channel, p.url, p.published_at, p.discovered_at, p.timeline_at, p.visibility,
   p.body_mode, p.indexable, p.fact_id, s.name AS source_name, s.participation_mode AS source_mode,
-  a.x_post, a.author, a.language,
+  a.x_post, a.author, a.language, a.media AS article_media,
   CASE WHEN s.kind = 'x_search' AND ${sourceOwnsPost(sql`s.config`, sql`a.x_post->>'handle'`)} THEN s.icon_url END AS author_avatar_url,
   st.public_id::text AS story_public_id, st.title AS story_title,
   CASE WHEN p.channel = 'x' THEN tr.body_text END AS zh_text, qt.text_zh AS quoted_zh`;
@@ -174,19 +177,36 @@ export function toItemSummary(row: ItemRow): ItemSummary {
 }
 
 /** Project the shared public article into the exact fields a site card renders. */
-export function toFeedItemSummary(row: ItemRow): FeedItemSummary {
+export function toFeedItemSummary(row: ItemRow): FeedItemWithImage {
   const item = toItemSummary(row);
   const x = showsPost(row) ? xView(row, true) : null;
+  const image = row.channel === "news" ? feedImage(row.article_media) : null;
   return {
     id: item.id, title: item.title, summary: item.summary ?? (x?.text || null), reason: item.reason,
     source: item.source, publishedAt: item.publishedAt, timelineAt: item.timelineAt,
     category: item.category, tags: item.tags, score: item.score, selected: item.selected, channel: item.channel,
+    ...(image ? { image } : {}),
     x: x ? {
       authorName: x.authorName, handle: x.handle, avatarUrl: x.avatarUrl,
       ...(x.avatarSrcSet ? { avatarSrcSet: x.avatarSrcSet } : {}), media: x.media,
       quoted: x.quoted ? { authorName: x.quoted.authorName, handle: x.quoted.handle, text: x.quoted.text, translation: x.quoted.translation } : null,
     } : null,
   };
+}
+
+function feedImage(media: ItemRow["article_media"]): FeedImage | null {
+  for (const candidate of Array.isArray(media) ? media : []) {
+    if (!candidate || typeof candidate !== "object") continue;
+    const url = candidate.url;
+    if (candidate.kind !== "image" || typeof url !== "string" || !/^https?:\/\//i.test(url)) continue;
+    const width = typeof candidate.width === "number" ? candidate.width : null;
+    const height = typeof candidate.height === "number" ? candidate.height : null;
+    if (isNonArticleImage(url, width === null ? undefined : String(width), height === null ? undefined : String(height))) continue;
+    const proxied = proxiedImage(url, "card");
+    const srcSet = proxiedImageSet(url, "card");
+    if (proxied) return { url: proxied, ...(srcSet ? { srcSet } : {}), width, height };
+  }
+  return null;
 }
 
 /**

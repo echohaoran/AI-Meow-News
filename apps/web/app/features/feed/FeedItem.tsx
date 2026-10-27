@@ -1,10 +1,11 @@
 // One report in a feed. Desktop (≥ 961px): a white card beside the time rail. Phones: a compact row with
 // the time in the source line, the bookmark at hand, the reason in one line and duplicate reports
 // behind one button that opens a sheet. One markup, two presentations.
-import { memo } from "react";
+import { memo, useState } from "react";
 import { Link } from "react-router";
 import { IntentLink } from "../../components/ui/IntentLink";
-import type { GroupInfo, FeedItemSummary, TimelineFilters } from "@aihot/contracts/site";
+import type { GroupInfo, TimelineFilters } from "@aihot/contracts/site";
+import type { FeedImage, FeedItemWithImage } from "@aihot/contracts/feed-image";
 import { CATEGORY_LABELS } from "@aihot/contracts/taxonomy";
 import { ITEM_COPY } from "@aihot/site";
 import { SameEventBadge, SelectedBadge } from "../../components/ui/Badge";
@@ -16,7 +17,7 @@ import { QuotedLine } from "../item/QuotedPost";
 import { rememberPreview } from "../item/preview";
 
 export interface FeedItemProps {
-  item: FeedItemSummary;
+  item: FeedItemWithImage;
   group?: GroupInfo | null;
   filters?: TimelineFilters;
   read?: boolean;
@@ -70,14 +71,17 @@ export const FeedItem = memo(function FeedItem({ item, group, filters, read = fa
           </IntentLink>
         </p> : <IntentLink viewTransition to={`/items/${item.id}`} onClick={open} aria-label={`查看 ${item.x!.authorName} 的帖子`} className="absolute inset-0" />
       ) : (
-        <>
-          <h3 className={`mt-1.5 line-clamp-2 text-[18px] font-semibold leading-[1.5] lg:mt-2 lg:line-clamp-none lg:leading-[1.55] ${readTone(read, "text-ink")}`}>
-            <IntentLink viewTransition to={`/items/${item.id}`} onClick={open} className="after:absolute after:inset-0 after:content-['']">
-              {item.title}
-            </IntentLink>
-          </h3>
-          {item.summary && <p className="mt-1 line-clamp-2 text-[15px] leading-[1.75] text-ink-3 lg:mt-3 lg:line-clamp-3 lg:text-[16px]">{item.summary}</p>}
-        </>
+        <div className="flex items-start gap-4">
+          <div className="min-w-0 flex-1">
+            <h3 className={`mt-1.5 line-clamp-2 text-[18px] font-semibold leading-[1.5] lg:mt-2 lg:line-clamp-none lg:leading-[1.55] ${readTone(read, "text-ink")}`}>
+              <IntentLink viewTransition to={`/items/${item.id}`} onClick={open} className="after:absolute after:inset-0 after:content-['']">
+                {item.title}
+              </IntentLink>
+            </h3>
+            {item.summary && <p className="mt-1 line-clamp-2 text-[15px] leading-[1.75] text-ink-3 lg:mt-3 lg:line-clamp-3 lg:text-[16px]">{item.summary}</p>}
+          </div>
+          {item.image && <ArticleImage key={item.image.url} image={item.image} id={item.id} title={item.title} onOpen={open} />}
+        </div>
       )}
 
       {isX && item.x!.media.length > 0 && <MediaThumbs media={item.x!.media} className="mt-2.5" />}
@@ -123,3 +127,13 @@ export const FeedItem = memo(function FeedItem({ item, group, filters, read = fa
     </article>
   );
 });
+
+function ArticleImage({ image, id, title, onOpen }: { image: FeedImage; id: string; title: string; onOpen: () => void }) {
+  const [failed, setFailed] = useState(false);
+  if (failed) return null;
+  return (
+    <IntentLink viewTransition to={`/items/${id}`} onClick={onOpen} aria-label={`阅读：${title}`} className="relative z-10 mt-2 block h-[72px] w-[96px] shrink-0 overflow-hidden rounded-control bg-bg-sunk lg:h-[120px] lg:w-[180px]">
+      <img src={image.url} srcSet={image.srcSet} sizes="(min-width: 961px) 180px, 96px" width={image.width ?? undefined} height={image.height ?? undefined} alt="" loading="lazy" decoding="async" onError={() => setFailed(true)} className="size-full object-cover" />
+    </IntentLink>
+  );
+}
