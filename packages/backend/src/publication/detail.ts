@@ -13,6 +13,7 @@ import { itemUrl, siteUrl } from "./links.ts";
 import { hasItemPage, publicSourceName } from "./rules.ts";
 import { topicLinks, topicMembership } from "./topics.ts";
 import { serverModules } from "../modules.ts";
+import { sourceArticleHtml } from "./article-images.ts";
 
 interface DetailRow extends ItemRow {
   revision: number;
@@ -150,12 +151,12 @@ export async function loadItemDetail(id: string, language: "zh" | "original" = "
   } else if (row.body_mode === "full" && row.body_html) {
     const chinese = isChineseBody(row);
     const zh = chinese ? { html: row.body_html, kind: "original" as const } : row.tr_html ? { html: row.tr_html, kind: "translation" as const } : null;
-    reading = readingBody(language, zh, chinese ? null : row.body_html, chinese ? true : row.tr_complete ?? false, (html) => withOutline(proxyBodyImages(html)));
+    reading = readingBody(language, zh, chinese ? null : row.body_html, chinese ? true : row.tr_complete ?? false, (html) => withOutline(proxyBodyImages(sourceArticleHtml(html, row.source_id))));
   }
   if (language === "zh" && row.channel !== "x" && row.visibility === "public") {
     const edited = await moduleReading(row);
     if (edited?.html) {
-      const sent = withOutline(edited.html);
+      const sent = withOutline(sourceArticleHtml(edited.html, row.source_id));
       reading = { body: { zh: sent.html, original: null, zhKind: "edited", complete: true }, outline: sent.outline, hasTranslation: false, bodyLanguage: "zh" };
     } else if (edited) {
       reading.body = reading.body ? { ...reading.body, pending: true } : { zh: null, original: null, zhKind: "edited", complete: false, pending: true };
@@ -244,11 +245,11 @@ export async function exportMarkdown(id: string): Promise<{ filename: string; bo
     if (q?.text && q.translation) lines.push("### 引用中文译文", "", ...q.translation.split("\n").map((l) => `> ${l}`), "");
   } else {
     const edited = await moduleReading(row);
-    if (edited?.html) lines.push("## 中文整理稿 · AI 辅助", "", bodyToMarkdown(edited.html, row.url), "");
+    if (edited?.html) lines.push("## 中文整理稿 · AI 辅助", "", bodyToMarkdown(sourceArticleHtml(edited.html, row.source_id), row.url), "");
     else if (row.body_mode === "full" && row.body_html) {
       const translation = exportTranslation(row);
-      if (translation) lines.push("## 正文 · 中文译文", "", bodyToMarkdown(translation, row.url), "");
-      lines.push(isChineseBody(row) ? "## 正文" : "## 正文 · 原文", "", bodyToMarkdown(row.body_html, row.url), "");
+      if (translation) lines.push("## 正文 · 中文译文", "", bodyToMarkdown(sourceArticleHtml(translation, row.source_id), row.url), "");
+      lines.push(isChineseBody(row) ? "## 正文" : "## 正文 · 原文", "", bodyToMarkdown(sourceArticleHtml(row.body_html, row.source_id), row.url), "");
     }
   }
   return { filename: `${SITE.mcpPrefix}-${row.id}.md`, body: lines.join("\n").replace(/\n{3,}/g, "\n\n") };

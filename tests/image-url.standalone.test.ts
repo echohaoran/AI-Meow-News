@@ -3,6 +3,7 @@ import { test } from "node:test";
 import { isNonArticleImage } from "../packages/backend/src/lib/image-url.ts";
 import { sanitizeBody } from "../packages/backend/src/content/sanitize.ts";
 import { proxiedImage, proxyBodyImages } from "../packages/backend/src/media/imgproxy.ts";
+import { sourceArticleHtml } from "../packages/backend/src/publication/article-images.ts";
 
 test("YouTube embed, /v/, and youtu.be pages are not article images", () => {
   assert.equal(isNonArticleImage("https://www.youtube.com/embed/dQw4w9WgXcQ"), true);
@@ -13,6 +14,15 @@ test("YouTube embed, /v/, and youtu.be pages are not article images", () => {
 test("Vimeo watch and player pages are not article images", () => {
   assert.equal(isNonArticleImage("https://vimeo.com/123456789"), true);
   assert.equal(isNonArticleImage("https://player.vimeo.com/video/123456789"), true);
+});
+
+test("a configured source hides embedded images and video posters without removing text or video", () => {
+  const html = '<p>Before<img src="https://example.org/ad.png">After</p><picture><source srcset="https://example.org/ad.webp"><img src="https://example.org/ad.png"></picture><video src="https://example.org/clip.mp4" poster="https://example.org/ad.png"></video>';
+  const hidden = sourceArticleHtml(html, "rss-tmtpost");
+  assert.doesNotMatch(hidden, /<img|<picture|poster=|ad\.webp/);
+  assert.match(hidden, /BeforeAfter/);
+  assert.match(hidden, /<video[^>]*src="https:\/\/example.org\/clip.mp4"/);
+  assert.equal(sourceArticleHtml(html, "another-source"), html);
 });
 
 test("inline images retain image MIME types and reject documents across ingestion and reads", () => {

@@ -42,6 +42,14 @@ test("no usable image leaves the card without an image; X media keeps its existi
   assert.equal(toFeedItemSummary(x).image, undefined);
 });
 
+test("the configured source hides its article image while other sources retain theirs", () => {
+  const row = article([{ kind: "image", url: "https://example.org/cover.jpg", width: 1200, height: 800 }]);
+  row.source_id = "rss-tmtpost";
+  assert.equal(toFeedItemSummary(row).image, undefined);
+  row.source_id = "another-source";
+  assert.ok(toFeedItemSummary(row).image);
+});
+
 test("image scan detects an embedded QR code and keeps ordinary editorial images", async () => {
   const code = await sharp(Buffer.from(renderSVG("https://example.org/test", { pixelSize: 4, border: 4 }))).png().toBuffer();
   const clean = await sharp({ create: { width: 750, height: 400, channels: 3, background: "#b22832" } }).png().toBuffer();

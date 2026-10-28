@@ -82,6 +82,9 @@ export const SITE = {
   crawlerName: "AI-NewsBot/1.0",
 } as const;
 
+/** 这些信源的配图主要是推广图：文章中隐藏图片，信源图标照常显示。 */
+export const HIDDEN_ARTICLE_IMAGE_SOURCES: readonly string[] = ["rss-tmtpost"];
+
 /** 使用规则和隐私说明两页（正文在 pages/ 里）。 */
 export const POLICY = {
   terms: {

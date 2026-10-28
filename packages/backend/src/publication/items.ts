@@ -12,6 +12,7 @@ import { isNonArticleImage } from "../lib/image-url.ts";
 import { sourceOwnsPost } from "../sources/account.ts";
 import { displayTags, publicSourceName } from "./rules.ts";
 import { foldableSelectionCondition, seatedCondition } from "./scope.ts";
+import { hidesArticleImages } from "./article-images.ts";
 
 export interface ItemRow {
   id: string;
@@ -35,6 +36,7 @@ export interface ItemRow {
   indexable: boolean;
   fact_id: number | null;
   source_name: string;
+  source_id?: string;
   /** Participation mode of the source now (editorial, hot_signal, isolated). */
   source_mode: string;
   x_post: Record<string, any> | null;
@@ -54,7 +56,7 @@ export interface ItemRow {
 export const ITEM_COLUMNS = sql`
   p.article_id AS id, p.title, p.original_title, p.summary, p.reason, p.category, p.tags, p.score,
   p.selected, p.seat, p.channel, p.url, p.published_at, p.discovered_at, p.timeline_at, p.visibility,
-  p.body_mode, p.indexable, p.fact_id, s.name AS source_name, s.participation_mode AS source_mode,
+  p.body_mode, p.indexable, p.fact_id, s.id AS source_id, s.name AS source_name, s.participation_mode AS source_mode,
   a.x_post, a.author, a.language, a.media AS article_media,
   CASE WHEN s.kind = 'x_search' AND ${sourceOwnsPost(sql`s.config`, sql`a.x_post->>'handle'`)} THEN s.icon_url END AS author_avatar_url,
   st.public_id::text AS story_public_id, st.title AS story_title,
@@ -119,7 +121,7 @@ function mediaView(m: Record<string, any>, mode: "card" | "thumb" | "full" = "th
   };
 }
 
-export function xView(row: Pick<ItemRow, "x_post" | "zh_text"> & Partial<Pick<ItemRow, "quoted_zh" | "author_avatar_url">>, compact = false, responsive = compact): XPostView | null {
+export function xView(row: Pick<ItemRow, "x_post" | "zh_text"> & Partial<Pick<ItemRow, "quoted_zh" | "author_avatar_url" | "source_id">>, compact = false, responsive = compact): XPostView | null {
   const x = row.x_post;
   if (!x) return null;
   const quoted = x.quoted && typeof x.quoted === "object"
@@ -129,6 +131,8 @@ export function xView(row: Pick<ItemRow, "x_post" | "zh_text"> & Partial<Pick<It
     }
     : null;
   const media = ((x.media ?? []) as Array<Record<string, any>>)
+    .filter((raw) => !hidesArticleImages(row.source_id) || raw.kind === "video")
+    .map((raw) => hidesArticleImages(row.source_id) ? { ...raw, poster: null } : raw)
     .map((raw) => ({ raw, view: mediaView(raw, compact || !responsive ? "thumb" : "full", responsive) }))
     .filter((entry): entry is { raw: Record<string, any>; view: MediaView } => entry.view !== null);
   const avatarUrl = row.author_avatar_url ?? x.avatarUrl;
@@ -181,7 +185,7 @@ export function toItemSummary(row: ItemRow): ItemSummary {
 export function toFeedItemSummary(row: ItemRow): FeedItemWithImage {
   const item = toItemSummary(row);
   const x = showsPost(row) ? xView(row, true) : null;
-  const image = row.channel === "news" ? feedImage(row.article_media) : null;
+  const image = row.channel === "news" && !hidesArticleImages(row.source_id) ? feedImage(row.article_media) : null;
   return {
     id: item.id, title: item.title, summary: item.summary ?? (x?.text || null), reason: item.reason,
     source: item.source, publishedAt: item.publishedAt, timelineAt: item.timelineAt,

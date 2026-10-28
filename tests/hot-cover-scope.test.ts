@@ -40,6 +40,13 @@ test('hot covers follow current visibility and full-text rights within one ranki
     return url ? new URL(url,'http://localhost').searchParams.get('u') : null;
   };
   assert.equal(await cover(),'https://example.org/primary.png');
+  await sql`INSERT INTO sources (id,name,kind,tier,participation_mode,next_fetch_at)
+    VALUES ('rss-tmtpost','钛媒体','rss','T1','editorial','2100-01-01') ON CONFLICT (id) DO NOTHING`;
+  await sql`UPDATE articles SET source_id = 'rss-tmtpost' WHERE id = 'cover-primary'`;
+  await sql`UPDATE publications SET source_id = 'rss-tmtpost' WHERE article_id = 'cover-primary'`;
+  assert.equal(await cover(),'https://example.org/fallback.png','the configured source does not lend an advertising cover');
+  await sql`UPDATE articles SET source_id = ${source} WHERE id = 'cover-primary'`;
+  await sql`UPDATE publications SET source_id = ${source} WHERE article_id = 'cover-primary'`;
   await sql`UPDATE publications SET visibility = 'withdrawn' WHERE article_id = 'cover-primary'`;
   assert.equal(await cover(),'https://example.org/fallback.png','a withdrawn secondary report cannot remain the cover');
   await sql`UPDATE publications SET body_mode = 'summary' WHERE article_id = 'cover-fallback'`;

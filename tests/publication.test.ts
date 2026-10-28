@@ -18,6 +18,7 @@ import { publishArticle, republishSource } from "@aihot/backend/publication/publ
 import { computeHotRanking } from "@aihot/backend/events/hot";
 import { latestHotRanking } from "@aihot/backend/publication/hot";
 import { loadItemShare } from "@aihot/backend/publication/og";
+import { loadItemDetail, exportMarkdown } from "@aihot/backend/publication/detail";
 import { buildApp } from "../apps/api/src/app.ts";
 
 const T = tag();
@@ -64,6 +65,26 @@ async function get(url: string, headers: Record<string, string> = {}) {
   const res = await app.inject({ method: "GET", url, headers });
   return { status: res.statusCode, body: res.body, etag: res.headers.etag as string | undefined };
 }
+
+test("configured source images are absent from the article page and Markdown", async () => {
+  await sql`INSERT INTO sources (id,name,kind,tier,participation_mode,site_fulltext,syndicate_fulltext,next_fetch_at)
+    VALUES ('rss-tmtpost','钛媒体','rss','T1','editorial',true,true,'2100-01-01') ON CONFLICT (id) DO UPDATE SET site_fulltext=true, syndicate_fulltext=true`;
+  const minuteAgo = new Date(Date.now() - 60_000);
+  const { articleId } = await upsertMaterial({ sourceId: 'rss-tmtpost', url: `https://example.org/tmt-${T}`, title: '测试文章', language: 'zh',
+    bodyText: '正文内容保留。', bodyHtml: '<p>正文内容保留。</p><p><img src="https://example.org/advert.png" alt="广告"></p>', bodyStatus: 'ok', via: 'fetch', publishedAt: minuteAgo, discoveredAt: minuteAgo });
+  await sql`INSERT INTO analyses (article_id,input_revision,origin,relevance,category,title_zh,summary_zh,score,selected)
+    VALUES (${articleId},1,'rule','pass','ai-models','测试文章','正文摘要',50,false)`;
+  await publishArticle(articleId);
+  const detail = await loadItemDetail(articleId);
+  assert.equal(detail.kind, 'found');
+  if (detail.kind !== 'found') return;
+  const html = detail.item.body?.zh ?? detail.item.body?.original ?? '';
+  assert.match(html, /正文内容保留/);
+  assert.doesNotMatch(html, /<img|advert\.png/);
+  const markdown = (await exportMarkdown(articleId))!.body;
+  assert.match(markdown, /正文内容保留/);
+  assert.doesNotMatch(markdown, /advert\.png|!\[/);
+});
 
 // Failure modes: a revoked score falls back to the erroneous model score, zero is treated as
 // missing, republishing loses a correction, invalid scores or stale edits alter public state,
