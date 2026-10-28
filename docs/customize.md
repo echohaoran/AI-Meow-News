@@ -15,7 +15,7 @@
 ## 1. 站名和文案：`site/site.ts`
 
 - `name`：站名。导航、标题、分享图、RSS、MCP、后台都用它。`organization.name` 是结构化数据里的网站运营者（给搜索引擎看），默认也是站名，改站名时一起改；`organization.founder` 是创始人（选填），其中 `sameAs` 可列公开个人页面的地址。
-- `subject`：行业词。页面上“AI 日报”“全部 AI 动态”会变成“法律日报”“全部法律动态”。
+- `subject`：行业词。用于“AI 日报”等组合文案；本站导航中的“全部动态”是固定标签，调整导航名称需检查对应组件。
 - `homeTitle`、`topicsTitle`、`description`、`tagline`、`keywords`：首页和主题目录页的标题、一句话介绍、分享图下方的小字、给搜索引擎的关键词。
 - `feedbackExample`：反馈表单输入框里的示例。
 - `locale`：界面语言（网页的语言标记、分享卡片和结构化数据），`public/` 文件里的 `{{locale}}` 也换成它。
@@ -24,7 +24,7 @@
 - `interfaceVersion`：公开接口（MCP、OpenAPI、`llms.txt`）的版本号，只升不降；改了接口里已有的字段或含义时升主版本。
 - `crawlerName`：抓取信源时报的名字，别用别人的站名。
 - `contactEmail`：对外联系邮箱（选填），填了就在 `llms.txt` 和给 Agent 的使用说明里写成授权联系方式。
-- `footerNote`：关于页底部的一行小字。默认是一行框架署名“由 AIHOT 开源框架驱动”，可以留也可以删（设成 `null`）。
+- `footerNote`：关于页底部的一行小字；本站当前为“AI-News · AI喵实验室 · 内网阅读”，可按自己的站点修改或设为 `null`。
 - `icp`、`psb`：中国大陆网站的 ICP 和公安备案号，填了就显示在页脚，并链接到对应备案记录。
 - `github`：源码仓库的地址（选填），填了就在侧栏和“我的”页底部显示“GitHub 开源”。
 - `llmsIntro`：`llms.txt` 里一句话介绍下面的一段详细介绍（选填）。

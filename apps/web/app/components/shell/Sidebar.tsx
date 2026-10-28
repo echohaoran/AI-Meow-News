@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router";
 import { IntentLink } from "../ui/IntentLink";
 import { SITE } from "@aihot/site";
-import { Wordmark } from "@aihot/site/brand/Logo.tsx";
+import sidebarCat from "@aihot/site/brand/sidebar-cat.png";
 import { SocialLinks } from "@aihot/site/brand/SocialLinks.tsx";
 import { useChangelogSeen } from "../../lib/local-state";
 import { sidebar, sidebarIsActive, type NavItem } from "./nav";
@@ -45,7 +45,10 @@ export function Sidebar({ changelogVersion }: { changelogVersion: string | null 
   return (
     <aside className="sticky top-0 z-30 hidden h-dvh w-[240px] shrink-0 flex-col border-r border-line bg-sidebar px-5 pb-5 pt-6 lg:flex">
       <Link to="/" className="mb-6 flex min-h-[72px] flex-col items-start justify-center gap-3 px-3 text-ink" aria-label={`${SITE.name} 首页`}>
-        <Wordmark size={30} />
+        <span className="inline-flex items-center gap-[0.28em] whitespace-nowrap text-[25px] font-semibold leading-none tracking-[-0.035em]" aria-hidden="true">
+          <img src={sidebarCat} alt="" className="size-[1.2em] shrink-0 rounded-control object-cover" />
+          <span>{SITE.name}</span>
+        </span>
         <span className="text-[12px] text-ink-3">AI喵实验室 · 有出处的 AI 观察</span>
       </Link>
       <nav className="scrollbar-thin -mx-1 flex-1 overflow-y-auto px-1" aria-label="主导航">

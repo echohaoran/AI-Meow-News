@@ -65,6 +65,6 @@ GET /api/site/source-items，匿名只读。参数：sourceId 可选（1–120�
 响应为 SourceItemsResponse：{mode:"source",verificationStatus:"unverified",page,limit,hasMore,items}。
 items[] 为 {id,title,sourceSummary,source:{id,name},links:{original},publishedAt,discoveredAt,verificationStatus:"unverified",selected:false}。sourceSummary 来自原 feed excerpt，转纯文本、最多2000字符；它不是 AI 摘要。该视图不提供生成摘要/评分，也不把来源可信度当成事实核验。已有生成/编辑摘要仍由原详情接口及持久化 analyses/editorial_overrides 提供。
 
-按来源发布时间倒序、ID倒序；动态翻页可能因新到条目移动，hasMore 指本次查询后仍有条目。仅通过 publication 读取层返回 editorial 来源的 public、已释放、已知非未来发布时间的新闻资料；撤回、隔离及其他模式不进入此接口。原精选/全部动态的模型门槛不变。无模型时请显式展示“来源动态·未核验”，不能把本接口数据填充成精选。本接口可独立于后台 worker 和模型运行，前端目前尚未接入该新入口，交全栈接线。
+按来源发布时间倒序、ID倒序；动态翻页可能因新到条目移动，hasMore 指本次查询后仍有条目。仅通过 publication 读取层返回 editorial 来源的 public、已释放、已知非未来发布时间的新闻资料；撤回、隔离及其他模式不进入此接口。原精选/全部动态的模型门槛不变。无模型时请显式展示“来源动态·未核验”，不能把本接口数据填充成精选。本接口可独立于后台 worker 和模型运行。
 
 2026-10-26全栈集成：公开来源页面现为 `/source-news`，通过共享SourceItemsResponse读取本接口；“来源名称”链接执行sourceId筛选。原 `/sources` 保留底座后台书签重定向。运行验证与模型处理边界见[验收与现状](../验收与现状.md)。

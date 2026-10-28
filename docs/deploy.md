@@ -4,6 +4,8 @@
 
 本页用于全新独立环境，使用 `deploy/portable/compose.yaml`。**既有 homelab不要运行本页创建第二套数据库**；其根Compose沿用原外部网络、env与卷。上游旧版3000端口、setup服务、https profile的启动说明不适用于本仓当前根Compose。
 
+本站公网服务现由 `192.168.1.84` 承载；早期 Homelab 的文件路径和 Compose 命令不一定适用于该机。维护既有实例前以服务器当前配置及[交接记录](handoff.md)为准。
+
 ## 1. 准备运行配置
 
 先clone仓库，以下在仓库根执行。Docker构建使用固定Node24.22.1，宿主只需Docker/Compose；直接开发另需Node与npm。
